@@ -1,0 +1,62 @@
+# Global / OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Python
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pytest_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.eggs/
+.mypy_cache/
+.pytype/
+
+# Virtual environments
+.venv/
+venv/
+myenv/
+ENV/
+env/
+
+# Logs & databases
+*.log
+*.sqlite3
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build / dist
+build/
+dist/
+wheelhouse/
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+frontend/build/
+frontend/.cache/
+
+# Environment files (keep examples)
+.env
+.env.local
+*.env
+backend/.env
+backend/.env.local
+!backend/env_example.txt
+
+# Editor / IDE
+.vscode/
+.idea/
+*.iml
+
+# Generated data/output
+synthetic_biology_data.jsonl
+weighted_biology_questions.json

@@ -1,0 +1,45 @@
+[
+  {
+    "question_id": 1,
+    "question_text": "What is inflation?",
+    "key_points": [
+      {"text": "General increase in prices", "weight": 1},
+      {"text": "Reduction of purchasing power", "weight": 1}
+    ]
+  },
+  {
+    "question_id": 2,
+    "question_text": "Explain supply and demand",
+    "key_points": [
+      {"text": "Relationship between price and quantity demanded", "weight": 1},
+      {"text": "As price increases, demand decreases", "weight": 1}
+    ]
+  },
+  {
+    "question_id": 3,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {"text": "Store water in their bodies", "weight": 1},
+      {"text": "Active at night", "weight": 1},
+      {"text": "Light-colored skin", "weight": 1}
+    ]
+  },
+  {
+    "question_id": 4,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {"text": "Use sunlight as energy", "weight": 1},
+      {"text": "Take in carbon dioxide", "weight": 1},
+      {"text": "Absorb water through roots", "weight": 1}
+    ]
+  },
+  {
+    "question_id": 5,
+    "question_text": "Describe three characteristics of butterflies.",
+    "key_points": [
+      {"text": "Have colorful wings", "weight": 1},
+      {"text": "Can see ultraviolet light", "weight": 1},
+      {"text": "Use pheromones to communicate", "weight": 1}
+    ]
+  }
+]
