@@ -1,0 +1,5537 @@
+[
+  {
+    "question_text": "What is natural selection and how does it contribute to evolution?",
+    "key_points": [
+      {
+        "text": "Survival of the fittest organisms",
+        "weight": 1
+      },
+      {
+        "text": "Variation in traits among individuals",
+        "weight": 1
+      },
+      {
+        "text": "Environment influences which traits are beneficial",
+        "weight": 1
+      },
+      {
+        "text": "Successful traits are passed to next generations",
+        "weight": 1
+      }
+    ],
+    "question_id": 1
+  },
+  {
+    "question_id": 2,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 3,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of the cell membrane?",
+    "key_points": [
+      {
+        "text": "Regulates the movement of substances",
+        "weight": 1
+      },
+      {
+        "text": "Provides structure and support",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates communication with other cells",
+        "weight": 1
+      }
+    ],
+    "question_id": 4
+  },
+  {
+    "question_id": 5,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals blend into surroundings",
+        "weight": 1
+      },
+      {
+        "text": "Webbed feet assist in swimming",
+        "weight": 1
+      },
+      {
+        "text": "Sharp teeth enable hunting and feeding",
+        "weight": 1
+      }
+    ],
+    "question_id": 6
+  },
+  {
+    "question_text": "What are the main functions of the human skeletal system?",
+    "key_points": [
+      {
+        "text": "Provides structural support for the body",
+        "weight": 1
+      },
+      {
+        "text": "Protects vital organs like the heart and brain",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates movement by serving as levers",
+        "weight": 1
+      },
+      {
+        "text": "Stores minerals like calcium and phosphorus",
+        "weight": 1
+      }
+    ],
+    "question_id": 7
+  },
+  {
+    "question_text": "What adaptations help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals avoid predators",
+        "weight": 1
+      },
+      {
+        "text": "Physical features aid in finding food",
+        "weight": 1
+      },
+      {
+        "text": "Behavioral changes enhance survival rates",
+        "weight": 1
+      }
+    ],
+    "question_id": 8
+  },
+  {
+    "question_text": "What are the main functions of the cell membrane?",
+    "key_points": [
+      {
+        "text": "Controls what enters and exits the cell",
+        "weight": 1
+      },
+      {
+        "text": "Provides structure and protection",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates communication with other cells",
+        "weight": 1
+      }
+    ],
+    "question_id": 9
+  },
+  {
+    "question_text": "How do human activities impact biodiversity in ecosystems?",
+    "key_points": [
+      {
+        "text": "Habitat destruction reduces species' living spaces",
+        "weight": 1
+      },
+      {
+        "text": "Pollution harms plants and animals",
+        "weight": 1
+      },
+      {
+        "text": "Overfishing decreases fish populations",
+        "weight": 1
+      },
+      {
+        "text": "Invasive species compete with native species",
+        "weight": 1
+      }
+    ],
+    "question_id": 10
+  },
+  {
+    "question_id": 11,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 12,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What is the role of genes in determining traits in living organisms?",
+    "key_points": [
+      {
+        "text": "Genes are segments of DNA.",
+        "weight": 1
+      },
+      {
+        "text": "Traits are inherited from parents.",
+        "weight": 1
+      },
+      {
+        "text": "Different alleles can cause variations.",
+        "weight": 1
+      },
+      {
+        "text": "Environmental factors can influence traits.",
+        "weight": 1
+      }
+    ],
+    "question_id": 13
+  },
+  {
+    "question_id": 14,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 15,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main components of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Living organisms like plants and animals",
+        "weight": 1
+      },
+      {
+        "text": "Non-living elements like water and soil",
+        "weight": 1
+      },
+      {
+        "text": "Energy flow from producers to consumers",
+        "weight": 1
+      },
+      {
+        "text": "Interactions between species and their environment",
+        "weight": 1
+      }
+    ],
+    "question_id": 16
+  },
+  {
+    "question_id": 17,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 18,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 19,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "How do human activities impact biodiversity in ecosystems?",
+    "key_points": [
+      {
+        "text": "Deforestation reduces habitats for many species",
+        "weight": 1
+      },
+      {
+        "text": "Pollution can harm or kill aquatic life",
+        "weight": 1
+      },
+      {
+        "text": "Climate change alters habitats and food sources",
+        "weight": 1
+      }
+    ],
+    "question_id": 20
+  },
+  {
+    "question_id": 21,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 22,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some key ideas that explain how evolution occurs?",
+    "key_points": [
+      {
+        "text": "Natural selection favors advantageous traits",
+        "weight": 1
+      },
+      {
+        "text": "Mutations create genetic variation",
+        "weight": 1
+      },
+      {
+        "text": "Species adapt to their environments over time",
+        "weight": 1
+      },
+      {
+        "text": "Fossils provide evidence of evolutionary changes",
+        "weight": 1
+      }
+    ],
+    "question_id": 23
+  },
+  {
+    "question_id": 24,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "How does deforestation impact local ecosystems?",
+    "key_points": [
+      {
+        "text": "Loss of habitat for many species",
+        "weight": 1
+      },
+      {
+        "text": "Increased carbon dioxide in the atmosphere",
+        "weight": 1
+      },
+      {
+        "text": "Soil erosion and nutrient loss",
+        "weight": 1
+      }
+    ],
+    "question_id": 25
+  },
+  {
+    "question_text": "What are some unique adaptations that help animals survive in their habitats?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals hide from predators",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find food and better climates",
+        "weight": 1
+      },
+      {
+        "text": "Hibernation conserves energy during harsh weather",
+        "weight": 1
+      },
+      {
+        "text": "Specialized teeth or beaks aid in food gathering",
+        "weight": 1
+      }
+    ],
+    "question_id": 26
+  },
+  {
+    "question_text": "What are the main parts of a plant and their functions?",
+    "key_points": [
+      {
+        "text": "Roots anchor the plant and absorb water",
+        "weight": 1
+      },
+      {
+        "text": "Stems support the plant and transport nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Leaves photosynthesize to produce food for the plant",
+        "weight": 1
+      },
+      {
+        "text": "Flowers attract pollinators for reproduction",
+        "weight": 1
+      }
+    ],
+    "question_id": 27
+  },
+  {
+    "question_id": 28,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 29,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main differences between plant and animal cells?",
+    "key_points": [
+      {
+        "text": "Plant cells have a cell wall",
+        "weight": 1
+      },
+      {
+        "text": "Animal cells have lysosomes",
+        "weight": 1
+      },
+      {
+        "text": "Plant cells contain chloroplasts",
+        "weight": 1
+      },
+      {
+        "text": "Animal cells are typically rounder",
+        "weight": 1
+      }
+    ],
+    "question_id": 30
+  },
+  {
+    "question_id": 31,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 32,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What is natural selection and how does it relate to evolution?",
+    "key_points": [
+      {
+        "text": "Organisms with favorable traits survive better",
+        "weight": 1
+      },
+      {
+        "text": "Traits are passed down to future generations",
+        "weight": 1
+      },
+      {
+        "text": "Natural selection leads to species adapting",
+        "weight": 1
+      }
+    ],
+    "question_id": 33
+  },
+  {
+    "question_text": "What are the main differences between plant and animal cells?",
+    "key_points": [
+      {
+        "text": "Plant cells have a cell wall.",
+        "weight": 1
+      },
+      {
+        "text": "Animal cells contain lysosomes.",
+        "weight": 1
+      },
+      {
+        "text": "Plant cells have chloroplasts for photosynthesis.",
+        "weight": 1
+      },
+      {
+        "text": "Animal cells have centrioles for cell division.",
+        "weight": 1
+      }
+    ],
+    "question_id": 34
+  },
+  {
+    "question_id": 35,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 36,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 37,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 38,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 39,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 40,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 41,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of the human skeletal system?",
+    "key_points": [
+      {
+        "text": "Provides structure and support for the body",
+        "weight": 1
+      },
+      {
+        "text": "Protects vital organs like the heart and brain",
+        "weight": 1
+      },
+      {
+        "text": "Enables movement by serving as attachment points for muscles",
+        "weight": 1
+      },
+      {
+        "text": "Stores minerals like calcium and phosphorus",
+        "weight": 1
+      }
+    ],
+    "question_id": 42
+  },
+  {
+    "question_id": 43,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of the human circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to body cells",
+        "weight": 1
+      },
+      {
+        "text": "Removes carbon dioxide from cells",
+        "weight": 1
+      },
+      {
+        "text": "Delivers nutrients from digestion",
+        "weight": 1
+      },
+      {
+        "text": "Helps regulate body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 44
+  },
+  {
+    "question_text": "What are the main differences between plant and animal cells?",
+    "key_points": [
+      {
+        "text": "Plant cells have a cell wall.",
+        "weight": 1
+      },
+      {
+        "text": "Animal cells have lysosomes.",
+        "weight": 1
+      },
+      {
+        "text": "Plant cells contain chloroplasts for photosynthesis.",
+        "weight": 1
+      },
+      {
+        "text": "Animal cells are generally rounder in shape.",
+        "weight": 1
+      }
+    ],
+    "question_id": 45
+  },
+  {
+    "question_text": "What factors affect the balance of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Availability of food resources",
+        "weight": 1
+      },
+      {
+        "text": "Presence of predators",
+        "weight": 1
+      },
+      {
+        "text": "Climate and weather patterns",
+        "weight": 1
+      },
+      {
+        "text": "Human activities like pollution",
+        "weight": 1
+      }
+    ],
+    "question_id": 46
+  },
+  {
+    "question_id": 47,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 48,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some mechanisms that drive evolution in species?",
+    "key_points": [
+      {
+        "text": "Natural selection favors beneficial traits",
+        "weight": 1
+      },
+      {
+        "text": "Mutations introduce genetic variation",
+        "weight": 1
+      },
+      {
+        "text": "Gene flow increases genetic diversity",
+        "weight": 1
+      },
+      {
+        "text": "Genetic drift affects small populations",
+        "weight": 1
+      }
+    ],
+    "question_id": 49
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage to blend into surroundings",
+        "weight": 1
+      },
+      {
+        "text": "Specialized teeth for eating specific food",
+        "weight": 1
+      },
+      {
+        "text": "Ability to run fast to escape predators",
+        "weight": 1
+      },
+      {
+        "text": "Hibernation to survive winter conditions",
+        "weight": 1
+      }
+    ],
+    "question_id": 50
+  },
+  {
+    "question_text": "What are the main stages of a butterfly's life cycle?",
+    "key_points": [
+      {
+        "text": "Egg stage lasts about 3-10 days",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillar stage focuses on eating",
+        "weight": 1
+      },
+      {
+        "text": "Chrysalis stage involves transformation",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterflies emerge and reproduce",
+        "weight": 1
+      }
+    ],
+    "question_id": 51
+  },
+  {
+    "question_id": 52,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of roots in plants?",
+    "key_points": [
+      {
+        "text": "Roots anchor the plant in the soil",
+        "weight": 1
+      },
+      {
+        "text": "Roots absorb water and nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Roots store energy for the plant",
+        "weight": 1
+      }
+    ],
+    "question_id": 53
+  },
+  {
+    "question_id": 54,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main stages of a butterfly's life cycle?",
+    "key_points": [
+      {
+        "text": "Eggs are laid on host plants.",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillars (larvae) eat and grow.",
+        "weight": 1
+      },
+      {
+        "text": "Chrysalises (pupae) undergo transformation.",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterflies emerge and reproduce.",
+        "weight": 1
+      }
+    ],
+    "question_id": 55
+  },
+  {
+    "question_id": 56,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some key components that make up an ecosystem?",
+    "key_points": [
+      {
+        "text": "Living organisms like plants and animals",
+        "weight": 1
+      },
+      {
+        "text": "Non-living factors like water and sunlight",
+        "weight": 1
+      },
+      {
+        "text": "Interactions between species",
+        "weight": 1
+      },
+      {
+        "text": "Energy flow through food chains",
+        "weight": 1
+      }
+    ],
+    "question_id": 57
+  },
+  {
+    "question_id": 58,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 59,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of leaves in plants?",
+    "key_points": [
+      {
+        "text": "Leaves help in photosynthesis.",
+        "weight": 1
+      },
+      {
+        "text": "Leaves absorb sunlight for energy.",
+        "weight": 1
+      },
+      {
+        "text": "Leaves release oxygen into the air.",
+        "weight": 1
+      },
+      {
+        "text": "Leaves help in water regulation.",
+        "weight": 1
+      }
+    ],
+    "question_id": 60
+  },
+  {
+    "question_id": 61,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the effects of pollution on aquatic ecosystems?",
+    "key_points": [
+      {
+        "text": "Pollution reduces oxygen levels in water.",
+        "weight": 1
+      },
+      {
+        "text": "Toxic substances harm fish and other organisms.",
+        "weight": 1
+      },
+      {
+        "text": "Eutrophication causes algal blooms and dead zones.",
+        "weight": 1
+      },
+      {
+        "text": "Pollution disrupts food chains in aquatic habitats.",
+        "weight": 1
+      }
+    ],
+    "question_id": 62
+  },
+  {
+    "question_id": 63,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What is the role of genes in determining traits?",
+    "key_points": [
+      {
+        "text": "Genes are segments of DNA.",
+        "weight": 1
+      },
+      {
+        "text": "Traits are inherited from parents.",
+        "weight": 1
+      },
+      {
+        "text": "Different versions of genes are alleles.",
+        "weight": 1
+      },
+      {
+        "text": "Environment can influence gene expression.",
+        "weight": 1
+      }
+    ],
+    "question_id": 64
+  },
+  {
+    "question_id": 65,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some important stages in a butterfly's life cycle?",
+    "key_points": [
+      {
+        "text": "Egg stage is the first stage of development.",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillar stage is for growth and eating.",
+        "weight": 1
+      },
+      {
+        "text": "Chrysalis is where transformation occurs.",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterflies reproduce to start the cycle.",
+        "weight": 1
+      }
+    ],
+    "question_id": 66
+  },
+  {
+    "question_text": "What is natural selection and how does it contribute to evolution?",
+    "key_points": [
+      {
+        "text": "Organisms with favorable traits survive longer",
+        "weight": 1
+      },
+      {
+        "text": "Favorable traits are passed to offspring",
+        "weight": 1
+      },
+      {
+        "text": "Natural selection leads to species adaptation",
+        "weight": 1
+      }
+    ],
+    "question_id": 67
+  },
+  {
+    "question_id": 68,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 69,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are three ways animals adapt to their environment?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals blend in.",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find food.",
+        "weight": 1
+      },
+      {
+        "text": "Behavioral changes improve survival rates.",
+        "weight": 1
+      }
+    ],
+    "question_id": 70
+  },
+  {
+    "question_id": 71,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some key mechanisms of evolution?",
+    "key_points": [
+      {
+        "text": "Natural selection favors advantageous traits",
+        "weight": 1
+      },
+      {
+        "text": "Mutations create genetic variation in populations",
+        "weight": 1
+      },
+      {
+        "text": "Gene flow introduces new genes between populations",
+        "weight": 1
+      },
+      {
+        "text": "Genetic drift causes random changes in small populations",
+        "weight": 1
+      }
+    ],
+    "question_id": 72
+  },
+  {
+    "question_id": 73,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main parts of a plant and their functions?",
+    "key_points": [
+      {
+        "text": "Roots anchor the plant and absorb water",
+        "weight": 1
+      },
+      {
+        "text": "Stems support the plant and transport nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Leaves conduct photosynthesis to produce food",
+        "weight": 1
+      },
+      {
+        "text": "Flowers are for reproduction and attract pollinators",
+        "weight": 1
+      }
+    ],
+    "question_id": 74
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps hide from predators",
+        "weight": 1
+      },
+      {
+        "text": "Sharp teeth assist in catching prey",
+        "weight": 1
+      },
+      {
+        "text": "Webbed feet improve swimming ability",
+        "weight": 1
+      },
+      {
+        "text": "Migration aids in finding food sources",
+        "weight": 1
+      }
+    ],
+    "question_id": 75
+  },
+  {
+    "question_id": 76,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals blend in with surroundings",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows access to food and better climates",
+        "weight": 1
+      },
+      {
+        "text": "Hibernation conserves energy during harsh conditions",
+        "weight": 1
+      }
+    ],
+    "question_id": 77
+  },
+  {
+    "question_id": 78,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some key mechanisms of evolution?",
+    "key_points": [
+      {
+        "text": "Natural selection increases survival of the fittest",
+        "weight": 1
+      },
+      {
+        "text": "Mutation introduces new genetic variations",
+        "weight": 1
+      },
+      {
+        "text": "Genetic drift causes random changes in populations",
+        "weight": 1
+      },
+      {
+        "text": "Gene flow occurs when organisms migrate",
+        "weight": 1
+      }
+    ],
+    "question_id": 79
+  },
+  {
+    "question_id": 80,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What is the role of DNA in genetics?",
+    "key_points": [
+      {
+        "text": "DNA carries genetic information",
+        "weight": 1
+      },
+      {
+        "text": "DNA is made of nucleotides",
+        "weight": 1
+      },
+      {
+        "text": "Genes are segments of DNA",
+        "weight": 1
+      },
+      {
+        "text": "DNA determines traits in organisms",
+        "weight": 1
+      }
+    ],
+    "question_id": 81
+  },
+  {
+    "question_id": 82,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some important roles of producers in an ecosystem?",
+    "key_points": [
+      {
+        "text": "Producers convert sunlight into energy through photosynthesis.",
+        "weight": 1
+      },
+      {
+        "text": "They provide food for consumers in the food web.",
+        "weight": 1
+      },
+      {
+        "text": "Producers release oxygen as a byproduct of photosynthesis.",
+        "weight": 1
+      }
+    ],
+    "question_id": 83
+  },
+  {
+    "question_text": "What are the main functions of the human respiratory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to the bloodstream",
+        "weight": 1
+      },
+      {
+        "text": "Removes carbon dioxide from the body",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates breathing process",
+        "weight": 1
+      }
+    ],
+    "question_id": 84
+  },
+  {
+    "question_text": "What are the main functions of the human circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to body tissues",
+        "weight": 1
+      },
+      {
+        "text": "Removes carbon dioxide from blood",
+        "weight": 1
+      },
+      {
+        "text": "Delivers nutrients to cells",
+        "weight": 1
+      },
+      {
+        "text": "Regulates body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 85
+  },
+  {
+    "question_text": "What are some key concepts of evolution by natural selection?",
+    "key_points": [
+      {
+        "text": "Organisms with favorable traits survive better",
+        "weight": 1
+      },
+      {
+        "text": "Genetic variation exists within populations",
+        "weight": 1
+      },
+      {
+        "text": "Over time, species can change significantly",
+        "weight": 1
+      }
+    ],
+    "question_id": 86
+  },
+  {
+    "question_id": 87,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 88,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 89,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 90,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 91,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 92,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 93,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 94,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 95,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main components of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Living organisms like plants and animals",
+        "weight": 1
+      },
+      {
+        "text": "Non-living elements like water and soil",
+        "weight": 1
+      },
+      {
+        "text": "Energy flow through food chains",
+        "weight": 1
+      },
+      {
+        "text": "Interactions among species and environment",
+        "weight": 1
+      }
+    ],
+    "question_id": 96
+  },
+  {
+    "question_text": "What are the main functions of a cell's organelles?",
+    "key_points": [
+      {
+        "text": "Mitochondria produce energy for the cell",
+        "weight": 1
+      },
+      {
+        "text": "Ribosomes synthesize proteins",
+        "weight": 1
+      },
+      {
+        "text": "Nucleus contains genetic material",
+        "weight": 1
+      },
+      {
+        "text": "Cell membrane controls substance entry and exit",
+        "weight": 1
+      }
+    ],
+    "question_id": 97
+  },
+  {
+    "question_id": 98,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main parts of a plant and their functions?",
+    "key_points": [
+      {
+        "text": "Roots anchor the plant and absorb water",
+        "weight": 1
+      },
+      {
+        "text": "Stems support and transport nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Leaves photosynthesize and produce food",
+        "weight": 1
+      },
+      {
+        "text": "Flowers attract pollinators for reproduction",
+        "weight": 1
+      }
+    ],
+    "question_id": 99
+  },
+  {
+    "question_text": "What are the main functions of the human circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to body cells",
+        "weight": 1
+      },
+      {
+        "text": "Removes carbon dioxide from cells",
+        "weight": 1
+      },
+      {
+        "text": "Distributes nutrients from digestion",
+        "weight": 1
+      },
+      {
+        "text": "Helps regulate body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 100
+  },
+  {
+    "question_id": 101,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main parts of a plant and their functions?",
+    "key_points": [
+      {
+        "text": "Roots anchor the plant and absorb water",
+        "weight": 1
+      },
+      {
+        "text": "Stems support the plant and transport nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Leaves photosynthesize to produce food",
+        "weight": 1
+      },
+      {
+        "text": "Flowers attract pollinators for reproduction",
+        "weight": 1
+      }
+    ],
+    "question_id": 102
+  },
+  {
+    "question_text": "What are the main components of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Living organisms such as plants and animals",
+        "weight": 1
+      },
+      {
+        "text": "Non-living elements like water and soil",
+        "weight": 1
+      },
+      {
+        "text": "Interactions between organisms and their environment",
+        "weight": 1
+      }
+    ],
+    "question_id": 103
+  },
+  {
+    "question_text": "What are the main functions of the cell membrane in a cell?",
+    "key_points": [
+      {
+        "text": "Controls what enters and exits the cell",
+        "weight": 1
+      },
+      {
+        "text": "Provides protection and structure for the cell",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates communication with other cells",
+        "weight": 1
+      }
+    ],
+    "question_id": 104
+  },
+  {
+    "question_id": 105,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 106,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 107,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of cell organelles in a plant cell?",
+    "key_points": [
+      {
+        "text": "Chloroplasts perform photosynthesis",
+        "weight": 1
+      },
+      {
+        "text": "Cell wall provides structural support",
+        "weight": 1
+      },
+      {
+        "text": "Vacuoles store nutrients and waste",
+        "weight": 1
+      },
+      {
+        "text": "Nucleus controls cell activities",
+        "weight": 1
+      }
+    ],
+    "question_id": 108
+  },
+  {
+    "question_id": 109,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some key mechanisms of evolution?",
+    "key_points": [
+      {
+        "text": "Natural selection leads to adaptation.",
+        "weight": 1
+      },
+      {
+        "text": "Mutations introduce genetic variation.",
+        "weight": 1
+      },
+      {
+        "text": "Gene flow occurs between populations.",
+        "weight": 1
+      },
+      {
+        "text": "Genetic drift affects small populations.",
+        "weight": 1
+      }
+    ],
+    "question_id": 110
+  },
+  {
+    "question_id": 111,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 112,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 113,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 114,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 115,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main components of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Producers convert sunlight into energy",
+        "weight": 1
+      },
+      {
+        "text": "Consumers eat plants or other animals",
+        "weight": 1
+      },
+      {
+        "text": "Decomposers break down dead matter",
+        "weight": 1
+      },
+      {
+        "text": "Abiotic factors include water, soil, and climate",
+        "weight": 1
+      }
+    ],
+    "question_id": 116
+  },
+  {
+    "question_text": "What are the main components of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Producers convert sunlight into energy",
+        "weight": 1
+      },
+      {
+        "text": "Consumers eat producers or other consumers",
+        "weight": 1
+      },
+      {
+        "text": "Decomposers break down dead organisms",
+        "weight": 1
+      },
+      {
+        "text": "Abiotic factors include water, soil, and climate",
+        "weight": 1
+      }
+    ],
+    "question_id": 117
+  },
+  {
+    "question_id": 118,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of the human circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to body cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries carbon dioxide to lungs",
+        "weight": 1
+      },
+      {
+        "text": "Delivers nutrients from digestive system",
+        "weight": 1
+      },
+      {
+        "text": "Helps regulate body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 119
+  },
+  {
+    "question_text": "What are some ways animals adapt to their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals blend into surroundings.",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find better resources.",
+        "weight": 1
+      },
+      {
+        "text": "Hibernation conserves energy during harsh climates.",
+        "weight": 1
+      },
+      {
+        "text": "Specialized diets help animals survive in specific habitats.",
+        "weight": 1
+      }
+    ],
+    "question_id": 120
+  },
+  {
+    "question_text": "What are the main functions of the human respiratory system?",
+    "key_points": [
+      {
+        "text": "Delivers oxygen to the blood",
+        "weight": 1
+      },
+      {
+        "text": "Removes carbon dioxide from the body",
+        "weight": 1
+      },
+      {
+        "text": "Helps regulate blood pH",
+        "weight": 1
+      }
+    ],
+    "question_id": 121
+  },
+  {
+    "question_id": 122,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 123,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some ways animals adapt to their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals blend in with surroundings",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find better resources",
+        "weight": 1
+      },
+      {
+        "text": "Physical features can improve survival and hunting",
+        "weight": 1
+      },
+      {
+        "text": "Behavioral changes aid in coping with climate",
+        "weight": 1
+      }
+    ],
+    "question_id": 124
+  },
+  {
+    "question_id": 125,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of the human circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to body cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries carbon dioxide to lungs",
+        "weight": 1
+      },
+      {
+        "text": "Delivers nutrients from digestion",
+        "weight": 1
+      },
+      {
+        "text": "Helps regulate body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 126
+  },
+  {
+    "question_id": 127,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 128,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 129,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage to blend in with surroundings",
+        "weight": 1
+      },
+      {
+        "text": "Specialized feeding habits for available food",
+        "weight": 1
+      },
+      {
+        "text": "Physical features like sharp claws or teeth",
+        "weight": 1
+      },
+      {
+        "text": "Behavioral adaptations, such as migration",
+        "weight": 1
+      }
+    ],
+    "question_id": 130
+  },
+  {
+    "question_text": "What are some key adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals hide from predators",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find food and better climates",
+        "weight": 1
+      },
+      {
+        "text": "Hibernation conserves energy during harsh winters",
+        "weight": 1
+      }
+    ],
+    "question_id": 131
+  },
+  {
+    "question_id": 132,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 133,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 134,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 135,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 136,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 137,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 138,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 139,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some key mechanisms that drive evolution?",
+    "key_points": [
+      {
+        "text": "Natural selection leads to survival of the fittest.",
+        "weight": 1
+      },
+      {
+        "text": "Mutation introduces new traits in a population.",
+        "weight": 1
+      },
+      {
+        "text": "Gene flow occurs when organisms migrate.",
+        "weight": 1
+      },
+      {
+        "text": "Genetic drift randomly changes allele frequencies.",
+        "weight": 1
+      }
+    ],
+    "question_id": 140
+  },
+  {
+    "question_id": 141,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 142,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 143,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 144,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 145,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage to blend in with surroundings",
+        "weight": 1
+      },
+      {
+        "text": "Physical traits like sharp claws or teeth",
+        "weight": 1
+      },
+      {
+        "text": "Behavioral changes such as migration",
+        "weight": 1
+      }
+    ],
+    "question_id": 146
+  },
+  {
+    "question_text": "What are the main functions of the human circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to body cells",
+        "weight": 1
+      },
+      {
+        "text": "Removes carbon dioxide from cells",
+        "weight": 1
+      },
+      {
+        "text": "Delivers nutrients to tissues",
+        "weight": 1
+      },
+      {
+        "text": "Helps regulate body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 147
+  },
+  {
+    "question_id": 148,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 149,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of the cell membrane?",
+    "key_points": [
+      {
+        "text": "Regulates what enters and exits the cell",
+        "weight": 1
+      },
+      {
+        "text": "Provides structural support to the cell",
+        "weight": 1
+      },
+      {
+        "text": "Enables communication between cells",
+        "weight": 1
+      }
+    ],
+    "question_id": 150
+  },
+  {
+    "question_text": "What are the main stages of a butterfly's life cycle?",
+    "key_points": [
+      {
+        "text": "Egg stage where butterflies begin their life",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillar stage, also known as larva",
+        "weight": 1
+      },
+      {
+        "text": "Pupa stage where metamorphosis occurs",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterfly emerges after pupation",
+        "weight": 1
+      }
+    ],
+    "question_id": 151
+  },
+  {
+    "question_id": 152,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 153,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the three main parts of a plant, and what is the function of each?",
+    "key_points": [
+      {
+        "text": "Roots anchor the plant and absorb water",
+        "weight": 1
+      },
+      {
+        "text": "Stems support the plant and transport nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Leaves perform photosynthesis to produce food",
+        "weight": 1
+      }
+    ],
+    "question_id": 154
+  },
+  {
+    "question_text": "What are the primary functions of the human circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to body cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries carbon dioxide to lungs",
+        "weight": 1
+      },
+      {
+        "text": "Delivers nutrients from digestion",
+        "weight": 1
+      },
+      {
+        "text": "Regulates body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 155
+  },
+  {
+    "question_id": 156,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 157,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main differences between mammals and reptiles?",
+    "key_points": [
+      {
+        "text": "Mammals have fur or hair",
+        "weight": 1
+      },
+      {
+        "text": "Reptiles have scales",
+        "weight": 1
+      },
+      {
+        "text": "Mammals are warm-blooded",
+        "weight": 1
+      },
+      {
+        "text": "Reptiles are cold-blooded",
+        "weight": 1
+      }
+    ],
+    "question_id": 158
+  },
+  {
+    "question_id": 159,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What is the role of DNA in genetics?",
+    "key_points": [
+      {
+        "text": "DNA carries genetic information",
+        "weight": 1
+      },
+      {
+        "text": "DNA determines traits and features",
+        "weight": 1
+      },
+      {
+        "text": "DNA is inherited from parents",
+        "weight": 1
+      }
+    ],
+    "question_id": 160
+  },
+  {
+    "question_text": "What are some ways animals adapt to their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals blend in with surroundings.",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find food and better climates.",
+        "weight": 1
+      },
+      {
+        "text": "Physical adaptations include beak shapes and body size.",
+        "weight": 1
+      }
+    ],
+    "question_id": 161
+  },
+  {
+    "question_id": 162,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main parts of a plant and their functions?",
+    "key_points": [
+      {
+        "text": "Roots anchor the plant and absorb water",
+        "weight": 1
+      },
+      {
+        "text": "Stems support the plant and transport nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Leaves perform photosynthesis to produce food",
+        "weight": 1
+      },
+      {
+        "text": "Flowers attract pollinators for reproduction",
+        "weight": 1
+      }
+    ],
+    "question_id": 163
+  },
+  {
+    "question_text": "What are the main differences between plant and animal cells?",
+    "key_points": [
+      {
+        "text": "Plant cells have a cell wall",
+        "weight": 1
+      },
+      {
+        "text": "Animal cells have lysosomes",
+        "weight": 1
+      },
+      {
+        "text": "Plant cells contain chloroplasts",
+        "weight": 1
+      },
+      {
+        "text": "Animal cells have a more flexible shape",
+        "weight": 1
+      }
+    ],
+    "question_id": 164
+  },
+  {
+    "question_id": 165,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some key mechanisms of evolution?",
+    "key_points": [
+      {
+        "text": "Natural selection leads to adaptation",
+        "weight": 1
+      },
+      {
+        "text": "Genetic drift causes random changes",
+        "weight": 1
+      },
+      {
+        "text": "Mutations introduce new traits",
+        "weight": 1
+      },
+      {
+        "text": "Gene flow mixes populations",
+        "weight": 1
+      }
+    ],
+    "question_id": 166
+  },
+  {
+    "question_id": 167,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 168,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of the human skeletal system?",
+    "key_points": [
+      {
+        "text": "Provides structure and support to the body",
+        "weight": 1
+      },
+      {
+        "text": "Protects vital organs like the brain and heart",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates movement with muscles",
+        "weight": 1
+      },
+      {
+        "text": "Produces blood cells in the bone marrow",
+        "weight": 1
+      }
+    ],
+    "question_id": 169
+  },
+  {
+    "question_id": 170,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 171,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of a cell's organelles?",
+    "key_points": [
+      {
+        "text": "Nucleus controls cell activities",
+        "weight": 1
+      },
+      {
+        "text": "Mitochondria produce energy",
+        "weight": 1
+      },
+      {
+        "text": "Ribosomes synthesize proteins",
+        "weight": 1
+      },
+      {
+        "text": "Cell membrane regulates entry and exit",
+        "weight": 1
+      }
+    ],
+    "question_id": 172
+  },
+  {
+    "question_id": 173,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 174,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 175,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 176,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 177,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 178,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage for hiding from predators",
+        "weight": 1
+      },
+      {
+        "text": "Fur or blubber for insulation in cold",
+        "weight": 1
+      },
+      {
+        "text": "Long legs for running fast",
+        "weight": 1
+      },
+      {
+        "text": "Sharp teeth for catching prey",
+        "weight": 1
+      }
+    ],
+    "question_id": 179
+  },
+  {
+    "question_id": 180,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 181,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 182,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some important characteristics of butterflies?",
+    "key_points": [
+      {
+        "text": "Butterflies undergo complete metamorphosis",
+        "weight": 1
+      },
+      {
+        "text": "They have colorful wings for camouflage",
+        "weight": 1
+      },
+      {
+        "text": "Butterflies feed on nectar from flowers",
+        "weight": 1
+      },
+      {
+        "text": "They play a role in pollination",
+        "weight": 1
+      }
+    ],
+    "question_id": 183
+  },
+  {
+    "question_id": 184,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 185,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 186,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 187,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 188,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 189,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 190,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 191,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 192,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 193,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 194,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of the human circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to body cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries carbon dioxide to lungs",
+        "weight": 1
+      },
+      {
+        "text": "Delivers nutrients from food",
+        "weight": 1
+      },
+      {
+        "text": "Regulates body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 195
+  },
+  {
+    "question_id": 196,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main components of DNA and their roles in genetics?",
+    "key_points": [
+      {
+        "text": "DNA is made of nucleotides",
+        "weight": 1
+      },
+      {
+        "text": "Nucleotides consist of a sugar, phosphate, and base",
+        "weight": 1
+      },
+      {
+        "text": "Adenine pairs with thymine, cytosine with guanine",
+        "weight": 1
+      },
+      {
+        "text": "DNA stores genetic information for traits",
+        "weight": 1
+      }
+    ],
+    "question_id": 197
+  },
+  {
+    "question_id": 198,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main components of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Producers convert sunlight into energy",
+        "weight": 1
+      },
+      {
+        "text": "Consumers obtain energy by eating others",
+        "weight": 1
+      },
+      {
+        "text": "Decomposers break down dead materials",
+        "weight": 1
+      },
+      {
+        "text": "Abiotic factors include soil, water, and climate",
+        "weight": 1
+      }
+    ],
+    "question_id": 199
+  },
+  {
+    "question_text": "What are the main functions of roots in plants?",
+    "key_points": [
+      {
+        "text": "Anchor the plant in the soil",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water and nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Store energy for the plant",
+        "weight": 1
+      }
+    ],
+    "question_id": 200
+  },
+  {
+    "question_id": 201,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 202,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 203,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 204,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the different roles of organisms in an ecosystem?",
+    "key_points": [
+      {
+        "text": "Producers generate energy through photosynthesis.",
+        "weight": 1
+      },
+      {
+        "text": "Consumers obtain energy by eating other organisms.",
+        "weight": 1
+      },
+      {
+        "text": "Decomposers break down dead matter and recycle nutrients.",
+        "weight": 1
+      }
+    ],
+    "question_id": 205
+  },
+  {
+    "question_text": "What are the main functions of the cell membrane in a cell?",
+    "key_points": [
+      {
+        "text": "Controls what enters and exits the cell",
+        "weight": 1
+      },
+      {
+        "text": "Provides structure and support to the cell",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates communication with other cells",
+        "weight": 1
+      }
+    ],
+    "question_id": 206
+  },
+  {
+    "question_text": "What are the main functions of the human skeleton?",
+    "key_points": [
+      {
+        "text": "Provides structure and support for the body",
+        "weight": 1
+      },
+      {
+        "text": "Protects vital organs like the heart and brain",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates movement by acting as levers",
+        "weight": 1
+      },
+      {
+        "text": "Produces blood cells in the bone marrow",
+        "weight": 1
+      }
+    ],
+    "question_id": 207
+  },
+  {
+    "question_id": 208,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 209,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 210,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 211,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 212,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 213,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main parts of a plant and their functions?",
+    "key_points": [
+      {
+        "text": "Roots absorb water and nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Stems provide support and transport",
+        "weight": 1
+      },
+      {
+        "text": "Leaves are the site of photosynthesis",
+        "weight": 1
+      },
+      {
+        "text": "Flowers are for reproduction and attracting pollinators",
+        "weight": 1
+      }
+    ],
+    "question_id": 214
+  },
+  {
+    "question_id": 215,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 216,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 217,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 218,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 219,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 220,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 221,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 222,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 223,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 224,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 225,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 226,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 227,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals blend in with surroundings",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find food and better climates",
+        "weight": 1
+      },
+      {
+        "text": "Hibernation conserves energy during harsh conditions",
+        "weight": 1
+      },
+      {
+        "text": "Specialized body parts aid in hunting or defense",
+        "weight": 1
+      }
+    ],
+    "question_id": 228
+  },
+  {
+    "question_id": 229,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 230,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals avoid predators.",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find food and better climates.",
+        "weight": 1
+      },
+      {
+        "text": "Sharp teeth help carnivores catch and eat prey.",
+        "weight": 1
+      },
+      {
+        "text": "Webbed feet aid in swimming for aquatic animals.",
+        "weight": 1
+      }
+    ],
+    "question_id": 231
+  },
+  {
+    "question_text": "What are some important characteristics of butterflies?",
+    "key_points": [
+      {
+        "text": "Butterflies have four wings",
+        "weight": 1
+      },
+      {
+        "text": "They undergo complete metamorphosis",
+        "weight": 1
+      },
+      {
+        "text": "Butterflies primarily feed on nectar",
+        "weight": 1
+      },
+      {
+        "text": "Many have bright, colorful patterns",
+        "weight": 1
+      }
+    ],
+    "question_id": 232
+  },
+  {
+    "question_text": "What are the main components of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Living organisms like plants and animals",
+        "weight": 1
+      },
+      {
+        "text": "Non-living factors like water and soil",
+        "weight": 1
+      },
+      {
+        "text": "Energy flow through food chains",
+        "weight": 1
+      },
+      {
+        "text": "Interactions among species and environment",
+        "weight": 1
+      }
+    ],
+    "question_id": 233
+  },
+  {
+    "question_id": 234,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 235,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 236,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 237,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of the human circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to body tissues",
+        "weight": 1
+      },
+      {
+        "text": "Removes carbon dioxide from blood",
+        "weight": 1
+      },
+      {
+        "text": "Delivers nutrients to cells",
+        "weight": 1
+      },
+      {
+        "text": "Helps regulate body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 238
+  },
+  {
+    "question_id": 239,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are three main functions of the human respiratory system?",
+    "key_points": [
+      {
+        "text": "Brings oxygen into the body",
+        "weight": 1
+      },
+      {
+        "text": "Removes carbon dioxide from the body",
+        "weight": 1
+      },
+      {
+        "text": "Aids in regulating body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 240
+  },
+  {
+    "question_id": 241,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 242,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 243,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 244,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 245,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main effects of deforestation on the environment?",
+    "key_points": [
+      {
+        "text": "Loss of habitat for wildlife",
+        "weight": 1
+      },
+      {
+        "text": "Increased carbon dioxide levels",
+        "weight": 1
+      },
+      {
+        "text": "Soil erosion and degradation",
+        "weight": 1
+      },
+      {
+        "text": "Disruption of water cycles",
+        "weight": 1
+      }
+    ],
+    "question_id": 246
+  },
+  {
+    "question_id": 247,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the key stages in a butterfly's life cycle?",
+    "key_points": [
+      {
+        "text": "Egg stage lasts a few days to weeks",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillar (larva) grows and molts several times",
+        "weight": 1
+      },
+      {
+        "text": "Pupa (chrysalis) undergoes transformation",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterfly emerges and can reproduce",
+        "weight": 1
+      }
+    ],
+    "question_id": 248
+  },
+  {
+    "question_id": 249,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 250,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 251,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 252,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 253,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some key mechanisms that drive evolution?",
+    "key_points": [
+      {
+        "text": "Natural selection favors beneficial traits",
+        "weight": 1
+      },
+      {
+        "text": "Genetic drift causes random changes in populations",
+        "weight": 1
+      },
+      {
+        "text": "Mutation introduces new genetic variations",
+        "weight": 1
+      },
+      {
+        "text": "Gene flow mixes genetic material between populations",
+        "weight": 1
+      }
+    ],
+    "question_id": 254
+  },
+  {
+    "question_text": "What adaptations help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals avoid predators.",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find food.",
+        "weight": 1
+      },
+      {
+        "text": "Hibernation conserves energy during winter.",
+        "weight": 1
+      }
+    ],
+    "question_id": 255
+  },
+  {
+    "question_text": "What is the role of DNA in genetics?",
+    "key_points": [
+      {
+        "text": "DNA contains genetic instructions for living things",
+        "weight": 1
+      },
+      {
+        "text": "Genes are segments of DNA that determine traits",
+        "weight": 1
+      },
+      {
+        "text": "DNA is passed from parents to offspring",
+        "weight": 1
+      }
+    ],
+    "question_id": 256
+  },
+  {
+    "question_text": "What are the main components of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Living organisms such as plants and animals",
+        "weight": 1
+      },
+      {
+        "text": "Non-living factors like water and soil",
+        "weight": 1
+      },
+      {
+        "text": "Interactions between organisms",
+        "weight": 1
+      },
+      {
+        "text": "Energy flow from sun to producers",
+        "weight": 1
+      }
+    ],
+    "question_id": 257
+  },
+  {
+    "question_text": "What are the main characteristics of mammals?",
+    "key_points": [
+      {
+        "text": "Mammals have hair or fur",
+        "weight": 1
+      },
+      {
+        "text": "Mammals are warm-blooded",
+        "weight": 1
+      },
+      {
+        "text": "Mammals give live birth",
+        "weight": 1
+      },
+      {
+        "text": "Mammals produce milk for their young",
+        "weight": 1
+      }
+    ],
+    "question_id": 258
+  },
+  {
+    "question_id": 259,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 260,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of the cell membrane?",
+    "key_points": [
+      {
+        "text": "Protects the cell's internal environment",
+        "weight": 1
+      },
+      {
+        "text": "Regulates what enters and exits the cell",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates communication with other cells",
+        "weight": 1
+      }
+    ],
+    "question_id": 261
+  },
+  {
+    "question_text": "What are the main effects of deforestation on the environment?",
+    "key_points": [
+      {
+        "text": "Loss of habitat for many species",
+        "weight": 1
+      },
+      {
+        "text": "Increased carbon dioxide levels in the atmosphere",
+        "weight": 1
+      },
+      {
+        "text": "Soil erosion and degradation",
+        "weight": 1
+      },
+      {
+        "text": "Disruption of water cycles",
+        "weight": 1
+      }
+    ],
+    "question_id": 262
+  },
+  {
+    "question_id": 263,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage to blend with surroundings",
+        "weight": 1
+      },
+      {
+        "text": "Body structure for efficient movement",
+        "weight": 1
+      },
+      {
+        "text": "Specialized feeding habits for food sources",
+        "weight": 1
+      }
+    ],
+    "question_id": 264
+  },
+  {
+    "question_text": "What are the main components of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Living organisms like plants and animals",
+        "weight": 1
+      },
+      {
+        "text": "Non-living elements like water and soil",
+        "weight": 1
+      },
+      {
+        "text": "Interactions between organisms",
+        "weight": 1
+      },
+      {
+        "text": "Energy flow and nutrient cycling",
+        "weight": 1
+      }
+    ],
+    "question_id": 265
+  },
+  
+  {
+    "question_text": "What roles do genes play in determining traits in living organisms?",
+    "key_points": [
+      {
+        "text": "Genes carry instructions for traits",
+        "weight": 1
+      },
+      {
+        "text": "Traits can be inherited from parents",
+        "weight": 1
+      },
+      {
+        "text": "Different versions of genes are called alleles",
+        "weight": 1
+      },
+      {
+        "text": "Environment can influence gene expression",
+        "weight": 1
+      }
+    ],
+    "question_id": 267
+  },
+  {
+    "question_text": "What are the main functions of the cell membrane?",
+    "key_points": [
+      {
+        "text": "Controls what enters and exits the cell",
+        "weight": 1
+      },
+      {
+        "text": "Provides structure and support to the cell",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates communication between cells",
+        "weight": 1
+      }
+    ],
+    "question_id": 268
+  },
+  {
+    "question_id": 269,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 270,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 271,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 272,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 273,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What is the role of DNA in genetics?",
+    "key_points": [
+      {
+        "text": "DNA carries genetic information",
+        "weight": 1
+      },
+      {
+        "text": "Genes are segments of DNA",
+        "weight": 1
+      },
+      {
+        "text": "DNA determines traits in organisms",
+        "weight": 1
+      }
+    ],
+    "question_id": 274
+  },
+  {
+    "question_id": 275,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 276,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 277,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "How do human activities impact local ecosystems?",
+    "key_points": [
+      {
+        "text": "Pollution affects air and water quality",
+        "weight": 1
+      },
+      {
+        "text": "Deforestation reduces habitats for wildlife",
+        "weight": 1
+      },
+      {
+        "text": "Urbanization leads to loss of green spaces",
+        "weight": 1
+      }
+    ],
+    "question_id": 278
+  },
+  {
+    "question_id": 279,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 280,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 281,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the basic principles of genetic inheritance?",
+    "key_points": [
+      {
+        "text": "Genes are passed from parents to offspring",
+        "weight": 1
+      },
+      {
+        "text": "Dominant traits can mask recessive traits",
+        "weight": 1
+      },
+      {
+        "text": "Each individual has two alleles for each gene",
+        "weight": 1
+      },
+      {
+        "text": "Punnett squares predict genetic combinations",
+        "weight": 1
+      }
+    ],
+    "question_id": 282
+  },
+  {
+    "question_text": "What are the main functions of the cell membrane?",
+    "key_points": [
+      {
+        "text": "Controls what enters and exits the cell",
+        "weight": 1
+      },
+      {
+        "text": "Provides structure and support to the cell",
+        "weight": 1
+      },
+      {
+        "text": "Communicates with other cells and environment",
+        "weight": 1
+      }
+    ],
+    "question_id": 283
+  },
+  {
+    "question_text": "What adaptations help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps avoid predators",
+        "weight": 1
+      },
+      {
+        "text": "Sharp teeth aid in catching prey",
+        "weight": 1
+      },
+      {
+        "text": "Fur or feathers provide insulation",
+        "weight": 1
+      },
+      {
+        "text": "Strong legs allow fast movement",
+        "weight": 1
+      }
+    ],
+    "question_id": 284
+  },
+  {
+    "question_id": 285,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the stages of a butterfly's life cycle?",
+    "key_points": [
+      {
+        "text": "Egg stage where butterflies begin their life",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillar stage known as larva",
+        "weight": 1
+      },
+      {
+        "text": "Pupa stage where transformation occurs",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterfly emerges from chrysalis",
+        "weight": 1
+      }
+    ],
+    "question_id": 286
+  },
+  {
+    "question_text": "What are three main effects of deforestation on the environment?",
+    "key_points": [
+      {
+        "text": "Loss of habitat for wildlife",
+        "weight": 1
+      },
+      {
+        "text": "Increase in carbon dioxide levels",
+        "weight": 1
+      },
+      {
+        "text": "Soil erosion and degradation",
+        "weight": 1
+      }
+    ],
+    "question_id": 287
+  },
+  {
+    "question_id": 288,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the basic functions of genes in living organisms?",
+    "key_points": [
+      {
+        "text": "Genes carry instructions for traits",
+        "weight": 1
+      },
+      {
+        "text": "Genes determine how organisms grow",
+        "weight": 1
+      },
+      {
+        "text": "Genes can mutate, causing variations",
+        "weight": 1
+      }
+    ],
+    "question_id": 289
+  },
+  {
+    "question_id": 290,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of leaves in plants?",
+    "key_points": [
+      {
+        "text": "Leaves perform photosynthesis to make food",
+        "weight": 1
+      },
+      {
+        "text": "Leaves help in gas exchange with the environment",
+        "weight": 1
+      },
+      {
+        "text": "Leaves provide shade and reduce water loss",
+        "weight": 1
+      }
+    ],
+    "question_id": 291
+  },
+  {
+    "question_text": "What is the role of DNA in genetics?",
+    "key_points": [
+      {
+        "text": "DNA carries genetic information",
+        "weight": 1
+      },
+      {
+        "text": "Genes are segments of DNA",
+        "weight": 1
+      },
+      {
+        "text": "DNA determines traits in organisms",
+        "weight": 1
+      },
+      {
+        "text": "Mutations can change DNA sequences",
+        "weight": 1
+      }
+    ],
+    "question_id": 292
+  },
+  {
+    "question_id": 293,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals avoid predators",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows species to find food",
+        "weight": 1
+      },
+      {
+        "text": "Hibernation conserves energy in winter",
+        "weight": 1
+      }
+    ],
+    "question_id": 294
+  },
+  {
+    "question_text": "What are the key stages in the life cycle of a butterfly?",
+    "key_points": [
+      {
+        "text": "Butterflies start as eggs on plants",
+        "weight": 1
+      },
+      {
+        "text": "Larvae, or caterpillars, eat leaves to grow",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillars transform into chrysalises",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterflies emerge from chrysalises",
+        "weight": 1
+      }
+    ],
+    "question_id": 295
+  },
+  {
+    "question_id": 296,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 297,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 298,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 299,
+    "question_text": "What are the main functions of the circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries nutrients to body",
+        "weight": 1
+      },
+      {
+        "text": "Removes waste products",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_id": 300,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ]
+  }
+]

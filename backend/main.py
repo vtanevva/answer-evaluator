@@ -14,6 +14,7 @@ import json
 import os
 from dotenv import load_dotenv
 import uvicorn
+from load_questions import load_questions_from_file
 
 # Load environment variables from .env file
 load_dotenv()
@@ -53,44 +54,49 @@ class AnswerResponse(BaseModel):
 
 def load_questions_bank():
     """
-    Load questions from hardcoded JSON data
-    In production, this would load from a database or file
+    Load questions from backend/questions.json if present; fallback to built-in sample.
     """
     global questions_bank, questions_by_id
     
-    # Hardcoded question bank - replace with your questions
-    questions_bank = [
-        {
-            "question_id": 1,
-            "question_text": "What is inflation?",
-            "key_points": [
-                {"text": "General increase in prices", "weight": 1},
-                {"text": "Reduction of purchasing power", "weight": 1}
-            ]
-        },
-        {
-            "question_id": 2,
-            "question_text": "Explain supply and demand",
-            "key_points": [
-                {"text": "Relationship between price and quantity demanded", "weight": 1},
-                {"text": "As price increases, demand decreases", "weight": 1}
-            ]
-        },
-        {
-            "question_id": 3,
-            "question_text": "What are three adaptations that help desert animals survive?",
-            "key_points": [
-                {"text": "Store water in their bodies", "weight": 1},
-                {"text": "Active at night", "weight": 1},
-                {"text": "Light-colored skin", "weight": 1}
-            ]
-        }
-    ]
+    # Try to load from file first
+    file_path = os.path.join(os.path.dirname(__file__), "questions.json")
+    loaded = load_questions_from_file(file_path)
+    if loaded:
+        questions_bank = loaded
+        print(f"✅ Loaded {len(questions_bank)} questions from {file_path}")
+    else:
+        # Fallback sample (3 questions)
+        questions_bank = [
+            {
+                "question_id": 1,
+                "question_text": "What is inflation?",
+                "key_points": [
+                    {"text": "General increase in prices", "weight": 1},
+                    {"text": "Reduction of purchasing power", "weight": 1}
+                ]
+            },
+            {
+                "question_id": 2,
+                "question_text": "Explain supply and demand",
+                "key_points": [
+                    {"text": "Relationship between price and quantity demanded", "weight": 1},
+                    {"text": "As price increases, demand decreases", "weight": 1}
+                ]
+            },
+            {
+                "question_id": 3,
+                "question_text": "What are three adaptations that help desert animals survive?",
+                "key_points": [
+                    {"text": "Store water in their bodies", "weight": 1},
+                    {"text": "Active at night", "weight": 1},
+                    {"text": "Light-colored skin", "weight": 1}
+                ]
+            }
+        ]
+        print(f"⚠️ Falling back to built-in sample. Loaded {len(questions_bank)} questions")
     
     # Create lookup dictionary for faster access
     questions_by_id = {q["question_id"]: q for q in questions_bank}
-    
-    print(f"✅ Loaded {len(questions_bank)} questions")
 
 def get_embedding(text: str) -> List[float]:
     """

@@ -32,6 +32,7 @@ except ImportError:
 total_input_tokens = 0
 total_output_tokens = 0
 total_cost_usd = 0.0
+seen_questions: set[str] = set()
 
 def calculate_cost(input_tokens: int, output_tokens: int) -> float:
     """Calculate cost based on token usage"""
@@ -50,7 +51,27 @@ def update_token_tracking(input_tokens: int, output_tokens: int):
     
     return cost
 
-def generate_weighted_question(question_id: int) -> Tuple[Dict[str, Any], float]:
+def _parse_json_response(text: str) -> Dict[str, Any]:
+    """Parse JSON from model output; tolerate code fences and extra text."""
+    text = text.strip()
+    if text.startswith("```") and text.endswith("```"):
+        text = text.strip('`')
+        if "\n" in text:
+            text = text.split("\n", 1)[1]
+    try:
+        return json.loads(text)
+    except Exception:
+        try:
+            start = text.find('{')
+            end = text.rfind('}')
+            if start != -1 and end != -1 and end > start:
+                return json.loads(text[start:end+1])
+        except Exception:
+            pass
+    raise ValueError("Invalid JSON from model")
+
+
+def generate_weighted_question(question_id: int, prior_examples: List[str] | None = None) -> Tuple[Dict[str, Any], float]:
     """
     Generate a question with weighted key points using GPT-4o-mini
     Returns: (question_data, cost_usd)
@@ -58,6 +79,7 @@ def generate_weighted_question(question_id: int) -> Tuple[Dict[str, Any], float]
     # Randomly select a question type
     question_type = random.choice(QUESTION_TYPES)
     
+    prior_hint = "\nPreviously generated questions (avoid repeating phrasing):\n- " + "\n- ".join(prior_examples[:10]) if prior_examples else ""
     prompt = f"""
     Create a {SUBJECT} question suitable for {GRADE_LEVEL} students ({STUDENT_AGE_RANGE}) about {question_type} and provide 2-4 key points with weights.
     
@@ -80,11 +102,13 @@ def generate_weighted_question(question_id: int) -> Tuple[Dict[str, Any], float]
     - Ensure the question is appropriate for {GRADE_LEVEL} level
     - MUST return exactly 2-4 key points
     - Points should be granular enough to track partial credit
+    - Do NOT repeat earlier question texts/phrasing in this session; vary subtopics and wording.
     
     Examples of good key points:
     - "General increase in prices"
     - "Reduction of purchasing power"
     - "Decrease in money value"
+    {prior_hint}
     """
     
     try:
@@ -101,7 +125,7 @@ def generate_weighted_question(question_id: int) -> Tuple[Dict[str, Any], float]
             output_tokens = response.usage.completion_tokens
             cost = update_token_tracking(input_tokens, output_tokens)
             
-            result = json.loads(response.choices[0].message.content.strip())
+            result = _parse_json_response(response.choices[0].message.content)
         else:
             response = openai.ChatCompletion.create(
                 model=MODEL_NAME,
@@ -115,7 +139,7 @@ def generate_weighted_question(question_id: int) -> Tuple[Dict[str, Any], float]
             output_tokens = response.usage.completion_tokens
             cost = update_token_tracking(input_tokens, output_tokens)
             
-            result = json.loads(response.choices[0].message.content.strip())
+            result = _parse_json_response(response.choices[0].message.content)
         
         # Add question_id to the result
         result["question_id"] = question_id
@@ -196,13 +220,29 @@ def main():
             if SHOW_PROGRESS:
                 print(f"📝 Generating weighted question {question_num}/{M_QUESTIONS}...")
             
-            # Generate question with weighted key points
-            question_data, question_cost = generate_weighted_question(question_num)
+            # Generate with retries and de-duplication
+            question_data = None
+            cost_accum = 0.0
+            for attempt in range(4):
+                candidate, question_cost = generate_weighted_question(question_num, prior_examples=list(seen_questions))
+                cost_accum += question_cost
+                qt = candidate.get("question_text", "").strip().lower()
+                if qt and qt not in seen_questions:
+                    question_data = candidate
+                    seen_questions.add(qt)
+                    break
+                time.sleep(0.2)
+            if question_data is None:
+                candidate, _ = generate_weighted_question(question_num)
+                qt = candidate.get("question_text", "Untitled question")
+                candidate["question_text"] = f"{qt} (variant {question_num})"
+                question_data = candidate
+                seen_questions.add(question_data["question_text"].lower())
             
             if SHOW_PROGRESS:
                 print(f"   Question: {question_data['question_text'][:60]}{'...' if len(question_data['question_text']) > 60 else ''}")
                 print(f"   Key points: {len(question_data['key_points'])}")
-                print(f"   Question generation cost: ${question_cost:.4f}")
+                print(f"   Question generation cost: ${cost_accum:.4f}")
             
             all_records.append(question_data)
             
@@ -217,7 +257,7 @@ def main():
         print(f"\n⏹️ Generation interrupted by user. Saving {len(all_records)} questions generated so far...")
     
     # Save results
-    output_file = "weighted_biology_questions.json"
+    output_file = "weighted_biology_questions1.json"
     print(f"💾 Saving {len(all_records)} questions to {output_file}...")
     save_weighted_data(all_records, output_file)
     

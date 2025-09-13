@@ -7,7 +7,7 @@ Modify these settings to customize your data generation
 M_QUESTIONS = 50  # Number of different questions to generate
 
 # Output Settings
-OUTPUT_FILE = "weighted_biology_questions.json"
+OUTPUT_FILE = "weighted_biology_questions50.json"
 
 # API Settings
 MODEL_NAME = "gpt-4o-mini"  # OpenAI model to use
