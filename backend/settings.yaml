@@ -1,0 +1,82 @@
+# Answer Evaluator Backend Configuration
+
+# Server Configuration
+server:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+  title: "Answer Evaluator"
+  description: "Evaluate student answers using embeddings"
+
+# CORS Configuration
+cors:
+  allowed_origins:
+    - "http://localhost:3000"  # React dev server
+  allow_credentials: true
+  allowed_methods: ["*"]
+  allowed_headers: ["*"]
+
+# OpenAI Configuration
+openai:
+  model_name: "text-embedding-ada-002"
+  embedding_dimensions: 1536
+
+# Evaluation Configuration
+evaluation:
+  # Embedding Configuration
+  precompute_embeddings: true  # If false, load from file; if true, compute fresh embeddings
+  embeddings_file_path: "embeddings_cache.json"  # File to save/load precomputed embeddings
+  
+  similarity_thresholds:
+    high_similarity: 0.88
+    mid_similarity: 0.83
+    min_lexical_overlap: 0.5
+  
+  feedback_messages:
+    perfect_score: "Correct! You covered all the key points."
+    partial_score: "Partial - missing {missing_count} key point(s). Good start!"
+    low_score: "Incorrect - try again. Review the material and provide a more complete answer."
+    empty_answer: "Please try again. Even if you're unsure, try to explain what you think might be the answer."
+    short_answer: "Your answer is too short. Please provide a more detailed explanation with at least a few words."
+  
+  answer_validation:
+    min_answer_length: 10
+    min_word_count: 2
+    invalid_answers:
+      - "i don't know"
+      - "i don't know."
+      - "dont know"
+
+# Questions Configuration
+questions:
+  default_file_path: "questions.json"
+  fallback_questions:
+    - question_id: 1
+      question_text: "What is inflation?"
+      key_points:
+        - text: "General increase in prices"
+          weight: 1
+        - text: "Reduction of purchasing power"
+          weight: 1
+    - question_id: 2
+      question_text: "Explain supply and demand"
+      key_points:
+        - text: "Relationship between price and quantity demanded"
+          weight: 1
+        - text: "As price increases, demand decreases"
+          weight: 1
+    - question_id: 3
+      question_text: "What are three adaptations that help desert animals survive?"
+      key_points:
+        - text: "Store water in their bodies"
+          weight: 1
+        - text: "Active at night"
+          weight: 1
+        - text: "Light-colored skin"
+          weight: 1
+
+# Text Processing Configuration
+text_processing:
+  additional_stopwords: "vs versus per each e.g. i.e. etc"
+  stemming_suffixes: ["ing", "ed", "es", "s"]
+  min_token_length: 4
