@@ -9,12 +9,12 @@ from pydantic import BaseModel
 from typing import List, Dict, Any
 import re
 import numpy as np
-import openai
 import json
 import os
 from dotenv import load_dotenv
 import uvicorn
 from .load_questions import load_questions_from_file
+from sentence_transformers import SentenceTransformer
 
 # Load environment variables from .env file
 load_dotenv()
@@ -36,6 +36,7 @@ questions_bank = []
 key_point_embeddings = {}  # {question_id: [embedding1, embedding2, ...]}
 questions_by_id = {}  # {question_id: question_data}
 key_point_keywords: Dict[int, List[set]] = {}  # {question_id: [set(tokens), ...]}
+embedder: SentenceTransformer | None = None
 
 # Pydantic models for request/response
 class QuestionResponse(BaseModel):
@@ -99,29 +100,11 @@ def load_questions_bank():
     questions_by_id = {q["question_id"]: q for q in questions_bank}
 
 def get_embedding(text: str) -> List[float]:
-    """
-    Get embedding for a text using OpenAI text-embedding-ada-002
-    
-    This is where the magic happens:
-    1. Send text to OpenAI embedding API
-    2. Get back a 1536-dimensional vector
-    3. This vector represents the semantic meaning of the text
-    
-    Args:
-        text: The text to embed
-        
-    Returns:
-        List of 1536 float values representing the embedding
-    """
-    try:
-        response = openai.embeddings.create(
-            model="text-embedding-ada-002",
-            input=text
-        )
-        return response.data[0].embedding
-    except Exception as e:
-        print(f"Error getting embedding: {e}")
-        raise HTTPException(status_code=500, detail="Failed to get embedding")
+    """Return an embedding vector using a local SentenceTransformer model."""
+    if embedder is None:
+        raise HTTPException(status_code=500, detail="Embedding model not initialized")
+    vec = embedder.encode(text, normalize_embeddings=True)
+    return vec.tolist() if hasattr(vec, "tolist") else list(map(float, vec))
 
 def compute_cosine_similarity(vec1: List[float], vec2: List[float]) -> float:
     """
@@ -204,16 +187,17 @@ def precompute_embeddings():
     
     for question in questions_bank:
         question_id = question["question_id"]
-        embeddings = []
-        keywords_list: List[set] = []
-        
-        for key_point in question["key_points"]:
-            text = key_point["text"]
-            embedding = get_embedding(text)
-            embeddings.append(embedding)
-            keywords_list.append(set(_normalize(text)))
-            print(f"  ✅ Embedded: '{text[:30]}...'")
-        
+        texts = [kp["text"] for kp in question["key_points"]]
+        if embedder is None:
+            raise HTTPException(status_code=500, detail="Embedding model not initialized")
+        if texts:
+            vecs = embedder.encode(texts, normalize_embeddings=True)
+            embeddings = [v.tolist() if hasattr(v, "tolist") else list(map(float, v)) for v in vecs]
+        else:
+            embeddings = []
+        keywords_list: List[set] = [set(_normalize(t)) for t in texts]
+        for t in texts:
+            print(f"  ✅ Embedded: '{t[:30]}...'")
         key_point_embeddings[question_id] = embeddings
         key_point_keywords[question_id] = keywords_list
         print(f"  📝 Question {question_id}: {len(embeddings)} key points embedded")
@@ -252,13 +236,12 @@ def evaluate_answer(question_id: int, user_answer: str) -> AnswerResponse:
     if not sentences:
         sentences = [user_answer]
 
-    # Batch embed all sentences in one call to reduce cost/latency
+    # Batch embed all sentences locally
     try:
-        resp = openai.embeddings.create(
-            model="text-embedding-ada-002",
-            input=sentences
-        )
-        sent_embeddings = [d.embedding for d in resp.data]
+        if embedder is None:
+            raise RuntimeError("Embedding model not initialized")
+        vecs = embedder.encode(sentences, normalize_embeddings=True)
+        sent_embeddings = [v.tolist() if hasattr(v, "tolist") else list(map(float, v)) for v in vecs]
     except Exception:
         # Fallback to single embedding of full answer
         sent_embeddings = [get_embedding(user_answer)]
@@ -324,17 +307,12 @@ async def startup_event():
     This runs once when the server starts
     """
     print("🚀 Starting Answer Evaluator Backend...")
-    
-    # Check for OpenAI API key
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        print("❌ OPENAI_API_KEY not found in environment variables!")
-        print("Please set your OpenAI API key in .env file")
-        return
-    
-    # Set OpenAI API key
-    openai.api_key = api_key
-    print("✅ OpenAI API key loaded")
+    # Initialize local sentence-transformer embedder
+    global embedder
+    model_name = os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
+    print(f"🔧 Loading embedding model: {model_name}")
+    embedder = SentenceTransformer(model_name)
+    print("✅ Embedding model loaded")
     
     # Load questions and precompute embeddings
     load_questions_bank()
