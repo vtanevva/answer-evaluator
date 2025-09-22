@@ -14,7 +14,7 @@ import json
 import os
 from dotenv import load_dotenv
 import uvicorn
-from .load_questions import load_questions_from_file
+from load_questions import load_questions_from_file
 
 # Load environment variables from .env file
 load_dotenv()
