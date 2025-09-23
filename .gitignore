@@ -43,6 +43,7 @@ node_modules/
 frontend/node_modules/
 frontend/build/
 frontend/.cache/
+frontend/package-lock.json
 
 # Environment files (keep examples)
 .env
@@ -60,3 +61,5 @@ backend/.env.local
 # Generated data/output
 synthetic_biology_data.jsonl
 weighted_biology_questions.json
+
+backend/embeddings_cache.json
