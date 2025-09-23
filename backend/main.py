@@ -11,6 +11,7 @@ from routes.routes import router
 from routes import routes
 from services.question_service import QuestionService
 from services.evaluation_service import EvaluationService
+from .load_questions import load_questions_from_file
 
 # Load environment variables from .env file
 load_dotenv()
