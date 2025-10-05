@@ -8,7 +8,7 @@ import pytest
 from unittest.mock import patch, MagicMock
 
 from services.question_service import QuestionService
-from services.evaluation_service import EvaluationService
+from services.grading_service import GradingService
 from services.embedding_storage import EmbeddingStorage
 from core.config import settings
 
@@ -21,18 +21,25 @@ class TestEmbeddingPersistence:
         """Create a question service with test data"""
         service = QuestionService()
         # Mock the load_questions_bank method to avoid file dependencies
-        service._questions_bank = {
-            1: {
+        service._questions_bank = [
+            {
                 'question_id': 1,
                 'question_text': 'Test question 1',
                 'key_points': [{'text': 'Test point 1'}]
             },
-            2: {
+            {
                 'question_id': 2,
                 'question_text': 'Test question 2', 
                 'key_points': [{'text': 'Test point 2'}]
             }
+        ]
+        # Create lookup dictionary for faster access
+        service._questions_by_id = {
+            question["question_id"]: question 
+            for question in service._questions_bank
         }
+        # Mark as loaded to prevent automatic loading from file
+        service._is_loaded = True
         return service
 
     @pytest.fixture
@@ -57,19 +64,19 @@ class TestEmbeddingPersistence:
         if os.path.exists(temp_cache_file):
             os.unlink(temp_cache_file)
             
-        # Create evaluation service with custom embedding storage
-        evaluation_service = EvaluationService(question_service, mock_openai_client)
-        evaluation_service._embedding_storage = EmbeddingStorage(temp_cache_file)
+        # Create grading service with custom embedding storage
+        grading_service = GradingService(question_service, mock_openai_client)
+        grading_service._embedding_storage = EmbeddingStorage(temp_cache_file)
         
         # Mock the embedding service to avoid API calls
-        with patch.object(evaluation_service._embedding_service, 'get_embedding') as mock_get_embedding:
+        with patch.object(grading_service._embedding_service, 'get_embedding') as mock_get_embedding:
             mock_get_embedding.return_value = [0.1, 0.2, 0.3]
             
             # Cache should not exist before
             assert not os.path.exists(temp_cache_file)
             
             # Precompute embeddings
-            evaluation_service.precompute_embeddings()
+            grading_service.precompute_embeddings()
             
             # Cache should exist after
             assert os.path.exists(temp_cache_file)
@@ -83,29 +90,29 @@ class TestEmbeddingPersistence:
         if os.path.exists(temp_cache_file):
             os.unlink(temp_cache_file)
             
-        # Create evaluation service with custom embedding storage
-        evaluation_service = EvaluationService(question_service, mock_openai_client)
-        evaluation_service._embedding_storage = EmbeddingStorage(temp_cache_file)
+        # Create grading service with custom embedding storage
+        grading_service = GradingService(question_service, mock_openai_client)
+        grading_service._embedding_storage = EmbeddingStorage(temp_cache_file)
         
         # First, create a cache
-        with patch.object(evaluation_service._embedding_service, 'get_embedding') as mock_get_embedding:
+        with patch.object(grading_service._embedding_service, 'get_embedding') as mock_get_embedding:
             mock_get_embedding.return_value = [0.1, 0.2, 0.3]
-            evaluation_service.precompute_embeddings()
+            grading_service.precompute_embeddings()
         
         # Now test loading from cache
-        original_precompute_setting = settings.evaluation.precompute_embeddings
+        original_precompute_setting = settings.grading.precompute_embeddings
         try:
-            settings.evaluation.precompute_embeddings = False
+            settings.grading.precompute_embeddings = False
             
-            evaluation_service_2 = EvaluationService(question_service, mock_openai_client)
-            evaluation_service_2._embedding_storage = EmbeddingStorage(temp_cache_file)
-            cache_info = evaluation_service_2._embedding_storage.get_cache_info()
+            grading_service_2 = GradingService(question_service, mock_openai_client)
+            grading_service_2._embedding_storage = EmbeddingStorage(temp_cache_file)
+            cache_info = grading_service_2._embedding_storage.get_cache_info()
             
             assert cache_info is not None
             assert cache_info.get('total_questions', 0) > 0
             
         finally:
-            settings.evaluation.precompute_embeddings = original_precompute_setting
+            settings.grading.precompute_embeddings = original_precompute_setting
 
     def test_cache_info_retrieval(self, question_service, temp_cache_file, mock_openai_client):
         """Test retrieving cache information"""
@@ -113,16 +120,16 @@ class TestEmbeddingPersistence:
         if os.path.exists(temp_cache_file):
             os.unlink(temp_cache_file)
             
-        # Create evaluation service with custom embedding storage
-        evaluation_service = EvaluationService(question_service, mock_openai_client)
-        evaluation_service._embedding_storage = EmbeddingStorage(temp_cache_file)
+        # Create grading service with custom embedding storage
+        grading_service = GradingService(question_service, mock_openai_client)
+        grading_service._embedding_storage = EmbeddingStorage(temp_cache_file)
         
         # Create cache with mock data
-        with patch.object(evaluation_service._embedding_service, 'get_embedding') as mock_get_embedding:
+        with patch.object(grading_service._embedding_service, 'get_embedding') as mock_get_embedding:
             mock_get_embedding.return_value = [0.1, 0.2, 0.3]
-            evaluation_service.precompute_embeddings()
+            grading_service.precompute_embeddings()
         
-        cache_info = evaluation_service._embedding_storage.get_cache_info()
+        cache_info = grading_service._embedding_storage.get_cache_info()
         
         assert cache_info is not None
         assert 'total_questions' in cache_info
