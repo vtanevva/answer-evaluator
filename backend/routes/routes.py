@@ -13,7 +13,7 @@ from models.models import (
     AllQuestionsResponse
 )
 from services.question_service import QuestionService
-from services.evaluation_service import EvaluationService
+from services.grading_service import GradingService
 
 
 # Create router instance
@@ -21,7 +21,7 @@ router = APIRouter()
 
 # Global service instances (will be initialized in main.py)
 question_service: QuestionService = None
-evaluation_service: EvaluationService = None
+grading_service: GradingService = None
 
 
 def get_question_service() -> QuestionService:
@@ -31,11 +31,11 @@ def get_question_service() -> QuestionService:
     return question_service
 
 
-def get_evaluation_service() -> EvaluationService:
+def get_grading_service() -> GradingService:
     """Dependency to get evaluation service instance"""
-    if evaluation_service is None:
+    if grading_service is None:
         raise HTTPException(status_code=500, detail="Evaluation service not initialized")
-    return evaluation_service
+    return grading_service
 
 
 @router.get("/", response_model=HealthCheckResponse)
@@ -79,9 +79,9 @@ async def get_random_question(
 
 
 @router.post("/answer", response_model=AnswerResponse)
-async def evaluate_answer_endpoint(
+async def grade_answer_endpoint(
     request: AnswerRequest,
-    eval_service: EvaluationService = Depends(get_evaluation_service)
+    eval_service: GradingService = Depends(get_grading_service)
 ) -> AnswerResponse:
     """
     Evaluate a user's answer against the question's key points
@@ -99,9 +99,9 @@ async def evaluate_answer_endpoint(
         AnswerResponse with score, hit/missing points, and feedback
         
     Raises:
-        HTTPException: If question not found or evaluation fails
+        HTTPException: If question not found or grading fails
     """
-    return eval_service.evaluate_answer(request.question_id, request.user_answer)
+    return eval_service.grade_answer(request.question_id, request.user_answer)
 
 
 @router.get("/questions", response_model=AllQuestionsResponse)

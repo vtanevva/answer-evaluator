@@ -1,5 +1,5 @@
 """
-Answer evaluation service using embeddings and text analysis
+Answer grading service using embeddings and text analysis
 """
 
 from typing import List, Dict, Set, Optional, Any
@@ -13,20 +13,20 @@ from services.embedding_storage import EmbeddingStorage
 from core.config import settings
 
 
-class EvaluationService:
+class GradingService:
     """
-    Service for evaluating user answers against question key points
+    Service for grading user answers against question key points
     
     This service handles:
     - Precomputing embeddings for key points
-    - Evaluating user answers using semantic similarity
+    - Grading user answers using semantic similarity
     - Combining semantic and lexical analysis
-    - Generating feedback based on evaluation results
+    - Generating feedback based on grading results
     """
     
     def __init__(self, question_service: QuestionService, openai_client):
         """
-        Initialize evaluation service with dependencies
+        Initialize grading service with dependencies
         
         Args:
             question_service: Service for managing questions
@@ -42,9 +42,9 @@ class EvaluationService:
         self._key_point_keywords: Dict[int, List[Set[str]]] = {}
         
         # Configuration
-        self._similarity_config = settings.evaluation.similarity_thresholds
-        self._feedback_config = settings.evaluation.feedback_messages
-        self._validation_config = settings.evaluation.answer_validation
+        self._similarity_config = settings.grading.similarity_thresholds
+        self._feedback_config = settings.grading.feedback_messages
+        self._validation_config = settings.grading.answer_validation
     
     def precompute_embeddings(self) -> None:
         """
@@ -60,7 +60,7 @@ class EvaluationService:
         questions_metadata = self._create_questions_metadata(all_questions)
         
         # Check configuration and try to load from cache first
-        if not settings.evaluation.precompute_embeddings:
+        if not settings.grading.precompute_embeddings:
             print("🔄 Attempting to load embeddings from cache...")
             
             loaded_data = self._embedding_storage.load_cached_embeddings(questions_metadata)
@@ -177,11 +177,11 @@ class EvaluationService:
         
         return None  # Answer is valid
     
-    def evaluate_answer(self, question_id: int, user_answer: str) -> AnswerResponse:
+    def grade_answer(self, question_id: int, user_answer: str) -> AnswerResponse:
         """
-        Evaluate user answer against key points using embedding similarity
+        Grade user answer against key points using embedding similarity
         
-        This is the core evaluation logic:
+        This is the core grading logic:
         1. Validate the answer
         2. Get user answer embeddings (sentence-level)
         3. Compare with each key point embedding using cosine similarity
