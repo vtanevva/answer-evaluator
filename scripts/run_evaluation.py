@@ -10,8 +10,8 @@ from pathlib import Path
 def main():
     """Main function to run the evaluation with proper setup"""
     
-    # Get the project root directory
-    project_root = Path(__file__).parent
+    # Get the project root directory (one level up from scripts)
+    project_root = Path(__file__).parent.parent
     backend_dir = project_root / "backend"
     evaluation_dir = backend_dir / "evaluation"
     
@@ -49,7 +49,7 @@ def main():
     try:
         # Import and run the benchmark from the evaluation subdirectory
         sys.path.insert(0, str(evaluation_dir))
-        from evaluation_benchmark import main as benchmark_main
+        from evaluation_script import main as benchmark_main
         benchmark_main()
     finally:
         # Restore original directory

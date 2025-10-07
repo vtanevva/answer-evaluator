@@ -84,7 +84,7 @@ async def grade_answer_endpoint(
     eval_service: GradingService = Depends(get_grading_service)
 ) -> AnswerResponse:
     """
-    Evaluate a user's answer against the question's key points
+    Grade a user's answer against the question's key points
     
     This endpoint:
     1. Validates the answer format and content
