@@ -27,15 +27,6 @@ To enable the full CI/CD pipeline, add these secrets to your GitHub repository:
   - Unit tests with pytest
   - Coverage reporting
 
-### 🎯 Evaluation Job
-- **Triggers**: Pull requests only
-- **Dependencies**: Requires test job to pass
-- **Steps**:
-  - Runs the evaluation benchmark
-  - Parses performance metrics
-  - Posts results as PR comment
-  - Uploads detailed results as artifact
-
 ### 🔒 Security Scan Job
 - **Triggers**: Pull requests and pushes to main
 - **Dependencies**: Requires test job to pass
@@ -126,7 +117,6 @@ python evaluation/evaluation_script.py
 ### Status Check Names:
 - `Run Tests (3.10)` - Python 3.10 tests  
 - `Run Tests (3.11)` - Python 3.11 tests
-- `Run Evaluation Benchmark` - Evaluation results
 - `Security Scan` - Security analysis
 - `Build Status` - Overall pipeline status
 
