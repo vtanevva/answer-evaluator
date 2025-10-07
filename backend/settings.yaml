@@ -21,11 +21,26 @@ openai:
   model_name: "text-embedding-ada-002"
   embedding_dimensions: 1536
 
+# Embedding Provider Configuration
+embeddings:
+  provider: "gte-multilingual"  # Options: "openai", "gte-multilingual"
+  openai_model: "text-embedding-ada-002"
+  openai_dimensions: 1536
+  gte_model: "Alibaba-NLP/gte-multilingual-base"
+  gte_dimensions: 768
+
+# Pinecone Configuration
+pinecone:
+  # API key is loaded from PINECONE_API_KEY environment variable
+  environment: "gcp-starter"
+  index_name: "answer-evaluator"
+  dimension: 768  # Will be updated based on embedding provider
+  metric: "cosine"
+
 # Evaluation Configuration
 evaluation:
   # Embedding Configuration
-  precompute_embeddings: true  # If false, load from file; if true, compute fresh embeddings
-  embeddings_file_path: "embeddings_cache.json"  # File to save/load precomputed embeddings
+  precompute_embeddings: false  # Set to true when you want to generate embeddings
   
   similarity_thresholds:
     high_similarity: 0.88

@@ -1,34 +1,103 @@
 import json
 import os
+import time
 from typing import Dict, List, Set, Optional, Any
 from datetime import datetime
+from pinecone import Pinecone, ServerlessSpec
 
 from core.config import settings
 
 
 class EmbeddingStorage:
     """
-    Service for persisting and loading precomputed embeddings to/from disk
+    Service for persisting and loading precomputed embeddings to/from Pinecone
     
     This service handles:
-    - Saving embeddings and keywords to JSON file
-    - Loading embeddings and keywords from JSON file
-    - Validating embedding cache integrity
+    - Creating and managing Pinecone index
+    - Upserting embeddings with metadata to Pinecone
+    - Querying embeddings from Pinecone
     - Managing embedding metadata (timestamps, question hashes)
     """
     
-    def __init__(self, file_path: Optional[str] = None):
+    def __init__(self):
         """
-        Initialize embedding storage service
+        Initialize embedding storage service with Pinecone
+        """
+        self._pinecone_config = settings.pinecone
         
-        Args:
-            file_path: Path to embeddings cache file. If None, uses config setting.
+        # Fallback to environment variable if api_key is not set in settings
+        if not self._pinecone_config.api_key:
+            self._pinecone_config.api_key = os.getenv("PINECONE_API_KEY", "")
+
+        if not self._pinecone_config.api_key:
+            raise ValueError("Pinecone API key not found in configuration or environment")
+        
+        # Initialize Pinecone client
+        self._pc = Pinecone(api_key=self._pinecone_config.api_key)
+        
+        # Get the correct dimensions from embedding config
+        self._embedding_dimensions = settings.embeddings.current_dimensions
+        
+        # Build an index name that encodes provider and dimension to avoid conflicts
+        base_name = self._pinecone_config.index_name
+        provider = settings.embeddings.provider.replace(" ", "-").lower()
+        self._index_name = f"{base_name}-{provider}-{self._embedding_dimensions}"
+
+        # Initialize or get the index
+        self._index = self._get_or_create_index()
+    
+    def _get_or_create_index(self):
         """
-        self._file_path = file_path or os.path.join(
-            os.path.dirname(__file__), 
-            "..", 
-            settings.evaluation.embeddings_file_path
-        )
+        Get existing index or create a new one if it doesn't exist
+        
+        Returns:
+            Pinecone index object
+        """
+        index_name = self._index_name
+
+        # Check existing indexes
+        existing_indexes = [idx.name for idx in self._pc.list_indexes()]
+
+        if index_name in existing_indexes:
+            print(f"✅ Using existing Pinecone index: {index_name}")
+            index = self._pc.Index(index_name)
+            stats = index.describe_index_stats()
+            actual_dimension = stats.get('dimension', self._embedding_dimensions)
+
+            if actual_dimension != self._embedding_dimensions:
+                # Extremely unlikely because index name encodes dimension, but guard anyway
+                print(f"⚠️ Index dimension mismatch for {index_name}: index={actual_dimension}, expected={self._embedding_dimensions}")
+                # Prefer the index's dimension to avoid query errors
+                self._embedding_dimensions = actual_dimension
+
+            return index
+
+        # Try to create the index, but handle case where it already exists
+        try:
+            print(f"🔧 Creating Pinecone index: {index_name}")
+            print(f"📏 Using dimensions: {self._embedding_dimensions} for {settings.embeddings.provider}")
+            self._pc.create_index(
+                name=index_name,
+                dimension=self._embedding_dimensions,
+                metric=self._pinecone_config.metric,
+                spec=ServerlessSpec(
+                    cloud='aws',
+                    region='us-east-1'
+                )
+            )
+
+            # Wait for index to be ready
+            while not self._pc.describe_index(index_name).status['ready']:
+                time.sleep(1)
+
+            print(f"✅ Pinecone index {index_name} created successfully")
+        except Exception as e:
+            if "ALREADY_EXISTS" in str(e):
+                print(f"✅ Index {index_name} already exists, using existing index")
+            else:
+                raise e
+
+        return self._pc.Index(index_name)
     
     def cache_embeddings(
         self, 
@@ -37,7 +106,7 @@ class EmbeddingStorage:
         questions_metadata: Dict[int, Dict[str, Any]]
     ) -> bool:
         """
-        Save precomputed embeddings and keywords to file
+        Save precomputed embeddings and keywords to Pinecone
         
         Args:
             key_point_embeddings: Dictionary mapping question_id to list of embeddings
@@ -48,48 +117,58 @@ class EmbeddingStorage:
             True if saved successfully, False otherwise
         """
         try:
-            # Convert sets to lists for JSON serialization
-            serializable_keywords = {
-                question_id: [list(keyword_set) for keyword_set in keyword_sets]
-                for question_id, keyword_sets in key_point_keywords.items()
-            }
+            vectors_to_upsert = []
             
-            # Create cache data structure
-            cache_data = {
-                "metadata": {
-                    "created_at": datetime.now().isoformat(),
-                    "openai_model": settings.openai.model_name,
-                    "total_questions": len(key_point_embeddings),
-                    "total_embeddings": sum(len(embs) for embs in key_point_embeddings.values())
-                },
-                "questions_metadata": questions_metadata,
-                "embeddings": {
-                    str(question_id): embeddings 
-                    for question_id, embeddings in key_point_embeddings.items()
-                },
-                "keywords": {
-                    str(question_id): keywords 
-                    for question_id, keywords in serializable_keywords.items()
-                }
-            }
+            for question_id, embeddings in key_point_embeddings.items():
+                question_keywords = key_point_keywords.get(question_id, [])
+                question_meta = questions_metadata.get(question_id, {})
+                
+                for idx, embedding in enumerate(embeddings):
+                    # Create unique ID for each key point embedding
+                    vector_id = f"q{question_id}_kp{idx}"
+                    
+                    # Prepare metadata
+                    metadata = {
+                        "question_id": question_id,
+                        "key_point_index": idx,
+                        "question_text": question_meta.get("question_text", ""),
+                        "key_points_count": question_meta.get("key_points_count", 0),
+                        "keywords": list(question_keywords[idx]) if idx < len(question_keywords) else [],
+                        "created_at": datetime.now().isoformat(),
+                        "embedding_provider": settings.embeddings.provider,
+                        "embedding_model": settings.embeddings.current_model
+                    }
+                    
+                    vectors_to_upsert.append({
+                        "id": vector_id,
+                        "values": embedding,
+                        "metadata": metadata
+                    })
             
-            # Ensure directory exists
-            dir_path = os.path.dirname(self._file_path)
-            if dir_path:  # Only create directory if there is a directory path
-                os.makedirs(dir_path, exist_ok=True)
+            # Upsert vectors in batches (Pinecone recommends batch size of 100)
+            batch_size = 100
+            total_vectors = len(vectors_to_upsert)
             
-            # Write to file
-            with open(self._file_path, 'w', encoding='utf-8') as file:
-                json.dump(cache_data, file, indent=2)
+            print(f"🔄 Upserting {total_vectors} vectors to Pinecone...")
             
-            print(f"✅ Saved embeddings cache to {self._file_path}")
-            print(f"   📊 {cache_data['metadata']['total_questions']} questions, "
-                  f"{cache_data['metadata']['total_embeddings']} embeddings")
+            for i in range(0, total_vectors, batch_size):
+                batch = vectors_to_upsert[i:i + batch_size]
+                self._index.upsert(vectors=batch)
+                print(f"   📦 Batch {i//batch_size + 1}/{(total_vectors + batch_size - 1)//batch_size} uploaded")
+            
+            # Wait for upserts to be processed
+            time.sleep(2)
+            
+            # Verify upload
+            stats = self._index.describe_index_stats()
+            print(f"✅ Successfully cached embeddings to Pinecone")
+            print(f"   📊 Total vectors in index: {stats['total_vector_count']}")
+            print(f"   🔧 Index dimension: {stats['dimension']}")
             
             return True
             
         except Exception as e:
-            print(f"❌ Error saving embeddings cache: {e}")
+            print(f"❌ Error caching embeddings to Pinecone: {e}")
             return False
     
     def load_cached_embeddings(
@@ -97,7 +176,7 @@ class EmbeddingStorage:
         current_questions_metadata: Dict[int, Dict[str, Any]]
     ) -> Optional[tuple]:
         """
-        Load precomputed embeddings and keywords from file
+        Load precomputed embeddings and keywords from Pinecone
         
         Args:
             current_questions_metadata: Current questions metadata for validation
@@ -105,151 +184,161 @@ class EmbeddingStorage:
         Returns:
             Tuple of (key_point_embeddings, key_point_keywords) if successful, None otherwise
         """
-        if not os.path.exists(self._file_path):
-            print(f"⚠️ Embeddings cache file not found: {self._file_path}")
-            return None
-        
         try:
-            with open(self._file_path, 'r', encoding='utf-8') as file:
-                cache_data = json.load(file)
-            
-            # Validate cache structure
-            if not self._validate_cache_structure(cache_data):
-                print("❌ Invalid cache file structure")
+            # Check if index has any vectors
+            stats = self._index.describe_index_stats()
+            if stats['total_vector_count'] == 0:
+                print("⚠️ No vectors found in Pinecone index")
                 return None
             
-            # Check if questions have changed
-            if not self._validate_questions_consistency(
-                cache_data.get("questions_metadata", {}), 
-                current_questions_metadata
-            ):
+            # Validate questions consistency
+            if not self._validate_questions_consistency(current_questions_metadata):
                 print("⚠️ Questions have changed since cache was created, need to recompute")
                 return None
             
-            # Convert back to proper types
-            key_point_embeddings = {
-                int(question_id): embeddings 
-                for question_id, embeddings in cache_data["embeddings"].items()
-            }
+            # Fetch all vectors for the current questions
+            key_point_embeddings = {}
+            key_point_keywords = {}
             
-            key_point_keywords = {
-                int(question_id): [set(keywords) for keywords in keyword_lists]
-                for question_id, keyword_lists in cache_data["keywords"].items()
-            }
+            for question_id in current_questions_metadata.keys():
+                # Query vectors for this question
+                # Get the actual index dimension from stats first
+                stats = self._index.describe_index_stats()
+                index_dimension = stats['dimension']
+                
+                query_response = self._index.query(
+                    vector=[0.0] * index_dimension,  # Use actual index dimension
+                    filter={"question_id": question_id},
+                    top_k=10000,  # Large number to get all key points for the question
+                    include_values=True,
+                    include_metadata=True
+                )
+                
+                if query_response['matches']:
+                    question_embeddings = []
+                    question_keywords = []
+                    
+                    # Sort by key_point_index to maintain order
+                    matches = sorted(query_response['matches'], 
+                                   key=lambda x: x['metadata']['key_point_index'])
+                    
+                    for match in matches:
+                        question_embeddings.append(match['values'])
+                        keywords_list = match['metadata'].get('keywords', [])
+                        question_keywords.append(set(keywords_list))
+                    
+                    key_point_embeddings[question_id] = question_embeddings
+                    key_point_keywords[question_id] = question_keywords
             
-            metadata = cache_data["metadata"]
-            print(f"✅ Loaded embeddings cache from {self._file_path}")
-            print(f"   📅 Created: {metadata.get('created_at', 'Unknown')}")
-            print(f"   🤖 Model: {metadata.get('openai_model', 'Unknown')}")
-            print(f"   📊 {metadata.get('total_questions', 0)} questions, "
-                  f"{metadata.get('total_embeddings', 0)} embeddings")
-            
-            return key_point_embeddings, key_point_keywords
+            if key_point_embeddings:
+                print(f"✅ Loaded embeddings from Pinecone")
+                print(f"   📊 {len(key_point_embeddings)} questions loaded")
+                print(f"   🤖 Model: {settings.openai.model_name}")
+                
+                return key_point_embeddings, key_point_keywords
+            else:
+                print("⚠️ No matching embeddings found in Pinecone")
+                return None
             
         except Exception as e:
-            print(f"❌ Error loading embeddings cache: {e}")
+            print(f"❌ Error loading embeddings from Pinecone: {e}")
             return None
-    
-    def _validate_cache_structure(self, cache_data: Dict[str, Any]) -> bool:
-        """
-        Validate that the cache file has the expected structure
-        
-        Args:
-            cache_data: Loaded cache data
-            
-        Returns:
-            True if structure is valid, False otherwise
-        """
-        required_keys = ["metadata", "embeddings", "keywords"]
-        
-        for key in required_keys:
-            if key not in cache_data:
-                print(f"❌ Missing required key in cache: {key}")
-                return False
-        
-        # Check if embeddings and keywords have matching question IDs
-        embedding_ids = set(cache_data["embeddings"].keys())
-        keyword_ids = set(cache_data["keywords"].keys())
-        
-        if embedding_ids != keyword_ids:
-            print("❌ Mismatch between embedding and keyword question IDs")
-            return False
-        
-        return True
     
     def _validate_questions_consistency(
         self, 
-        cached_metadata: Dict[str, Any], 
         current_metadata: Dict[int, Dict[str, Any]]
     ) -> bool:
         """
-        Check if current questions match the cached questions
+        Check if current questions match the cached questions in Pinecone
         
         Args:
-            cached_metadata: Metadata from cache file
             current_metadata: Current questions metadata
             
         Returns:
             True if questions are consistent, False otherwise
         """
-        # Convert current metadata keys to strings for comparison
-        current_metadata_str = {
-            str(question_id): metadata 
-            for question_id, metadata in current_metadata.items()
-        }
-        
-        # Simple check: compare question counts and question IDs
-        cached_ids = set(cached_metadata.keys())
-        current_ids = set(current_metadata_str.keys())
-        
-        if cached_ids != current_ids:
-            print(f"❌ Question IDs changed: cached={cached_ids}, current={current_ids}")
-            return False
-        
-        # Check if question texts and key points match
-        for question_id in cached_ids:
-            cached_q = cached_metadata[question_id]
-            current_q = current_metadata_str[question_id]
+        try:
+            # Sample a few questions to check consistency
+            sample_question_ids = list(current_metadata.keys())[:5]  # Check first 5 questions
             
-            if (cached_q.get("question_text") != current_q.get("question_text") or
-                cached_q.get("key_points_count") != current_q.get("key_points_count")):
-                print(f"❌ Question {question_id} content changed")
-                return False
-        
-        return True
+            # Get the actual index dimension
+            stats = self._index.describe_index_stats()
+            index_dimension = stats['dimension']
+            
+            for question_id in sample_question_ids:
+                # Query for this question's vectors
+                query_response = self._index.query(
+                    vector=[0.0] * index_dimension,
+                    filter={"question_id": question_id},
+                    top_k=1,
+                    include_metadata=True
+                )
+                
+                if query_response['matches']:
+                    cached_metadata = query_response['matches'][0]['metadata']
+                    current_meta = current_metadata[question_id]
+                    
+                    # Check if question text and key points count match
+                    if (cached_metadata.get("question_text") != current_meta.get("question_text") or
+                        cached_metadata.get("key_points_count") != current_meta.get("key_points_count")):
+                        print(f"❌ Question {question_id} content changed")
+                        return False
+                else:
+                    print(f"❌ Question {question_id} not found in cache")
+                    return False
+            
+            return True
+            
+        except Exception as e:
+            print(f"❌ Error validating questions consistency: {e}")
+            return False
     
     def clear_cache(self) -> bool:
         """
-        Delete the embeddings cache file
+        Delete all vectors from the Pinecone index
         
         Returns:
-            True if deleted successfully or file doesn't exist, False on error
+            True if cleared successfully, False on error
         """
         try:
-            if os.path.exists(self._file_path):
-                os.remove(self._file_path)
-                print(f"✅ Cleared embeddings cache: {self._file_path}")
+            # Delete all vectors in the index
+            self._index.delete(delete_all=True)
+            print(f"✅ Cleared all vectors from Pinecone index: {self._pinecone_config.index_name}")
             return True
         except Exception as e:
-            print(f"❌ Error clearing embeddings cache: {e}")
+            print(f"❌ Error clearing Pinecone index: {e}")
             return False
     
     def get_cache_info(self) -> Optional[Dict[str, Any]]:
         """
-        Get information about the current cache file
+        Get information about the current Pinecone index
         
         Returns:
-            Cache metadata if file exists, None otherwise
+            Index metadata if successful, None otherwise
         """
-        if not os.path.exists(self._file_path):
-            return None
-        
         try:
-            with open(self._file_path, 'r', encoding='utf-8') as file:
-                cache_data = json.load(file)
+            stats = self._index.describe_index_stats()
             
-            return cache_data.get("metadata", {})
+            # Get sample metadata from one vector
+            sample_metadata = {}
+            if stats['total_vector_count'] > 0:
+                # Use a simple query without vector to get metadata
+                query_response = self._index.query(
+                    vector=[0.0] * stats['dimension'],  # Use actual index dimension
+                    top_k=1,
+                    include_metadata=True
+                )
+                if query_response['matches']:
+                    sample_metadata = query_response['matches'][0]['metadata']
+            
+            return {
+                "total_vector_count": stats['total_vector_count'],
+                "dimension": stats['dimension'],
+                "index_name": self._pinecone_config.index_name,
+                "created_at": sample_metadata.get('created_at', 'Unknown'),
+                "openai_model": sample_metadata.get('openai_model', 'Unknown')
+            }
             
         except Exception as e:
-            print(f"❌ Error reading cache info: {e}")
+            print(f"❌ Error getting cache info: {e}")
             return None

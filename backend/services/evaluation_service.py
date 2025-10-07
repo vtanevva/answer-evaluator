@@ -69,15 +69,24 @@ class EvaluationService:
                 print(f"✅ Loaded embeddings from cache for {len(all_questions)} questions")
                 return
             else:
-                print("⚠️ Cache load failed, falling back to computing embeddings...")
+                print("⚠️ Cache load failed, no embeddings available")
+                print("⚠️ Service will start but embeddings need to be computed later")
+                print("💡 Add OpenAI credits and set precompute_embeddings=true to generate embeddings")
+                return
         else:
             print("🔄 Precomputing fresh embeddings (precompute_embeddings=True)...")
         
         # Compute embeddings fresh
-        self._compute_new_embeddings(all_questions)
-        
-        # Save to cache for future use
-        print("💾 Saving embeddings to cache...")
+        try:
+            self._compute_new_embeddings(all_questions)
+            
+            # Save to cache for future use
+            print("💾 Saving embeddings to cache...")
+        except Exception as e:
+            print(f"❌ Failed to compute embeddings: {e}")
+            print("⚠️ Service will start but embeddings need to be computed later")
+            print("💡 Check your OpenAI quota and billing details")
+            return
         success = self._embedding_storage.cache_embeddings(
             self._key_point_embeddings,
             self._key_point_keywords,
@@ -206,6 +215,15 @@ class EvaluationService:
             raise HTTPException(status_code=404, detail="Question not found")
         
         key_points = question["key_points"]
+ 
+        # If embeddings for this question are missing (cache was empty), compute them on-demand
+        if question_id not in self._key_point_embeddings:
+            print(f"⚠️ Embeddings missing for question {question_id}, computing on demand...")
+            try:
+                self._compute_embeddings_for_question(question)
+            except Exception as e:
+                print(f"❌ Failed to compute embeddings on demand for question {question_id}: {e}")
+                raise HTTPException(status_code=500, detail="Failed to compute embeddings for evaluation")
         
         # Split user answer into sentences and get embeddings
         sentences = self._text_processor.split_into_sentences(user_answer)
@@ -275,6 +293,29 @@ class EvaluationService:
         return (similarity >= self._similarity_config.high_similarity or 
                 (similarity >= self._similarity_config.mid_similarity and 
                  overlap >= self._similarity_config.min_lexical_overlap))
+    
+    def _compute_embeddings_for_question(self, question: Dict) -> None:
+        """
+        Compute embeddings for a single question's key points and store them in memory.
+
+        Args:
+            question: Question dictionary containing key_points
+        """
+        question_id = question["question_id"]
+        embeddings = []
+        keywords_list: List[Set[str]] = []
+
+        for key_point in question["key_points"]:
+            text = key_point["text"]
+            embedding = self._embedding_service.get_embedding(text)
+            embeddings.append(embedding)
+            keywords = set(self._text_processor.normalize_text(text))
+            keywords_list.append(keywords)
+            print(f"  ✅ (on-demand) Embedded: '{text[:30]}...'")
+
+        self._key_point_embeddings[question_id] = embeddings
+        self._key_point_keywords[question_id] = keywords_list
+        print(f"  📝 (on-demand) Question {question_id}: {len(embeddings)} key points embedded")
     
     def _calculate_score(self, hit_count: int, total_count: int) -> float:
         """
