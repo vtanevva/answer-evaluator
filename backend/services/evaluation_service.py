@@ -237,8 +237,19 @@ class EvaluationService:
                 user_tokens, key_point_tokens
             )
             
-            # Determine if key point is hit based on thresholds
-            is_hit = self._is_key_point_hit(similarity, overlap)
+            # Check for semantic conflicts (polarity and direction)
+            has_conflict = (
+                self._text_processor.has_polarity_conflict(user_tokens, key_point_tokens) or
+                self._text_processor.has_direction_conflict(user_tokens, key_point_tokens)
+            )
+            
+            # If we detect opposing claims, severely reduce the similarity score
+            if has_conflict:
+                similarity *= 0.2  # 80% penalty for semantic conflicts
+                overlap *= 0.2     # Also penalize overlap score
+            
+            # Determine if key point is hit based on adjusted scores
+            is_hit = (not has_conflict) and self._is_key_point_hit(similarity, overlap)
             
             if is_hit:
                 hit_key_points.append(key_point["text"])
