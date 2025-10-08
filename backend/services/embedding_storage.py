@@ -48,56 +48,11 @@ class EmbeddingStorage:
     
     def _get_or_create_index(self):
         """
-        Get existing index or create a new one if it doesn't exist
-        
-        Returns:
-            Pinecone index object
-        """
-        index_name = self._index_name
-
-        # Check existing indexes
-        existing_indexes = [idx.name for idx in self._pc.list_indexes()]
-
-        if index_name in existing_indexes:
-            print(f"✅ Using existing Pinecone index: {index_name}")
-            index = self._pc.Index(index_name)
-            stats = index.describe_index_stats()
-            actual_dimension = stats.get('dimension', self._embedding_dimensions)
-
-            if actual_dimension != self._embedding_dimensions:
-                # Extremely unlikely because index name encodes dimension, but guard anyway
-                print(f"⚠️ Index dimension mismatch for {index_name}: index={actual_dimension}, expected={self._embedding_dimensions}")
-                # Prefer the index's dimension to avoid query errors
-                self._embedding_dimensions = actual_dimension
-
-            return index
-
-        # Try to create the index, but handle case where it already exists
-        try:
-            print(f"🔧 Creating Pinecone index: {index_name}")
-            print(f"📏 Using dimensions: {self._embedding_dimensions} for {settings.embeddings.provider}")
-            self._pc.create_index(
-                name=index_name,
-                dimension=self._embedding_dimensions,
-                metric=self._pinecone_config.metric,
-                spec=ServerlessSpec(
-                    cloud='aws',
-                    region='us-east-1'
-                )
-            )
-
-            # Wait for index to be ready
-            while not self._pc.describe_index(index_name).status['ready']:
-                time.sleep(1)
-
-            print(f"✅ Pinecone index {index_name} created successfully")
-        except Exception as e:
-            if "ALREADY_EXISTS" in str(e):
-                print(f"✅ Index {index_name} already exists, using existing index")
-            else:
-                raise e
-
-        return self._pc.Index(index_name)
+        self._file_path = file_path or os.path.join(
+            os.path.dirname(__file__), 
+            "..", 
+            settings.grading.embeddings_file_path
+        )
     
     def cache_embeddings(
         self, 

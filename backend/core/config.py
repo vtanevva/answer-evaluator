@@ -93,7 +93,7 @@ class AnswerValidation:
 
 
 @dataclass
-class EvaluationConfig:
+class GradingConfig:
     precompute_embeddings: bool = True
     similarity_thresholds: SimilarityThresholds = field(default_factory=SimilarityThresholds)
     feedback_messages: FeedbackMessages = field(default_factory=FeedbackMessages)
@@ -125,9 +125,7 @@ class Settings:
     server: ServerConfig = field(default_factory=ServerConfig)
     cors: CorsConfig = field(default_factory=CorsConfig)
     openai: OpenAIConfig = field(default_factory=OpenAIConfig)
-    embeddings: EmbeddingConfig = field(default_factory=EmbeddingConfig)
-    pinecone: PineconeConfig = field(default_factory=PineconeConfig)
-    evaluation: EvaluationConfig = field(default_factory=EvaluationConfig)
+    grading: GradingConfig = field(default_factory=GradingConfig)
     questions: QuestionsConfig = field(default_factory=QuestionsConfig)
     text_processing: TextProcessingConfig = field(default_factory=TextProcessingConfig)
 
@@ -162,35 +160,8 @@ def _create_openai_config(data: Dict[str, Any]) -> OpenAIConfig:
         return OpenAIConfig()
 
 
-def _create_pinecone_config(data: Dict[str, Any]) -> PineconeConfig:
-    """Create PineconeConfig with validation and defaults"""
-    try:
-        # Load API key from environment if not in data
-        api_key = data.get('api_key', os.getenv('PINECONE_API_KEY', ''))
-        
-        config_data = data.copy()
-        config_data['api_key'] = api_key
-        
-        return PineconeConfig(**config_data)
-    except Exception as e:
-        print(f"⚠️ Invalid Pinecone configuration: {e}")
-        print("📋 Using default Pinecone settings")
-        # Load API key from environment as fallback
-        return PineconeConfig(api_key=os.getenv('PINECONE_API_KEY', ''))
-
-
-def _create_embedding_config(data: Dict[str, Any]) -> EmbeddingConfig:
-    """Create EmbeddingConfig with validation and defaults"""
-    try:
-        return EmbeddingConfig(**data)
-    except Exception as e:
-        print(f"⚠️ Invalid embedding configuration: {e}")
-        print("📋 Using default embedding settings")
-        return EmbeddingConfig()
-
-
-def _create_evaluation_config(data: Dict[str, Any]) -> EvaluationConfig:
-    """Create EvaluationConfig with validation and graceful fallbacks"""
+def _create_grading_config(data: Dict[str, Any]) -> GradingConfig:
+    """Create GradingConfig with validation and graceful fallbacks"""
     try:
         # Extract simple fields with defaults
         precompute_embeddings = data.get('precompute_embeddings', True)
@@ -221,16 +192,16 @@ def _create_evaluation_config(data: Dict[str, Any]) -> EvaluationConfig:
                 print(f"⚠️ Invalid answer validation settings: {e}")
                 print("📋 Using default answer validation")
         
-        return EvaluationConfig(
+        return GradingConfig(
             precompute_embeddings=precompute_embeddings,
             similarity_thresholds=similarity_thresholds,
             feedback_messages=feedback_messages,
             answer_validation=answer_validation
         )
     except Exception as e:
-        print(f"⚠️ Invalid evaluation configuration: {e}")
-        print("📋 Using default evaluation settings")
-        return EvaluationConfig()
+        print(f"⚠️ Invalid grading configuration: {e}")
+        print("📋 Using default grading settings")
+        return GradingConfig()
 
 
 def _create_questions_config(data: Dict[str, Any]) -> QuestionsConfig:
@@ -277,9 +248,7 @@ def create_config_from_dict(data: Dict[str, Any]) -> Settings:
         ('server', _create_server_config, 'server'),
         ('cors', _create_cors_config, 'cors'), 
         ('openai', _create_openai_config, 'openai'),
-        ('embeddings', _create_embedding_config, 'embeddings'),
-        ('pinecone', _create_pinecone_config, 'pinecone'),
-        ('evaluation', _create_evaluation_config, 'evaluation'),
+        ('grading', _create_grading_config, 'grading'),
         ('questions', _create_questions_config, 'questions'),
         ('text_processing', _create_text_processing_config, 'text_processing')
     ]
@@ -386,7 +355,7 @@ def load_settings_from_yaml(yaml_file_path: str = "settings.yaml") -> Settings:
             print(f"✅ Successfully loaded configuration from {resolved_path}")
             
             # Log any sections that weren't found in the file
-            expected_sections = ['server', 'cors', 'openai', 'evaluation', 'questions', 'text_processing']
+            expected_sections = ['server', 'cors', 'openai', 'grading', 'questions', 'text_processing']
             missing_sections = [section for section in expected_sections if section not in yaml_data]
             if missing_sections:
                 print(f"📋 Using defaults for missing sections: {', '.join(missing_sections)}")
@@ -431,21 +400,21 @@ def validate_settings(settings: Settings) -> None:
     if settings.server.port < 1 or settings.server.port > 65535:
         print(f"⚠️ Invalid port number: {settings.server.port}, should be 1-65535")
     
-    # Validate evaluation settings
-    if not (0.0 <= settings.evaluation.similarity_thresholds.high_similarity <= 1.0):
-        print(f"⚠️ High similarity threshold should be 0.0-1.0, got: {settings.evaluation.similarity_thresholds.high_similarity}")
+    # Validate grading settings
+    if not (0.0 <= settings.grading.similarity_thresholds.high_similarity <= 1.0):
+        print(f"⚠️ High similarity threshold should be 0.0-1.0, got: {settings.grading.similarity_thresholds.high_similarity}")
     
-    if not (0.0 <= settings.evaluation.similarity_thresholds.mid_similarity <= 1.0):
-        print(f"⚠️ Mid similarity threshold should be 0.0-1.0, got: {settings.evaluation.similarity_thresholds.mid_similarity}")
+    if not (0.0 <= settings.grading.similarity_thresholds.mid_similarity <= 1.0):
+        print(f"⚠️ Mid similarity threshold should be 0.0-1.0, got: {settings.grading.similarity_thresholds.mid_similarity}")
     
-    if settings.evaluation.similarity_thresholds.high_similarity <= settings.evaluation.similarity_thresholds.mid_similarity:
-        print(f"⚠️ High similarity threshold ({settings.evaluation.similarity_thresholds.high_similarity}) should be greater than mid similarity ({settings.evaluation.similarity_thresholds.mid_similarity})")
+    if settings.grading.similarity_thresholds.high_similarity <= settings.grading.similarity_thresholds.mid_similarity:
+        print(f"⚠️ High similarity threshold ({settings.grading.similarity_thresholds.high_similarity}) should be greater than mid similarity ({settings.grading.similarity_thresholds.mid_similarity})")
     
-    if settings.evaluation.answer_validation.min_answer_length < 1:
-        print(f"⚠️ Minimum answer length should be at least 1, got: {settings.evaluation.answer_validation.min_answer_length}")
+    if settings.grading.answer_validation.min_answer_length < 1:
+        print(f"⚠️ Minimum answer length should be at least 1, got: {settings.grading.answer_validation.min_answer_length}")
     
-    if settings.evaluation.answer_validation.min_word_count < 1:
-        print(f"⚠️ Minimum word count should be at least 1, got: {settings.evaluation.answer_validation.min_word_count}")
+    if settings.grading.answer_validation.min_word_count < 1:
+        print(f"⚠️ Minimum word count should be at least 1, got: {settings.grading.answer_validation.min_word_count}")
     
     # Validate questions settings
     if not settings.questions.default_file_path:
@@ -470,9 +439,9 @@ def get_configuration_summary(settings: Settings) -> str:
     summary.append("📋 Configuration Summary:")
     summary.append(f"  🌐 Server: {settings.server.host}:{settings.server.port}")
     summary.append(f"  🤖 OpenAI Model: {settings.openai.model_name}")
-    summary.append(f"  💾 Embedding Cache: {'Enabled' if not settings.evaluation.precompute_embeddings else 'Disabled (fresh computation)'}")
+    summary.append(f"  💾 Embedding Cache: {'Enabled' if not settings.grading.precompute_embeddings else 'Disabled (fresh computation)'}")
     summary.append(f"  📄 Questions File: {settings.questions.default_file_path}")
-    summary.append(f"  🎯 Similarity Thresholds: High={settings.evaluation.similarity_thresholds.high_similarity}, Mid={settings.evaluation.similarity_thresholds.mid_similarity}")
+    summary.append(f"  🎯 Similarity Thresholds: High={settings.grading.similarity_thresholds.high_similarity}, Mid={settings.grading.similarity_thresholds.mid_similarity}")
     
     return "\n".join(summary)
 

@@ -1,0 +1,250 @@
+[
+  {
+    "question_id": 1,
+    "question_text": "Explain the role of erosion in shaping landscapes.",
+    "key_points": [
+      {
+        "text": "Erosion removes soil and rock materials.",
+        "weight": 1
+      },
+      {
+        "text": "Water, wind, and ice are erosion agents.",
+        "weight": 1
+      },
+      {
+        "text": "Erosion creates valleys and canyons over time.",
+        "weight": 1
+      },
+      {
+        "text": "Sediment transport alters landforms and ecosystems.",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Erosion is when water and wind wear away rocks and soil. Over many years this creates valleys and canyons. The eroded stuff gets moved around and changes the landscape.",
+      "Rivers, wind and ice break down rocks and carry them away. This makes new shapes in the land like valleys. The materials that get carried away can form new landforms somewhere else.",
+      "Erosion happens when agents like water and wind remove soil and rock. It's a slow process that shapes landscapes by creating canyons and moving sediment around which affects ecosystems too.",
+      "Water, wind, and ice act like erosional agents that wear down mountains and hills. This creates dramatic landscapes over time and the sediment that gets transported can build up new areas."
+    ],
+    "incorrect_answers": [
+      "Erosion only happens in deserts where there's no plants to hold the soil together.",
+      "Erosion is caused by earthquakes that break up the ground and make it loose.",
+      "Erosion makes the land more fertile because it mixes up different types of soil.",
+      "Erosion only affects the surface and doesn't really change the overall shape of the land."
+    ]
+  },
+  {
+    "question_id": 2,
+    "question_text": "What is natural selection and how does it contribute to evolution?",
+    "key_points": [
+      {
+        "text": "Survival of the fittest organisms",
+        "weight": 1
+      },
+      {
+        "text": "Variation in traits among individuals",
+        "weight": 1
+      },
+      {
+        "text": "Environment influences which traits are beneficial",
+        "weight": 1
+      },
+      {
+        "text": "Successful traits are passed to next generations",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Natural selection is survival of the fittest. Animals with better traits for their environment survive and have babies, so those good traits get passed on to the next generation.",
+      "It's when the environment decides which organisms survive. There's variation in traits and the ones that help animals survive get passed to their offspring, which causes evolution.",
+      "Natural selection means that organisms with helpful traits are more likely to survive and reproduce. Over time this changes the population because beneficial traits become more common.",
+      "Different organisms have different traits and the environment influences which ones are beneficial. The fittest ones survive and pass their traits to their children, leading to evolution."
+    ],
+    "incorrect_answers": [
+      "Natural selection means that all animals try to become stronger and faster over time.",
+      "Evolution happens randomly and natural selection doesn't really affect which traits survive.",
+      "Only the biggest and strongest animals survive, size is the most important factor in natural selection.",
+      "Natural selection only affects physical traits like color and size, not behavior or intelligence."
+    ]
+  },
+  {
+    "question_id": 3,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Plants use photosynthesis to make food. They take in sunlight for energy and carbon dioxide from the air and turn it into sugar.",
+      "Plants make their own food by using sunlight as energy. They also absorb CO2 from the atmosphere and convert it into food through photosynthesis.",
+      "Through photosynthesis, plants capture sunlight energy and combine it with carbon dioxide to create their own food. This happens in their leaves.",
+      "Plants don't eat like animals do, instead they make food by taking in sunlight and carbon dioxide and using photosynthesis to turn it into energy."
+    ],
+    "incorrect_answers": [
+      "Plants get their food from the soil by absorbing nutrients through their roots like animals eating.",
+      "Plants eat insects and small bugs that get stuck on their leaves to get protein.",
+      "Plants absorb food from other plants through their root systems underground.",
+      "Plants get energy by breaking down dead leaves and organic matter in the soil."
+    ]
+  },
+  {
+    "question_id": 4,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {
+        "text": "General increase in prices",
+        "weight": 1
+      },
+      {
+        "text": "Reduction of purchasing power",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Inflation is when prices go up for most things. This means your money can't buy as much as it used to, so your purchasing power goes down.",
+      "It's when everything gets more expensive over time. If there's inflation, the same amount of money buys less stuff than before.",
+      "Inflation means there's a general increase in prices across the economy. This reduces how much you can buy with the same amount of money.",
+      "When inflation happens, prices rise for goods and services. This makes money worth less because you can't afford as much with the same amount."
+    ],
+    "incorrect_answers": [
+      "Inflation is when the government prints more money and everyone gets richer.",
+      "Inflation only affects luxury items, basic necessities stay the same price.",
+      "Inflation means that people are earning more money so they can afford higher prices.",
+      "Inflation is good because it means the economy is growing and everyone benefits."
+    ]
+  },
+  {
+    "question_id": 5,
+    "question_text": "Discuss the impact of globalization on local economies.",
+    "key_points": [
+      {
+        "text": "Global trade increases market access for local businesses",
+        "weight": 1
+      },
+      {
+        "text": "Cultural exchange can enhance local traditions",
+        "weight": 1
+      },
+      {
+        "text": "Globalization may lead to job displacement locally",
+        "weight": 1
+      },
+      {
+        "text": "Increased competition can reduce prices for consumers",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Globalization helps local businesses reach global markets but can also cause job losses when companies move overseas. It brings cultural exchange and competition which can lower prices for consumers.",
+      "Local economies can benefit from globalization through increased trade opportunities and cultural exchange. However, it might cause job displacement as companies seek cheaper labor elsewhere, though consumers benefit from lower prices due to competition.",
+      "Globalization has mixed effects on local economies. It opens up new markets for local businesses and promotes cultural exchange, but can displace jobs locally. The increased competition usually reduces prices for consumers.",
+      "When globalization happens, local businesses get access to bigger markets and there's more cultural exchange. But sometimes jobs are lost to cheaper countries. On the positive side, more competition means lower prices for people buying things."
+    ],
+    "incorrect_answers": [
+      "Globalization only helps big corporations and has no benefits at all for local businesses or consumers.",
+      "Globalization eliminates all local culture and makes everywhere exactly the same with no diversity.",
+      "Globalization always makes everything more expensive because of shipping costs from other countries.",
+      "Globalization creates so many jobs locally that unemployment becomes zero in all countries."
+    ]
+  },
+  {
+    "question_id": 6,
+    "question_text": "What are the major factors affecting agricultural productivity?",
+    "key_points": [
+      {
+        "text": "Soil quality influences crop yields",
+        "weight": 1
+      },
+      {
+        "text": "Climate affects growing seasons and types",
+        "weight": 1
+      },
+      {
+        "text": "Access to irrigation can improve output",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Agricultural productivity depends on soil quality because good soil helps crops grow better. Climate is important too because it affects what you can grow and when. Having irrigation systems helps because plants need water.",
+      "The main factors are soil quality, climate, and water access. Rich soil gives higher yields, the right climate determines growing seasons, and irrigation helps ensure crops get enough water.",
+      "Soil quality is crucial for crop yields - poor soil means poor harvests. Climate affects what crops can grow and when they can be planted. Access to irrigation systems can really improve agricultural output.",
+      "Three major factors affect how much food farmers can produce: the quality of their soil, the climate conditions, and whether they have good irrigation. All of these work together to determine crop yields."
+    ],
+    "incorrect_answers": [
+      "Agricultural productivity only depends on how much fertilizer farmers use, soil and climate don't matter.",
+      "The only thing that affects crop yields is the amount of rain, everything else is unimportant.",
+      "Modern technology has made soil quality and climate irrelevant, only the type of seeds matters now.",
+      "Agricultural productivity is only determined by the size of the farm - bigger farms always produce more per acre."
+    ]
+  },
+  {
+    "question_id": 7,
+    "question_text": "Describe the processes that shape river landscapes.",
+    "key_points": [
+      {
+        "text": "Erosion removes sediment from riverbanks",
+        "weight": 1
+      },
+      {
+        "text": "Deposition forms new landforms like deltas",
+        "weight": 1
+      },
+      {
+        "text": "Meandering creates bends and oxbow lakes",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Rivers shape landscapes through erosion, deposition, and meandering. Erosion wears away riverbanks, deposition creates new landforms like deltas, and meandering makes the river curve and sometimes creates oxbow lakes.",
+      "The main processes are erosion and deposition. Rivers erode sediment from their banks and carry it downstream where it gets deposited to form deltas. Rivers also meander which creates bends and sometimes oxbow lakes.",
+      "Rivers constantly change the landscape by eroding material from riverbanks and depositing it elsewhere. This creates features like deltas. The meandering process also shapes the land by creating curves and cutting off sections to form oxbow lakes.",
+      "Three important processes shape river landscapes: erosion removes sediment from banks, deposition builds up new landforms like deltas where rivers meet the sea, and meandering creates the curvy paths that can form oxbow lakes."
+    ],
+    "incorrect_answers": [
+      "Rivers only flow in straight lines and don't really change the landscape around them.",
+      "Rivers always flow faster during winter which is when all the landscape changes happen.",
+      "The main process is just water flowing downhill, erosion and deposition don't affect river landscapes.",
+      "Rivers only create valleys by digging straight down, they don't create any other landforms."
+    ]
+  },
+  {
+    "question_id": 8,
+    "question_text": "How does globalization affect economic development in emerging countries?",
+    "key_points": [
+      {
+        "text": "Increased foreign investment boosts local industries",
+        "weight": 1
+      },
+      {
+        "text": "Global trade can lead to job creation",
+        "weight": 1
+      },
+      {
+        "text": "Cultural exchange can influence consumer preferences",
+        "weight": 1
+      },
+      {
+        "text": "Economic disparities may widen between regions",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Globalization can help emerging countries through foreign investment and job creation from global trade. Cultural exchange influences what people want to buy. However, it might also increase economic disparities between different regions.",
+      "For emerging countries, globalization brings foreign investment that helps local industries grow and creates jobs through international trade. Cultural exchange affects consumer preferences, but economic gaps between regions might get wider.",
+      "Emerging countries can benefit from globalization through increased foreign investment boosting their industries and global trade creating jobs. Cultural exchange influences consumer preferences, though economic disparities between regions may increase.",
+      "Globalization affects emerging countries in several ways: foreign investment helps local industries, global trade creates jobs, and cultural exchange changes what consumers want. But it can also make economic differences between regions bigger."
+    ],
+    "incorrect_answers": [
+      "Globalization only helps rich countries and makes emerging countries poorer by exploiting their resources.",
+      "Emerging countries can't participate in globalization because they don't have the technology needed.",
+      "Globalization has no effect on emerging countries because they're too small to matter in the global economy.",
+      "Globalization eliminates all cultural differences in emerging countries and makes them exactly like Western countries."
+    ]
+  }
+]

@@ -38,9 +38,10 @@ pinecone:
   metric: "cosine"
 
 # Evaluation Configuration
-evaluation:
+grading:
   # Embedding Configuration
-  precompute_embeddings: false  # Set to true when you want to generate embeddings
+  precompute_embeddings: false  # If false, load from file; if true, compute fresh embeddings
+  embeddings_file_path: "embeddings_cache.json"  # File to save/load precomputed embeddings
   
   similarity_thresholds:
     high_similarity: 0.88
