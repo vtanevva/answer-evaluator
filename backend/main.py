@@ -10,14 +10,14 @@ from core.config import settings
 from routes.routes import router
 from routes import routes
 from services.question_service import QuestionService
-from services.evaluation_service import EvaluationService
+from services.grading_service import GradingService
 
 # Load environment variables from .env file
 load_dotenv()
 
 # Global service instances
 question_service: QuestionService = None
-evaluation_service: EvaluationService = None
+grading_service: GradingService = None
 
 
 @asynccontextmanager
@@ -26,7 +26,7 @@ async def lifespan(app: FastAPI):
     Lifespan event handler - initialize services on startup and cleanup on shutdown
     This replaces the deprecated @app.on_event("startup") decorator
     """
-    global question_service, evaluation_service
+    global question_service, grading_service
     
     # Startup
     print("🚀 Starting Answer Evaluator Backend...")
@@ -46,12 +46,12 @@ async def lifespan(app: FastAPI):
     question_service = QuestionService()
     question_service.load_questions_bank()
     
-    evaluation_service = EvaluationService(question_service, openai)
-    evaluation_service.precompute_embeddings()
+    grading_service = GradingService(question_service, openai)
+    grading_service.precompute_embeddings()
     
     # Set service instances in routes module for dependency injection
     routes.question_service = question_service
-    routes.evaluation_service = evaluation_service
+    routes.grading_service = grading_service
     
     print("✅ Backend ready!")
     

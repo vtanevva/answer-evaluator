@@ -50,7 +50,7 @@ def precompute_embeddings():
             # Store in key_point_embeddings[question_id]
 ```
 
-### 2. Answer Evaluation
+### 2. Answer Grading
 ```python
 # When a user submits an answer:
 # 1. Get embedding for user's answer
@@ -58,7 +58,7 @@ def precompute_embeddings():
 # 3. Mark key points as "hit" or "missing" based on threshold
 # 4. Calculate score and generate feedback
 
-def evaluate_answer(question_id, user_answer):
+def grade_answer(question_id, user_answer):
     user_embedding = get_embedding(user_answer)
     
     for key_point_embedding in key_point_embeddings[question_id]:
