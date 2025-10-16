@@ -10,6 +10,7 @@ from services.embedding_service import EmbeddingService
 from services.text_processing import TextProcessor
 from services.question_service import QuestionService
 from services.embedding_storage import EmbeddingStorage
+from services.ai_antonym_detector import AIAntonymDetector, AntonymConfidence
 from core.config import settings
 
 
@@ -36,6 +37,7 @@ class EvaluationService:
         self._embedding_service = EmbeddingService(openai_client)
         self._text_processor = TextProcessor()
         self._embedding_storage = EmbeddingStorage()
+        self._ai_antonym_detector = AIAntonymDetector(self._embedding_service, openai_client)
         
         # Storage for precomputed embeddings and keywords
         self._key_point_embeddings: Dict[int, List[List[float]]] = {}
@@ -45,6 +47,7 @@ class EvaluationService:
         self._similarity_config = settings.evaluation.similarity_thresholds
         self._feedback_config = settings.evaluation.feedback_messages
         self._validation_config = settings.evaluation.answer_validation
+        self._antonym_config = settings.antonym_detection
     
     def precompute_embeddings(self) -> None:
         """
@@ -237,16 +240,14 @@ class EvaluationService:
                 user_tokens, key_point_tokens
             )
             
-            # Check for semantic conflicts (polarity and direction)
-            has_conflict = (
-                self._text_processor.has_polarity_conflict(user_tokens, key_point_tokens) or
-                self._text_processor.has_direction_conflict(user_tokens, key_point_tokens)
-            )
+            # Check for semantic conflicts using AI-powered antonym detection
+            has_conflict = self._detect_antonym_conflict(user_answer, key_point["text"], question["question_text"])
             
-            # If we detect opposing claims, severely reduce the similarity score
+            # If we detect opposing claims, apply penalty based on confidence
             if has_conflict:
-                similarity *= 0.2  # 80% penalty for semantic conflicts
-                overlap *= 0.2     # Also penalize overlap score
+                penalty_multiplier = self._antonym_config.antonym_penalty_multiplier
+                similarity *= penalty_multiplier
+                overlap *= penalty_multiplier
             
             # Determine if key point is hit based on adjusted scores
             is_hit = (not has_conflict) and self._is_key_point_hit(similarity, overlap)
@@ -271,6 +272,57 @@ class EvaluationService:
             missing_key_points=missing_key_points,
             feedback=feedback
         )
+    
+    def _detect_antonym_conflict(self, user_answer: str, key_point_text: str, question_text: str) -> bool:
+        """
+        Detect if user answer and key point are antonyms using AI-powered detection
+        
+        Args:
+            user_answer: User's answer text
+            key_point_text: Key point text to compare against
+            question_text: Question context for better detection
+            
+        Returns:
+            True if antonym conflict is detected with sufficient confidence
+        """
+        try:
+            # Use AI antonym detector to analyze the relationship
+            result = self._ai_antonym_detector.detect_antonyms(
+                user_answer, key_point_text, question_text
+            )
+            
+            # Only consider it a conflict if we have sufficient confidence
+            min_confidence = self._antonym_config.min_confidence_for_penalty
+            confidence_thresholds = {
+                "high": AntonymConfidence.HIGH,
+                "medium": AntonymConfidence.MEDIUM,
+                "low": AntonymConfidence.LOW
+            }
+            
+            required_confidence = confidence_thresholds.get(min_confidence, AntonymConfidence.MEDIUM)
+            
+            # Check if we have sufficient confidence and detected antonym relationship
+            confidence_levels = [AntonymConfidence.HIGH, AntonymConfidence.MEDIUM, AntonymConfidence.LOW, AntonymConfidence.NONE]
+            required_index = confidence_levels.index(required_confidence)
+            result_index = confidence_levels.index(result.confidence)
+            
+            has_sufficient_confidence = result_index <= required_index
+            is_antonym = result.is_antonym
+            
+            if is_antonym and has_sufficient_confidence:
+                print(f"  🚫 Antonym conflict detected: '{user_answer[:30]}...' vs '{key_point_text[:30]}...' "
+                      f"(confidence: {result.confidence.value}, method: {result.method})")
+                return True
+            
+            return False
+            
+        except Exception as e:
+            print(f"  ⚠️ Error in antonym detection: {e}")
+            # Fallback to original method if AI detection fails
+            user_tokens = self._text_processor.normalize_text(user_answer)
+            key_point_tokens = self._text_processor.normalize_text(key_point_text)
+            return (self._text_processor.has_polarity_conflict(user_tokens, key_point_tokens) or
+                    self._text_processor.has_direction_conflict(user_tokens, key_point_tokens))
     
     def _is_key_point_hit(self, similarity: float, overlap: float) -> bool:
         """

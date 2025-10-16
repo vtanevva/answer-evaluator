@@ -82,3 +82,37 @@ text_processing:
   additional_stopwords: "vs versus per each e.g. i.e. etc"
   stemming_suffixes: ["ing", "ed", "es", "s"]
   min_token_length: 4
+
+# AI Antonym Detection Configuration
+antonym_detection:
+  # Semantic distance threshold (lower = more similar, antonyms should be far apart)
+  semantic_distance_threshold: 0.3
+  
+  # Context similarity threshold (high context similarity + low semantic similarity = antonym)
+  context_similarity_threshold: 0.7
+  
+  # Confidence thresholds for different detection levels
+  confidence_thresholds:
+    high: 0.8
+    medium: 0.6
+    low: 0.4
+  
+  # Whether to use LLM validation for complex cases
+  use_llm_validation: true
+  
+  # Threshold below which to use LLM validation
+  llm_validation_threshold: 0.5
+  
+  # Method weights for combining results
+  method_weights:
+    semantic_distance: 0.4
+    contextual_analysis: 0.3
+    known_pattern: 0.2
+    negation_pattern: 0.2
+    llm_validation: 0.3
+  
+  # Penalty multiplier for detected antonyms in evaluation
+  antonym_penalty_multiplier: 0.2
+  
+  # Minimum confidence required to apply antonym penalty
+  min_confidence_for_penalty: "medium"
