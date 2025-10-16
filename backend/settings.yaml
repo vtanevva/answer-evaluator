@@ -22,9 +22,9 @@ openai:
   embedding_dimensions: 1536
 
 # Evaluation Configuration
-evaluation:
+grading:
   # Embedding Configuration
-  precompute_embeddings: true  # If false, load from file; if true, compute fresh embeddings
+  precompute_embeddings: false  # If false, load from file; if true, compute fresh embeddings
   embeddings_file_path: "embeddings_cache.json"  # File to save/load precomputed embeddings
   
   similarity_thresholds:

@@ -27,7 +27,7 @@ class EmbeddingStorage:
         self._file_path = file_path or os.path.join(
             os.path.dirname(__file__), 
             "..", 
-            settings.evaluation.embeddings_file_path
+            settings.grading.embeddings_file_path
         )
     
     def cache_embeddings(
