@@ -1,0 +1,22 @@
+# Requirements for Optimized API-only Antonym Detection System
+
+# Core dependencies (already installed)
+fastapi==0.104.1
+uvicorn==0.24.0
+openai==1.3.0
+python-dotenv==1.0.0
+numpy==1.24.3
+pydantic==2.5.0
+PyYAML==6.0.1
+httpx==0.27.2
+pytest==7.4.3
+pytest-asyncio==0.21.1
+nltk==3.8.1
+
+# New dependency for API calls (lightweight)
+httpx>=0.27.2  # Already installed, just ensuring async support
+
+# Optional: HuggingFace API key for zero-shot classification
+# Set HUGGINGFACE_API_KEY in your .env file
+# Free tier: 1,000 requests/month
+# Paid tier: $0.0005 per request

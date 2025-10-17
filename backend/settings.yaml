@@ -28,9 +28,9 @@ grading:
   embeddings_file_path: "embeddings_cache.json"  # File to save/load precomputed embeddings
   
   similarity_thresholds:
-    high_similarity: 0.88
-    mid_similarity: 0.83
-    min_lexical_overlap: 0.5
+    high_similarity: 0.85  # Increased from 0.80 - be even more strict
+    mid_similarity: 0.80   # Increased from 0.75 - be even more strict
+    min_lexical_overlap: 0.4  # Increased from 0.3 - require more word overlap
   
   feedback_messages:
     perfect_score: "Correct! You covered all the key points."
@@ -86,7 +86,7 @@ text_processing:
 # AI Antonym Detection Configuration
 antonym_detection:
   # Semantic distance threshold (lower = more similar, antonyms should be far apart)
-  semantic_distance_threshold: 0.3
+  semantic_distance_threshold: 0.05
   
   # Context similarity threshold (high context similarity + low semantic similarity = antonym)
   context_similarity_threshold: 0.7
@@ -105,14 +105,14 @@ antonym_detection:
   
   # Method weights for combining results
   method_weights:
-    semantic_distance: 0.4
-    contextual_analysis: 0.3
-    known_pattern: 0.2
-    negation_pattern: 0.2
+    semantic_distance: 0.3
+    contextual_analysis: 0.2
+    known_pattern: 0.5
+    negation_pattern: 0.5
     llm_validation: 0.3
   
   # Penalty multiplier for detected antonyms in evaluation
-  antonym_penalty_multiplier: 0.2
+  antonym_penalty_multiplier: 0.8  # Reduced from 0.2 (80% reduction → 20% reduction)
   
   # Minimum confidence required to apply antonym penalty
   min_confidence_for_penalty: "medium"

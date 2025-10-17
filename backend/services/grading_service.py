@@ -10,7 +10,7 @@ from services.embedding_service import EmbeddingService
 from services.text_processing import TextProcessor
 from services.question_service import QuestionService
 from services.embedding_storage import EmbeddingStorage
-from services.ai_antonym_detector import AIAntonymDetector, AntonymConfidence
+from services.smart_antonym_detector import SmartAntonymDetector, AntonymConfidence
 from core.config import settings
 
 
@@ -37,7 +37,7 @@ class GradingService:
         self._embedding_service = EmbeddingService(openai_client)
         self._text_processor = TextProcessor()
         self._embedding_storage = EmbeddingStorage()
-        self._ai_antonym_detector = AIAntonymDetector(self._embedding_service, openai_client)
+        self._ai_antonym_detector = SmartAntonymDetector(self._embedding_service, openai_client)
         
         # Storage for precomputed embeddings and keywords
         self._key_point_embeddings: Dict[int, List[List[float]]] = {}
