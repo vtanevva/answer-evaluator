@@ -386,3 +386,6 @@ class OptimizedAntonymDetector:
             "openai_calls": self._api_calls_count,  # Simplified for now
             "huggingface_calls": 0  # Would track separately in full implementation
         }
+
+
+
