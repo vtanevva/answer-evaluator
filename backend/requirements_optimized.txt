@@ -20,3 +20,6 @@ httpx>=0.27.2  # Already installed, just ensuring async support
 # Set HUGGINGFACE_API_KEY in your .env file
 # Free tier: 1,000 requests/month
 # Paid tier: $0.0005 per request
+
+
+
