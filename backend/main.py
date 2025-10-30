@@ -54,7 +54,8 @@ async def lifespan(app: FastAPI):
     question_service = QuestionService()
     question_service.load_questions_bank()
     
-    grading_service = GradingService(question_service, openai)
+    # Pass the OpenAI client instance to the grading service
+    grading_service = GradingService(question_service, openai_client)
     grading_service.precompute_embeddings()
     
     # Set service instances in routes module for dependency injection

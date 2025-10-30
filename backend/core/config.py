@@ -125,6 +125,8 @@ class Settings:
     server: ServerConfig = field(default_factory=ServerConfig)
     cors: CorsConfig = field(default_factory=CorsConfig)
     openai: OpenAIConfig = field(default_factory=OpenAIConfig)
+    embeddings: EmbeddingConfig = field(default_factory=EmbeddingConfig)
+    pinecone: PineconeConfig = field(default_factory=PineconeConfig)
     grading: GradingConfig = field(default_factory=GradingConfig)
     questions: QuestionsConfig = field(default_factory=QuestionsConfig)
     text_processing: TextProcessingConfig = field(default_factory=TextProcessingConfig)
@@ -224,6 +226,27 @@ def _create_text_processing_config(data: Dict[str, Any]) -> TextProcessingConfig
         return TextProcessingConfig()
 
 
+def _create_embedding_config(data: Dict[str, Any]) -> EmbeddingConfig:
+    """Create EmbeddingConfig with validation and defaults"""
+    try:
+        # Only accept known keys; unknown keys will be ignored by dataclass
+        return EmbeddingConfig(**data)
+    except Exception as e:
+        print(f"⚠️ Invalid embedding configuration: {e}")
+        print("📋 Using default embedding settings")
+        return EmbeddingConfig()
+
+
+def _create_pinecone_config(data: Dict[str, Any]) -> PineconeConfig:
+    """Create PineconeConfig with validation and defaults"""
+    try:
+        return PineconeConfig(**data)
+    except Exception as e:
+        print(f"⚠️ Invalid Pinecone configuration: {e}")
+        print("📋 Using default Pinecone settings")
+        return PineconeConfig()
+
+
 def create_config_from_dict(data: Dict[str, Any]) -> Settings:
     """
     Create Settings object from dictionary data 
@@ -248,6 +271,8 @@ def create_config_from_dict(data: Dict[str, Any]) -> Settings:
         ('server', _create_server_config, 'server'),
         ('cors', _create_cors_config, 'cors'), 
         ('openai', _create_openai_config, 'openai'),
+        ('embeddings', _create_embedding_config, 'embeddings'),
+        ('pinecone', _create_pinecone_config, 'pinecone'),
         ('grading', _create_grading_config, 'grading'),
         ('questions', _create_questions_config, 'questions'),
         ('text_processing', _create_text_processing_config, 'text_processing')
