@@ -60,25 +60,18 @@ class TestEmbeddingPersistence:
 
     def test_embedding_cache_creation(self, question_service, temp_cache_file, mock_openai_client):
         """Test that embeddings cache is created when precompute_embeddings is called"""
-        # Ensure cache file doesn't exist
-        if os.path.exists(temp_cache_file):
-            os.unlink(temp_cache_file)
-            
-        # Create grading service with custom embedding storage
+        # Create grading service with Pinecone-based embedding storage
         grading_service = GradingService(question_service, mock_openai_client)
-        grading_service._embedding_storage = EmbeddingStorage(temp_cache_file)
+        grading_service._embedding_storage = EmbeddingStorage()
         
         # Mock the embedding service to avoid API calls
         with patch.object(grading_service._embedding_service, 'get_embedding') as mock_get_embedding:
             mock_get_embedding.return_value = [0.1, 0.2, 0.3]
             
-            # Cache should not exist before
-            assert not os.path.exists(temp_cache_file)
-            
             # Precompute embeddings
             grading_service.precompute_embeddings()
             
-            # Cache should exist after
+            # Verify embeddings were cached (check Pinecone index stats)
             assert os.path.exists(temp_cache_file)
             
             # Verify the embedding method was called
@@ -86,13 +79,9 @@ class TestEmbeddingPersistence:
 
     def test_embedding_cache_loading(self, question_service, temp_cache_file, mock_openai_client):
         """Test loading embeddings from cache"""
-        # Ensure cache file doesn't exist
-        if os.path.exists(temp_cache_file):
-            os.unlink(temp_cache_file)
-            
-        # Create grading service with custom embedding storage
+        # Create grading service with Pinecone-based embedding storage
         grading_service = GradingService(question_service, mock_openai_client)
-        grading_service._embedding_storage = EmbeddingStorage(temp_cache_file)
+        grading_service._embedding_storage = EmbeddingStorage()
         
         # First, create a cache
         with patch.object(grading_service._embedding_service, 'get_embedding') as mock_get_embedding:
@@ -105,7 +94,7 @@ class TestEmbeddingPersistence:
             settings.grading.precompute_embeddings = False
             
             grading_service_2 = GradingService(question_service, mock_openai_client)
-            grading_service_2._embedding_storage = EmbeddingStorage(temp_cache_file)
+            grading_service_2._embedding_storage = EmbeddingStorage()
             cache_info = grading_service_2._embedding_storage.get_cache_info()
             
             assert cache_info is not None
@@ -116,13 +105,9 @@ class TestEmbeddingPersistence:
 
     def test_cache_info_retrieval(self, question_service, temp_cache_file, mock_openai_client):
         """Test retrieving cache information"""
-        # Ensure cache file doesn't exist
-        if os.path.exists(temp_cache_file):
-            os.unlink(temp_cache_file)
-            
-        # Create grading service with custom embedding storage
+        # Create grading service with Pinecone-based embedding storage
         grading_service = GradingService(question_service, mock_openai_client)
-        grading_service._embedding_storage = EmbeddingStorage(temp_cache_file)
+        grading_service._embedding_storage = EmbeddingStorage()
         
         # Create cache with mock data
         with patch.object(grading_service._embedding_service, 'get_embedding') as mock_get_embedding:

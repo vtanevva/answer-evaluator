@@ -24,8 +24,8 @@ class TestCacheValidation:
 
     @pytest.fixture
     def embedding_storage(self, temp_cache_file):
-        """Create an embedding storage instance with temp file"""
-        return EmbeddingStorage(temp_cache_file)
+        """Create an embedding storage instance with Pinecone"""
+        return EmbeddingStorage()
 
     @pytest.fixture
     def test_data(self):
