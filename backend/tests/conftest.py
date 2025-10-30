@@ -6,6 +6,7 @@ import pytest
 import sys
 import os
 from pathlib import Path
+from unittest.mock import MagicMock, patch
 
 # Add the backend directory to the Python path so imports work correctly
 backend_dir = Path(__file__).parent.parent
@@ -51,4 +52,28 @@ def sample_keywords():
         1: [{"inflation", "prices", "increase"}, {"purchasing", "power", "money"}],
         2: [{"supply", "demand", "market"}, {"prices", "economics", "relationship"}]
     }
+
+@pytest.fixture(autouse=True)
+def mock_pinecone_environment(monkeypatch):
+    """Mock Pinecone API key and client for all tests"""
+    # Set fake Pinecone API key
+    monkeypatch.setenv("PINECONE_API_KEY", "fake-test-key-12345")
+    
+    # Mock the Pinecone client
+    mock_index = MagicMock()
+    mock_index.describe_index_stats.return_value = {
+        'total_vector_count': 0,
+        'dimension': 1536
+    }
+    mock_index.query.return_value = {'matches': []}
+    mock_index.upsert.return_value = None
+    mock_index.delete.return_value = None
+    mock_index.fetch.return_value = {'vectors': {}}
+    
+    mock_pinecone = MagicMock()
+    mock_pinecone.Index.return_value = mock_index
+    mock_pinecone.list_indexes.return_value = []
+    
+    with patch('services.embedding_storage.Pinecone', return_value=mock_pinecone):
+        yield mock_pinecone
 
