@@ -8,13 +8,30 @@ pip install -r requirements.txt
 
 # Set up environment variables
 cp env_example.txt .env
-# Edit .env and add your OpenAI API key
+# Edit .env and add your OpenAI API key and Pinecone API key
 
 # Run the server
 python main.py
 ```
 
 The backend will start on `http://localhost:8000`
+
+**Required Environment Variables:**
+- `OPENAI_API_KEY`: Your OpenAI API key for generating embeddings (if using OpenAI provider)
+- `PINECONE_API_KEY`: Your Pinecone API key for vector storage
+
+**Embedding Providers:**
+The system supports multiple embedding models with easy switching:
+
+1. **OpenAI** (text-embedding-ada-002): High-quality embeddings, requires API credits
+2. **GTE-Multilingual** (Alibaba-NLP/gte-multilingual-base): Free local model, supports 100+ languages
+
+To switch providers, simply change the `provider` setting in `backend/settings.yaml`:
+
+```yaml
+embeddings:
+  provider: "gte-multilingual"  # Change to "openai" for OpenAI embeddings
+```
 
 ### Frontend Setup
 
@@ -34,20 +51,52 @@ npm start
 
 The frontend will start on `http://localhost:3000`
 
+## 🔧 Pinecone Setup
+
+### 1. Create Pinecone Account
+1. Go to [Pinecone](https://www.pinecone.io/) and create an account
+2. Create a new project
+3. Get your API key from the dashboard
+
+### 2. Configure Index
+The application will automatically create a Pinecone index with the following settings:
+- **Index Name**: `answer-evaluator`
+- **Dimensions**: `1536` (OpenAI text-embedding-ada-002)
+- **Metric**: `cosine`
+- **Cloud**: `AWS us-east-1`
+
+### 3. Management Scripts
+The backend includes utility scripts for managing the Pinecone index:
+
+```bash
+# Test Pinecone connection
+python test_pinecone_integration.py
+
+# Clear all vectors from the index
+python clear_pinecone_index.py
+
+# Delete and recreate the index with correct dimensions
+python recreate_pinecone_index.py
+```
+
 ## 🔧 How It Works
 
-### 1. Embedding Precomputation
+### 1. Vector Database Integration
+The system now uses **Pinecone** as the vector database for storing and retrieving embeddings:
+
 ```python
 # At startup, the backend:
-# 1. Loads questions from hardcoded JSON
-# 2. Gets embeddings for each key point using OpenAI API
-# 3. Stores embeddings in memory for fast lookup
+# 1. Connects to Pinecone index
+# 2. Loads questions from hardcoded JSON
+# 3. Checks if embeddings exist in Pinecone
+# 4. If not, computes embeddings using OpenAI API and stores in Pinecone
+# 5. Uses Pinecone for fast similarity searches
 
 def precompute_embeddings():
     for question in questions_bank:
         for key_point in question["key_points"]:
             embedding = get_embedding(key_point["text"])
-            # Store in key_point_embeddings[question_id]
+            # Store in Pinecone with metadata
 ```
 
 ### 2. Answer Grading

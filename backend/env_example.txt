@@ -2,6 +2,11 @@
 # Get your API key from: https://platform.openai.com/api-keys
 # Copy this file to .env and replace the placeholder value
 OPENAI_API_KEY=your-openai-api-key-here
+
+# Pinecone API Configuration
+# Get your API key from: https://www.pinecone.io/
+PINECONE_API_KEY=your-pinecone-api-key-here
+
 # Server Configuration
 PORT=8000
 HOST=0.0.0.0

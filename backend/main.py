@@ -1,10 +1,10 @@
 import os
-import openai
 import uvicorn
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+from openai import OpenAI
 
 from core.config import settings
 from routes.routes import router
@@ -38,15 +38,24 @@ async def lifespan(app: FastAPI):
         print("Please set your OpenAI API key in .env file")
         raise RuntimeError("OpenAI API key not found")
     
+    # Check for Pinecone API key
+    pinecone_key = os.getenv("PINECONE_API_KEY")
+    if not pinecone_key or len(pinecone_key) == 0:
+        print("❌ PINECONE_API_KEY not found in environment variables!")
+        print("Please set your Pinecone API key in .env file")
+        raise RuntimeError("Pinecone API key not found")
+    
     # Initialize OpenAI client
-    openai.api_key = api_key
+    openai_client = OpenAI(api_key=api_key)
     print("✅ OpenAI API key loaded")
+    print("✅ Pinecone API key loaded")
     
     # Initialize services
     question_service = QuestionService()
     question_service.load_questions_bank()
     
-    grading_service = GradingService(question_service, openai)
+    # Pass the OpenAI client instance to the grading service
+    grading_service = GradingService(question_service, openai_client)
     grading_service.precompute_embeddings()
     
     # Set service instances in routes module for dependency injection

@@ -1,86 +1,189 @@
 """
-OpenAI embedding service for generating and comparing text embeddings
+Multi-provider embedding service for generating and comparing text embeddings
+Supports OpenAI and GTE-multilingual models with easy switching
 """
 import numpy as np
-from typing import List, Dict
+from typing import List, Dict, Optional
 from fastapi import HTTPException
+import torch
+from abc import ABC, abstractmethod
 
 from core.config import settings
 
 
-class EmbeddingService:
-    """
-    Service for generating and managing text embeddings using OpenAI API
+class EmbeddingProvider(ABC):
+    """Abstract base class for embedding providers"""
     
-    This service handles:
-    - Generating embeddings
-    - Computing cosine similarity between embeddings
-    - Batch embedding generation for efficiency
-    """
+    @abstractmethod
+    def get_embedding(self, text: str) -> List[float]:
+        """Get embedding for a single text"""
+        pass
+    
+    @abstractmethod
+    def get_batch_embeddings(self, texts: List[str]) -> List[List[float]]:
+        """Get embeddings for multiple texts"""
+        pass
+    
+    @property
+    @abstractmethod
+    def model_name(self) -> str:
+        """Get the model name"""
+        pass
+    
+    @property
+    @abstractmethod
+    def dimensions(self) -> int:
+        """Get embedding dimensions"""
+        pass
+
+
+class OpenAIEmbeddingProvider(EmbeddingProvider):
+    """OpenAI embedding provider"""
     
     def __init__(self, openai_client):
-        """Initialize embedding service with configuration"""
-        self._openai_client = openai_client
-        self._model_name = settings.openai.model_name
-        self._embedding_dimensions = settings.openai.embedding_dimensions
+        self._client = openai_client
+        self._model_name = settings.embeddings.openai_model
+        self._dimensions = settings.embeddings.openai_dimensions
+    
+    def get_embedding(self, text: str) -> List[float]:
+        """Get embedding using OpenAI API"""
+        try:
+            response = self._client.embeddings.create(
+                model=self._model_name,
+                input=text
+            )
+            return response.data[0].embedding
+        except Exception as e:
+            print(f"❌ OpenAI embedding error: {e}")
+            raise HTTPException(status_code=500, detail=f"Failed to get OpenAI embedding: {e}")
+    
+    def get_batch_embeddings(self, texts: List[str]) -> List[List[float]]:
+        """Get batch embeddings using OpenAI API"""
+        try:
+            response = self._client.embeddings.create(
+                model=self._model_name,
+                input=texts
+            )
+            return [item.embedding for item in response.data]
+        except Exception as e:
+            print(f"❌ OpenAI batch embedding error: {e}")
+            raise HTTPException(status_code=500, detail=f"Failed to get OpenAI batch embeddings: {e}")
+    
+    @property
+    def model_name(self) -> str:
+        return self._model_name
+    
+    @property
+    def dimensions(self) -> int:
+        return self._dimensions
+
+
+class GTEMultilingualProvider(EmbeddingProvider):
+    """GTE-multilingual embedding provider using sentence-transformers"""
+    
+    def __init__(self):
+        try:
+            from sentence_transformers import SentenceTransformer
+            self._model = SentenceTransformer(
+                settings.embeddings.gte_model,
+                trust_remote_code=True
+            )
+            self._model_name = settings.embeddings.gte_model
+            self._dimensions = settings.embeddings.gte_dimensions
+            print(f"✅ Loaded GTE-multilingual model: {self._model_name}")
+        except Exception as e:
+            print(f"❌ Failed to load GTE-multilingual model: {e}")
+            raise HTTPException(status_code=500, detail=f"Failed to initialize GTE-multilingual: {e}")
+    
+    def get_embedding(self, text: str) -> List[float]:
+        """Get embedding using GTE-multilingual model"""
+        try:
+            embedding = self._model.encode(text, convert_to_tensor=False)
+            return embedding.tolist()
+        except Exception as e:
+            print(f"❌ GTE-multilingual embedding error: {e}")
+            raise HTTPException(status_code=500, detail=f"Failed to get GTE embedding: {e}")
+    
+    def get_batch_embeddings(self, texts: List[str]) -> List[List[float]]:
+        """Get batch embeddings using GTE-multilingual model"""
+        try:
+            embeddings = self._model.encode(texts, convert_to_tensor=False)
+            return [emb.tolist() for emb in embeddings]
+        except Exception as e:
+            print(f"❌ GTE-multilingual batch embedding error: {e}")
+            raise HTTPException(status_code=500, detail=f"Failed to get GTE batch embeddings: {e}")
+    
+    @property
+    def model_name(self) -> str:
+        return self._model_name
+    
+    @property
+    def dimensions(self) -> int:
+        return self._dimensions
+
+
+class EmbeddingService:
+    """
+    Multi-provider embedding service that supports easy switching between providers
+    
+    To switch providers, simply change the 'provider' setting in settings.yaml:
+    - "openai" for OpenAI text-embedding-ada-002
+    - "gte-multilingual" for Alibaba GTE-multilingual-base
+    """
+    
+    def __init__(self, openai_client=None):
+        """Initialize embedding service with the configured provider"""
+        self._provider = self._create_provider(openai_client)
+        print(f"🤖 Embedding service initialized with: {self._provider.model_name}")
+        print(f"📏 Embedding dimensions: {self._provider.dimensions}")
+    
+    def _create_provider(self, openai_client) -> EmbeddingProvider:
+        """Create the appropriate embedding provider based on configuration"""
+        provider_name = settings.embeddings.provider.lower()
+        
+        if provider_name == "openai":
+            if openai_client is None:
+                raise ValueError("OpenAI client required for OpenAI embedding provider")
+            return OpenAIEmbeddingProvider(openai_client)
+        
+        elif provider_name == "gte-multilingual":
+            return GTEMultilingualProvider()
+        
+        else:
+            raise ValueError(f"Unknown embedding provider: {provider_name}. Supported: 'openai', 'gte-multilingual'")
     
     def get_embedding(self, text: str) -> List[float]:
         """
-        Get embedding for a single text using OpenAI text-embedding-ada-002
-        
-        This converts text into a high-dimensional vector that represents
-        the semantic meaning of the text.
+        Get embedding for a single text using the configured provider
         
         Args:
             text: The text to embed
             
         Returns:
             List of float values representing the embedding
-            
-        Raises:
-            HTTPException: If embedding generation fails
         """
-        try:
-            response = self._openai_client.embeddings.create(
-                model=self._model_name,
-                input=text
-            )
-            return response.data[0].embedding
-        except Exception as e:
-            print(f"❌ Error getting embedding: {e}")
-            raise HTTPException(status_code=500, detail=f"Failed to get embedding for text: {text}")
+        return self._provider.get_embedding(text)
     
     def get_batch_embeddings(self, texts: List[str]) -> List[List[float]]:
         """
-        Get embeddings for multiple texts in a single API call for efficiency
+        Get embeddings for multiple texts using the configured provider
         
         Args:
             texts: List of texts to embed
             
         Returns:
-            List of embeddings corresponding to input texts
-            
-        Raises:
-            HTTPException: If embedding generation fails
+            List of embeddings, one for each input text
         """
-        try:
-            response = self._openai_client.embeddings.create(
-                model=self._model_name,
-                input=texts
-            )
-            return [data.embedding for data in response.data]
-        except Exception as e:
-            print(f"❌ Error getting batch embeddings: {e}")
-            raise HTTPException(status_code=500, detail="Failed to get batch embeddings")
+        return self._provider.get_batch_embeddings(texts)
     
     def compute_cosine_similarity(self, embedding1: List[float], embedding2: List[float]) -> float:
         """
         Compute cosine similarity between two embedding vectors
         
         Cosine similarity measures the angle between two vectors:
-        - 1.0 = identical direction (perfect semantic match)
-        - 0.0 = perpendicular (no semantic similarity)
-        - -1.0 = opposite direction (semantically opposite)
+        - 1.0 = identical direction (perfect match)
+        - 0.0 = perpendicular (no similarity)
+        - -1.0 = opposite direction (opposite meaning)
         
         Formula: cos(θ) = (A · B) / (||A|| × ||B||)
         
@@ -89,9 +192,8 @@ class EmbeddingService:
             embedding2: Second embedding vector
             
         Returns:
-            Similarity score between -1 and 1
+            Cosine similarity score between -1 and 1
         """
-        # Convert to numpy arrays for efficient computation
         vector_a = np.array(embedding1)
         vector_b = np.array(embedding2)
         
@@ -106,8 +208,11 @@ class EmbeddingService:
         if magnitude_a == 0 or magnitude_b == 0:
             return 0.0
         
-        # Return cosine similarity
-        return dot_product / (magnitude_a * magnitude_b)
+        # Compute cosine similarity
+        cosine_similarity = dot_product / (magnitude_a * magnitude_b)
+        
+        # Ensure the result is within [-1, 1] due to floating point errors
+        return np.clip(cosine_similarity, -1.0, 1.0)
     
     def find_best_sentence_similarity(self, sentence_embeddings: List[List[float]], 
                                     key_point_embedding: List[float]) -> float:
@@ -130,3 +235,18 @@ class EmbeddingService:
         ]
         
         return max(similarities)
+    
+    @property
+    def model_name(self) -> str:
+        """Get the current model name"""
+        return self._provider.model_name
+    
+    @property
+    def dimensions(self) -> int:
+        """Get the current embedding dimensions"""
+        return self._provider.dimensions
+    
+    @property
+    def provider_name(self) -> str:
+        """Get the current provider name"""
+        return settings.embeddings.provider

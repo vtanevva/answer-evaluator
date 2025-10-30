@@ -32,6 +32,44 @@ class OpenAIConfig:
 
 
 @dataclass
+class EmbeddingConfig:
+    provider: str = "openai"  # Options: "openai", "gte-multilingual"
+    openai_model: str = "text-embedding-ada-002"
+    openai_dimensions: int = 1536
+    gte_model: str = "Alibaba-NLP/gte-multilingual-base"
+    gte_dimensions: int = 768
+    
+    @property
+    def current_model(self) -> str:
+        """Get the current model name based on provider"""
+        if self.provider == "openai":
+            return self.openai_model
+        elif self.provider == "gte-multilingual":
+            return self.gte_model
+        else:
+            raise ValueError(f"Unknown embedding provider: {self.provider}")
+    
+    @property
+    def current_dimensions(self) -> int:
+        """Get the current embedding dimensions based on provider"""
+        if self.provider == "openai":
+            return self.openai_dimensions
+        elif self.provider == "gte-multilingual":
+            return self.gte_dimensions
+        else:
+            raise ValueError(f"Unknown embedding provider: {self.provider}")
+
+
+@dataclass
+class PineconeConfig:
+    api_key: str = os.getenv("PINECONE_API_KEY", "")
+    environment: str = "gcp-starter"
+    index_name: str = "answer-evaluator"
+    dimension: int = 1536
+    metric: str = "cosine"
+
+
+@dataclass
 class SimilarityThresholds:
     high_similarity: float = 0.88
     mid_similarity: float = 0.83
@@ -57,7 +95,6 @@ class AnswerValidation:
 @dataclass
 class GradingConfig:
     precompute_embeddings: bool = True
-    embeddings_file_path: str = "embeddings_cache.json"
     similarity_thresholds: SimilarityThresholds = field(default_factory=SimilarityThresholds)
     feedback_messages: FeedbackMessages = field(default_factory=FeedbackMessages)
     answer_validation: AnswerValidation = field(default_factory=AnswerValidation)
@@ -88,6 +125,8 @@ class Settings:
     server: ServerConfig = field(default_factory=ServerConfig)
     cors: CorsConfig = field(default_factory=CorsConfig)
     openai: OpenAIConfig = field(default_factory=OpenAIConfig)
+    embeddings: EmbeddingConfig = field(default_factory=EmbeddingConfig)
+    pinecone: PineconeConfig = field(default_factory=PineconeConfig)
     grading: GradingConfig = field(default_factory=GradingConfig)
     questions: QuestionsConfig = field(default_factory=QuestionsConfig)
     text_processing: TextProcessingConfig = field(default_factory=TextProcessingConfig)
@@ -128,7 +167,6 @@ def _create_grading_config(data: Dict[str, Any]) -> GradingConfig:
     try:
         # Extract simple fields with defaults
         precompute_embeddings = data.get('precompute_embeddings', True)
-        embeddings_file_path = data.get('embeddings_file_path', 'embeddings_cache.json')
 
         
         # Create nested configs with error handling
@@ -158,7 +196,6 @@ def _create_grading_config(data: Dict[str, Any]) -> GradingConfig:
         
         return GradingConfig(
             precompute_embeddings=precompute_embeddings,
-            embeddings_file_path=embeddings_file_path,
             similarity_thresholds=similarity_thresholds,
             feedback_messages=feedback_messages,
             answer_validation=answer_validation
@@ -189,6 +226,27 @@ def _create_text_processing_config(data: Dict[str, Any]) -> TextProcessingConfig
         return TextProcessingConfig()
 
 
+def _create_embedding_config(data: Dict[str, Any]) -> EmbeddingConfig:
+    """Create EmbeddingConfig with validation and defaults"""
+    try:
+        # Only accept known keys; unknown keys will be ignored by dataclass
+        return EmbeddingConfig(**data)
+    except Exception as e:
+        print(f"⚠️ Invalid embedding configuration: {e}")
+        print("📋 Using default embedding settings")
+        return EmbeddingConfig()
+
+
+def _create_pinecone_config(data: Dict[str, Any]) -> PineconeConfig:
+    """Create PineconeConfig with validation and defaults"""
+    try:
+        return PineconeConfig(**data)
+    except Exception as e:
+        print(f"⚠️ Invalid Pinecone configuration: {e}")
+        print("📋 Using default Pinecone settings")
+        return PineconeConfig()
+
+
 def create_config_from_dict(data: Dict[str, Any]) -> Settings:
     """
     Create Settings object from dictionary data 
@@ -213,6 +271,8 @@ def create_config_from_dict(data: Dict[str, Any]) -> Settings:
         ('server', _create_server_config, 'server'),
         ('cors', _create_cors_config, 'cors'), 
         ('openai', _create_openai_config, 'openai'),
+        ('embeddings', _create_embedding_config, 'embeddings'),
+        ('pinecone', _create_pinecone_config, 'pinecone'),
         ('grading', _create_grading_config, 'grading'),
         ('questions', _create_questions_config, 'questions'),
         ('text_processing', _create_text_processing_config, 'text_processing')
