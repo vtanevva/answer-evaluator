@@ -1,0 +1,1172 @@
+[
+  {
+    "question_text": "What is natural selection and how does it contribute to evolution?",
+    "key_points": [
+      {
+        "text": "Survival of the fittest organisms",
+        "weight": 1
+      },
+      {
+        "text": "Variation in traits among individuals",
+        "weight": 1
+      },
+      {
+        "text": "Environment influences which traits are beneficial",
+        "weight": 1
+      },
+      {
+        "text": "Successful traits are passed to next generations",
+        "weight": 1
+      }
+    ],
+    "question_id": 1
+  },
+  {
+    "question_id": 3,
+    "question_text": "How do plants make their own food?",
+    "key_points": [
+      {
+        "text": "Use sunlight as energy",
+        "weight": 1
+      },
+      {
+        "text": "Take in carbon dioxide",
+        "weight": 1
+      },
+      {
+        "text": "Absorb water through roots",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are the main functions of the cell membrane?",
+    "key_points": [
+      {
+        "text": "Regulates the movement of substances",
+        "weight": 1
+      },
+      {
+        "text": "Provides structure and support",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates communication with other cells",
+        "weight": 1
+      }
+    ],
+    "question_id": 4
+  },
+  {
+    "question_text": "What are some adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals blend into surroundings",
+        "weight": 1
+      },
+      {
+        "text": "Webbed feet assist in swimming",
+        "weight": 1
+      },
+      {
+        "text": "Sharp teeth enable hunting and feeding",
+        "weight": 1
+      }
+    ],
+    "question_id": 6
+  },
+  {
+    "question_text": "What are the main functions of the human skeletal system?",
+    "key_points": [
+      {
+        "text": "Provides structural support for the body",
+        "weight": 1
+      },
+      {
+        "text": "Protects vital organs like the heart and brain",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates movement by serving as levers",
+        "weight": 1
+      },
+      {
+        "text": "Stores minerals like calcium and phosphorus",
+        "weight": 1
+      }
+    ],
+    "question_id": 7
+  },
+  {
+    "question_text": "What adaptations help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals avoid predators",
+        "weight": 1
+      },
+      {
+        "text": "Physical features aid in finding food",
+        "weight": 1
+      },
+      {
+        "text": "Behavioral changes enhance survival rates",
+        "weight": 1
+      }
+    ],
+    "question_id": 8
+  },
+  {
+    "question_text": "How do human activities impact biodiversity in ecosystems?",
+    "key_points": [
+      {
+        "text": "Habitat destruction reduces species' living spaces",
+        "weight": 1
+      },
+      {
+        "text": "Pollution harms plants and animals",
+        "weight": 1
+      },
+      {
+        "text": "Overfishing decreases fish populations",
+        "weight": 1
+      },
+      {
+        "text": "Invasive species compete with native species",
+        "weight": 1
+      }
+    ],
+    "question_id": 9
+  },
+  {
+    "question_text": "What is the role of genes in determining traits in living organisms?",
+    "key_points": [
+      {
+        "text": "Genes are segments of DNA.",
+        "weight": 1
+      },
+      {
+        "text": "Traits are inherited from parents.",
+        "weight": 1
+      },
+      {
+        "text": "Different alleles can cause variations.",
+        "weight": 1
+      },
+      {
+        "text": "Environmental factors can influence traits.",
+        "weight": 1
+      }
+    ],
+    "question_id": 10
+  },
+  {
+    "question_text": "What are the main components of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Living organisms like plants and animals",
+        "weight": 1
+      },
+      {
+        "text": "Non-living elements like water and soil",
+        "weight": 1
+      },
+      {
+        "text": "Energy flow from producers to consumers",
+        "weight": 1
+      },
+      {
+        "text": "Interactions between species and their environment",
+        "weight": 1
+      }
+    ],
+    "question_id": 11
+  },
+  {
+    "question_id": 12,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {
+        "text": "Store water in their bodies",
+        "weight": 1
+      },
+      {
+        "text": "Active at night",
+        "weight": 1
+      },
+      {
+        "text": "Light-colored skin",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "question_text": "What are some key ideas that explain how evolution occurs?",
+    "key_points": [
+      {
+        "text": "Natural selection favors advantageous traits",
+        "weight": 1
+      },
+      {
+        "text": "Mutations create genetic variation",
+        "weight": 1
+      },
+      {
+        "text": "Species adapt to their environments over time",
+        "weight": 1
+      },
+      {
+        "text": "Fossils provide evidence of evolutionary changes",
+        "weight": 1
+      }
+    ],
+    "question_id": 13
+  },
+  {
+    "question_text": "How does deforestation impact local ecosystems?",
+    "key_points": [
+      {
+        "text": "Loss of habitat for many species",
+        "weight": 1
+      },
+      {
+        "text": "Increased carbon dioxide in the atmosphere",
+        "weight": 1
+      },
+      {
+        "text": "Soil erosion and nutrient loss",
+        "weight": 1
+      }
+    ],
+    "question_id": 14
+  },
+  {
+    "question_text": "What are some unique adaptations that help animals survive in their habitats?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals hide from predators",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find food and better climates",
+        "weight": 1
+      },
+      {
+        "text": "Hibernation conserves energy during harsh weather",
+        "weight": 1
+      },
+      {
+        "text": "Specialized teeth or beaks aid in food gathering",
+        "weight": 1
+      }
+    ],
+    "question_id": 15
+  },
+  {
+    "question_text": "What are the main parts of a plant and their functions?",
+    "key_points": [
+      {
+        "text": "Roots anchor the plant and absorb water",
+        "weight": 1
+      },
+      {
+        "text": "Stems support the plant and transport nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Leaves photosynthesize to produce food for the plant",
+        "weight": 1
+      },
+      {
+        "text": "Flowers attract pollinators for reproduction",
+        "weight": 1
+      }
+    ],
+    "question_id": 16
+  },
+  {
+    "question_text": "What are the main differences between plant and animal cells?",
+    "key_points": [
+      {
+        "text": "Plant cells have a cell wall",
+        "weight": 1
+      },
+      {
+        "text": "Animal cells have lysosomes",
+        "weight": 1
+      },
+      {
+        "text": "Plant cells contain chloroplasts",
+        "weight": 1
+      },
+      {
+        "text": "Animal cells are typically rounder",
+        "weight": 1
+      }
+    ],
+    "question_id": 17
+  },
+  {
+    "question_text": "What is natural selection and how does it relate to evolution?",
+    "key_points": [
+      {
+        "text": "Organisms with favorable traits survive better",
+        "weight": 1
+      },
+      {
+        "text": "Traits are passed down to future generations",
+        "weight": 1
+      },
+      {
+        "text": "Natural selection leads to species adapting",
+        "weight": 1
+      }
+    ],
+    "question_id": 18
+  },
+  {
+    "question_text": "What are the main functions of the human circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to body cells",
+        "weight": 1
+      },
+      {
+        "text": "Removes carbon dioxide from cells",
+        "weight": 1
+      },
+      {
+        "text": "Delivers nutrients from digestion",
+        "weight": 1
+      },
+      {
+        "text": "Helps regulate body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 19
+  },
+  {
+    "question_text": "What factors affect the balance of an ecosystem?",
+    "key_points": [
+      {
+        "text": "Availability of food resources",
+        "weight": 1
+      },
+      {
+        "text": "Presence of predators",
+        "weight": 1
+      },
+      {
+        "text": "Climate and weather patterns",
+        "weight": 1
+      },
+      {
+        "text": "Human activities like pollution",
+        "weight": 1
+      }
+    ],
+    "question_id": 20
+  },
+  {
+    "question_text": "What are some mechanisms that drive evolution in species?",
+    "key_points": [
+      {
+        "text": "Natural selection favors beneficial traits",
+        "weight": 1
+      },
+      {
+        "text": "Mutations introduce genetic variation",
+        "weight": 1
+      },
+      {
+        "text": "Gene flow increases genetic diversity",
+        "weight": 1
+      },
+      {
+        "text": "Genetic drift affects small populations",
+        "weight": 1
+      }
+    ],
+    "question_id": 21
+  },
+  {
+    "question_text": "What are the main stages of a butterfly's life cycle?",
+    "key_points": [
+      {
+        "text": "Egg stage lasts about 3-10 days",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillar stage focuses on eating",
+        "weight": 1
+      },
+      {
+        "text": "Chrysalis stage involves transformation",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterflies emerge and reproduce",
+        "weight": 1
+      }
+    ],
+    "question_id": 22
+  },
+  {
+    "question_text": "What are the main functions of roots in plants?",
+    "key_points": [
+      {
+        "text": "Roots anchor the plant in the soil",
+        "weight": 1
+      },
+      {
+        "text": "Roots absorb water and nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Roots store energy for the plant",
+        "weight": 1
+      }
+    ],
+    "question_id": 23
+  },
+  {
+    "question_text": "What are some key components that make up an ecosystem?",
+    "key_points": [
+      {
+        "text": "Living organisms like plants and animals",
+        "weight": 1
+      },
+      {
+        "text": "Non-living factors like water and sunlight",
+        "weight": 1
+      },
+      {
+        "text": "Interactions between species",
+        "weight": 1
+      },
+      {
+        "text": "Energy flow through food chains",
+        "weight": 1
+      }
+    ],
+    "question_id": 24
+  },
+  {
+    "question_text": "What are the main functions of leaves in plants?",
+    "key_points": [
+      {
+        "text": "Leaves help in photosynthesis.",
+        "weight": 1
+      },
+      {
+        "text": "Leaves absorb sunlight for energy.",
+        "weight": 1
+      },
+      {
+        "text": "Leaves release oxygen into the air.",
+        "weight": 1
+      },
+      {
+        "text": "Leaves help in water regulation.",
+        "weight": 1
+      }
+    ],
+    "question_id": 25
+  },
+  {
+    "question_text": "What are the effects of pollution on aquatic ecosystems?",
+    "key_points": [
+      {
+        "text": "Pollution reduces oxygen levels in water.",
+        "weight": 1
+      },
+      {
+        "text": "Toxic substances harm fish and other organisms.",
+        "weight": 1
+      },
+      {
+        "text": "Eutrophication causes algal blooms and dead zones.",
+        "weight": 1
+      },
+      {
+        "text": "Pollution disrupts food chains in aquatic habitats.",
+        "weight": 1
+      }
+    ],
+    "question_id": 26
+  },
+  {
+    "question_text": "What is the role of genes in determining traits?",
+    "key_points": [
+      {
+        "text": "Genes are segments of DNA.",
+        "weight": 1
+      },
+      {
+        "text": "Traits are inherited from parents.",
+        "weight": 1
+      },
+      {
+        "text": "Different versions of genes are alleles.",
+        "weight": 1
+      },
+      {
+        "text": "Environment can influence gene expression.",
+        "weight": 1
+      }
+    ],
+    "question_id": 27
+  },
+  {
+    "question_text": "What are some important stages in a butterfly's life cycle?",
+    "key_points": [
+      {
+        "text": "Egg stage is the first stage of development.",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillar stage is for growth and eating.",
+        "weight": 1
+      },
+      {
+        "text": "Chrysalis is where transformation occurs.",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterflies reproduce to start the cycle.",
+        "weight": 1
+      }
+    ],
+    "question_id": 28
+  },
+  {
+    "question_text": "What are three ways animals adapt to their environment?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals blend in.",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find food.",
+        "weight": 1
+      },
+      {
+        "text": "Behavioral changes improve survival rates.",
+        "weight": 1
+      }
+    ],
+    "question_id": 29
+  },
+  {
+    "question_text": "What are some key mechanisms of evolution?",
+    "key_points": [
+      {
+        "text": "Natural selection favors advantageous traits",
+        "weight": 1
+      },
+      {
+        "text": "Mutations create genetic variation in populations",
+        "weight": 1
+      },
+      {
+        "text": "Gene flow introduces new genes between populations",
+        "weight": 1
+      },
+      {
+        "text": "Genetic drift causes random changes in small populations",
+        "weight": 1
+      }
+    ],
+    "question_id": 30
+  },
+  {
+    "question_text": "What is the role of DNA in genetics?",
+    "key_points": [
+      {
+        "text": "DNA carries genetic information",
+        "weight": 1
+      },
+      {
+        "text": "DNA is made of nucleotides",
+        "weight": 1
+      },
+      {
+        "text": "Genes are segments of DNA",
+        "weight": 1
+      },
+      {
+        "text": "DNA determines traits in organisms",
+        "weight": 1
+      }
+    ],
+    "question_id": 31
+  },
+  {
+    "question_text": "What are some important roles of producers in an ecosystem?",
+    "key_points": [
+      {
+        "text": "Producers convert sunlight into energy through photosynthesis.",
+        "weight": 1
+      },
+      {
+        "text": "They provide food for consumers in the food web.",
+        "weight": 1
+      },
+      {
+        "text": "Producers release oxygen as a byproduct of photosynthesis.",
+        "weight": 1
+      }
+    ],
+    "question_id": 32
+  },
+  {
+    "question_text": "What are the main functions of the human respiratory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to the bloodstream",
+        "weight": 1
+      },
+      {
+        "text": "Removes carbon dioxide from the body",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates breathing process",
+        "weight": 1
+      }
+    ],
+    "question_id": 33
+  },
+  {
+    "question_text": "What are some key concepts of evolution by natural selection?",
+    "key_points": [
+      {
+        "text": "Organisms with favorable traits survive better",
+        "weight": 1
+      },
+      {
+        "text": "Genetic variation exists within populations",
+        "weight": 1
+      },
+      {
+        "text": "Over time, species can change significantly",
+        "weight": 1
+      }
+    ],
+    "question_id": 34
+  },
+  {
+    "question_text": "What are the main functions of a cell's organelles?",
+    "key_points": [
+      {
+        "text": "Mitochondria produce energy for the cell",
+        "weight": 1
+      },
+      {
+        "text": "Ribosomes synthesize proteins",
+        "weight": 1
+      },
+      {
+        "text": "Nucleus contains genetic material",
+        "weight": 1
+      },
+      {
+        "text": "Cell membrane controls substance entry and exit",
+        "weight": 1
+      }
+    ],
+    "question_id": 35
+  },
+  {
+    "question_text": "What are the main functions of the cell membrane in a cell?",
+    "key_points": [
+      {
+        "text": "Controls what enters and exits the cell",
+        "weight": 1
+      },
+      {
+        "text": "Provides protection and structure for the cell",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates communication with other cells",
+        "weight": 1
+      }
+    ],
+    "question_id": 36
+  },
+  {
+    "question_text": "What are the main functions of cell organelles in a plant cell?",
+    "key_points": [
+      {
+        "text": "Chloroplasts perform photosynthesis",
+        "weight": 1
+      },
+      {
+        "text": "Cell wall provides structural support",
+        "weight": 1
+      },
+      {
+        "text": "Vacuoles store nutrients and waste",
+        "weight": 1
+      },
+      {
+        "text": "Nucleus controls cell activities",
+        "weight": 1
+      }
+    ],
+    "question_id": 37
+  },
+  {
+    "question_text": "What are some ways animals adapt to their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals blend into surroundings.",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find better resources.",
+        "weight": 1
+      },
+      {
+        "text": "Hibernation conserves energy during harsh climates.",
+        "weight": 1
+      },
+      {
+        "text": "Specialized diets help animals survive in specific habitats.",
+        "weight": 1
+      }
+    ],
+    "question_id": 38
+  },
+  {
+    "question_text": "What are some key adaptations that help animals survive in their environments?",
+    "key_points": [
+      {
+        "text": "Camouflage helps animals hide from predators",
+        "weight": 1
+      },
+      {
+        "text": "Migration allows animals to find food and better climates",
+        "weight": 1
+      },
+      {
+        "text": "Hibernation conserves energy during harsh winters",
+        "weight": 1
+      }
+    ],
+    "question_id": 39
+  },
+  {
+    "question_text": "What are some key mechanisms that drive evolution?",
+    "key_points": [
+      {
+        "text": "Natural selection leads to survival of the fittest.",
+        "weight": 1
+      },
+      {
+        "text": "Mutation introduces new traits in a population.",
+        "weight": 1
+      },
+      {
+        "text": "Gene flow occurs when organisms migrate.",
+        "weight": 1
+      },
+      {
+        "text": "Genetic drift randomly changes allele frequencies.",
+        "weight": 1
+      }
+    ],
+    "question_id": 40
+  },
+  {
+    "question_text": "What are the three main parts of a plant, and what is the function of each?",
+    "key_points": [
+      {
+        "text": "Roots anchor the plant and absorb water",
+        "weight": 1
+      },
+      {
+        "text": "Stems support the plant and transport nutrients",
+        "weight": 1
+      },
+      {
+        "text": "Leaves perform photosynthesis to produce food",
+        "weight": 1
+      }
+    ],
+    "question_id": 41
+  },
+  {
+    "question_text": "What are the primary functions of the human circulatory system?",
+    "key_points": [
+      {
+        "text": "Transports oxygen to body cells",
+        "weight": 1
+      },
+      {
+        "text": "Carries carbon dioxide to lungs",
+        "weight": 1
+      },
+      {
+        "text": "Delivers nutrients from digestion",
+        "weight": 1
+      },
+      {
+        "text": "Regulates body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 42
+  },
+  {
+    "question_text": "What are the main differences between mammals and reptiles?",
+    "key_points": [
+      {
+        "text": "Mammals have fur or hair",
+        "weight": 1
+      },
+      {
+        "text": "Reptiles have scales",
+        "weight": 1
+      },
+      {
+        "text": "Mammals are warm-blooded",
+        "weight": 1
+      },
+      {
+        "text": "Reptiles are cold-blooded",
+        "weight": 1
+      }
+    ],
+    "question_id": 43
+  },
+  {
+    "question_text": "What are some important characteristics of butterflies?",
+    "key_points": [
+      {
+        "text": "Butterflies undergo complete metamorphosis",
+        "weight": 1
+      },
+      {
+        "text": "They have colorful wings for camouflage",
+        "weight": 1
+      },
+      {
+        "text": "Butterflies feed on nectar from flowers",
+        "weight": 1
+      },
+      {
+        "text": "They play a role in pollination",
+        "weight": 1
+      }
+    ],
+    "question_id": 44
+  },
+  {
+    "question_text": "What are the main components of DNA and their roles in genetics?",
+    "key_points": [
+      {
+        "text": "DNA is made of nucleotides",
+        "weight": 1
+      },
+      {
+        "text": "Nucleotides consist of a sugar, phosphate, and base",
+        "weight": 1
+      },
+      {
+        "text": "Adenine pairs with thymine, cytosine with guanine",
+        "weight": 1
+      },
+      {
+        "text": "DNA stores genetic information for traits",
+        "weight": 1
+      }
+    ],
+    "question_id": 45
+  },
+  {
+    "question_text": "What are the different roles of organisms in an ecosystem?",
+    "key_points": [
+      {
+        "text": "Producers generate energy through photosynthesis.",
+        "weight": 1
+      },
+      {
+        "text": "Consumers obtain energy by eating other organisms.",
+        "weight": 1
+      },
+      {
+        "text": "Decomposers break down dead matter and recycle nutrients.",
+        "weight": 1
+      }
+    ],
+    "question_id": 46
+  },
+  {
+    "question_text": "What are the main functions of the human skeleton?",
+    "key_points": [
+      {
+        "text": "Provides structure and support for the body",
+        "weight": 1
+      },
+      {
+        "text": "Protects vital organs like the heart and brain",
+        "weight": 1
+      },
+      {
+        "text": "Facilitates movement by acting as levers",
+        "weight": 1
+      },
+      {
+        "text": "Produces blood cells in the bone marrow",
+        "weight": 1
+      }
+    ],
+    "question_id": 47
+  },
+  {
+    "question_text": "What are three main functions of the human respiratory system?",
+    "key_points": [
+      {
+        "text": "Brings oxygen into the body",
+        "weight": 1
+      },
+      {
+        "text": "Removes carbon dioxide from the body",
+        "weight": 1
+      },
+      {
+        "text": "Aids in regulating body temperature",
+        "weight": 1
+      }
+    ],
+    "question_id": 48
+  },
+  {
+    "question_text": "What are the main effects of deforestation on the environment?",
+    "key_points": [
+      {
+        "text": "Loss of habitat for wildlife",
+        "weight": 1
+      },
+      {
+        "text": "Increased carbon dioxide levels",
+        "weight": 1
+      },
+      {
+        "text": "Soil erosion and degradation",
+        "weight": 1
+      },
+      {
+        "text": "Disruption of water cycles",
+        "weight": 1
+      }
+    ],
+    "question_id": 49
+  },
+  {
+    "question_text": "What are the key stages in a butterfly's life cycle?",
+    "key_points": [
+      {
+        "text": "Egg stage lasts a few days to weeks",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillar (larva) grows and molts several times",
+        "weight": 1
+      },
+      {
+        "text": "Pupa (chrysalis) undergoes transformation",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterfly emerges and can reproduce",
+        "weight": 1
+      }
+    ],
+    "question_id": 50
+  },
+  {
+    "question_text": "What are the main characteristics of mammals?",
+    "key_points": [
+      {
+        "text": "Mammals have hair or fur",
+        "weight": 1
+      },
+      {
+        "text": "Mammals are warm-blooded",
+        "weight": 1
+      },
+      {
+        "text": "Mammals give live birth",
+        "weight": 1
+      },
+      {
+        "text": "Mammals produce milk for their young",
+        "weight": 1
+      }
+    ],
+    "question_id": 51
+  },
+  {
+    "question_text": "What roles do genes play in determining traits in living organisms?",
+    "key_points": [
+      {
+        "text": "Genes carry instructions for traits",
+        "weight": 1
+      },
+      {
+        "text": "Traits can be inherited from parents",
+        "weight": 1
+      },
+      {
+        "text": "Different versions of genes are called alleles",
+        "weight": 1
+      },
+      {
+        "text": "Environment can influence gene expression",
+        "weight": 1
+      }
+    ],
+    "question_id": 52
+  },
+  {
+    "question_text": "How do human activities impact local ecosystems?",
+    "key_points": [
+      {
+        "text": "Pollution affects air and water quality",
+        "weight": 1
+      },
+      {
+        "text": "Deforestation reduces habitats for wildlife",
+        "weight": 1
+      },
+      {
+        "text": "Urbanization leads to loss of green spaces",
+        "weight": 1
+      }
+    ],
+    "question_id": 53
+  },
+  {
+    "question_text": "What are the basic principles of genetic inheritance?",
+    "key_points": [
+      {
+        "text": "Genes are passed from parents to offspring",
+        "weight": 1
+      },
+      {
+        "text": "Dominant traits can mask recessive traits",
+        "weight": 1
+      },
+      {
+        "text": "Each individual has two alleles for each gene",
+        "weight": 1
+      },
+      {
+        "text": "Punnett squares predict genetic combinations",
+        "weight": 1
+      }
+    ],
+    "question_id": 54
+  },
+  {
+    "question_text": "What are the stages of a butterfly's life cycle?",
+    "key_points": [
+      {
+        "text": "Egg stage where butterflies begin their life",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillar stage known as larva",
+        "weight": 1
+      },
+      {
+        "text": "Pupa stage where transformation occurs",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterfly emerges from chrysalis",
+        "weight": 1
+      }
+    ],
+    "question_id": 55
+  },
+  {
+    "question_text": "What are three main effects of deforestation on the environment?",
+    "key_points": [
+      {
+        "text": "Loss of habitat for wildlife",
+        "weight": 1
+      },
+      {
+        "text": "Increase in carbon dioxide levels",
+        "weight": 1
+      },
+      {
+        "text": "Soil erosion and degradation",
+        "weight": 1
+      }
+    ],
+    "question_id": 56
+  },
+  {
+    "question_text": "What are the basic functions of genes in living organisms?",
+    "key_points": [
+      {
+        "text": "Genes carry instructions for traits",
+        "weight": 1
+      },
+      {
+        "text": "Genes determine how organisms grow",
+        "weight": 1
+      },
+      {
+        "text": "Genes can mutate, causing variations",
+        "weight": 1
+      }
+    ],
+    "question_id": 57
+  },
+  {
+    "question_text": "What are the key stages in the life cycle of a butterfly?",
+    "key_points": [
+      {
+        "text": "Butterflies start as eggs on plants",
+        "weight": 1
+      },
+      {
+        "text": "Larvae, or caterpillars, eat leaves to grow",
+        "weight": 1
+      },
+      {
+        "text": "Caterpillars transform into chrysalises",
+        "weight": 1
+      },
+      {
+        "text": "Adult butterflies emerge from chrysalises",
+        "weight": 1
+      }
+    ],
+    "question_id": 58
+  },
+  {
+    "question_id": 59,
+    "question_text": "Describe three characteristics of butterflies.",
+    "key_points": [
+      {
+        "text": "Have colorful wings",
+        "weight": 1
+      },
+      {
+        "text": "Can see ultraviolet light",
+        "weight": 1
+      },
+      {
+        "text": "Use pheromones to communicate",
+        "weight": 1
+      }
+    ]
+  }
+]
