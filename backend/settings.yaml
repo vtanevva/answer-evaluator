@@ -28,7 +28,7 @@ grading:
   embeddings_file_path: "embeddings_cache.json"  # File to save/load precomputed embeddings
   
   similarity_thresholds:
-    high_similarity: 0.85  # Increased from 0.80 - be even more strict
+    high_similarity: 0.855  # Increased from 0.80 - be even more strict
     mid_similarity: 0.80   # Increased from 0.75 - be even more strict
     min_lexical_overlap: 0.4  # Increased from 0.3 - require more word overlap
   

@@ -99,7 +99,7 @@ class AdvancedAntonymDetector:
             ("big", "small"), ("large", "small"), ("huge", "tiny"),
             
             # Emotional opposites
-            ("happy", "sad"), ("joyful", "sad"), ("cheerful", "gloomy"),
+            ("happy", "sad"), ("joyful", "sad"), ("cheerful", "gloomy"),("remove", "add"),
             
             # Strength opposites
             ("strong", "weak"), ("powerful", "weak"), ("tough", "weak"),
