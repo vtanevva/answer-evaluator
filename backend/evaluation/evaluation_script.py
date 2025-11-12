@@ -21,7 +21,10 @@ except ImportError:
     pass  # dotenv not installed, that's ok
 
 # Add backend to path for imports
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+#sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(backend_dir)
 
 from services.grading_service import GradingService
 from services.question_service import QuestionService
@@ -105,7 +108,18 @@ class EvaluationBenchmark:
         
         # Create question service with our loaded questions
         self._question_service = QuestionService()
-        self._question_service._questions = self._questions  # Override with our data
+        # Override with our annotated questions data
+        self._question_service._questions_bank = self._questions  # Use _questions_bank instead of _questions
+        self._question_service._questions_by_id = {q["question_id"]: q for q in self._questions}
+        
+        # CRITICAL: Mark as loaded to prevent reloading fallback questions
+        self._question_service._is_loaded = True
+        
+        # Ensure the question service uses our data
+        print(f"✅ Loaded {len(self._questions)} questions for evaluation")
+        for q in self._questions[:3]:  # Show first 3
+            print(f"  Question {q['question_id']}: {q['question_text'][:50]}...")
+            print(f"    Key Points: {[kp['text'][:30] + '...' for kp in q['key_points']]}")
         
         # Create evaluation service
         self._grading_service = GradingService(
@@ -151,7 +165,7 @@ class EvaluationBenchmark:
             evaluation_result = self._grading_service.grade_answer(question_id, answer)
             
             # Use configurable classification threshold instead of hardcoded 50%
-            classification_threshold = 60.0  # Slightly higher threshold for better precision
+            classification_threshold = 75.0  # Increased from 70.0 - be even more strict
             predicted_correct = evaluation_result.score >= classification_threshold
             
             # Return True if prediction matches expectation
@@ -170,7 +184,12 @@ class EvaluationBenchmark:
         """
         print("\n🔬 Starting evaluation benchmark...")
         print(f"📊 Testing {len(self._questions)} questions with 8 answers each")
-        print(f"🎯 Using similarity thresholds: High={settings.grading.similarity_thresholds.high_similarity}, Mid={settings.grading.similarity_thresholds.mid_similarity}")
+        print(
+            "🎯 Using similarity thresholds: "
+            f"High={settings.grading.similarity_thresholds.high_similarity}, "
+            f"Mid={settings.grading.similarity_thresholds.mid_similarity}, "
+            f"LLM={settings.grading.similarity_thresholds.llm_verification_threshold}"
+        )
         print("="*80)
         
         evaluation_results = []
@@ -298,8 +317,9 @@ class EvaluationBenchmark:
         print(f"\n📋 CONFIGURATION:")
         print(f"  🎯 Cosine Similarity Threshold (High): {settings.grading.similarity_thresholds.high_similarity}")
         print(f"  🎯 Cosine Similarity Threshold (Mid):  {settings.grading.similarity_thresholds.mid_similarity}")
+        print(f"  🤖 LLM Verification Threshold:       {settings.grading.similarity_thresholds.llm_verification_threshold}")
         print(f"  📏 Minimum Lexical Overlap:          {settings.grading.similarity_thresholds.min_lexical_overlap}")
-        print(f"  📊 Classification Threshold:          60% (answers >= 60% score considered correct)")
+        print(f"  📊 Classification Threshold:          75% (answers >= 75% score considered correct)")
         
         # Overall metrics
         print(f"\n📊 OVERALL METRICS:")

@@ -71,8 +71,9 @@ class PineconeConfig:
 
 @dataclass
 class SimilarityThresholds:
-    high_similarity: float = 0.88
-    mid_similarity: float = 0.83
+    high_similarity: float = 0.855
+    mid_similarity: float = 0.80
+    llm_verification_threshold: float = 0.8
     min_lexical_overlap: float = 0.5
 
 
@@ -119,6 +120,34 @@ class TextProcessingConfig:
         additional_words = self.additional_stopwords.split()
         self.stopwords = nltk_stopwords + additional_words
 
+
+@dataclass
+class ConfidenceThresholds:
+    high: float = 0.8
+    medium: float = 0.6
+    low: float = 0.4
+
+
+@dataclass
+class MethodWeights:
+    semantic_distance: float = 0.4
+    contextual_analysis: float = 0.3
+    known_pattern: float = 0.2
+    negation_pattern: float = 0.2
+    llm_validation: float = 0.3
+
+
+@dataclass
+class AntonymDetectionConfig:
+    semantic_distance_threshold: float = 0.3
+    context_similarity_threshold: float = 0.7
+    confidence_thresholds: ConfidenceThresholds = field(default_factory=ConfidenceThresholds)
+    use_llm_validation: bool = True
+    llm_validation_threshold: float = 0.5
+    method_weights: MethodWeights = field(default_factory=MethodWeights)
+    antonym_penalty_multiplier: float = 0.2
+    min_confidence_for_penalty: str = "medium"
+
 @dataclass
 class Settings:
     """Main application settings"""
@@ -130,6 +159,7 @@ class Settings:
     grading: GradingConfig = field(default_factory=GradingConfig)
     questions: QuestionsConfig = field(default_factory=QuestionsConfig)
     text_processing: TextProcessingConfig = field(default_factory=TextProcessingConfig)
+    antonym_detection: AntonymDetectionConfig = field(default_factory=AntonymDetectionConfig)
 
 
 def _create_server_config(data: Dict[str, Any]) -> ServerConfig:
@@ -246,6 +276,42 @@ def _create_pinecone_config(data: Dict[str, Any]) -> PineconeConfig:
         print("📋 Using default Pinecone settings")
         return PineconeConfig()
 
+def _create_antonym_detection_config(data: Dict[str, Any]) -> AntonymDetectionConfig:
+    """Create AntonymDetectionConfig with validation and defaults"""
+    try:
+        # Extract nested configs with error handling
+        confidence_thresholds = ConfidenceThresholds()
+        if 'confidence_thresholds' in data:
+            try:
+                confidence_thresholds = ConfidenceThresholds(**data['confidence_thresholds'])
+            except Exception as e:
+                print(f"⚠️ Invalid confidence thresholds: {e}")
+                print("📋 Using default confidence thresholds")
+        
+        method_weights = MethodWeights()
+        if 'method_weights' in data:
+            try:
+                method_weights = MethodWeights(**data['method_weights'])
+            except Exception as e:
+                print(f"⚠️ Invalid method weights: {e}")
+                print("📋 Using default method weights")
+        
+        # Extract simple fields with defaults
+        return AntonymDetectionConfig(
+            semantic_distance_threshold=data.get('semantic_distance_threshold', 0.3),
+            context_similarity_threshold=data.get('context_similarity_threshold', 0.7),
+            confidence_thresholds=confidence_thresholds,
+            use_llm_validation=data.get('use_llm_validation', True),
+            llm_validation_threshold=data.get('llm_validation_threshold', 0.5),
+            method_weights=method_weights,
+            antonym_penalty_multiplier=data.get('antonym_penalty_multiplier', 0.2),
+            min_confidence_for_penalty=data.get('min_confidence_for_penalty', 'medium')
+        )
+    except Exception as e:
+        print(f"⚠️ Invalid antonym detection configuration: {e}")
+        print("📋 Using default antonym detection settings")
+        return AntonymDetectionConfig()
+
 
 def create_config_from_dict(data: Dict[str, Any]) -> Settings:
     """
@@ -275,7 +341,8 @@ def create_config_from_dict(data: Dict[str, Any]) -> Settings:
         ('pinecone', _create_pinecone_config, 'pinecone'),
         ('grading', _create_grading_config, 'grading'),
         ('questions', _create_questions_config, 'questions'),
-        ('text_processing', _create_text_processing_config, 'text_processing')
+        ('text_processing', _create_text_processing_config, 'text_processing'),
+        ('antonym_detection', _create_antonym_detection_config, 'antonym_detection')
     ]
     
     for section_key, create_func, attr_name in config_sections:
@@ -380,7 +447,17 @@ def load_settings_from_yaml(yaml_file_path: str = "settings.yaml") -> Settings:
             print(f"✅ Successfully loaded configuration from {resolved_path}")
             
             # Log any sections that weren't found in the file
-            expected_sections = ['server', 'cors', 'openai', 'grading', 'questions', 'text_processing']
+            expected_sections = [
+                'server',
+                'cors',
+                'openai',
+                'embeddings',
+                'pinecone',
+                'grading',
+                'questions',
+                'text_processing',
+                'antonym_detection'
+            ]
             missing_sections = [section for section in expected_sections if section not in yaml_data]
             if missing_sections:
                 print(f"📋 Using defaults for missing sections: {', '.join(missing_sections)}")
@@ -434,6 +511,16 @@ def validate_settings(settings: Settings) -> None:
     
     if settings.grading.similarity_thresholds.high_similarity <= settings.grading.similarity_thresholds.mid_similarity:
         print(f"⚠️ High similarity threshold ({settings.grading.similarity_thresholds.high_similarity}) should be greater than mid similarity ({settings.grading.similarity_thresholds.mid_similarity})")
+    if not (0.0 <= settings.grading.similarity_thresholds.llm_verification_threshold <= 1.0):
+        print(f"⚠️ LLM verification threshold should be 0.0-1.0, got: {settings.grading.similarity_thresholds.llm_verification_threshold}")
+    
+    if settings.grading.similarity_thresholds.mid_similarity < settings.grading.similarity_thresholds.llm_verification_threshold:
+        print(
+            "⚠️ Mid similarity threshold "
+            f"({settings.grading.similarity_thresholds.mid_similarity}) should be "
+            "greater than or equal to the LLM verification threshold "
+            f"({settings.grading.similarity_thresholds.llm_verification_threshold})"
+        )
     
     if settings.grading.answer_validation.min_answer_length < 1:
         print(f"⚠️ Minimum answer length should be at least 1, got: {settings.grading.answer_validation.min_answer_length}")
@@ -466,7 +553,12 @@ def get_configuration_summary(settings: Settings) -> str:
     summary.append(f"  🤖 OpenAI Model: {settings.openai.model_name}")
     summary.append(f"  💾 Embedding Cache: {'Enabled' if not settings.grading.precompute_embeddings else 'Disabled (fresh computation)'}")
     summary.append(f"  📄 Questions File: {settings.questions.default_file_path}")
-    summary.append(f"  🎯 Similarity Thresholds: High={settings.grading.similarity_thresholds.high_similarity}, Mid={settings.grading.similarity_thresholds.mid_similarity}")
+    summary.append(
+        "  🎯 Similarity Thresholds: "
+        f"High={settings.grading.similarity_thresholds.high_similarity}, "
+        f"Mid={settings.grading.similarity_thresholds.mid_similarity}, "
+        f"LLM={settings.grading.similarity_thresholds.llm_verification_threshold}"
+    )
     
     return "\n".join(summary)
 
