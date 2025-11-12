@@ -46,6 +46,8 @@ evaluation:
       - "i don't know"
       - "i don't know."
       - "dont know"
+      - "not sure"
+
 
 # Questions Configuration
 questions:

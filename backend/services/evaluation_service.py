@@ -239,11 +239,6 @@ class EvaluationService:
             overlap = self._text_processor.calculate_token_overlap(
                 user_tokens, key_point_tokens
             )
-            
-<<<<<<< HEAD
-            # Determine if key point is hit based on thresholds
-            is_hit = self._is_key_point_hit(similarity, overlap)
-=======
             # Check for semantic conflicts using AI-powered antonym detection
             has_conflict = self._detect_antonym_conflict(user_answer, key_point["text"], question["question_text"])
             
@@ -255,7 +250,6 @@ class EvaluationService:
             
             # Determine if key point is hit based on adjusted scores
             is_hit = (not has_conflict) and self._is_key_point_hit(similarity, overlap)
->>>>>>> 3f28f8b (change antonims)
             
             if is_hit:
                 hit_key_points.append(key_point["text"])
