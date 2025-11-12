@@ -33,8 +33,9 @@ class OpenAIConfig:
 
 @dataclass
 class SimilarityThresholds:
-    high_similarity: float = 0.88
-    mid_similarity: float = 0.83
+    high_similarity: float = 0.855
+    mid_similarity: float = 0.80
+    llm_verification_threshold: float = 0.8
     min_lexical_overlap: float = 0.5
 
 
@@ -436,11 +437,31 @@ def validate_settings(settings: Settings) -> None:
     if not (0.0 <= settings.evaluation.similarity_thresholds.high_similarity <= 1.0):
         print(f"⚠️ High similarity threshold should be 0.0-1.0, got: {settings.evaluation.similarity_thresholds.high_similarity}")
     
+<<<<<<< HEAD
     if not (0.0 <= settings.evaluation.similarity_thresholds.mid_similarity <= 1.0):
         print(f"⚠️ Mid similarity threshold should be 0.0-1.0, got: {settings.evaluation.similarity_thresholds.mid_similarity}")
     
     if settings.evaluation.similarity_thresholds.high_similarity <= settings.evaluation.similarity_thresholds.mid_similarity:
         print(f"⚠️ High similarity threshold ({settings.evaluation.similarity_thresholds.high_similarity}) should be greater than mid similarity ({settings.evaluation.similarity_thresholds.mid_similarity})")
+=======
+    if not (0.0 <= settings.grading.similarity_thresholds.mid_similarity <= 1.0):
+        print(f"⚠️ Mid similarity threshold should be 0.0-1.0, got: {settings.grading.similarity_thresholds.mid_similarity}")
+
+    if not (0.0 <= settings.grading.similarity_thresholds.llm_verification_threshold <= 1.0):
+        print(f"⚠️ LLM verification threshold should be 0.0-1.0, got: {settings.grading.similarity_thresholds.llm_verification_threshold}")
+    
+    if settings.grading.similarity_thresholds.high_similarity <= settings.grading.similarity_thresholds.mid_similarity:
+        print(f"⚠️ High similarity threshold ({settings.grading.similarity_thresholds.high_similarity}) should be greater than mid similarity ({settings.grading.similarity_thresholds.mid_similarity})")
+
+    if settings.grading.similarity_thresholds.mid_similarity < settings.grading.similarity_thresholds.llm_verification_threshold:
+        print(
+            "⚠️ Mid similarity threshold "
+            f"({settings.grading.similarity_thresholds.mid_similarity}) should be "
+            "greater than or equal to the LLM verification threshold "
+            f"({settings.grading.similarity_thresholds.llm_verification_threshold})"
+        )
+
+>>>>>>> 6f181f7 (llm verification not finished)
     
     if settings.evaluation.answer_validation.min_answer_length < 1:
         print(f"⚠️ Minimum answer length should be at least 1, got: {settings.evaluation.answer_validation.min_answer_length}")
@@ -473,7 +494,16 @@ def get_configuration_summary(settings: Settings) -> str:
     summary.append(f"  🤖 OpenAI Model: {settings.openai.model_name}")
     summary.append(f"  💾 Embedding Cache: {'Enabled' if not settings.evaluation.precompute_embeddings else 'Disabled (fresh computation)'}")
     summary.append(f"  📄 Questions File: {settings.questions.default_file_path}")
+<<<<<<< HEAD
     summary.append(f"  🎯 Similarity Thresholds: High={settings.evaluation.similarity_thresholds.high_similarity}, Mid={settings.evaluation.similarity_thresholds.mid_similarity}")
+=======
+    summary.append(
+        "  🎯 Similarity Thresholds: "
+        f"High={settings.grading.similarity_thresholds.high_similarity}, "
+        f"Mid={settings.grading.similarity_thresholds.mid_similarity}, "
+        f"LLM={settings.grading.similarity_thresholds.llm_verification_threshold}"
+    )
+>>>>>>> 6f181f7 (llm verification not finished)
     
     return "\n".join(summary)
 

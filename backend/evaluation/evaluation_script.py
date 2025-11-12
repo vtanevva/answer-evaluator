@@ -184,7 +184,12 @@ class EvaluationBenchmark:
         """
         print("\n🔬 Starting evaluation benchmark...")
         print(f"📊 Testing {len(self._questions)} questions with 8 answers each")
-        print(f"🎯 Using similarity thresholds: High={settings.grading.similarity_thresholds.high_similarity}, Mid={settings.grading.similarity_thresholds.mid_similarity}")
+        print(
+            "🎯 Using similarity thresholds: "
+            f"High={settings.grading.similarity_thresholds.high_similarity}, "
+            f"Mid={settings.grading.similarity_thresholds.mid_similarity}, "
+            f"LLM={settings.grading.similarity_thresholds.llm_verification_threshold}"
+        )
         print("="*80)
         
         evaluation_results = []
@@ -312,6 +317,7 @@ class EvaluationBenchmark:
         print(f"\n📋 CONFIGURATION:")
         print(f"  🎯 Cosine Similarity Threshold (High): {settings.grading.similarity_thresholds.high_similarity}")
         print(f"  🎯 Cosine Similarity Threshold (Mid):  {settings.grading.similarity_thresholds.mid_similarity}")
+        print(f"  🤖 LLM Verification Threshold:       {settings.grading.similarity_thresholds.llm_verification_threshold}")
         print(f"  📏 Minimum Lexical Overlap:          {settings.grading.similarity_thresholds.min_lexical_overlap}")
         print(f"  📊 Classification Threshold:          60% (answers >= 60% score considered correct)")
         

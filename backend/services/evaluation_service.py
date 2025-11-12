@@ -2,7 +2,7 @@
 Answer evaluation service using embeddings and text analysis
 """
 
-from typing import List, Dict, Set, Optional, Any
+from typing import List, Dict, Set, Optional, Any, Tuple
 from fastapi import HTTPException
 
 from models.models import AnswerResponse
@@ -11,6 +11,7 @@ from services.text_processing import TextProcessor
 from services.question_service import QuestionService
 from services.embedding_storage import EmbeddingStorage
 from services.smart_antonym_detector import SmartAntonymDetector, AntonymConfidence
+from services.verification import LLMVerificationService, LLMVerificationResult
 from core.config import settings
 
 
@@ -38,6 +39,9 @@ class EvaluationService:
         self._text_processor = TextProcessor()
         self._embedding_storage = EmbeddingStorage()
         self._ai_antonym_detector = SmartAntonymDetector(self._embedding_service, openai_client)
+        self._llm_verification = (
+            LLMVerificationService(openai_client) if openai_client else None
+        )
         
         # Storage for precomputed embeddings and keywords
         self._key_point_embeddings: Dict[int, List[List[float]]] = {}
@@ -218,6 +222,7 @@ class EvaluationService:
         except Exception:
             # Fallback to single embedding of full answer
             sentence_embeddings = [self._embedding_service.get_embedding(user_answer)]
+            sentences = [user_answer]
         
         # Process user answer tokens for lexical matching
         user_tokens = self._text_processor.normalize_text(user_answer)
@@ -226,19 +231,27 @@ class EvaluationService:
         hit_key_points = []
         missing_key_points = []
         
+        reference_chunks = [kp["text"] for kp in key_points]
+
         for i, key_point in enumerate(key_points):
             key_point_embedding = self._key_point_embeddings[question_id][i]
             key_point_tokens = list(self._key_point_keywords[question_id][i])
             
             # Calculate semantic similarity (best sentence match)
-            similarity = self._embedding_service.find_best_sentence_similarity(
-                sentence_embeddings, key_point_embedding
+            similarity, best_sentence = self._find_best_sentence_match(
+                sentences, sentence_embeddings, key_point_embedding
             )
+            raw_similarity = similarity
             
             # Calculate lexical overlap
             overlap = self._text_processor.calculate_token_overlap(
                 user_tokens, key_point_tokens
             )
+<<<<<<< HEAD:backend/services/evaluation_service.py
+=======
+            raw_overlap = overlap
+            
+>>>>>>> 6f181f7 (llm verification not finished):backend/services/grading_service.py
             # Check for semantic conflicts using AI-powered antonym detection
             has_conflict = self._detect_antonym_conflict(user_answer, key_point["text"], question["question_text"])
             
@@ -247,9 +260,31 @@ class EvaluationService:
                 penalty_multiplier = self._antonym_config.antonym_penalty_multiplier
                 similarity *= penalty_multiplier
                 overlap *= penalty_multiplier
+            penalized_similarity = similarity
             
+            llm_result = self._apply_llm_verification(
+                similarity, best_sentence, reference_chunks
+            )
+            llm_confirmed = False
+            llm_executed = False
+            if llm_result:
+                llm_executed = llm_result.llm_used
+                if llm_result.llm_used and llm_result.decision:
+                    llm_confirmed = llm_result.decision.is_similar
+                    if (
+                        self._similarity_config.llm_verification_threshold
+                        < raw_similarity
+                        < self._similarity_config.high_similarity
+                    ):
+                        status = "PASS" if llm_confirmed else "FAIL"
+                        print(
+                            f"    🤖 LLM verification ({status}): reason={llm_result.reason}"
+                        )
+
             # Determine if key point is hit based on adjusted scores
             is_hit = (not has_conflict) and self._is_key_point_hit(similarity, overlap)
+            if not is_hit and llm_confirmed:
+                is_hit = True
             
             if is_hit:
                 hit_key_points.append(key_point["text"])
@@ -258,7 +293,13 @@ class EvaluationService:
             
             print(
                 f"  📊 Key point '{key_point['text'][:30]}...': "
-                f"sim={similarity:.3f}, overlap={overlap:.2f}, hit={is_hit}"
+                f"sim_raw={raw_similarity:.3f}, "
+                f"sim_penalized={penalized_similarity:.3f}, "
+                f"sim_final={similarity:.3f}, "
+                f"overlap_raw={raw_overlap:.2f}, "
+                f"overlap_final={overlap:.2f}, "
+                f"hit={is_hit}"
+                + (", llm=used" if llm_executed else "")
             )
         
         # Calculate score and generate feedback
@@ -270,6 +311,24 @@ class EvaluationService:
             hit_key_points=hit_key_points,
             missing_key_points=missing_key_points,
             feedback=feedback
+        )
+    
+    def _apply_llm_verification(
+        self,
+        similarity: float,
+        best_sentence: str,
+        reference_chunks: List[str],
+    ) -> Optional[LLMVerificationResult]:
+        """
+        Optionally adjust similarity using LLM verification for borderline cases.
+        """
+        if not self._llm_verification or not best_sentence.strip():
+            return None
+
+        return self._llm_verification.verify_chunk(
+            best_sentence,
+            reference_chunks,
+            similarity,
         )
     
     def _detect_antonym_conflict(self, user_answer: str, key_point_text: str, question_text: str) -> bool:
@@ -337,6 +396,35 @@ class EvaluationService:
         return (similarity >= self._similarity_config.high_similarity or 
                 (similarity >= self._similarity_config.mid_similarity and 
                  overlap >= self._similarity_config.min_lexical_overlap))
+    
+    def _find_best_sentence_match(
+        self,
+        sentences: List[str],
+        sentence_embeddings: List[List[float]],
+        key_point_embedding: List[float],
+    ) -> Tuple[float, str]:
+        """
+        Find the best matching sentence and its similarity score for a key point.
+        """
+        if not sentence_embeddings:
+            return 0.0, ""
+
+        best_similarity = -1.0
+        best_sentence = ""
+
+        for idx, embedding in enumerate(sentence_embeddings):
+            similarity = self._embedding_service.compute_cosine_similarity(
+                embedding, key_point_embedding
+            )
+            if similarity > best_similarity:
+                best_similarity = similarity
+                if idx < len(sentences):
+                    best_sentence = sentences[idx]
+
+        if best_similarity < 0:
+            return 0.0, best_sentence
+
+        return best_similarity, best_sentence
     
     def _calculate_score(self, hit_count: int, total_count: int) -> float:
         """
