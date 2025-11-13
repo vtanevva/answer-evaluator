@@ -187,8 +187,7 @@ class EvaluationBenchmark:
         print(
             "🎯 Using similarity thresholds: "
             f"High={settings.grading.similarity_thresholds.high_similarity}, "
-            f"Mid={settings.grading.similarity_thresholds.mid_similarity}, "
-            f"LLM={settings.grading.similarity_thresholds.llm_verification_threshold}"
+            f"Mid={settings.grading.similarity_thresholds.mid_similarity}"
         )
         print("="*80)
         
@@ -317,7 +316,6 @@ class EvaluationBenchmark:
         print(f"\n📋 CONFIGURATION:")
         print(f"  🎯 Cosine Similarity Threshold (High): {settings.grading.similarity_thresholds.high_similarity}")
         print(f"  🎯 Cosine Similarity Threshold (Mid):  {settings.grading.similarity_thresholds.mid_similarity}")
-        print(f"  🤖 LLM Verification Threshold:       {settings.grading.similarity_thresholds.llm_verification_threshold}")
         print(f"  📏 Minimum Lexical Overlap:          {settings.grading.similarity_thresholds.min_lexical_overlap}")
         print(f"  📊 Classification Threshold:          75% (answers >= 75% score considered correct)")
         
