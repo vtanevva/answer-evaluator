@@ -90,7 +90,9 @@ class FeedbackMessages:
 class AnswerValidation:
     min_answer_length: int = 10
     min_word_count: int = 2
+    violent_answers: List[str] = field(default_factory=lambda: ["fuck"])
     invalid_answers: List[str] = field(default_factory=lambda: ["i don't know", "i don't know.", "dont know"])
+    feedback_message: str = "{invalid_answer} is not a valid answer to the question. Try again."
 
 
 @dataclass
