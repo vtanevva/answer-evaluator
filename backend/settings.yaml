@@ -61,9 +61,23 @@ grading:
     min_word_count: 2
     invalid_answers:
       - "i don't know"
-      - "i don't know."
-      - "dont know"
       - "not sure"
+      - "i forgot"
+      - "i don't remember"
+      - "i hate"
+    violent_answers:
+      - "kill"
+      - "murder"
+      - "beat"
+      - "beat up"
+      - "beat down"
+      - "fuck"
+      - "rape"
+      - "shoot"
+      - "stab"
+      - "assault"
+      - "shit"
+    feedback_message: "{invalid_answer} is not a valid answer to the question. Try again."
 
 
 # Questions Configuration

@@ -1,6 +1,6 @@
 [
   {
-    "question_id": 1,
+    "question_id": 0,
     "question_text": "Explain the role of erosion in shaping landscapes.",
     "key_points": [
       {
@@ -34,7 +34,7 @@
     ]
   },
   {
-    "question_id": 2,
+    "question_id": 1,
     "question_text": "What is natural selection and how does it contribute to evolution?",
     "key_points": [
       {
@@ -68,7 +68,7 @@
     ]
   },
   {
-    "question_id": 3,
+    "question_id": 2,
     "question_text": "How do plants make their own food?",
     "key_points": [
       {
@@ -94,7 +94,7 @@
     ]
   },
   {
-    "question_id": 4,
+    "question_id": 3,
     "question_text": "Explain inflation",
     "key_points": [
       {
@@ -120,7 +120,7 @@
     ]
   },
   {
-    "question_id": 5,
+    "question_id": 4,
     "question_text": "Discuss the impact of globalization on local economies.",
     "key_points": [
       {
@@ -154,7 +154,7 @@
     ]
   },
   {
-    "question_id": 6,
+    "question_id": 5,
     "question_text": "What are the major factors affecting agricultural productivity?",
     "key_points": [
       {
@@ -184,7 +184,7 @@
     ]
   },
   {
-    "question_id": 7,
+    "question_id": 6,
     "question_text": "Describe the processes that shape river landscapes.",
     "key_points": [
       {
@@ -214,7 +214,7 @@
     ]
   },
   {
-    "question_id": 8,
+    "question_id": 7,
     "question_text": "How does globalization affect economic development in emerging countries?",
     "key_points": [
       {
@@ -245,6 +245,2046 @@
       "Emerging countries can't participate in globalization because they don't have the technology needed.",
       "Globalization has no effect on emerging countries because they're too small to matter in the global economy.",
       "Globalization eliminates all cultural differences in emerging countries and makes them exactly like Western countries."
+    ]
+  },
+  {
+    "question_id": 8,
+    "question_text": "Define the core economic problem of 'scarcity'.",
+    "key_points": [
+      {
+        "text": "We have unlimited wants and needs",
+        "weight": 1
+      },
+      {
+        "text": "The resources (like time, money, and materials) we have are limited",
+        "weight": 1
+      },
+      {
+        "text": "Because of this, we cannot have everything we want",
+        "weight": 1
+      },
+      {
+        "text": "Scarcity forces us to make difficult choices every day",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Scarcity is the basic economic problem that we have unlimited wants but only limited resources to satisfy them, which means we must make choices.",
+      "It is the conflict between human desires, which are endless, and the resources available in the world, which are finite (limited). This forces everyone to choose.",
+      "The core problem of scarcity is that there are simply not enough resources like time, money, and materials to get everything that everyone wants, so trade-offs are necessary.",
+      "Scarcity exists because our wants and needs are endless, but the resources needed to produce goods and services are limited. This is why we have to constantly make choices."
+    ],
+    "incorrect_answers": [
+      "Scarcity is the condition where we have enough resources to satisfy everyone's wants, but people choose not to share.",
+      "Scarcity only exists in poor countries and is not a problem in wealthy economies like the Netherlands.",
+      "Scarcity means that only the government is allowed to control resources, not private companies.",
+      "Scarcity is when the price of a good is set too low, causing a shortage in the market."
+    ]
+  },
+  {
+    "question_id": 9,
+    "question_text": "What is 'opportunity cost'?",
+    "key_points": [
+      {
+        "text": "It is the value of the thing you chose not to do",
+        "weight": 1
+      },
+      {
+        "text": "It is the 'next best' choice that you gave up",
+        "weight": 1
+      },
+      {
+        "text": "When you buy a pizza, the opportunity cost might be the burger you didn't buy",
+        "weight": 1
+      },
+      {
+        "text": "Opportunity cost helps you decide the true cost of a decision",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Opportunity cost is the value of the best alternative that you gave up when you made a choice. It's the cost of the 'next best' thing you chose not to do.",
+      "It is the real cost of a decision, measured not in money, but in the goods or activity that you must sacrifice to get what you want.",
+      "When you choose one thing over another due to scarcity, the opportunity cost is the value of the most desirable thing you didn't pick.",
+      "The value of the 'next best' choice is what economists call opportunity cost, helping people and governments weigh the true trade-offs of their decisions."
+    ],
+    "incorrect_answers": [
+      "Opportunity cost is the total amount of money you paid for the choice you made.",
+      "Opportunity cost is the time it takes to complete a task, measured in hours.",
+      "Opportunity cost is the profit a business makes when it sells a product.",
+      "Opportunity cost is the risk of the choice you made turning out to be wrong."
+    ]
+  },
+  {
+    "question_id": 10,
+    "question_text": "Give an example of a resource that is scarce.",
+    "key_points": [
+      {
+        "text": "Time: You only have 24 hours in a day for school, sleep, and fun",
+        "weight": 1
+      },
+      {
+        "text": "Money: You have a limited amount in your wallet or bank account",
+        "weight": 1
+      },
+      {
+        "text": "Land: There is only a fixed amount of space to build houses or farms",
+        "weight": 1
+      },
+      {
+        "text": "Oil/Gas: These natural resources can run out or are expensive to get",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Time is a scarce resource because every person has only 24 hours in a day, forcing them to choose between activities like working, sleeping, or studying.",
+      "Money is scarce because households, businesses, and governments all have a limited budget, and there is never enough to buy everything they want.",
+      "Land is scarce because there is a fixed amount of space on Earth; you cannot simply create more land to build new houses or farms.",
+      "Natural resources like oil, gas, and clean water are scarce because they can run out, are difficult to find, or take a long time to renew."
+    ],
+    "incorrect_answers": [
+      "Air is a scarce resource because it is free to breathe everywhere in the world.",
+      "The knowledge contained in books is scarce because it is available to everyone who can read.",
+      "The internet is a scarce resource because almost everyone has access to it for free or very little cost.",
+      "The sun's energy is a scarce resource because it shines every day and will never run out."
+    ]
+  },
+  {
+    "question_id": 11,
+    "question_text": "Explain the difference between a need and a want.",
+    "key_points": [
+      {
+        "text": "A 'need' is something you must have to survive (like food, water, and shelter)",
+        "weight": 1
+      },
+      {
+        "text": "A 'want' is something nice to have but you can live without (like a new game console)",
+        "weight": 1
+      },
+      {
+        "text": "Needs are often the same for everyone, but wants change a lot",
+        "weight": 1
+      },
+      {
+        "text": "Economics looks at how we use scarce resources to satisfy our needs and wants",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A **need** is something essential for survival, like basic food, water, and shelter, while a **want** is something desirable but not necessary, like a fancy car or designer clothes.",
+      "Needs are requirements for maintaining life and are generally fixed, whereas wants are desires that can change often and are shaped by culture, advertising, and income.",
+      "If you cannot live without it, it is a need; for example, a house provides shelter. If you can live without it, it is a want; for example, a private swimming pool for that house.",
+      "The difference is that **needs** must be met to survive, but **wants** are unlimited and are the things we aspire to get once our needs are satisfied."
+    ],
+    "incorrect_answers": [
+      "A need is something only the rich can afford, while a want is something only the poor buy.",
+      "A need is a product bought from a small local shop, while a want is a product bought online.",
+      "Needs are things that increase the country's GDP, and wants are things that decrease it.",
+      "A need is anything that is taxed by the government, and a want is anything that is not taxed."
+    ]
+  },
+  {
+    "question_id": 12,
+    "question_text": "How does scarcity force the government to make choices?",
+    "key_points": [
+      {
+        "text": "The money the government collects (from taxes) is limited",
+        "weight": 1
+      },
+      {
+        "text": "They must decide where to spend this money (a big choice)",
+        "weight": 1
+      },
+      {
+        "text": "For example, choosing between building new schools or improving hospitals",
+        "weight": 1
+      },
+      {
+        "text": "Every choice has an opportunity cost, which is the other important thing they didn't fund",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Because the government's budget (tax money) is limited, they must decide between competing priorities, such as spending on education or defense.",
+      "The scarcity of funds forces the government to choose what services to provide and what not to provide, meaning every decision has an opportunity cost.",
+      "If the government chooses to spend more on healthcare, they are forced to spend less on public transport, showing the scarcity-driven trade-off in the budget.",
+      "Scarcity means the government must constantly weigh the costs and benefits of different public goods because they cannot afford to fund every project at once."
+    ],
+    "incorrect_answers": [
+      "Scarcity forces the government to print unlimited amounts of new money to pay for all its projects.",
+      "The government can avoid scarcity by borrowing money from other countries and never paying it back.",
+      "Scarcity is not a problem for the government because it controls the central bank and can always get more resources.",
+      "The government only has to deal with scarcity when the country is in a recession; during a boom, scarcity disappears."
+    ]
+  },
+  {
+    "question_id": 13,
+    "question_text": "What is the primary function of exchange in an economy?",
+    "key_points": [
+      {
+        "text": "It allows people to trade what they have for what they want or need",
+        "weight": 1
+      },
+      {
+        "text": "It makes sure resources end up where they are most needed (optimal allocation)",
+        "weight": 1
+      },
+      {
+        "text": "It lets people and countries focus on what they are best at (specialization)",
+        "weight": 1
+      },
+      {
+        "text": "Exchange increases the total amount of goods and services available to everyone",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Exchange allows individuals and countries to specialize in what they do best and then trade their surplus for goods they need, which increases overall output.",
+      "The main function of exchange is to move goods and services from those who value them less (the sellers) to those who value them more (the buyers), maximizing welfare.",
+      "It is the process by which scarce resources are allocated efficiently across the economy, ensuring that goods end up with the people who are willing and able to pay for them.",
+      "Exchange allows people to trade what they produce for what they want, overcoming the limitations of self-sufficiency and driving the benefits of specialization."
+    ],
+    "incorrect_answers": [
+      "The primary function of exchange is to ensure that all prices remain fixed and never change.",
+      "Exchange is mainly used to prevent people from working too hard and producing too much.",
+      "The function of exchange is to let the government control the flow of all goods and services.",
+      "Exchange only happens in local markets and has no role in the international economy."
+    ]
+  },
+  {
+    "question_id": 14,
+    "question_text": "Explain 'division of labor'.",
+    "key_points": [
+      {
+        "text": "It means breaking up a large job (like building a car) into many smaller tasks",
+        "weight": 1
+      },
+      {
+        "text": "Each worker focuses on only one of these smaller, specific tasks",
+        "weight": 1
+      },
+      {
+        "text": "Workers become very fast and skilled at their single task (specialization)",
+        "weight": 1
+      },
+      {
+        "text": "This makes production much quicker and more efficient (more things made with less time)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Division of labor is the process of splitting a complex task into multiple smaller tasks, with each worker specializing in only one part to increase efficiency.",
+      "It means breaking a large production process into small steps, so workers only focus on one area, leading to greater skill and faster overall output.",
+      "When a car factory assigns one worker to only install tires, and another to only install windows, that is division of labor, which massively increases productivity.",
+      "It is the specialization of workers within a single production process, allowing them to gain expertise and avoid wasting time switching between different jobs."
+    ],
+    "incorrect_answers": [
+      "Division of labor means that all workers must be able to do every single task in the factory.",
+      "Division of labor is a system where every worker gets paid the same amount of money regardless of their job.",
+      "It means that a company must hire more managers and fewer ordinary workers.",
+      "Division of labor is when all the workers cooperate to decide what the company should produce."
+    ]
+  },
+  {
+    "question_id": 15,
+    "question_text": "What is 'barter' and what is its main drawback?",
+    "key_points": [
+      {
+        "text": "Barter is trading goods or services directly for other goods or services",
+        "weight": 1
+      },
+      {
+        "text": "You swap your apples for someone's bread without using money",
+        "weight": 1
+      },
+      {
+        "text": "Drawback: It requires a 'double coincidence of wants'",
+        "weight": 1
+      },
+      {
+        "text": "This means you must find someone who has what you want and wants what you have (very difficult!)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Barter is the direct trade of one good for another without using money. Its main drawback is the 'double coincidence of wants,' which makes finding a trading partner very difficult.",
+      "When a baker trades bread directly for a farmer's eggs, that is barter. The problem is that the farmer must also want bread at that exact time, or the trade cannot happen.",
+      "It is an ancient system of exchange based on swapping items. The biggest problem is the high transaction cost of finding someone who wants exactly what you have and has exactly what you want.",
+      "Barter is a non-monetary trade system. The major downside is that it requires both parties to mutually desire what the other has, a rarity that money solves."
+    ],
+    "incorrect_answers": [
+      "Barter is the system where you sell your goods for a currency called 'barter notes' that only work in your town.",
+      "The main drawback of barter is that the government takes too much tax on the goods being traded.",
+      "Barter is the system used today in all international trade between countries.",
+      "Barter's main drawback is that it requires too many people to agree on the price of the item being sold."
+    ]
+  },
+  {
+    "question_id": 16,
+    "question_text": "List four functions of money.",
+    "key_points": [
+      {
+        "text": "Medium of Exchange: It is generally accepted by everyone for buying and selling",
+        "weight": 1
+      },
+      {
+        "text": "Unit of Account: It is a way to measure and compare the value of different things (e.g., this car is €20,000)",
+        "weight": 1
+      },
+      {
+        "text": "Store of Value: You can save it now to spend it later (it holds its value)",
+        "weight": 1
+      },
+      {
+        "text": "Standard of Deferred Payment: It is used to settle debts that will be paid in the future",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Money acts as a **Medium of Exchange** (used for buying), a **Unit of Account** (used for pricing), a **Store of Value** (used for saving), and a **Standard of Deferred Payment** (used for loans).",
+      "The four key functions of money are: being accepted by all for transactions, providing a common measure of value, retaining its value over time, and serving as a contract for future payments.",
+      "Money must be a generally accepted item for exchange. It must also be able to measure the value of goods, hold its purchasing power over time, and be used to repay debts.",
+      "Money is a **Medium of Exchange** (solves the barter problem), a **Unit of Account** (makes prices comparable), a **Store of Value** (links present and future), and a **Standard for Debt**."
+    ],
+    "incorrect_answers": [
+      "The four functions of money are: being easy to steal, being made of gold, being printed by the army, and being used to start wars.",
+      "Money's functions are: making sure everyone gets the same income, guaranteeing zero inflation, making the government richer, and stopping all competition.",
+      "Money is used to: set the minimum wage, control the weather, fund all public services, and determine the country's national debt.",
+      "Money must be: very heavy and hard to carry, accepted by only a few people, always losing its value, and only used for illegal transactions."
+    ]
+  },
+  {
+    "question_id": 17,
+    "question_text": "What is the concept of 'comparative advantage'?",
+    "key_points": [
+      {
+        "text": "It means a person or country can produce something at a lower opportunity cost",
+        "weight": 1
+      },
+      {
+        "text": "Even if another country is better at producing everything (absolute advantage)",
+        "weight": 1
+      },
+      {
+        "text": "It's the main reason why countries specialize and trade with each other",
+        "weight": 1
+      },
+      {
+        "text": "Trading based on comparative advantage makes both sides richer",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Comparative advantage means producing a good at a **lower opportunity cost** than anyone else. This is the real basis for profitable specialization and trade.",
+      "A country has a comparative advantage if it gives up less of another good to produce an item compared to another country. Even if you're better at everything, you should focus on your best thing.",
+      "It is the reason trade is mutually beneficial: both trading partners gain when they specialize in the good where they have the lowest opportunity cost.",
+      "The concept is based on the idea that the true cost of producing something is the amount of another good you have to sacrifice, and the one with the smallest sacrifice has the advantage."
+    ],
+    "incorrect_answers": [
+      "Comparative advantage means a country can produce more of a good than any other country using the same amount of resources (this is absolute advantage).",
+      "Comparative advantage is the idea that all countries should produce exactly the same things and never trade.",
+      "Comparative advantage is the amount of profit a company makes when it sells its goods overseas.",
+      "It is the political advantage a country has because its economy is bigger than its neighbors'."
+    ]
+  },
+  {
+    "question_id": 18,
+    "question_text": "How does money make the exchange process smoother?",
+    "key_points": [
+      {
+        "text": "Money solves the 'double coincidence of wants' problem of barter",
+        "weight": 1
+      },
+      {
+        "text": "You don't need to find a direct swapper, you just sell for money and buy with money",
+        "weight": 1
+      },
+      {
+        "text": "It makes it faster and easier to know the value of what you are trading",
+        "weight": 1
+      },
+      {
+        "text": "It reduces the time and effort people spend on trading (transaction costs)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Money simplifies exchange by acting as a medium, eliminating the need for a 'double coincidence of wants' and reducing the time spent searching for a trade partner.",
+      "It makes the process smoother because you can sell what you produce for money and then immediately use that money to buy whatever you want from anyone, not just one specific person.",
+      "By using money, transaction costs are dramatically reduced because you don't have to agree on the relative value of every single good; the price is already set in the unit of account.",
+      "Money is universally accepted, which speeds up all transactions and allows people to specialize and trade more easily than under a clumsy barter system."
+    ],
+    "incorrect_answers": [
+      "Money makes exchange smoother because it is very heavy and hard to carry, forcing people to use banks.",
+      "Money makes exchange smoother by guaranteeing that all buyers and sellers get exactly the same amount of profit.",
+      "Money solves the problem of scarcity by making all resources unlimited for everyone.",
+      "Money prevents specialization by forcing everyone to produce everything for themselves."
+    ]
+  },
+  {
+    "question_id": 19,
+    "question_text": "Define the term 'market' in economics.",
+    "key_points": [
+      {
+        "text": "A market is not always a physical place (like a store or street market)",
+        "weight": 1
+      },
+      {
+        "text": "It is any place or way (like online) where buyers and sellers meet to trade",
+        "weight": 1
+      },
+      {
+        "text": "The interaction between buyers and sellers decides the price and quantity",
+        "weight": 1
+      },
+      {
+        "text": "Examples: the market for mobile phones, the labor market, the housing market",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "In economics, a market is any mechanism (physical or digital) that allows buyers and sellers to interact and transact, which ultimately determines the market price.",
+      "It is the intersection where the supply from producers meets the demand from consumers, defining the conditions for exchange for a specific good or service.",
+      "A market is not necessarily a single location; it is the entire network of buyers and sellers whose trading activities set the price for something, such as the global market for oil.",
+      "The term 'market' describes the whole process of interaction between people who want to buy (demand) and people who want to sell (supply)."
+    ],
+    "incorrect_answers": [
+      "A market is only the physical building where products are displayed and sold.",
+      "A market is defined as a place where the government sets all the prices for the products.",
+      "A market is an economy where there is no exchange and everyone is self-sufficient.",
+      "A market is the tax collected by the government from all commercial activity."
+    ]
+  },
+  {
+    "question_id": 20,
+    "question_text": "What is the role of price in coordinating choices in a market?",
+    "key_points": [
+      {
+        "text": "Price acts as a signal to consumers and producers",
+        "weight": 1
+      },
+      {
+        "text": "High price signals producers to make more of a good (because it's profitable)",
+        "weight": 1
+      },
+      {
+        "text": "High price signals consumers to buy less of a good (because it's expensive)",
+        "weight": 1
+      },
+      {
+        "text": "Price changes help bring the amount supplied and the amount demanded into balance",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Price acts as a **signal**: A high price tells producers to increase supply and tells consumers to reduce demand, which reallocates resources efficiently.",
+      "The price mechanism **rations** scarce goods, ensuring that they go to the consumers who value them most and are willing to pay the most for them.",
+      "Price changes incentivize both parties: High prices encourage producers (profit motive) and discourage consumers, helping the market adjust toward equilibrium.",
+      "Price serves as a crucial coordinator by communicating information about the relative scarcity of a good between all buyers and sellers in the market."
+    ],
+    "incorrect_answers": [
+      "The only role of price is to make sure that all companies make exactly the same amount of profit.",
+      "Price is used to make sure that the supply curve always slopes downwards.",
+      "Price is only a random number and has no effect on the choices of consumers or producers.",
+      "Price exists only to ensure that the government can collect the maximum possible amount of tax."
+    ]
+  },
+  {
+    "question_id": 21,
+    "question_text": "Define 'demand'.",
+    "key_points": [
+      {
+        "text": "Demand is the amount of a product or service",
+        "weight": 1
+      },
+      {
+        "text": "That consumers are willing and financially able to buy",
+        "weight": 1
+      },
+      {
+        "text": "At a certain price, during a certain period of time",
+        "weight": 1
+      },
+      {
+        "text": "The demand curve usually slopes downwards: people buy less when the price is high",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Demand is the quantity of a good or service that consumers are **willing and able** to purchase at various prices in a given time period.",
+      "It is the relationship between the price of a good and the amount that buyers would choose to buy at that price.",
+      "To count as demand, a consumer must have both the **desire** for the product and the **financial means** (the income) to pay for it.",
+      "Demand determines the downward-sloping demand curve, showing that as the price of a good falls, consumers will buy more of it."
+    ],
+    "incorrect_answers": [
+      "Demand is the amount of a product that producers want to sell at a certain price.",
+      "Demand is the total amount of a product that is currently available in a store.",
+      "Demand is the amount of money a consumer has saved in their bank account.",
+      "Demand is the list of products that the government tells people to buy."
+    ]
+  },
+  {
+    "question_id": 22,
+    "question_text": "State the Law of Demand.",
+    "key_points": [
+      {
+        "text": "The Law of Demand says that price and quantity demanded move in opposite directions",
+        "weight": 1
+      },
+      {
+        "text": "When the price of a good goes up, people buy less of it",
+        "weight": 1
+      },
+      {
+        "text": "When the price of a good goes down, people buy more of it",
+        "weight": 1
+      },
+      {
+        "text": "This is true if all other things (like income and tastes) stay the same (ceteris paribus)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The Law of Demand states that, if all other factors remain constant (ceteris paribus), the quantity demanded of a product decreases as its price increases.",
+      "It describes the inverse relationship: when a good's price drops, consumers are willing to buy a larger quantity, and vice versa.",
+      "As price goes up, quantity demanded goes down, and as price goes down, quantity demanded goes up, provided nothing else changes in the market.",
+      "It is the economic rule that explains why the demand curve slopes downwards: the negative relationship between price and the amount people want to buy."
+    ],
+    "incorrect_answers": [
+      "The Law of Demand states that when the price of a good goes up, the quantity demanded also goes up.",
+      "The Law of Demand states that all goods must be sold for the same price to be fair.",
+      "The Law of Demand states that consumers will only buy more if the product is produced by the government.",
+      "The Law of Demand states that a seller should always offer exactly the same amount of a product regardless of the price."
+    ]
+  },
+  {
+    "question_id": 23,
+    "question_text": "Define 'supply'.",
+    "key_points": [
+      {
+        "text": "Supply is the amount of a product or service",
+        "weight": 1
+      },
+      {
+        "text": "That producers (companies) are willing and able to offer for sale",
+        "weight": 1
+      },
+      {
+        "text": "At a certain price, during a certain period of time",
+        "weight": 1
+      },
+      {
+        "text": "The supply curve usually slopes upwards: producers offer more when the price is high",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Supply is the quantity of a good or service that producers are **willing and able** to offer for sale at various prices in a given time period.",
+      "It is the relationship between the price of a product and the amount that firms would choose to sell at that price.",
+      "Supply determines the upward-sloping supply curve, showing that as the price of a good rises, producers will want to sell more of it for a higher profit.",
+      "To count as supply, a producer must have both the **capacity** to make the product and the **intention** to sell it at the current market price."
+    ],
+    "incorrect_answers": [
+      "Supply is the total amount of money that consumers are willing to pay for a product.",
+      "Supply is the exact amount of money that the government has in its reserves.",
+      "Supply is the list of products that consumers decide they want to buy this month.",
+      "Supply is the cost of the raw materials needed to make a product."
+    ]
+  },
+  {
+    "question_id": 24,
+    "question_text": "State the Law of Supply.",
+    "key_points": [
+      {
+        "text": "The Law of Supply says that price and quantity supplied move in the same direction",
+        "weight": 1
+      },
+      {
+        "text": "When the price of a good goes up, producers want to sell more of it (for more profit)",
+        "weight": 1
+      },
+      {
+        "text": "When the price of a good goes down, producers want to sell less of it",
+        "weight": 1
+      },
+      {
+        "text": "This is true if all other factors (like costs of production) stay the same (ceteris paribus)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The Law of Supply states that, if all other factors remain constant (ceteris paribus), the quantity supplied of a product increases as its price increases.",
+      "It describes the positive relationship: when a good's price rises, producers are incentivized by higher potential profits to produce and sell a larger quantity, and vice versa.",
+      "As price goes up, quantity supplied goes up, and as price goes down, quantity supplied goes down, because producers want to maximize their revenue.",
+      "It is the economic rule that explains why the supply curve slopes upwards: the direct relationship between price and the amount producers offer for sale."
+    ],
+    "incorrect_answers": [
+      "The Law of Supply states that when the price of a good goes up, producers want to sell less of it.",
+      "The Law of Supply states that the cost of raw materials should always be higher than the final selling price.",
+      "The Law of Supply states that a producer must sell exactly the same amount of a product regardless of the price.",
+      "The Law of Supply states that the price of a product is determined only by the number of consumers in the market."
+    ]
+  },
+  {
+    "question_id": 25,
+    "question_text": "What is 'market equilibrium'?",
+    "key_points": [
+      {
+        "text": "It is the balanced point in the market",
+        "weight": 1
+      },
+      {
+        "text": "It happens when the quantity demanded by buyers is exactly equal to the quantity supplied by sellers",
+        "weight": 1
+      },
+      {
+        "text": "The price at this point is the 'equilibrium price' or 'market price'",
+        "weight": 1
+      },
+      {
+        "text": "At this point, the market is 'cleared', and there is no shortage or surplus",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Market equilibrium is the point where the forces of demand and supply are balanced, meaning the quantity consumers want to buy is equal to the quantity producers want to sell.",
+      "It is the stable point in the market, shown where the demand curve and the supply curve intersect, resulting in the equilibrium price and quantity.",
+      "At equilibrium, the market is 'cleared': there are no unsold goods (surplus) and no disappointed buyers (shortage).",
+      "The balanced state of the market where the quantity demanded equals the quantity supplied, and there is no pressure for the price to change."
+    ],
+    "incorrect_answers": [
+      "Market equilibrium is the point where the quantity demanded is much higher than the quantity supplied.",
+      "Market equilibrium is the maximum price the government allows producers to charge for a good.",
+      "Market equilibrium is the point where all producers are forced to cooperate and act as one company.",
+      "Market equilibrium only occurs when the government buys all the goods being produced."
+    ]
+  },
+  {
+    "question_id": 26,
+    "question_text": "Explain what a 'surplus' is and how the market corrects it.",
+    "key_points": [
+      {
+        "text": "A surplus (or excess supply) happens when the price is too high",
+        "weight": 1
+      },
+      {
+        "text": "Producers supply more goods than consumers want to buy",
+        "weight": 1
+      },
+      {
+        "text": "The market corrects it: Sellers lower the price to get rid of the extra stock",
+        "weight": 1
+      },
+      {
+        "text": "As the price drops, demand goes up and supply goes down until equilibrium is reached",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A surplus occurs when the quantity supplied is greater than the quantity demanded, which forces producers to lower the price to sell off the excess stock.",
+      "It is a situation of 'excess supply' that happens when the price is above the equilibrium point. To correct it, sellers compete by cutting prices until demand rises and supply falls.",
+      "When producers have too many unsold goods, they create a surplus. This is solved by the price falling, which encourages buyers to step in and discourages future production.",
+      "A surplus is the amount of inventory left over when the price is too high. The natural market correction is a drop in price until the market clears."
+    ],
+    "incorrect_answers": [
+      "A surplus is when the quantity demanded is greater than the quantity supplied, causing the price to rise.",
+      "A surplus is a good thing for producers because it means they are making a very high profit.",
+      "A surplus is corrected when the government buys all the extra goods at the current high price.",
+      "A surplus only happens when there is no competition in the market at all."
+    ]
+  },
+  {
+    "question_id": 27,
+    "question_text": "Explain what a 'shortage' is and how the market corrects it.",
+    "key_points": [
+      {
+        "text": "A shortage (or excess demand) happens when the price is too low",
+        "weight": 1
+      },
+      {
+        "text": "Consumers want to buy more goods than producers are supplying",
+        "weight": 1
+      },
+      {
+        "text": "The market corrects it: Buyers compete with each other and are willing to pay more",
+        "weight": 1
+      },
+      {
+        "text": "As the price goes up, demand goes down and supply goes up until equilibrium is reached",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A shortage occurs when the quantity demanded is greater than the quantity supplied, which encourages sellers to raise the price until the market balances.",
+      "It is a situation of 'excess demand' that happens when the price is below the equilibrium point. To correct it, buyers compete, driving the price up until supply increases and demand decreases.",
+      "When consumers want to buy more than is available, they create a shortage. The market solves this when the high demand pushes the price up, slowing down buying and encouraging production.",
+      "A shortage is a lack of available stock because the price is too low. The natural market correction is an increase in price until the quantity supplied equals the quantity demanded."
+    ],
+    "incorrect_answers": [
+      "A shortage is when the quantity supplied is greater than the quantity demanded, causing the price to fall.",
+      "A shortage is solved when the government forces producers to lower their prices even further.",
+      "A shortage is a good thing for consumers because it means they can buy goods for very cheap.",
+      "A shortage only happens when the supply curve shifts to the right very quickly."
+    ]
+  },
+  {
+    "question_id": 28,
+    "question_text": "What are the four main market structures (market forms)?",
+    "key_points": [
+      {
+        "text": "Perfect Competition: Many small sellers, identical products (e.g., agricultural products)",
+        "weight": 1
+      },
+      {
+        "text": "Monopolistic Competition: Many sellers, slightly different products (e.g., restaurants, clothing stores)",
+        "weight": 1
+      },
+      {
+        "text": "Oligopoly: A few large sellers dominate the market (e.g., mobile phone providers)",
+        "weight": 1
+      },
+      {
+        "text": "Monopoly: Only one seller in the entire market (e.g., a local water company)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The four main types are **Perfect Competition** (many sellers, identical goods), **Monopolistic Competition** (many sellers, differentiated goods), **Oligopoly** (a few dominant firms), and **Monopoly** (a single seller).",
+      "The market forms are categorized by the number of sellers and the type of product: from the extreme of many small sellers in Perfect Competition to a single seller in a Monopoly.",
+      "The spectrum includes **Perfect Competition** (like farming), **Monopolistic Competition** (like retail stores), **Oligopoly** (like airlines), and **Monopoly** (like utility providers).",
+      "**Perfect Competition**, where companies are price takers, **Monopolistic Competition**, where companies differentiate their product, **Oligopoly**, characterized by interdependence, and **Monopoly**, where one firm controls the market."
+    ],
+    "incorrect_answers": [
+      "The four structures are **Free Market**, **Socialist Market**, **Command Economy**, and **Mixed Economy** (These are economic systems, not market structures).",
+      "The four forms are **Supply**, **Demand**, **Equilibrium**, and **Surplus** (These are market concepts, not structures).",
+      "The four structures are **Open Market**, **Closed Market**, **Physical Market**, and **Online Market** (These are classifications by access or location, not structure).",
+      "The four structures are **Limited Liability**, **Sole Proprietorship**, **Partnership**, and **Corporation** (These are business legal structures, not market structures)."
+    ]
+  },
+  {
+    "question_id": 29,
+    "question_text": "What is the key characteristic of a 'monopoly'?",
+    "key_points": [
+      {
+        "text": "There is only one single company that sells the product or service",
+        "weight": 1
+      },
+      {
+        "text": "The product has no close substitutes (no real alternatives)",
+        "weight": 1
+      },
+      {
+        "text": "The company has complete control over setting the price (they are a 'price maker')",
+        "weight": 1
+      },
+      {
+        "text": "It is almost impossible for new companies to start selling in that market (high barriers to entry)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The key characteristic is that a **single firm** is the only seller of a good or service that has **no close substitutes**, giving it total power to set the price.",
+      "A monopoly is defined by **one firm** and **high barriers to entry**, which means no other company can easily enter the market to compete.",
+      "The monopolist is a **price maker** because they face the entire market demand and have no direct competitors selling the same unique product.",
+      "It is an industry structure with **one seller** and **zero competition**, where the product is unique and new firms are blocked from entering."
+    ],
+    "incorrect_answers": [
+      "A monopoly is characterized by a few very large firms that must cooperate on price setting (This describes an Oligopoly).",
+      "The firm sells a product that is identical to many competitors' products, and they must accept the market price (This describes Perfect Competition).",
+      "The company must constantly lower its prices because many other firms sell a slightly differentiated version of the same good (This describes Monopolistic Competition).",
+      "The primary characteristic is that the government owns the only firm in the market and sets prices below cost to help consumers (This is a *state-owned* monopoly, but not the *key* characteristic of all monopolies)."
+    ]
+  },
+  {
+    "question_id": 30,
+    "question_text": "What is 'intertemporal exchange'?",
+    "key_points": [
+      {
+        "text": "It is an economic exchange that involves time",
+        "weight": 1
+      },
+      {
+        "text": "It means you are trading something now for something in the future",
+        "weight": 1
+      },
+      {
+        "text": "The most common examples are saving and borrowing (taking out a loan)",
+        "weight": 1
+      },
+      {
+        "text": "Saving means giving up money/spending now to get more money/spending later",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Intertemporal exchange** is an economic trade that occurs over a period of time, involving the exchange of value now for a value in the future, like borrowing or saving.",
+      "It is the decision to trade **present consumption** (spending money today) for **future consumption** (spending money later), which is the essence of saving or lending.",
+      "The most common form is taking a **loan** (receiving money now in exchange for a larger amount later) or **saving** (giving up money now for a larger amount later).",
+      "It is the act of exchanging goods or money from one point in time to another, using mechanisms like banks and interest rates to coordinate the trade."
+    ],
+    "incorrect_answers": [
+      "Intertemporal exchange is the trade of one product for another at the exact same moment in time (This is normal exchange or barter).",
+      "It is the trade of goods between two different countries that use different currencies.",
+      "Intertemporal exchange is the process of setting a fixed price for a product that will not change for one year.",
+      "It is an economic transaction that only occurs between two large governments, not between individuals or businesses."
+    ]
+  },
+  {
+    "question_id": 31,
+    "question_text": "What is the price that coordinates intertemporal exchange?",
+    "key_points": [
+      {
+        "text": "The 'interest rate'",
+        "weight": 1
+      },
+      {
+        "text": "Interest is the extra money you pay when you borrow money",
+        "weight": 1
+      },
+      {
+        "text": "Interest is the extra money you earn when you save money",
+        "weight": 1
+      },
+      {
+        "text": "It is the price paid for the use of money over time",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The **interest rate** is the price that coordinates intertemporal exchange, representing the cost of using someone else's money over a period of time.",
+      "It is the price that borrowers must pay to acquire present money and that savers receive for delaying their consumption until the future.",
+      "The **interest rate** balances the demand for borrowing (money now) with the supply of saving (money to be spent later).",
+      "It serves as the price for a time-based transaction: the extra amount that is earned or paid for the temporary use of capital."
+    ],
+    "incorrect_answers": [
+      "The price that coordinates this exchange is the **inflation rate**, which measures how prices change over time (Inflation affects real value, but is not the coordinating price).",
+      "The price is the **exchange rate**, which is the value of one currency compared to another (Exchange rate deals with different currencies, not time).",
+      "The price is the **stock price**, which measures the value of a share of ownership in a company (Stock price measures ownership, not the cost of money over time).",
+      "The price is the **opportunity cost** of the trade-off, which is not a single, measurable price in the market (Opportunity cost is a concept, not the market price)."
+    ]
+  },
+  {
+    "question_id": 32,
+    "question_text": "Explain the role of interest for households (families).",
+    "key_points": [
+      {
+        "text": "When they save money in a bank, the bank pays them interest (an income)",
+        "weight": 1
+      },
+      {
+        "text": "When they borrow money (like a mortgage for a house), they must pay interest (a cost)",
+        "weight": 1
+      },
+      {
+        "text": "High interest makes borrowing expensive and saving attractive",
+        "weight": 1
+      },
+      {
+        "text": "Low interest makes borrowing cheap and saving less attractive",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Interest acts as a **cost** on loans (mortgages, credit cards) for households, but it is also an **income** they earn from their savings accounts.",
+      "A rising interest rate increases the financial reward for saving and simultaneously makes the cost of taking out new loans, like for a house, more expensive.",
+      "Interest rates are critical for households as they determine the monthly payment on a loan and the returns they will receive for deferring consumption (saving).",
+      "High interest rates discourage immediate household spending that requires borrowing, while low rates encourage immediate consumption and make saving less appealing."
+    ],
+    "incorrect_answers": [
+      "Households only pay interest when they save money, and they never pay interest on loans (This is backwards).",
+      "Interest rates only affect businesses and the stock market, they have no impact on household saving or borrowing decisions.",
+      "The household's interest rate is determined by the inflation rate and does not change based on their saving or borrowing choices.",
+      "For households, interest is only a cost when they take out a loan, but they do not receive any interest income from savings accounts."
+    ]
+  },
+  {
+    "question_id": 33,
+    "question_text": "Explain the role of interest for businesses (firms).",
+    "key_points": [
+      {
+        "text": "If a business needs a loan to buy a new machine, interest is the cost of that loan",
+        "weight": 1
+      },
+      {
+        "text": "The interest rate affects whether a new investment (like a new factory) is profitable",
+        "weight": 1
+      },
+      {
+        "text": "Lower interest rates encourage businesses to borrow money and invest more",
+        "weight": 1
+      },
+      {
+        "text": "If interest rates rise, businesses may cancel or postpone their investment plans",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "For firms, the interest rate represents the **cost of capital** for borrowing money to finance investments like buying new equipment or building a new factory.",
+      "A low interest rate lowers a firm's borrowing costs, making more potential investment projects profitable and thus encouraging them to expand and invest more.",
+      "The interest rate acts as a hurdle: if the expected return from an investment is lower than the interest rate, the business will not borrow the money to fund the project.",
+      "High interest rates discourage business investment because they increase the repayment burden of loans, leading companies to postpone or cancel expansion plans."
+    ],
+    "incorrect_answers": [
+      "Interest rates only affect a business's sales revenue, they have no effect on their investment decisions or costs.",
+      "Businesses do not pay interest on loans; they simply pay back the principal amount when they make a profit.",
+      "Low interest rates encourage businesses to save all their money in the bank instead of spending it on investment.",
+      "The main role of interest for a business is to determine the wages they pay to their employees."
+    ]
+  },
+  {
+    "question_id": 34,
+    "question_text": "How does 'inflation' affect the real value of savings over time?",
+    "key_points": [
+      {
+        "text": "Inflation is when prices of goods and services go up generally",
+        "weight": 1
+      },
+      {
+        "text": "Inflation causes the purchasing power of your money to go down",
+        "weight": 1
+      },
+      {
+        "text": "If the bank's interest rate is lower than the inflation rate, your savings can buy less later on",
+        "weight": 1
+      },
+      {
+        "text": "So, inflation 'eats away' at the real value (what you can buy) of your saved money",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Inflation decreases the **purchasing power** of saved money, meaning that the same amount of money will buy fewer goods and services in the future.",
+      "If the nominal interest earned on savings is less than the inflation rate, the **real value** of the savings actually decreases over time.",
+      "Inflation **erodes** the real value of savings because the money saved loses its ability to purchase goods and services as prices rise.",
+      "A household's decision to save must account for inflation, as a high inflation rate can turn a seemingly positive interest return into a real-terms loss."
+    ],
+    "incorrect_answers": [
+      "Inflation increases the real value of savings because the numbers in the bank account get larger every year.",
+      "Inflation is always a good thing for savers because it means the bank must pay a higher interest rate.",
+      "Inflation only affects the price of luxury goods and has no effect on the value of money used for basic necessities.",
+      "The value of savings is only affected by the interest rate; the inflation rate has no impact on what money can buy later."
+    ]
+  },
+  {
+    "question_id": 35,
+    "question_text": "What is the concept of 'risk' in intertemporal exchange?",
+    "key_points": [
+      {
+        "text": "Risk is the chance that the future will not turn out as expected",
+        "weight": 1
+      },
+      {
+        "text": "For banks, the main risk is that a borrower will not pay back the loan (default risk)",
+        "weight": 1
+      },
+      {
+        "text": "The riskier the loan (e.g., lending to a new, small company), the higher the interest rate will be",
+        "weight": 1
+      },
+      {
+        "text": "Investors also face the risk that the value of their savings/investments will fall",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Risk** in intertemporal exchange primarily refers to the possibility of **default**, where a borrower fails to repay the loan at the agreed-upon future time.",
+      "The concept of risk dictates that the **interest rate** charged on a loan must be higher for riskier borrowers to compensate the lender for the chance of losing their money.",
+      "Risk is the uncertainty that the future value of an investment or loan repayment will be different from what was expected, which is a key factor in setting interest rates.",
+      "Lenders and investors face the danger that economic conditions (like a recession) or a specific borrower's failure will reduce or eliminate the future return they expected from their present money."
+    ],
+    "incorrect_answers": [
+      "Risk in intertemporal exchange is the chance that the government will print too much money, causing hyperinflation.",
+      "Risk only applies to savers who put their money in the bank; borrowers face no risk at all.",
+      "Risk means that the bank might forget to charge interest on the loan they gave out.",
+      "The higher the risk, the lower the interest rate a bank will charge, to encourage more people to borrow money."
+    ]
+  },
+  {
+    "question_id": 36,
+    "question_text": "Give an example of 'exchange over time' for the government.",
+    "key_points": [
+      {
+        "text": "When the government needs to pay for a big project now (like a new highway)",
+        "weight": 1
+      },
+      {
+        "text": "It often borrows money by selling 'government bonds' to investors (people and businesses)",
+        "weight": 1
+      },
+      {
+        "text": "This is a promise to pay the money back later, plus interest",
+        "weight": 1
+      },
+      {
+        "text": "This borrowing is an exchange: money now for a larger amount of money later",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A common example is **government borrowing**, where the state sells **bonds** to investors, receiving money now and promising to pay back a larger amount (principal plus interest) later.",
+      "When a government finances a large infrastructure project like a new rail line by issuing debt, it is engaging in an exchange of money today for a claim on future tax revenue.",
+      "The government trades a future stream of interest and principal payments for a lump sum of money today to fund its current expenditure.",
+      "**Issuing government bonds** is a clear example of intertemporal exchange, allowing the government to pull consumption forward from the future to the present."
+    ],
+    "incorrect_answers": [
+      "The government's only exchange over time is collecting taxes from citizens every year.",
+      "The government performs exchange over time by printing more money whenever it needs to pay for a project.",
+      "The government's intertemporal exchange involves trading military secrets with other countries for natural resources.",
+      "The government only engages in exchange over time when it sells its old buildings to private businesses."
+    ]
+  },
+  {
+    "question_id": 37,
+    "question_text": "Why do individuals often prefer consumption now over consumption later?",
+    "key_points": [
+      {
+        "text": "They have a 'time preference' or are simply impatient to enjoy things",
+        "weight": 1
+      },
+      {
+        "text": "They face uncertainty about the future (e.g., they might be ill or not alive later)",
+        "weight": 1
+      },
+      {
+        "text": "Money now can be invested and earn interest, making it worth more than the same amount later",
+        "weight": 1
+      },
+      {
+        "text": "This preference is why people need to be paid interest to save or delay spending",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Individuals have a **positive time preference**, meaning they value the immediate enjoyment of goods and services more highly than receiving them in the future.",
+      "The preference for present consumption is driven by the **uncertainty of the future**, as individuals cannot be sure they will be alive or able to enjoy the consumption later.",
+      "Money available now can be invested to earn a return (interest), which makes it more valuable than the same amount of money received at a later date.",
+      "Because of impatience and uncertainty, individuals must be compensated with **interest** (a reward) to persuade them to delay their current consumption and save."
+    ],
+    "incorrect_answers": [
+      "Individuals prefer future consumption over present consumption because the goods are always cheaper later.",
+      "People prefer consumption now because they know that inflation will make all goods too expensive to buy later.",
+      "This preference is due to the government forcing people to spend all their money before a certain date.",
+      "The preference for consumption now is caused by the interest rate being too low to make saving worthwhile."
+    ]
+  },
+  {
+    "question_id": 38,
+    "question_text": "Explain why cooperation can be more beneficial than individual action when interests conflict.",
+    "key_points": [
+      {
+        "text": "If everyone acts selfishly, the result is often worse for everyone (like the 'Prisoner's Dilemma')",
+        "weight": 1
+      },
+      {
+        "text": "Cooperation (like negotiating a deal) can lead to a 'win-win' result",
+        "weight": 1
+      },
+      {
+        "text": "It helps avoid negative outcomes like price wars between companies",
+        "weight": 1
+      },
+      {
+        "text": "Working together allows parties to share costs and benefits, achieving a bigger total gain",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "In situations of conflicting interests, individual selfish action often leads to a suboptimal outcome for all parties, a scenario that **cooperation** can avoid (e.g., the Prisoner's Dilemma).",
+      "Cooperation allows parties to **negotiate a joint strategy** that results in a **win-win** outcome, where the collective benefit is larger than the sum of individual gains.",
+      "By working together, businesses can avoid mutually destructive actions like **price wars** and instead share resources, reduce costs, or set industry standards.",
+      "Cooperation is beneficial because it enables the efficient sharing of costs and risks, allowing a group to achieve a much bigger overall gain than any single member could achieve alone."
+    ],
+    "incorrect_answers": [
+      "Individual action is always more beneficial because it ensures that everyone pays the maximum amount for the products they buy.",
+      "Cooperation is only beneficial when the individuals involved have no conflicting interests at all.",
+      "When interests conflict, cooperation always leads to a 'lose-lose' situation, while individual action guarantees a 'win-win'.",
+      "Cooperation is necessary only to ensure that the total amount of tax collected by the government is maximized."
+    ]
+  },
+  {
+    "question_id": 39,
+    "question_text": "What is a 'collective good' (or public good)?",
+    "key_points": [
+      {
+        "text": "A good that is 'non-excludable' (you cannot stop people who haven't paid from using it)",
+        "weight": 1
+      },
+      {
+        "text": "A good that is 'non-rivalrous' (one person using it does not stop others from using it)",
+        "weight": 1
+      },
+      {
+        "text": "Examples are national defence, public street lighting, or clean air",
+        "weight": 1
+      },
+      {
+        "text": "These goods are usually provided by the government and paid for with taxes",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A **collective good** is characterized by being **non-excludable** (difficult to stop non-payers from consuming it) and **non-rivalrous** (one person's use does not diminish another's use).",
+      "Public goods, like a public fireworks display or national defense, cannot be profitably provided by private companies because non-payers cannot be easily excluded.",
+      "Because consuming the good does not reduce its availability to others (non-rivalrous), and everyone benefits regardless of payment (non-excludable), these goods are typically funded by taxes.",
+      "It is a good where the marginal cost of providing it to an additional person is zero (non-rivalrous) and the supplier cannot charge a price for its consumption (non-excludable)."
+    ],
+    "incorrect_answers": [
+      "A collective good is any product that can be bought by more than one person at the same time (This describes a normal, rivalrous good).",
+      "A collective good is a good that is only provided by private companies and is always very expensive.",
+      "A collective good is one that is **excludable** but **rivalrous**, like a slice of pizza.",
+      "A collective good is a good that is exclusively used by the government, and the public can never access it."
+    ]
+  },
+  {
+    "question_id": 40,
+    "question_text": "What is the 'free-rider problem'?",
+    "key_points": [
+      {
+        "text": "It happens with collective goods because they are non-excludable",
+        "weight": 1
+      },
+      {
+        "text": "Individuals can benefit from the good or service without paying for it (they 'free-ride')",
+        "weight": 1
+      },
+      {
+        "text": "If everyone free-rides, no one will pay, and the good will not be produced",
+        "weight": 1
+      },
+      {
+        "text": "This problem often leads to the government having to force people to pay (via taxes) to provide the good",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The **free-rider problem** is the tendency of individuals to rely on others to pay for a collective good because they can still enjoy the benefits even without contributing.",
+      "It arises because collective goods are **non-excludable**: once the good is provided, there is no way to prevent non-payers from consuming it.",
+      "If too many people choose to free-ride, the collective good will be severely under-provided or not provided at all, leading to market failure.",
+      "For example, if a neighbor doesn't pay for the shared street light but still uses the light, they are free-riding, which undermines the funding for the light."
+    ],
+    "incorrect_answers": [
+      "The free-rider problem is when a consumer is forced to pay a very high price for a private good.",
+      "The free-rider problem is when a consumer is prevented from buying a product even though they have paid for it.",
+      "It is a problem that occurs when a public good is **rivalrous** but **excludable**, like a toll road.",
+      "The free-rider problem is when a government provides too many collective goods, making the taxes too low."
+    ]
+  },
+  {
+    "question_id": 41,
+    "question_text": "How can 'coercion' (centralization) resolve the free-rider problem?",
+    "key_points": [
+      {
+        "text": "Coercion means the government uses force or rules to make people act a certain way",
+        "weight": 1
+      },
+      {
+        "text": "The government enforces payment through mandatory taxes for public services",
+        "weight": 1
+      },
+      {
+        "text": "This forces everyone to contribute, stopping people from free-riding",
+        "weight": 1
+      },
+      {
+        "text": "It can also be used to enforce rules, like mandatory vaccination or environmental regulations",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Coercion**, typically through the government, resolves the problem by enforcing **mandatory taxes**, which forces all citizens to contribute to the cost of public goods.",
+      "By centralizing the provision and funding of the collective good, the government eliminates the **voluntary** payment option, thus stopping free-riding.",
+      "The government uses its authority to enforce rules, such as mandatory fees or environmental regulations, ensuring that all parties internalize the costs of their actions.",
+      "It is the use of non-voluntary means (rules, laws, taxes) to ensure collective contribution, as opposed to relying on individual, voluntary choices."
+    ],
+    "incorrect_answers": [
+      "Coercion resolves the free-rider problem by making the public good excludable so that people who do not pay are locked out.",
+      "Coercion means the government asks very nicely for everyone to voluntarily pay for the public good.",
+      "Coercion is when the government gives free collective goods to people who choose to pay taxes.",
+      "Coercion resolves the problem by making the collective good more expensive so that fewer people want to use it."
+    ]
+  },
+  {
+    "question_id": 42,
+    "question_text": "Give an example of cooperation between businesses.",
+    "key_points": [
+      {
+        "text": "A 'Joint Venture': Two or more companies work together on a specific project or product",
+        "weight": 1
+      },
+      {
+        "text": "Lobbying: Companies in the same industry cooperate to influence new government laws",
+        "weight": 1
+      },
+      {
+        "text": "Creating Industry Standards: They agree on common sizes or quality rules for products",
+        "weight": 1
+      },
+      {
+        "text": "Forming a Cartel (often illegal): Secretly agreeing to fix prices or limit supply to maximize profit",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A **Joint Venture** is a form of cooperation where two or more companies pool their resources to achieve a common, specific goal, such as developing a new product.",
+      "Businesses cooperate by forming **industry associations** to lobby the government to pass laws that are beneficial to their whole sector.",
+      "Firms often work together to establish **common industry standards** (e.g., USB-C chargers) that benefit all of them and make it easier for consumers.",
+      "A less desirable example of cooperation is forming a **cartel**, which is an (often illegal) agreement between rivals to control prices or limit production."
+    ],
+    "incorrect_answers": [
+      "Cooperation occurs when two businesses constantly compete by lowering their prices against each other.",
+      "Cooperation happens when one large company buys out all of its smaller competitors.",
+      "Businesses cooperate when they pay for individual advertising campaigns that do not mention any other firms.",
+      "Cooperation is when a company lowers its wages to force its workers to leave and find a job at a competitor."
+    ]
+  },
+  {
+    "question_id": 43,
+    "question_text": "What is the purpose of a 'collective labor agreement' (CAO in Dutch)?",
+    "key_points": [
+      {
+        "text": "It is a contract that covers all the workers in a whole sector or company (not just one person)",
+        "weight": 1
+      },
+      {
+        "text": "It is the result of negotiation and cooperation between trade unions (workers) and employers' organizations",
+        "weight": 1
+      },
+      {
+        "text": "It sets the rules for working conditions, like wages, holidays, and working hours",
+        "weight": 1
+      },
+      {
+        "text": "It ensures that all workers in that group have at least the same minimum terms of employment",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The purpose of a **Collective Labor Agreement (CAO)** is to establish standard working conditions, including wages and holidays, for all employees in a specific sector or company.",
+      "It is the formalized outcome of **cooperation** and negotiation between organized labor (unions) and organized employers to set industry-wide or company-wide employment terms.",
+      "A CAO ensures that all covered workers receive at least a certain set of minimum employment benefits, promoting fairness and stability in the labor market.",
+      "The agreement serves as a single contract that governs the employment of an entire group of workers, preventing employers from negotiating individually lower terms with each employee."
+    ],
+    "incorrect_answers": [
+      "The purpose of a CAO is to set the maximum price that companies are allowed to charge consumers for their products.",
+      "A CAO is a contract that only applies to a single, high-level manager at a company, not to the regular workers.",
+      "The CAO is a document that lists all the customers who have bought products from a specific sector in the last year.",
+      "The purpose of a CAO is to make sure that the government does not collect any taxes from the workers."
+    ]
+  },
+  {
+    "question_id": 44,
+    "question_text": "What is an 'externality'?",
+    "key_points": [
+      {
+        "text": "An externality is a side effect of an economic activity (production or consumption)",
+        "weight": 1
+      },
+      {
+        "text": "This side effect affects a third party (someone who is not the buyer or seller)",
+        "weight": 1
+      },
+      {
+        "text": "The cost or benefit is not included in the market price of the good or service",
+        "weight": 1
+      },
+      {
+        "text": "Examples: pollution (negative) or a well-maintained garden next door (positive)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "An **externality** is a consequence (cost or benefit) of a consumption or production activity that spills over onto a **third party** who was not involved in the original market transaction.",
+      "It is an effect on others that is not reflected in the market price of the good or service, leading to a difference between private costs/benefits and social costs/benefits.",
+      "The definition is a side effect of a transaction that imposes an uncompensated **cost** (negative externality like pollution) or provides an uncompensated **benefit** (positive externality like public health) to an external party.",
+      "It is a cost or benefit that is **external** to the market and is therefore not factored into the decision-making of the original buyer or seller."
+    ],
+    "incorrect_answers": [
+      "An externality is the normal cost of production that the company has to pay, like the cost of electricity.",
+      "An externality is the profit that a company makes when it sells its product to a consumer.",
+      "An externality is a government rule that forces the buyer and seller to agree on a fixed price for the transaction.",
+      "An externality is a benefit or cost that only affects the buyer and the seller, not any third parties."
+    ]
+  },
+  {
+    "question_id": 45,
+    "question_text": "Give an example of a negative externality.",
+    "key_points": [
+      {
+        "text": "Factory Pollution: A factory dumps waste into a river, damaging the environment for local people",
+        "weight": 1
+      },
+      {
+        "text": "Traffic Jam: People driving their cars cause noise, air pollution, and time loss for others",
+        "weight": 1
+      },
+      {
+        "text": "Loud Music: Someone playing very loud music late at night disturbs their neighbors' sleep",
+        "weight": 1
+      },
+      {
+        "text": "Overfishing: One company overfishing damages the fish stock for everyone else",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Factory pollution** that damages the air quality for nearby residents is a classic negative externality because the cost of the dirty air is not paid for by the factory or the consumers of its goods.",
+      "The noise and congestion created by a motorist's driving is a negative externality because the driver does not pay the cost of the disturbance it imposes on other people.",
+      "A neighbor playing extremely **loud music** is a negative consumption externality because it imposes the cost of sleeplessness on the person next door without compensation.",
+      "**Overfishing** by one commercial vessel is a negative externality because it depletes the shared resource (fish stock) for all other fishermen, who are third parties."
+    ],
+    "incorrect_answers": [
+      "The profit a local bakery makes when selling a loaf of bread to a consumer (This is a private benefit).",
+      "The beautiful garden a neighbor plants, increasing the home value of all houses nearby (This is a positive externality).",
+      "The cost a company pays to buy new machines for its factory (This is a private production cost).",
+      "The money a consumer saves by buying a product when it is on sale (This is a private benefit)."
+    ]
+  },
+  {
+    "question_id": 46,
+    "question_text": "How can government intervention (centralization) address a negative externality?",
+    "key_points": [
+      {
+        "text": "Taxes: The government can put a 'Pigouvian tax' on the activity (e.g., a tax on carbon emissions)",
+        "weight": 1
+      },
+      {
+        "text": "Regulations: The government can set strict rules or limits (e.g., how much pollution a factory can produce)",
+        "weight": 1
+      },
+      {
+        "text": "Bans: In extreme cases, they can ban the harmful product or activity completely",
+        "weight": 1
+      },
+      {
+        "text": "Subsidies: They can give money to encourage people to use cleaner alternatives instead (e.g., electric cars)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The government can impose a **Pigouvian tax** on the harmful activity, forcing the producer to internalize the external cost and reduce the activity (e.g., a carbon tax).",
+      "It can use **regulations** to set maximum legal limits on the amount of negative external effects (like maximum noise levels or pollution emissions) a firm is allowed to generate.",
+      "Governments can offer **subsidies** to encourage the use of cleaner technologies or alternatives, which indirectly reduces the negative externality by shifting market demand.",
+      "Intervention can involve **outright bans** on certain extremely harmful goods or production methods, or the creation of tradable **pollution permits**."
+    ],
+    "incorrect_answers": [
+      "The government addresses externalities by making the public good non-rivalrous and non-excludable.",
+      "The government addresses externalities by removing all taxes and regulations on the polluting company.",
+      "The government solves the problem by forcing all third parties to move away from the polluting area.",
+      "Government intervention means forcing the company to pay the market price for the externality's cost."
+    ]
+  },
+  {
+    "question_id": 47,
+    "question_text": "What is a 'budget line' (or budget constraint) for a household?",
+    "key_points": [
+      {
+        "text": "It is a line on a graph that shows all the possible combinations of two goods you can buy",
+        "weight": 1
+      },
+      {
+        "text": "It is based on the total amount of money (income) you have to spend",
+        "weight": 1
+      },
+      {
+        "text": "The slope of the line shows the trade-off (opportunity cost) between the two goods",
+        "weight": 1
+      },
+      {
+        "text": "Any point outside the line is too expensive, and any point inside the line means you haven't spent all your money",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The **budget line** is a graphical representation that illustrates the various combinations of two goods a consumer can purchase given a fixed amount of income and the prices of the goods.",
+      "It represents the limit of what a consumer can afford to buy, showing the trade-off where spending more on one good necessitates spending less on the other.",
+      "The **slope** of the budget line is a representation of the **opportunity cost** of one good in terms of the other, determined by the ratio of their prices.",
+      "Any bundle of goods that lies on or inside the budget line is affordable, but any point outside the line is unattainable with the current income."
+    ],
+    "incorrect_answers": [
+      "The budget line shows the maximum amount of goods a consumer would like to buy, regardless of their income.",
+      "The budget line shows all the combinations of goods that can be produced by a company using its available resources (This is the Production Possibility Frontier).",
+      "The budget line represents the amount of money a person saves over a period of time, without any spending.",
+      "The budget line's slope is determined by the total amount of taxes the household has to pay on their income."
+    ]
+  },
+  {
+    "question_id": 48,
+    "question_text": "How does an increase in income affect a consumer's budget line?",
+    "key_points": [
+      {
+        "text": "If your income goes up, you have more money to spend in total",
+        "weight": 1
+      },
+      {
+        "text": "The budget line will shift outwards, away from the origin",
+        "weight": 1
+      },
+      {
+        "text": "This means you can afford to buy more of both goods than before",
+        "weight": 1
+      },
+      {
+        "text": "The slope of the line (the relative prices) will usually stay the same, as prices haven't changed",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "An increase in income causes the entire **budget line to shift outwards** (parallel to the original line) because the consumer can now afford more of both goods.",
+      "The consumer's total purchasing power increases, expanding the set of affordable combinations of goods.",
+      "Because the prices of the goods have not changed, the **slope** of the budget line remains the same, reflecting an unchanged **opportunity cost** between the two goods.",
+      "The outward shift means that any point that was previously unattainable is now within the consumer's means."
+    ],
+    "incorrect_answers": [
+      "The budget line will rotate inwards, pivoting on the axis of the less expensive good.",
+      "The slope of the budget line will become steeper because the consumer now has a greater incentive to save.",
+      "An increase in income causes the budget line to shift inwards, closer to the origin.",
+      "The budget line does not shift, but the consumer's preferred point moves along the existing line."
+    ]
+  },
+  {
+    "question_id": 49,
+    "question_text": "What is the purpose of 'financial key figures' (financial ratios) for a business?",
+    "key_points": [
+      {
+        "text": "They are simple calculations (like a percentage) used to understand a company's financial health",
+        "weight": 1
+      },
+      {
+        "text": "They help check if a company is profitable (making money)",
+        "weight": 1
+      },
+      {
+        "text": "They help check if a company is liquid (can pay its short-term bills)",
+        "weight": 1
+      },
+      {
+        "text": "They are used by investors and banks to decide whether to lend money or buy shares in the company",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Financial ratios are used to evaluate a company's **profitability**, showing how effectively the business is generating earnings from its assets and revenue.",
+      "They help assess a company's **liquidity** (e.g., the Current Ratio), which is its ability to meet short-term debts and obligations.",
+      "They are crucial tools for **investors, banks, and creditors** to analyze a company's financial health and make informed decisions about lending money or buying stock.",
+      "These ratios simplify complex financial data into digestible figures, enabling benchmarking against competitors and analyzing trends over time."
+    ],
+    "incorrect_answers": [
+      "The sole purpose of financial key figures is to determine the exact salaries of the company's permanent employees.",
+      "Financial key figures are used exclusively by the government to calculate the total amount of sales tax owed by the company.",
+      "They measure the physical productivity of the factory (e.g., how many items are made per hour), not the money-based performance of the company.",
+      "They are only used to forecast the company's demand for raw materials in the coming five years."
+    ]
+  },
+  {
+    "question_id": 50,
+    "question_text": "What is a 'subsidy' and how does it affect the market?",
+    "key_points": [
+      {
+        "text": "A subsidy is a sum of money given by the government to a producer or consumer",
+        "weight": 1
+      },
+      {
+        "text": "The goal is usually to encourage the production or consumption of a certain good",
+        "weight": 1
+      },
+      {
+        "text": "It lowers the cost of production for the supplier (the supply curve shifts right)",
+        "weight": 1
+      },
+      {
+        "text": "The result is a lower market price for the consumer and a larger quantity of the good being sold",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A **subsidy** is a direct or indirect financial contribution from the government to encourage the **production or consumption** of a specific good or service.",
+      "When given to producers, a subsidy **reduces their cost of production**, causing the market supply curve to shift **outwards** (to the right). ",
+      "The ultimate market effect is a **lower equilibrium price** for consumers and a **higher equilibrium quantity** of the good being traded.",
+      "Subsidies are often used to correct a **positive externality** or support industries deemed strategically important."
+    ],
+    "incorrect_answers": [
+      "A subsidy is a tax imposed on producers, which raises their cost and shifts the supply curve inwards.",
+      "A subsidy is money collected from consumers and given to the government to reduce the overall market quantity.",
+      "The result of a subsidy is always a higher market price and a lower quantity sold.",
+      "A subsidy is money paid by the business to the government as a penalty for over-producing goods."
+    ]
+  },
+  {
+    "question_id": 51,
+    "question_text": "Define 'price elasticity of demand' ($E_d$).",
+    "key_points": [
+      {
+        "text": "It measures how much the quantity demanded changes",
+        "weight": 1
+      },
+      {
+        "text": "When the price of the good changes (how sensitive buyers are to price changes)",
+        "weight": 1
+      },
+      {
+        "text": "If a small price change leads to a large quantity change, demand is 'elastic'",
+        "weight": 1
+      },
+      {
+        "text": "If a large price change leads to only a small quantity change, demand is 'inelastic'",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Price elasticity of demand ($E_d$)** measures the responsiveness of the **quantity demanded** to a change in the product's **price**.",
+      "It is calculated as the percentage change in quantity demanded divided by the percentage change in price: $E_d = \\frac{\\text{percent change in } Q_d}{\\text{percent change in } P}$.",
+      "If the elasticity value is greater than 1, demand is considered **elastic**, meaning consumers are highly sensitive to price changes.",
+      "If the elasticity value is less than 1, demand is considered **inelastic**, meaning a price change results in a proportionally smaller change in quantity demanded."
+    ],
+    "incorrect_answers": [
+      "It measures how much the total revenue changes when the production cost changes.",
+      "It measures how much the price changes when the quantity demanded changes.",
+      "It measures the responsiveness of the quantity supplied to a change in consumer income.",
+      "It measures the difference between the supply curve and the demand curve in a specific market."
+    ]
+  },
+  {
+    "question_id": 52,
+    "question_text": "If a small price increase on a necessary medicine causes very few people to stop buying it, is the demand elastic or inelastic?",
+    "key_points": [
+      {
+        "text": "The demand is 'inelastic'",
+        "weight": 1
+      },
+      {
+        "text": "This means the change in quantity demanded is proportionally less than the price change",
+        "weight": 1
+      },
+      {
+        "text": "Medicine is often inelastic because it is a necessity (people need it regardless of price)",
+        "weight": 1
+      },
+      {
+        "text": "For inelastic goods, a price increase will increase the total revenue for the seller",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The demand is **inelastic** because the percentage change in quantity demanded (very few people stop buying) is less than the percentage change in price (a small price increase).",
+      "Demand for a necessary medicine is typically inelastic because it is a **necessity** with few to no close substitutes, meaning buyers must purchase it regardless of price.",
+      "For this medicine, the elasticity value $\\left(E_d\\right)$ would be between 0 and 1.",
+      "For any good with inelastic demand, a seller can successfully raise the price to **increase their total revenue**."
+    ],
+    "incorrect_answers": [
+      "The demand is elastic because a small price change causes a massive change in total revenue.",
+      "The demand is perfectly elastic, meaning that any price increase would cause demand to drop to zero.",
+      "The demand is unit elastic, meaning the change in quantity is exactly proportional to the price change.",
+      "The demand for the medicine is perfectly elastic because it is a necessity."
+    ]
+  },
+  {
+    "question_id": 53,
+    "question_text": "If a firm operates in a perfectly competitive market, what is its relationship with the market price?",
+    "key_points": [
+      {
+        "text": "The firm is a 'price taker'",
+        "weight": 1
+      },
+      {
+        "text": "They must accept the price set by the forces of total market supply and demand",
+        "weight": 1
+      },
+      {
+        "text": "If they charge a slightly higher price, customers will buy from another seller (since products are identical)",
+        "weight": 1
+      },
+      {
+        "text": "They have no individual control over the market price",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The firm is a **price taker**; it must accept the price determined by the overall market forces of supply and demand.",
+      "Since the products are identical (**homogeneous**), if the firm charges anything higher than the market price, its quantity demanded will immediately fall to zero.",
+      "The demand curve facing the individual perfectly competitive firm is **perfectly elastic** (horizontal) at the market price.",
+      "The firm has **no individual control** over the market price because it is just one of many small sellers."
+    ],
+    "incorrect_answers": [
+      "The firm is a **price maker**; it can charge any price it chooses without losing customers.",
+      "The firm must always charge a lower price than its competitors to attract enough customers to buy its products.",
+      "The demand curve facing the firm is vertical, meaning a price change does not affect the quantity sold.",
+      "The firm sets the market price by forming a cartel with the other firms in the industry."
+    ]
+  },
+  {
+    "question_id": 54,
+    "question_text": "What is 'disposable income' for a household?",
+    "key_points": [
+      {
+        "text": "It is the money a household has left after all taxes and social contributions are paid",
+        "weight": 1
+      },
+      {
+        "text": "It is the actual amount of money that is available to spend or save",
+        "weight": 1
+      },
+      {
+        "text": "It is an important factor that determines how much a household can consume",
+        "weight": 1
+      },
+      {
+        "text": "Disposable Income = Gross Income - Taxes - Social Contributions",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Disposable income** is the amount of money a household has **left over** after paying all mandatory deductions, specifically **income taxes and social security contributions**.",
+      "It represents the total money available for the household to allocate between **consumption** (spending) and **saving**.",
+      "It is calculated as the household's **Gross Income** minus all direct taxes and non-discretionary payments to the government.",
+      "It is the key determinant of a household's spending power and is often used by economists to predict consumption levels."
+    ],
+    "incorrect_answers": [
+      "Disposable income is the money a household has left after paying their rent and all monthly utility bills.",
+      "It is the household's total income **before** any taxes or social contributions are deducted.",
+      "It is the income earned only from investments (stocks and bonds), excluding wages and salaries.",
+      "Disposable income is the money a household saves every year in their bank account."
+    ]
+  },
+  {
+    "question_id": 55,
+    "question_text": "How does a decrease in the interest rate generally affect borrowing and saving behavior?",
+    "key_points": [
+      {
+        "text": "Borrowing: It becomes cheaper to take out loans (e.g., mortgages or personal loans)",
+        "weight": 1
+      },
+      {
+        "text": "This encourages households and businesses to borrow and spend/invest more",
+        "weight": 1
+      },
+      {
+        "text": "Saving: The return (interest earned) on savings in the bank becomes lower",
+        "weight": 1
+      },
+      {
+        "text": "This makes people less motivated to save their money",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A decrease in the interest rate makes borrowing **cheaper** for households (e.g., lower mortgage payments) and businesses, leading to an **increase in borrowing and investment**.",
+      "A lower interest rate reduces the reward for **saving**, making consumers less inclined to save their money and more likely to spend it now.",
+      "The cost of intertemporal exchange (using money now instead of later) decreases, leading to an overall **increase in current consumption** and a decrease in future consumption.",
+      "For businesses, lower interest rates decrease the cost of capital, encouraging them to take out loans for major investment projects like new equipment or factories."
+    ],
+    "incorrect_answers": [
+      "A decrease in the interest rate makes borrowing more expensive and saving more attractive.",
+      "A lower interest rate causes people to save more money in the bank because they can buy cheaper bonds.",
+      "The interest rate decrease affects government spending but has no effect on individual household saving or borrowing decisions.",
+      "A decrease in the interest rate causes both borrowing and saving to decrease because prices are expected to fall."
+    ]
+  },
+  {
+    "question_id": 56,
+    "question_text": "What is a 'collective action problem'?",
+    "key_points": [
+      {
+        "text": "A situation where all individuals would be better off if they all cooperated",
+        "weight": 1
+      },
+      {
+        "text": "But each individual has a strong incentive to 'cheat' or act only in their own interest",
+        "weight": 1
+      },
+      {
+        "text": "The result of everyone acting selfishly is a worse outcome for the entire group",
+        "weight": 1
+      },
+      {
+        "text": "This is why rules or central authority (like government) are sometimes needed to force cooperation",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A **collective action problem** is a situation where individuals acting rationally in their own self-interest leads to a **suboptimal or worse outcome** for the group as a whole.",
+      "It occurs because each individual has a powerful **incentive to defect** (cheat) from the cooperative strategy to maximize their personal gain.",
+      "A classic example is the **tragedy of the commons** or the **Prisoner's Dilemma**, where a lack of cooperation hurts everyone.",
+      "This problem often requires a form of **centralized authority or coercion** (like government rules or laws) to enforce cooperation and achieve the best collective outcome."
+    ],
+    "incorrect_answers": [
+      "It is a situation where one person acts selfishly, and the result is the best possible outcome for everyone else in the group.",
+      "The problem arises when individuals cooperate perfectly, but the government decides to punish them anyway.",
+      "A collective action problem is when two companies decide to share costs and resources to maximize their total profit.",
+      "It is a situation where only one individual has an interest in the outcome, and everyone else is completely indifferent."
+    ]
+  },
+  {
+    "question_id": 57,
+    "question_text": "Give an example of a policy choice involving a trade-off due to scarcity (Domain B).",
+    "key_points": [
+      {
+        "text": "Choice: The government has a limited budget for public services",
+        "weight": 1
+      },
+      {
+        "text": "Action: Deciding to spend more money on better education for students",
+        "weight": 1
+      },
+      {
+        "text": "Trade-off: This means less money is available to spend on improving roads or healthcare",
+        "weight": 1
+      },
+      {
+        "text": "Scarcity of money forces the choice: more of one thing means less of another",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "Due to the **scarcity of government funds** (a limited budget), a decision to **increase spending on military defense** results in a trade-off: the **opportunity cost** is the reduced spending on healthcare or public education.",
+      "The trade-off is forced by the fundamental economic problem of **scarcity**, where resources are limited and choices must be made about 'what to produce'.",
+      "When the central bank chooses to **raise interest rates to fight inflation**, the trade-off is often a reduction in economic growth and an increase in unemployment.",
+      "A policy choice to allocate more productive land for **conservation** (e.g., a nature reserve) means a trade-off is made against **agricultural production** (fewer crops can be grown)."
+    ],
+    "incorrect_answers": [
+      "The policy choice is to raise taxes, and the trade-off is that everyone receives a higher income.",
+      "The trade-off is that the government must spend more money on both education and healthcare simultaneously because the budget is unlimited.",
+      "The policy choice is made without any trade-off because the money spent on education is automatically repaid by the students later.",
+      "The government chooses to spend less on public services, and the trade-off is that companies must pay lower wages to their employees."
+    ]
+  },
+  {
+    "question_id": 58,
+    "question_text": "What is the main goal of a profit-maximizing firm?",
+    "key_points": [
+      {
+        "text": "To make its total profit as large as possible",
+        "weight": 1
+      },
+      {
+        "text": "Profit is the difference between the money they earn (Total Revenue) and the money they spend (Total Cost)",
+        "weight": 1
+      },
+      {
+        "text": "They achieve this by producing the quantity where the extra money earned from the last product equals the extra cost of making it ($MR = MC$)",
+        "weight": 1
+      },
+      {
+        "text": "This goal guides all their major decisions, like what to produce and how much to charge",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "The main goal is to maximize **total economic profit**, which is the difference between **Total Revenue** and **Total Cost** $\\left(\\pi = TR - TC\\right)$.",
+      "A firm maximizes profit by producing the output quantity where **Marginal Revenue (MR)**, the extra revenue from one more unit, exactly equals **Marginal Cost (MC)**, the extra cost of one more unit $\\left(MR = MC\\right)$.",
+      "This fundamental goal directs all major business decisions, including the level of output to produce, the price to charge, and the resources to employ.",
+      "The firm will continue to produce as long as the extra revenue it earns from a unit $\\left(MR\\right)$ is greater than the extra cost to produce it $\\left(MC\\right)$."
+    ],
+    "incorrect_answers": [
+      "The main goal is to maximize the total amount of money paid in taxes to the government.",
+      "The main goal is to produce the highest possible quantity of goods, regardless of the costs incurred.",
+      "The main goal is to minimize the total costs of production, regardless of how much revenue is earned.",
+      "A firm maximizes profit by setting the total revenue equal to the fixed costs of the business."
+    ]
+  },
+  {
+    "question_id": 59,
+    "question_text": "What are 'fixed costs' for a business?",
+    "key_points": [
+      {
+        "text": "Costs that do not change, no matter how much the company produces or sells (in the short run)",
+        "weight": 1
+      },
+      {
+        "text": "They must be paid even if the company produces nothing",
+        "weight": 1
+      },
+      {
+        "text": "Examples include the monthly rent for a building or the salary of a permanent manager",
+        "weight": 1
+      },
+      {
+        "text": "Fixed Costs + Variable Costs = Total Costs",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Fixed costs** are expenses that **do not vary** with the level of output produced in the short run and must be paid even if production is zero.",
+      "Examples of fixed costs include the **rent** paid for factory space, the **insurance premiums**, or the annual **salary** of key non-production staff.",
+      "In the short run, fixed costs are unavoidable, and they are subtracted from a firm's total revenue to determine its profit.",
+      "They represent the costs associated with the firm's fixed factors of production (like its capital and land)."
+    ],
+    "incorrect_answers": [
+      "Fixed costs are the total cost of raw materials used in the production process.",
+      "Fixed costs only appear when the company's production level is extremely high.",
+      "Fixed costs are the costs that change directly and proportionally with the amount of labor used.",
+      "Fixed costs are costs that can be instantly changed or eliminated by the firm in the short run."
+    ]
+  },
+  {
+    "question_id": 60,
+    "question_text": "What are 'variable costs' for a business?",
+    "key_points": [
+      {
+        "text": "Costs that change directly with the amount of goods or services produced (the output)",
+        "weight": 1
+      },
+      {
+        "text": "If production increases, these costs go up; if production stops, these costs disappear",
+        "weight": 1
+      },
+      {
+        "text": "Examples include the cost of raw materials, hourly wages for production workers, and electricity used by machines",
+        "weight": 1
+      },
+      {
+        "text": "They are zero when the production level is zero",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Variable costs** are expenses that **change directly** with the quantity of output produced; they increase when production increases and decrease when production decreases.",
+      "Examples include the cost of **raw materials**, the **hourly wages** paid to production line workers, and the energy costs directly tied to machine operation.",
+      "When the business stops production entirely (output is zero), the total variable cost is also **zero**.",
+      "They represent the costs associated with the firm's variable factors of production, such as labor and materials."
+    ],
+    "incorrect_answers": [
+      "Variable costs are costs that only change once every ten years, regardless of the production level.",
+      "Variable costs must be paid even if the company produces nothing at all.",
+      "Variable costs include the monthly rent for the building and the yearly insurance payment.",
+      "Variable costs are the difference between the profit and the total revenue of the business."
+    ]
+  },
+  {
+    "question_id": 61,
+    "question_text": "How is 'productivity' measured in economics?",
+    "key_points": [
+      {
+        "text": "It is a measure of how efficiently goods and services are produced",
+        "weight": 1
+      },
+      {
+        "text": "It is calculated by taking the total output (what is made)",
+        "weight": 1
+      },
+      {
+        "text": "And dividing it by the amount of input used (like labor or capital)",
+        "weight": 1
+      },
+      {
+        "text": "Example: Output per hour worked (Labor Productivity)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Productivity** is measured by calculating the ratio of **total output** (goods and services produced) to the **inputs** used (resources like labor, capital, or raw materials).",
+      "A common measure is **Labor Productivity**, which is the total output produced divided by the number of workers or total hours worked.",
+      "It shows how **efficiently** resources are being converted into goods and services; higher productivity means more output from the same inputs.",
+      "The formula is often expressed as: $\\text{Productivity} = \\frac{\\text{Total Output}}{\\text{Quantity of Input}}$. "
+    ],
+    "incorrect_answers": [
+      "Productivity is measured by the total amount of profit a company makes in a single year.",
+      "Productivity is measured by the change in the market price of the good over time.",
+      "Productivity is calculated by dividing the total number of workers by the total number of machines used.",
+      "Productivity is the measure of how many customers buy the product in a given month."
+    ]
+  },
+  {
+    "question_id": 62,
+    "question_text": "Why is 'specialization' important for a country's welfare?",
+    "key_points": [
+      {
+        "text": "Specialization means a country focuses on producing the goods it is best at (comparative advantage)",
+        "weight": 1
+      },
+      {
+        "text": "This leads to increased efficiency and lower production costs for those goods",
+        "weight": 1
+      },
+      {
+        "text": "By trading these goods with other countries, the country can consume a greater variety of goods",
+        "weight": 1
+      },
+      {
+        "text": "Overall, it increases the total wealth and standard of living for the country's people",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Specialization** allows a country to focus its resources on producing goods where it has a **comparative advantage**, maximizing efficiency and lowering production costs.",
+      "By specializing and engaging in **trade**, a country can consume a bundle of goods that is outside its own production possibilities, thus increasing the overall welfare of its citizens.",
+      "It promotes higher **productivity** because workers gain expertise and economies of scale can be achieved in the production of the specialized goods.",
+      "The global result of specialization and trade is an **increase in total world output** and a higher standard of living across trading nations."
+    ],
+    "incorrect_answers": [
+      "Specialization is important because it forces a country to produce everything it needs itself, reducing reliance on trade.",
+      "Specialization leads to higher production costs because workers become bored with repetitive tasks.",
+      "Specialization is only important for very small companies and has no effect on a country's overall economic welfare.",
+      "Specialization ensures that all workers in the country are paid exactly the same high wage, regardless of their job."
+    ]
+  },
+  {
+    "question_id": 63,
+    "question_text": "What is a 'price floor' and what is its potential consequence?",
+    "key_points": [
+      {
+        "text": "A price floor is a minimum price set by the government that is above the equilibrium price",
+        "weight": 1
+      },
+      {
+        "text": "The price cannot legally fall below this level (e.g., minimum wage)",
+        "weight": 1
+      },
+      {
+        "text": "Consequence: It leads to a 'surplus' (excess supply)",
+        "weight": 1
+      },
+      {
+        "text": "More is supplied at the high price than is demanded (e.g., unemployment in the labor market)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A **price floor** is a **minimum price** legally set by the government, typically placed **above the equilibrium price** to be effective (e.g., minimum wage).",
+      "The main consequence of an effective price floor is a **market surplus** or **excess supply**, because the higher price encourages supply but discourages demand.",
+      "The price floor is designed to protect sellers by guaranteeing them a minimum price for their goods or services (e.g., higher wages for labor).",
+      "In the labor market, a minimum wage (a price floor) that is set too high can lead to **unemployment** (a surplus of labor)."
+    ],
+    "incorrect_answers": [
+      "A price floor is a maximum price set by the government that results in a market shortage.",
+      "A price floor is always set below the equilibrium price to make the good cheaper for consumers.",
+      "The consequence of a price floor is that the demand curve shifts outwards, restoring market equilibrium.",
+      "A price floor is a tax on sellers, causing the supply to decrease and the price to rise."
+    ]
+  },
+  {
+    "question_id": 64,
+    "question_text": "What is a 'price ceiling' and what is its potential consequence?",
+    "key_points": [
+      {
+        "text": "A price ceiling is a maximum price set by the government that is below the equilibrium price",
+        "weight": 1
+      },
+      {
+        "text": "The price cannot legally rise above this level (e.g., maximum rent control)",
+        "weight": 1
+      },
+      {
+        "text": "Consequence: It leads to a 'shortage' (excess demand)",
+        "weight": 1
+      },
+      {
+        "text": "More is demanded at the low price than is supplied (e.g., long waiting lists or black markets)",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A **price ceiling** is a **maximum price** legally set by the government, typically placed **below the equilibrium price** to be effective (e.g., rent control).",
+      "The main consequence of an effective price ceiling is a **market shortage** or **excess demand**, because the low price encourages demand but discourages supply.",
+      "The price ceiling is designed to protect consumers by ensuring they can purchase the good at an affordable price.",
+      "Price ceilings often lead to the creation of **black markets**, long waiting lines, or non-price rationing of the scarce good."
+    ],
+    "incorrect_answers": [
+      "A price ceiling is a minimum price set by the government that results in a market surplus.",
+      "A price ceiling is always set above the equilibrium price to ensure producers make a high profit.",
+      "The consequence of a price ceiling is that the supply curve shifts outwards, creating a permanent equilibrium.",
+      "A price ceiling is a subsidy that makes the good cheaper for the seller to produce."
+    ]
+  },
+  {
+    "question_id": 65,
+    "question_text": "What is 'price discrimination'?",
+    "key_points": [
+      {
+        "text": "It is when a seller charges different prices for the exact same good or service",
+        "weight": 1
+      },
+      {
+        "text": "The different prices are charged to different groups of customers",
+        "weight": 1
+      },
+      {
+        "text": "Examples: Student discounts, senior citizen discounts, or different ticket prices based on when you buy a flight",
+        "weight": 1
+      },
+      {
+        "text": "The seller does this to capture more consumer surplus and maximize profit",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Price discrimination** is the strategy of selling the **exact same good or service** to different consumers or groups at **different prices** for reasons not related to cost differences.",
+      "The seller's goal is to increase **profit** by capturing more of the **consumer surplus**, charging higher prices to those with more inelastic demand.",
+      "Common examples include giving **student or senior discounts**, charging different prices for cinema tickets based on the time of day, or different airfare prices for the same seat.",
+      "For price discrimination to work, the seller must be able to **prevent resale** of the good between the low-price and high-price consumers."
+    ],
+    "incorrect_answers": [
+      "Price discrimination is when a seller charges different prices for goods that have different costs of production.",
+      "Price discrimination is a strategy used by firms in perfectly competitive markets to become price makers.",
+      "It is a legal requirement set by the government to ensure all groups pay a fair and equal price.",
+      "Price discrimination is the practice of charging only one price to all customers to maximize sales volume."
+    ]
+  },
+  {
+    "question_id": 66,
+    "question_text": "In the context of the business cycle, what is a 'recession'?",
+    "key_points": [
+      {
+        "text": "A recession is a period when the economy is shrinking or declining",
+        "weight": 1
+      },
+      {
+        "text": "It is officially defined as a fall in the Real Gross Domestic Product (GDP) for two quarters (six months) in a row",
+        "weight": 1
+      },
+      {
+        "text": "During a recession, companies make less, people lose jobs (unemployment rises), and confidence is low",
+        "weight": 1
+      },
+      {
+        "text": "It is the opposite of an 'economic boom' or expansion",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "A **recession** is a phase of the business cycle characterized by a **significant decline** in general economic activity.",
+      "The technical definition of a recession is a fall in a country's **Real Gross Domestic Product (GDP)** for **two consecutive quarters** (six months).",
+      "During a recession, key economic indicators worsen: **unemployment rises**, business profits fall, and consumer confidence is low.",
+      "It is the contraction phase of the business cycle, following a peak and preceding a trough."
+    ],
+    "incorrect_answers": [
+      "A recession is a period when the economy is growing very quickly, causing high inflation.",
+      "A recession is officially defined as a period of rising GDP that lasts for two or more years.",
+      "A recession is a government policy that aims to reduce unemployment by increasing spending.",
+      "During a recession, all companies increase their output and hire many new workers."
+    ]
+  },
+  {
+    "question_id": 67,
+    "question_text": "Define 'Gross Domestic Product (GDP)'.",
+    "key_points": [
+      {
+        "text": "GDP is the total money value of all the final goods and services",
+        "weight": 1
+      },
+      {
+        "text": "That are produced within a country's borders",
+        "weight": 1
+      },
+      {
+        "text": "Over a specific period of time (usually one year)",
+        "weight": 1
+      },
+      {
+        "text": "It is the most common way to measure the size and health of a country's economy",
+        "weight": 1
+      }
+    ],
+    "correct_answers": [
+      "**Gross Domestic Product (GDP)** is the **total market value** of all **final goods and services** produced within a country's **geographical borders** in a specific period (usually a year).",
+      "It is the primary measure used to gauge the **size and health** of a nation's economy, representing the total output and income.",
+      "GDP includes the value of goods and services produced by both domestic and foreign-owned companies, as long as the production takes place **inside the country**.",
+      "The expenditure approach to GDP is calculated as: $GDP = C + I + G + (X - M)$, where C is Consumption, I is Investment, G is Government Spending, and (X-M) is Net Exports."
+    ],
+    "incorrect_answers": [
+      "GDP is the total market value of a country's exports minus its imports over a decade.",
+      "GDP is the value of all the country's wealth, including its natural resources and historical artifacts.",
+      "GDP measures the total income earned by only the citizens of a country, regardless of where they work (This describes Gross National Product/Income).",
+      "GDP is the total value of all stocks and bonds traded on a country's stock exchange."
     ]
   }
 ]

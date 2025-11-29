@@ -171,16 +171,6 @@ class GradingService:
         """
         user_answer_clean = user_answer.strip()
         
-        # Check for empty or "I don't know" answers
-        if (not user_answer_clean or 
-            user_answer_clean.lower() in self._validation_config.invalid_answers):
-            return AnswerResponse(
-                score=0.0,
-                hit_key_points=[],
-                missing_key_points=[],
-                feedback=self._feedback_config.empty_answer
-            )
-        
         # Check for very short answers
         if (len(user_answer_clean) < self._validation_config.min_answer_length or 
             len(user_answer_clean.split()) < self._validation_config.min_word_count):
@@ -189,6 +179,36 @@ class GradingService:
                 hit_key_points=[],
                 missing_key_points=[],
                 feedback=self._feedback_config.short_answer
+            )
+        
+        # Check for violent answers
+        if any(violent_answer in user_answer_clean.lower() for violent_answer in self._validation_config.violent_answers):
+            return AnswerResponse(
+                score=0.0,
+                hit_key_points=[],
+                missing_key_points=[],
+                feedback=settings.grading.answer_validation.feedback_message.format(invalid_answer=user_answer_clean)
+            )
+
+        # The answer is invalid if
+        # it is similar to "i don't know" and similar answers
+        user_answer_embedding = self._embedding_service.get_embedding(user_answer_clean)
+
+        invalid_answers_similarities = []
+        for invalid_answer in self._validation_config.invalid_answers:
+            invalid_answer_embedding = self._embedding_service.get_embedding(invalid_answer)
+            similarity = self._embedding_service.compute_cosine_similarity(
+                user_answer_embedding, 
+                invalid_answer_embedding
+            )
+            invalid_answers_similarities.append(similarity)
+        
+        if any(similarity > 0.85 for similarity in invalid_answers_similarities):
+            return AnswerResponse(
+                score=0.0,
+                hit_key_points=[],
+                missing_key_points=[],
+                feedback=settings.grading.answer_validation.feedback_message.format(invalid_answer=user_answer_clean)
             )
         
         return None  # Answer is valid
