@@ -26,17 +26,17 @@ class QuestionService:
     
     def load_questions_bank(self) -> None:
         """
-        Load questions from file or use fallback data
+        Load all questions from directory or use fallback data
         
-        Tries to load from the configured file path first,
-        then falls back to hardcoded questions if file loading fails.
+        Lists the default_file_path directory and loads all question files found in it.
+        Falls back to hardcoded questions if no files are found or an error occurs.
         """
-        file_path = settings.questions.default_file_path
-        loaded_questions = load_questions_from_file(file_path)
+        directory_path = settings.questions.default_file_path
+        loaded_questions = self._load_all_questions_from_directory(directory_path)
         
         if loaded_questions:
             self._questions_bank = loaded_questions
-            print(f"✅ Loaded {len(self._questions_bank)} questions from {file_path}")
+            print(f"✅ Loaded {len(self._questions_bank)} questions from {directory_path}")
         else:
             # Use fallback questions from configuration
             self._questions_bank = self._get_fallback_questions()
@@ -49,6 +49,50 @@ class QuestionService:
         }
         
         self._is_loaded = True
+    
+    def _load_all_questions_from_directory(self, directory_path: str) -> List[Dict]:
+        """
+        Load all question files from a directory
+        
+        Lists all JSON files in the directory and loads questions from each file.
+        
+        Args:
+            directory_path: Path to the directory containing question files
+            
+        Returns:
+            List of all questions loaded from all files, or empty list if directory
+            doesn't exist or no files are found
+        """
+        all_questions = []
+        
+        try:
+            if not os.path.isdir(directory_path):
+                print(f"❌ Directory {directory_path} not found")
+                return all_questions
+            
+            # List all JSON files in the directory
+            question_files = [
+                file_name for file_name in os.listdir(directory_path)
+                if file_name.endswith('.json')
+            ]
+            
+            if not question_files:
+                print(f"⚠️ No JSON files found in {directory_path}")
+                return all_questions
+            
+            print(f"📁 Found {len(question_files)} JSON file(s) in {directory_path}")
+            
+            # Load questions from each file
+            for file_name in question_files:
+                file_path = os.path.join(directory_path, file_name)
+                questions = load_questions_from_file(file_path)
+                all_questions.extend(questions)
+            
+            return all_questions
+            
+        except Exception as e:
+            print(f"❌ Error loading questions from directory {directory_path}: {e}")
+            return all_questions
     
     def _get_fallback_questions(self) -> List[Dict]:
         """

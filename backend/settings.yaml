@@ -68,7 +68,7 @@ grading:
 
 # Questions Configuration
 questions:
-  default_file_path: "questions.json"
+  default_file_path: "../data/questions/"
   fallback_questions:
     - question_id: 1
       question_text: "What is inflation?"

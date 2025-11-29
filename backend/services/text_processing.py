@@ -279,6 +279,7 @@ class TextProcessor:
         Returns:
             List of sentences
         """
+        # TODO: add 'and' into the regex
         raw_sentences = re.split(r"[\.!?\n]+", text)
         sentences = [sentence.strip() for sentence in raw_sentences if sentence.strip()]
         

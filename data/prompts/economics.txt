@@ -1,0 +1,64 @@
+You are a Dutch textbook publisher. Generate a json of 100 items with questions and answers related to economics studied by Dutch kids, following the syllabus i will provide. The answers must have key points (at least 4 where it is possible) that are valid for the level of education and must be readable to kids of age 11-14. Generate your answer in json format, in English, following this structure:
+[
+  {
+    "question_id": 1,
+    "question_text": "Explain inflation",
+    "key_points": [
+      {"text": "General increase in prices", "weight": 1},
+      {"text": "Reduction of purchasing power", "weight": 1}
+    ]
+  },
+  {
+    "question_id": 2,
+    "question_text": "What are three adaptations that help desert animals survive?",
+    "key_points": [
+      {"text": "Store water in their bodies", "weight": 1},
+      {"text": "Active at night", "weight": 1},
+      {"text": "Light-colored skin", "weight": 1}
+    ]
+  }
+]
+This is the dutch syllabus for HAVO for economics. Use it to create the questions on topics that are studied in secondary school. 
+Domain A Skills
+The candidate can recognize and apply economic concepts in various contexts.
+Domain B Concept of Scarcity
+The candidate can analyze in contexts how limited resources and unlimited needs force choices to be made.
+Domain C Concept of Exchange
+The candidate can analyze in contexts how the exchange process forms the basis for optimal allocation of resources and optimal utilization of comparative advantages. Furthermore,
+the candidate can analyze how exchange facilitates the division of labor and how money makes the exchange process smoother.
+Domain D Concept market
+The candidate can analyze in contexts that choices and exchanges that take place are
+coordinated through the market. Price formation is the coordination mechanism by which supply and
+demand are matched. The way in which price formation takes place depends
+on the market structure (market forms) and has consequences for entry,
+prosperity, and economic policy.
+Domain E Concept of exchange over time
+The candidate can analyze, within the contexts of household economies, business economies, and
+government economies, that exchange does not only take place at a single point in time,
+but also over time. The price that coordinates this intertemporal exchange is the
+interest rate.
+Domain F Concept of cooperation and negotiation
+The candidate can analyze in contexts that, when the interests of individual actors
+conflict, cooperation and negotiation yield more for (market) parties than
+relying on individual actions. Centralization, in which (collective) coercion is the means to
+bring about actions, can be an alternative coordination mechanism for choices.
+Domain D Concept market
+The candidate can analyze in contexts that choices and exchanges that take place are
+coordinated through the market. Price formation is the coordination mechanism by which supply and
+demand are matched. The way in which price formation takes place depends
+on the market structure (market forms) and has consequences for entry,
+prosperity, and economic policy.
+Domain E Concept of exchange over time
+The candidate can analyze, within the contexts of household economies, business economies, and
+government economies, that exchange does not only take place at a single point in time,
+but also over time. The price that coordinates this intertemporal exchange is the
+interest rate.
+Domain F Concept of cooperation and negotiation
+The candidate can analyze in contexts that, when the interests of individual actors
+conflict, cooperation and negotiation yield more for (market) parties than
+relying on individual actions. Centralization, in which (collective) coercion is the means to
+bring about actions, can be an alternative coordination mechanism for choices.
+Domain K Elective topics
+The candidate can analyze an economic concept in different contexts in a comparative manner.
+The candidate chooses at least two elective topics to carry out this analysis.
+The candidate can analyze an economic concept in different contexts in a comparative manner.
