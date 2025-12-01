@@ -455,6 +455,78 @@ class GradingService:
         self._key_point_keywords[question_id] = keywords_list
         print(f"  📝 (on-demand) Question {question_id}: {len(embeddings)} key points embedded")
 
+    def compute_and_store_embeddings_for_question(self, question: Dict) -> bool:
+        """
+        Compute embeddings for a new question and store them in memory and Pinecone.
+        
+        Args:
+            question: Question dictionary with question_id, question_text, and key_points
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        question_id = question["question_id"]
+        
+        # Compute embeddings and keywords
+        embeddings = []
+        keywords_list: List[Set[str]] = []
+        
+        for key_point in question["key_points"]:
+            text = key_point["text"]
+            embedding = self._embedding_service.get_embedding(text)
+            embeddings.append(embedding)
+            keywords = set(self._text_processor.normalize_text(text))
+            keywords_list.append(keywords)
+            print(f"  ✅ Embedded: '{text[:30]}...'")
+        
+        # Store in memory
+        self._key_point_embeddings[question_id] = embeddings
+        self._key_point_keywords[question_id] = keywords_list
+        
+        # Prepare metadata
+        question_metadata = {
+            "question_text": question["question_text"],
+            "key_points_count": len(question["key_points"])
+        }
+        
+        # Store in Pinecone
+        success = self._embedding_storage.cache_single_question_embeddings(
+            question_id=question_id,
+            key_point_embeddings=embeddings,
+            key_point_keywords=keywords_list,
+            question_metadata=question_metadata
+        )
+        
+        if success:
+            print(f"  📝 Question {question_id}: {len(embeddings)} key points embedded and stored")
+        
+        return success
+
+    def remove_question_embeddings(self, question_id: int) -> bool:
+        """
+        Remove embeddings for a question from memory and Pinecone.
+        
+        Args:
+            question_id: ID of the question to remove
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        # Remove from memory
+        if question_id in self._key_point_embeddings:
+            del self._key_point_embeddings[question_id]
+        
+        if question_id in self._key_point_keywords:
+            del self._key_point_keywords[question_id]
+        
+        # Remove from Pinecone
+        success = self._embedding_storage.delete_question_embeddings(question_id)
+        
+        if success:
+            print(f"✅ Removed embeddings for question {question_id}")
+        
+        return success
+
     def _find_best_sentence_match(
         self,
         sentences: List[str],

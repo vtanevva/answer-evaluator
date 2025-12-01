@@ -82,6 +82,8 @@ grading:
 
 # Questions Configuration
 questions:
+  # Path to questions directory at project root: data/questions/
+  # User-added questions are saved to: data/questions/user_added.json
   default_file_path: "../data/questions/"
   fallback_questions:
     - question_id: 1

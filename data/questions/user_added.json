@@ -1,0 +1,17 @@
+[
+  {
+    "question_id": 252,
+    "question_text": "What is opportunity cost?",
+    "key_points": [
+      {
+        "text": "Opportunity cost is the value of the next best alternative you give up when making a choice.",
+        "weight": 1
+      },
+      {
+        "text": "Because resources are limited, choosing one option means sacrificing another — the lost alternative is the opportunity cost.",
+        "weight": 1
+      }
+    ],
+    "category": "user"
+  }
+]

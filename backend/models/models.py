@@ -32,6 +32,7 @@ class Question(BaseModel):
     question_id: int
     question_text: str
     key_points: List[KeyPoint]
+    category: str = "unknown"  # Category/source of the question (e.g., "biology", "economics", "user")
 
 
 class HealthCheckResponse(BaseModel):
@@ -41,3 +42,24 @@ class HealthCheckResponse(BaseModel):
 
 class AllQuestionsResponse(BaseModel):
     questions: List[Question]
+
+
+class KeyPointInput(BaseModel):
+    text: str
+    weight: int = 1
+
+
+class AddQuestionRequest(BaseModel):
+    question_text: str
+    key_points: List[KeyPointInput]
+
+
+class AddQuestionResponse(BaseModel):
+    question_id: int
+    question_text: str
+    message: str
+
+
+class DeleteQuestionResponse(BaseModel):
+    message: str
+    question_id: int
