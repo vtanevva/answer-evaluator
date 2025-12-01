@@ -1,0 +1,324 @@
+[
+  {
+    "question_id": 253,
+    "question_text": "What is the name of the city mentioned in the text?",
+    "key_points": [
+      {
+        "text": "City name mentioned",
+        "weight": 1
+      },
+      {
+        "text": "Specific location identified",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 254,
+    "question_text": "What is one potential benefit of living in London according to the text?",
+    "key_points": [
+      {
+        "text": "Cultural diversity highlighted",
+        "weight": 1
+      },
+      {
+        "text": "Job opportunities mentioned",
+        "weight": 1
+      },
+      {
+        "text": "Quality of life discussed",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 255,
+    "question_text": "How are the people described in London according to the text?",
+    "key_points": [
+      {
+        "text": "Friendly and welcoming",
+        "weight": 1
+      },
+      {
+        "text": "Diverse population mentioned",
+        "weight": 1
+      },
+      {
+        "text": "Community spirit highlighted",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 256,
+    "question_text": "What are two reasons people like living in Germany?",
+    "key_points": [
+      {
+        "text": "High quality of life with good healthcare and education",
+        "weight": 1
+      },
+      {
+        "text": "Diverse culture and strong economy",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 257,
+    "question_text": "In which month can people party for free in Germany?",
+    "key_points": [
+      {
+        "text": "February during Karneval season",
+        "weight": 1
+      },
+      {
+        "text": "Carnival celebrations offer free parties",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 258,
+    "question_text": "What can people do to their beard while living in Germany?",
+    "key_points": [
+      {
+        "text": "Attend beard competitions and festivals",
+        "weight": 1
+      },
+      {
+        "text": "Participate in beard grooming events",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 254,
+    "question_text": "What is economics and why is it important?",
+    "key_points": [
+      {
+        "text": "Study of how individuals and societies allocate resources.",
+        "weight": 1
+      },
+      {
+        "text": "Importance in understanding scarcity and decision-making.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 255,
+    "question_text": "How do limited resources impact individuals and businesses?",
+    "key_points": [
+      {
+        "text": "Forces choices due to scarcity.",
+        "weight": 1
+      },
+      {
+        "text": "Leads to trade-offs and prioritization.",
+        "weight": 1
+      },
+      {
+        "text": "Influences production and consumption decisions.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 256,
+    "question_text": "Explain the role of markets in the exchange of goods and services.",
+    "key_points": [
+      {
+        "text": "Facilitate buying and selling of products.",
+        "weight": 1
+      },
+      {
+        "text": "Determine prices through supply and demand.",
+        "weight": 1
+      },
+      {
+        "text": "Enable competition and specialization.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 257,
+    "question_text": "How do consumers and producers influence the market?",
+    "key_points": [
+      {
+        "text": "Consumers drive demand for goods and services.",
+        "weight": 1
+      },
+      {
+        "text": "Producers supply products to meet consumer needs.",
+        "weight": 1
+      },
+      {
+        "text": "Interactions shape market equilibrium.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 258,
+    "question_text": "Describe how supply and demand affect prices in a market.",
+    "key_points": [
+      {
+        "text": "High demand can raise prices.",
+        "weight": 1
+      },
+      {
+        "text": "Excess supply may lower prices.",
+        "weight": 1
+      },
+      {
+        "text": "Balancing leads to market price equilibrium.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 259,
+    "question_text": "Provide examples of how economics can explain everyday situations.",
+    "key_points": [
+      {
+        "text": "Analyzing cost-benefit of purchasing decisions.",
+        "weight": 1
+      },
+      {
+        "text": "Understanding impact of inflation on savings.",
+        "weight": 1
+      },
+      {
+        "text": "Explaining effects of government policies on businesses.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 253,
+    "question_text": "What is economics and why is it important for individuals and businesses?",
+    "key_points": [
+      {
+        "text": "Economics studies allocation of resources for needs and wants.",
+        "weight": 1
+      },
+      {
+        "text": "Economics helps individuals and businesses make informed choices.",
+        "weight": 1
+      },
+      {
+        "text": "Understanding economics aids in optimizing resource utilization.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 254,
+    "question_text": "How does scarcity influence decision-making for both individuals and businesses?",
+    "key_points": [
+      {
+        "text": "Scarcity forces choices due to limited resources.",
+        "weight": 1
+      },
+      {
+        "text": "Scarcity leads to trade-offs in decision-making processes.",
+        "weight": 1
+      },
+      {
+        "text": "Scarcity necessitates prioritization of needs and wants.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 255,
+    "question_text": "Explain the role of markets in the exchange of goods and services.",
+    "key_points": [
+      {
+        "text": "Markets facilitate buying and selling of products.",
+        "weight": 1
+      },
+      {
+        "text": "Markets determine prices through supply and demand interactions.",
+        "weight": 1
+      },
+      {
+        "text": "Markets connect producers and consumers for transactions.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 256,
+    "question_text": "How do supply and demand affect prices in a market economy?",
+    "key_points": [
+      {
+        "text": "Increased demand raises prices, while surplus lowers them.",
+        "weight": 1
+      },
+      {
+        "text": "Supply shortages can drive prices up in response to demand.",
+        "weight": 1
+      },
+      {
+        "text": "Supply surplus can lead to price reductions to stimulate demand.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 257,
+    "question_text": "Provide an example of how economics can help explain changes in food prices.",
+    "key_points": [
+      {
+        "text": "Drought reducing crop yields can increase food prices.",
+        "weight": 1
+      },
+      {
+        "text": "Increased demand for organic produce can raise food prices.",
+        "weight": 1
+      },
+      {
+        "text": "Government subsidies affecting food production impact prices.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 258,
+    "question_text": "Describe the decision-making process for producers in terms of what to make and sell.",
+    "key_points": [
+      {
+        "text": "Producers consider costs, demand, and competition when deciding.",
+        "weight": 1
+      },
+      {
+        "text": "Market research helps producers identify consumer needs and trends.",
+        "weight": 1
+      },
+      {
+        "text": "Producers aim to maximize profits by offering desirable products.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  }
+]

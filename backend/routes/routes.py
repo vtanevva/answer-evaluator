@@ -6,17 +6,23 @@ import random
 from fastapi import APIRouter, HTTPException, Depends
 
 from models.models import (
-    QuestionResponse, 
-    AnswerRequest, 
-    AnswerResponse, 
+    QuestionResponse,
+    AnswerRequest,
+    AnswerResponse,
     HealthCheckResponse,
     AllQuestionsResponse,
     AddQuestionRequest,
     AddQuestionResponse,
-    DeleteQuestionResponse
+    DeleteQuestionResponse,
+    BulkQuestionsFromTextRequest,
+    BulkQuestionsFromTextResponse,
+    Question,
 )
 from services.question_service import QuestionService
 from services.grading_service import GradingService
+from core.config import settings
+import json
+import os
 
 
 # Create router instance
@@ -25,6 +31,7 @@ router = APIRouter()
 # Global service instances (will be initialized in main.py)
 question_service: QuestionService = None
 grading_service: GradingService = None
+openai_client = None
 
 
 def get_question_service() -> QuestionService:
@@ -39,6 +46,15 @@ def get_grading_service() -> GradingService:
     if grading_service is None:
         raise HTTPException(status_code=500, detail="Grading service not initialized")
     return grading_service
+
+
+def _get_questions_directory_path(q_service: QuestionService) -> str:
+    """
+    Resolve the questions directory path using the same logic as QuestionService.
+    """
+    directory_path = settings.questions.default_file_path
+    # Reuse the internal resolver for consistency
+    return q_service._resolve_questions_directory_path(directory_path)  # type: ignore[attr-defined]
 
 
 @router.get("/", response_model=HealthCheckResponse)
@@ -242,3 +258,215 @@ async def delete_question(
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to delete question: {str(e)}")
+
+
+@router.post("/questions/bulk_from_text", response_model=BulkQuestionsFromTextResponse)
+async def bulk_add_questions_from_text(
+    request: BulkQuestionsFromTextRequest,
+    q_service: QuestionService = Depends(get_question_service),
+    g_service: GradingService = Depends(get_grading_service),
+) -> BulkQuestionsFromTextResponse:
+    """
+    Generate multiple questions from a long teacher text using the LLM, transform them
+    into rubric-style JSON (with key points), append them to rubric_added.json, and
+    register them in the in-memory questions bank.
+    """
+    if not request.source_text or not request.source_text.strip():
+        raise HTTPException(status_code=400, detail="Source text cannot be empty")
+
+    if openai_client is None:
+        raise HTTPException(status_code=500, detail="OpenAI client not initialized")
+
+    source_text = request.source_text.strip()
+
+    # 1) First LLM call – extract question texts from the long input
+    try:
+        questions_prompt = (
+            "You are a teacher assistant that designs exam questions.\n"
+            "From the following teaching text, infer the important concepts and generate a list\n"
+            "of clear, distinct exam questions that assess understanding of those concepts.\n\n"
+            "IMPORTANT:\n"
+            "- Each question MUST be fully self-contained and make sense on its own.\n"
+            "- DO NOT include phrases like \"according to the text\", \"in the passage\",\n"
+            "  \"in the article\", \"in the story\", or similar references to a specific text.\n"
+            "- Instead, phrase each question as a general question about the topic, as if it were\n"
+            "  taken from a standalone exam (e.g. \"Explain how photosynthesis works in plants.\").\n"
+            "- Avoid questions that only ask for decontextualized details like\n"
+            "  \"What is the name of the city mentioned in the text?\" or similar.\n\n"
+            "Return a JSON object with a single field 'questions', which is an array of strings.\n"
+            "Each string should be one question.\n\n"
+            f"Teaching text:\n{source_text}"
+        )
+
+        questions_response = openai_client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You generate exam questions and respond strictly in JSON.",
+                },
+                {"role": "user", "content": questions_prompt},
+            ],
+            max_tokens=800,
+            temperature=0.3,
+        )
+        questions_content = questions_response.choices[0].message.content or ""
+        questions_data = json.loads(questions_content)
+        raw_questions = questions_data.get("questions", [])
+        if not isinstance(raw_questions, list) or not raw_questions:
+            raise ValueError("LLM did not return a non-empty 'questions' list")
+
+        question_texts = [str(q).strip() for q in raw_questions if str(q).strip()]
+        if not question_texts:
+            raise ValueError("No valid questions extracted from LLM response")
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to generate questions from text: {e}",
+        )
+
+    # 2) Second LLM call – transform questions into rubric-style JSON with key points
+    try:
+        rubric_prompt = (
+            "You are a teacher building a grading rubric.\n"
+            "Given a list of exam questions, generate key points for each question.\n"
+            "For every question, create 3–6 key points.\n"
+            "Each key point should be a short, specific chunk (5–20 words) "
+            "describing information a good answer should contain.\n"
+            "Ensure the key points also include enough context so they can be understood\n"
+            "without reading the original teaching text.\n\n"
+            "Return a JSON object with a single field 'questions', which is an array.\n"
+            "Each element must have:\n"
+            "  - 'question_text': string (already self-contained)\n"
+            "  - 'key_points': array of objects, each with:\n"
+            "        'text': string\n"
+            "        'weight': integer (usually 1)\n\n"
+            f"Questions list:\n{json.dumps(question_texts, ensure_ascii=False)}"
+        )
+
+        rubric_response = openai_client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You generate grading rubrics and respond strictly in JSON.",
+                },
+                {"role": "user", "content": rubric_prompt},
+            ],
+            max_tokens=2000,
+            temperature=0.4,
+        )
+        rubric_content = rubric_response.choices[0].message.content or ""
+        rubric_data = json.loads(rubric_content)
+        rubric_questions = rubric_data.get("questions", [])
+        if not isinstance(rubric_questions, list) or not rubric_questions:
+            raise ValueError("LLM did not return a non-empty 'questions' list with rubrics")
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to generate rubric-style questions: {e}",
+        )
+
+    # 3) Append to rubric_added.json and register in question service
+    questions_dir = _get_questions_directory_path(q_service)
+    os.makedirs(questions_dir, exist_ok=True)
+    rubric_file = os.path.join(questions_dir, "rubric_added.json")
+
+    existing: list[dict] = []
+    if os.path.exists(rubric_file):
+        try:
+            with open(rubric_file, "r", encoding="utf-8") as f:
+                existing = json.load(f) or []
+        except Exception:
+            existing = []
+
+    added_questions: list[Question] = []
+
+    for rq in rubric_questions:
+        q_text = str(rq.get("question_text", "")).strip()
+        kp_list = rq.get("key_points", []) or []
+        if not q_text or not isinstance(kp_list, list) or not kp_list:
+            continue
+
+        # Normalize key points structure
+        normalized_kps = []
+        for kp in kp_list:
+            kp_text = str(kp.get("text", "")).strip()
+            if not kp_text:
+                continue
+            weight = kp.get("weight", 1)
+            try:
+                weight_int = int(weight)
+            except Exception:
+                weight_int = 1
+            normalized_kps.append({"text": kp_text, "weight": weight_int})
+
+        if not normalized_kps:
+            continue
+
+        # Generate a new question ID and register in memory with a dedicated category
+        if not q_service._is_loaded:  # type: ignore[attr-defined]
+            q_service.load_questions_bank()
+        if q_service._questions_bank:  # type: ignore[attr-defined]
+            max_id = max(q["question_id"] for q in q_service._questions_bank)  # type: ignore[attr-defined]
+            new_id = max_id + 1
+        else:
+            new_id = 1
+
+        question_dict = {
+            "question_id": new_id,
+            "question_text": q_text,
+            "key_points": normalized_kps,
+            "category": "rubric_added",
+        }
+
+        # Update in-memory structures
+        q_service._questions_bank.append(question_dict)  # type: ignore[attr-defined]
+        q_service._questions_by_id[new_id] = question_dict  # type: ignore[attr-defined]
+
+        existing.append(
+            {
+                "question_id": new_id,
+                "question_text": q_text,
+                "key_points": normalized_kps,
+                "category": "rubric_added",
+            }
+        )
+
+        added_questions.append(
+            Question(
+                question_id=new_id,
+                question_text=q_text,
+                key_points=[  # type: ignore[list-item]
+                    # Re-use KeyPoint-like dicts; Pydantic will coerce
+                    {"text": kp["text"], "weight": kp["weight"]} for kp in normalized_kps
+                ],
+                category="rubric_added",
+            )
+        )
+
+    # Persist rubric_added.json
+    try:
+        with open(rubric_file, "w", encoding="utf-8") as f:
+            json.dump(existing, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Questions generated but failed to save rubric_added.json: {e}",
+        )
+
+    # Optionally compute embeddings for the new questions (on-demand later or now)
+    # For now, rely on on-demand computation in GradingService when a question is used.
+
+    if not added_questions:
+        raise HTTPException(
+            status_code=500,
+            detail="LLM did not produce any valid questions with key points",
+        )
+
+    return BulkQuestionsFromTextResponse(
+        questions=added_questions,
+        message=f"Successfully generated and added {len(added_questions)} question(s) from source text.",
+    )

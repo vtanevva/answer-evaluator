@@ -3,7 +3,7 @@ Pydantic models for request/response schemas
 """
 
 from pydantic import BaseModel
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 
 class QuestionResponse(BaseModel):
@@ -63,3 +63,20 @@ class AddQuestionResponse(BaseModel):
 class DeleteQuestionResponse(BaseModel):
     message: str
     question_id: int
+
+
+class BulkQuestionsFromTextRequest(BaseModel):
+    """
+    Request body for generating multiple questions from a long teacher text.
+    """
+    source_text: str
+    topic: Optional[str] = None
+
+
+class BulkQuestionsFromTextResponse(BaseModel):
+    """
+    Response body containing the generated questions that were added.
+    """
+    questions: List[Question]
+    message: str
+

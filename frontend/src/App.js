@@ -22,6 +22,11 @@ function App() {
   const [isAddingQuestion, setIsAddingQuestion] = useState(false);
   const [addQuestionSuccess, setAddQuestionSuccess] = useState(null);
   const [addQuestionError, setAddQuestionError] = useState(null);
+  const [addMode, setAddMode] = useState('manual'); // 'manual' or 'bulk'
+  const [bulkSourceText, setBulkSourceText] = useState('');
+  const [isBulkProcessing, setIsBulkProcessing] = useState(false);
+  const [bulkSuccess, setBulkSuccess] = useState(null);
+  const [bulkError, setBulkError] = useState(null);
   
   // State management for viewing questions
   const [allQuestions, setAllQuestions] = useState([]);
@@ -158,6 +163,42 @@ function App() {
       );
     } finally {
       setIsAddingQuestion(false);
+    }
+  };
+
+  const submitBulkQuestions = async () => {
+    if (!bulkSourceText.trim()) {
+      setBulkError('Source text cannot be empty.');
+      return;
+    }
+
+    setIsBulkProcessing(true);
+    setBulkError(null);
+    setBulkSuccess(null);
+
+    try {
+      const response = await axios.post(`${API_BASE_URL}/questions/bulk_from_text`, {
+        source_text: bulkSourceText.trim(),
+      });
+
+      const count = response.data?.questions?.length || 0;
+      setBulkSuccess(
+        `Successfully generated and added ${count} question(s) from the provided text.`
+      );
+      setBulkSourceText('');
+
+      // Refresh questions list if on view tab
+      if (activeTab === 'view') {
+        fetchAllQuestions();
+      }
+    } catch (err) {
+      console.error('❌ Error generating questions from text:', err);
+      setBulkError(
+        err.response?.data?.detail ||
+          'Failed to generate questions from text. Please try again.'
+      );
+    } finally {
+      setIsBulkProcessing(false);
     }
   };
 
@@ -398,102 +439,179 @@ function App() {
           ) : activeTab === 'add' ? (
             /* Add Question Tab */
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Add New Question</h2>
-              
-              {/* Question Text Input */}
-              <div className="mb-6">
-                <label htmlFor="questionText" className="block text-sm font-medium text-gray-700 mb-2">
-                  Question Text
-                </label>
-                <textarea
-                  id="questionText"
-                  value={newQuestionText}
-                  onChange={(e) => setNewQuestionText(e.target.value)}
-                  placeholder="Enter the question here..."
-                  className="w-full h-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                  disabled={isAddingQuestion}
-                />
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Add New Question</h2>
+
+              {/* Mode Toggle */}
+              <div className="mb-6 flex gap-4">
+                <button
+                  onClick={() => setAddMode('manual')}
+                  className={`flex-1 px-4 py-2 rounded-md text-sm font-medium border ${
+                    addMode === 'manual'
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'bg-gray-100 text-gray-700 border-gray-300'
+                  }`}
+                >
+                  Manual single question
+                </button>
+                <button
+                  onClick={() => setAddMode('bulk')}
+                  className={`flex-1 px-4 py-2 rounded-md text-sm font-medium border ${
+                    addMode === 'bulk'
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'bg-gray-100 text-gray-700 border-gray-300'
+                  }`}
+                >
+                  Bulk from long text (LLM)
+                </button>
               </div>
 
-              {/* Key Points Section */}
-              <div className="mb-6">
-                <div className="flex items-center justify-between mb-3">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Key Points (Answer Chunks)
-                  </label>
-                  <button
-                    onClick={addKeyPoint}
-                    disabled={isAddingQuestion}
-                    className="px-3 py-1 text-sm bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
-                  >
-                    + Add Key Point
-                  </button>
-                </div>
-                
-                <div className="space-y-3">
-                  {keyPoints.map((keyPoint, index) => (
-                    <div key={index} className="flex gap-3 items-start">
-                      <div className="flex-1">
-                        <textarea
-                          value={keyPoint.text}
-                          onChange={(e) => updateKeyPoint(index, 'text', e.target.value)}
-                          placeholder={`Key point ${index + 1}...`}
-                          className="w-full h-20 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                          disabled={isAddingQuestion}
-                        />
-                      </div>
-                      <div className="w-24">
-                        <label className="block text-xs text-gray-600 mb-1">Weight</label>
-                        <input
-                          type="number"
-                          min="1"
-                          value={keyPoint.weight}
-                          onChange={(e) => updateKeyPoint(index, 'weight', parseInt(e.target.value) || 1)}
-                          className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                          disabled={isAddingQuestion}
-                        />
-                      </div>
+              {addMode === 'manual' ? (
+                <>
+                  {/* Question Text Input */}
+                  <div className="mb-6">
+                    <label htmlFor="questionText" className="block text-sm font-medium text-gray-700 mb-2">
+                      Question Text
+                    </label>
+                    <textarea
+                      id="questionText"
+                      value={newQuestionText}
+                      onChange={(e) => setNewQuestionText(e.target.value)}
+                      placeholder="Enter the question here..."
+                      className="w-full h-24 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                      disabled={isAddingQuestion}
+                    />
+                  </div>
+
+                  {/* Key Points Section */}
+                  <div className="mb-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Key Points (Answer Chunks)
+                      </label>
                       <button
-                        onClick={() => removeKeyPoint(index)}
-                        disabled={isAddingQuestion || keyPoints.length === 1}
-                        className="mt-6 px-3 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                        onClick={addKeyPoint}
+                        disabled={isAddingQuestion}
+                        className="px-3 py-1 text-sm bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
                       >
-                        Remove
+                        + Add Key Point
                       </button>
                     </div>
-                  ))}
-                </div>
-              </div>
+                    
+                    <div className="space-y-3">
+                      {keyPoints.map((keyPoint, index) => (
+                        <div key={index} className="flex gap-3 items-start">
+                          <div className="flex-1">
+                            <textarea
+                              value={keyPoint.text}
+                              onChange={(e) => updateKeyPoint(index, 'text', e.target.value)}
+                              placeholder={`Key point ${index + 1}...`}
+                              className="w-full h-20 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                              disabled={isAddingQuestion}
+                            />
+                          </div>
+                          <div className="w-24">
+                            <label className="block text-xs text-gray-600 mb-1">Weight</label>
+                            <input
+                              type="number"
+                              min="1"
+                              value={keyPoint.weight}
+                              onChange={(e) => updateKeyPoint(index, 'weight', parseInt(e.target.value) || 1)}
+                              className="w-full px-2 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                              disabled={isAddingQuestion}
+                            />
+                          </div>
+                          <button
+                            onClick={() => removeKeyPoint(index)}
+                            disabled={isAddingQuestion || keyPoints.length === 1}
+                            className="mt-6 px-3 py-2 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
-              {/* Success Message */}
-              {addQuestionSuccess && (
-                <div className="mb-6 bg-green-50 border-l-4 border-green-400 p-4 rounded">
-                  <p className="text-green-800">{addQuestionSuccess}</p>
-                </div>
+                  {/* Success Message */}
+                  {addQuestionSuccess && (
+                    <div className="mb-6 bg-green-50 border-l-4 border-green-400 p-4 rounded">
+                      <p className="text-green-800">{addQuestionSuccess}</p>
+                    </div>
+                  )}
+
+                  {/* Error Message */}
+                  {addQuestionError && (
+                    <div className="mb-6 bg-red-50 border-l-4 border-red-400 p-4 rounded">
+                      <p className="text-red-800">{addQuestionError}</p>
+                    </div>
+                  )}
+
+                  {/* Submit Button */}
+                  <button
+                    onClick={submitNewQuestion}
+                    disabled={isAddingQuestion || !newQuestionText.trim()}
+                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-medium"
+                  >
+                    {isAddingQuestion ? 'Adding Question...' : 'Add Question to Database'}
+                  </button>
+
+                  {/* Info Note */}
+                  <div className="mt-6 p-4 bg-blue-50 rounded-md">
+                    <p className="text-sm text-blue-800">
+                      <strong>Note:</strong> The question will be added to the database and embeddings will be computed and stored in the vector database. This may take a few moments.
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Bulk Source Text Input */}
+                  <div className="mb-6">
+                    <label htmlFor="bulkSourceText" className="block text-sm font-medium text-gray-700 mb-2">
+                      Long Teacher Text
+                    </label>
+                    <textarea
+                      id="bulkSourceText"
+                      value={bulkSourceText}
+                      onChange={(e) => setBulkSourceText(e.target.value)}
+                      placeholder="Paste the long text here. The system will use the LLM to split it into questions and generate key points for each."
+                      className="w-full h-40 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                      disabled={isBulkProcessing}
+                    />
+                  </div>
+
+                  {/* Bulk Success Message */}
+                  {bulkSuccess && (
+                    <div className="mb-6 bg-green-50 border-l-4 border-green-400 p-4 rounded">
+                      <p className="text-green-800">{bulkSuccess}</p>
+                    </div>
+                  )}
+
+                  {/* Bulk Error Message */}
+                  {bulkError && (
+                    <div className="mb-6 bg-red-50 border-l-4 border-red-400 p-4 rounded">
+                      <p className="text-red-800">{bulkError}</p>
+                    </div>
+                  )}
+
+                  {/* Bulk Submit Button */}
+                  <button
+                    onClick={submitBulkQuestions}
+                    disabled={isBulkProcessing || !bulkSourceText.trim()}
+                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-medium"
+                  >
+                    {isBulkProcessing ? 'Generating Questions...' : 'Generate Questions from Text'}
+                  </button>
+
+                  {/* Info Note */}
+                  <div className="mt-6 p-4 bg-blue-50 rounded-md">
+                    <p className="text-sm text-blue-800">
+                      The system will make two LLM calls: first to split the long text into exam-style questions,
+                      and then to generate key points for each question. The resulting questions are stored in
+                      <code className="px-1 mx-1 bg-blue-100 rounded">rubric_added.json</code> and added to the question bank.
+                    </p>
+                  </div>
+                </>
               )}
-
-              {/* Error Message */}
-              {addQuestionError && (
-                <div className="mb-6 bg-red-50 border-l-4 border-red-400 p-4 rounded">
-                  <p className="text-red-800">{addQuestionError}</p>
-                </div>
-              )}
-
-              {/* Submit Button */}
-              <button
-                onClick={submitNewQuestion}
-                disabled={isAddingQuestion || !newQuestionText.trim()}
-                className="w-full bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-medium"
-              >
-                {isAddingQuestion ? 'Adding Question...' : 'Add Question to Database'}
-              </button>
-
-              {/* Info Note */}
-              <div className="mt-6 p-4 bg-blue-50 rounded-md">
-                <p className="text-sm text-blue-800">
-                  <strong>Note:</strong> The question will be added to the database and embeddings will be computed and stored in the vector database. This may take a few moments.
-                </p>
-              </div>
             </div>
           ) : (
             /* View Questions Tab */
@@ -562,6 +680,16 @@ function App() {
                   >
                     User Added
                   </button>
+                  <button
+                    onClick={() => setSelectedCategoryFilter('rubric_added')}
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
+                      selectedCategoryFilter === 'rubric_added'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                  >
+                    Rubric Added
+                  </button>
                 </div>
               )}
 
@@ -597,12 +725,13 @@ function App() {
                     }, {});
 
                     // Define category order and display names
-                    const categoryOrder = ['biology', 'geography', 'economics', 'user', 'fallback'];
+                    const categoryOrder = ['biology', 'geography', 'economics', 'user', 'rubric_added', 'fallback'];
                     const categoryLabels = {
                       'biology': 'Biology',
                       'geography': 'Geography',
                       'economics': 'Economics',
                       'user': 'User Added',
+                      'rubric_added': 'Rubric Added',
                       'fallback': 'Fallback',
                       'unknown': 'Unknown'
                     };
