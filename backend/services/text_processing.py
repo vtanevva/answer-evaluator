@@ -280,7 +280,8 @@ class TextProcessor:
             List of sentences
         """
         # TODO: add 'and' into the regex
-        raw_sentences = re.split(r"[\.!?\n]+", text)
+        # Split on sentence-ending punctuation and semicolons
+        raw_sentences = re.split(r"[\.!?\n;]+", text)
         sentences = [sentence.strip() for sentence in raw_sentences if sentence.strip()]
         
         # If no sentences found, return the original text
