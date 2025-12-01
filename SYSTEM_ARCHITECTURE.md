@@ -14,6 +14,9 @@ System Architecture v3 - AlgebraKit - Answer Evaluator
 | - shows question       |
 | - collects answer      |
 | - shows result         |
+| - teacher adds Qs:     |
+|   • manual (single)    |
+|   • bulk from text     |
 +-----------+------------+
             |
      HTTP / JSON (POST /answer, GET /question)
