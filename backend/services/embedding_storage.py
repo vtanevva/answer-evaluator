@@ -171,6 +171,64 @@ class EmbeddingStorage:
             print(f"❌ Error caching embeddings to Pinecone: {e}")
             return False
     
+    def cache_single_question_embeddings(
+        self,
+        question_id: int,
+        key_point_embeddings: List[List[float]],
+        key_point_keywords: List[Set[str]],
+        question_metadata: Dict[str, Any]
+    ) -> bool:
+        """
+        Cache embeddings for a single question to Pinecone
+        
+        Args:
+            question_id: ID of the question
+            key_point_embeddings: List of embeddings for each key point
+            key_point_keywords: List of keyword sets for each key point
+            question_metadata: Metadata about the question
+            
+        Returns:
+            True if saved successfully, False otherwise
+        """
+        try:
+            vectors_to_upsert = []
+            
+            for idx, embedding in enumerate(key_point_embeddings):
+                # Create unique ID for each key point embedding
+                vector_id = f"q{question_id}_kp{idx}"
+                
+                # Prepare metadata
+                metadata = {
+                    "question_id": question_id,
+                    "key_point_index": idx,
+                    "question_text": question_metadata.get("question_text", ""),
+                    "key_points_count": question_metadata.get("key_points_count", len(key_point_embeddings)),
+                    "keywords": list(key_point_keywords[idx]) if idx < len(key_point_keywords) else [],
+                    "created_at": datetime.now().isoformat(),
+                    "embedding_provider": settings.embeddings.provider,
+                    "embedding_model": settings.embeddings.current_model
+                }
+                
+                vectors_to_upsert.append({
+                    "id": vector_id,
+                    "values": embedding,
+                    "metadata": metadata
+                })
+            
+            # Upsert vectors to Pinecone
+            print(f"🔄 Upserting {len(vectors_to_upsert)} vectors for question {question_id} to Pinecone...")
+            self._index.upsert(vectors=vectors_to_upsert)
+            
+            # Wait for upserts to be processed
+            time.sleep(1)
+            
+            print(f"✅ Successfully cached embeddings for question {question_id} to Pinecone")
+            return True
+            
+        except Exception as e:
+            print(f"❌ Error caching embeddings for question {question_id} to Pinecone: {e}")
+            return False
+    
     def load_cached_embeddings(
         self, 
         current_questions_metadata: Dict[int, Dict[str, Any]]
@@ -342,3 +400,47 @@ class EmbeddingStorage:
         except Exception as e:
             print(f"❌ Error getting cache info: {e}")
             return None
+    
+    def delete_question_embeddings(self, question_id: int) -> bool:
+        """
+        Delete all embeddings for a specific question from Pinecone
+        
+        Args:
+            question_id: ID of the question whose embeddings should be deleted
+            
+        Returns:
+            True if deleted successfully, False otherwise
+        """
+        try:
+            # Delete vectors by filter - Pinecone supports deleting by metadata filter
+            # We need to delete all vectors with question_id matching
+            stats = self._index.describe_index_stats()
+            index_dimension = stats['dimension']
+            
+            # First, find all vector IDs for this question by querying with filter
+            query_response = self._index.query(
+                vector=[0.0] * index_dimension,
+                filter={"question_id": question_id},
+                top_k=10000,  # Large number to get all key points
+                include_metadata=True
+            )
+            
+            if not query_response['matches']:
+                print(f"⚠️ No embeddings found for question {question_id} in Pinecone")
+                return True  # Already deleted or never existed
+            
+            # Extract vector IDs to delete
+            vector_ids = []
+            for match in query_response['matches']:
+                vector_ids.append(match['id'])
+            
+            # Delete vectors by IDs
+            if vector_ids:
+                self._index.delete(ids=vector_ids)
+                print(f"✅ Deleted {len(vector_ids)} embeddings for question {question_id} from Pinecone")
+            
+            return True
+            
+        except Exception as e:
+            print(f"❌ Error deleting embeddings for question {question_id} from Pinecone: {e}")
+            return False

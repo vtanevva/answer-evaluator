@@ -61,6 +61,7 @@ async def lifespan(app: FastAPI):
     # Set service instances in routes module for dependency injection
     routes.question_service = question_service
     routes.grading_service = grading_service
+    routes.openai_client = openai_client
     
     print("✅ Backend ready!")
     

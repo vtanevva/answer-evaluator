@@ -1,0 +1,107 @@
+[
+  {
+    "question_id": 252,
+    "question_text": "What is economics and why is it important?",
+    "key_points": [
+      {
+        "text": "Economics studies allocation of scarce resources.",
+        "weight": 1
+      },
+      {
+        "text": "Importance: guides decision-making at individual, business, and societal levels.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 253,
+    "question_text": "How do limited resources impact the decisions made by individuals and businesses?",
+    "key_points": [
+      {
+        "text": "Scarcity forces choices due to insufficient resources.",
+        "weight": 1
+      },
+      {
+        "text": "Decisions involve trade-offs to maximize utility or profit.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 254,
+    "question_text": "Explain the role of markets in the exchange of goods and services.",
+    "key_points": [
+      {
+        "text": "Markets facilitate buying and selling of goods/services.",
+        "weight": 1
+      },
+      {
+        "text": "Prices determined by supply and demand interactions.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 255,
+    "question_text": "How do consumers and producers influence the market?",
+    "key_points": [
+      {
+        "text": "Consumers drive demand for goods/services.",
+        "weight": 1
+      },
+      {
+        "text": "Producers respond by supplying demanded products.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 256,
+    "question_text": "Describe how supply and demand affect prices in a market.",
+    "key_points": [
+      {
+        "text": "Price increases with high demand and low supply.",
+        "weight": 1
+      },
+      {
+        "text": "Price decreases with low demand and high supply.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 257,
+    "question_text": "Provide examples of how economics can explain everyday situations.",
+    "key_points": [
+      {
+        "text": "Economic principles apply to personal budgeting decisions.",
+        "weight": 1
+      },
+      {
+        "text": "Economics explains pricing strategies in businesses.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  },
+  {
+    "question_id": 258,
+    "question_text": "How do companies make decisions on what to produce based on economic principles?",
+    "key_points": [
+      {
+        "text": "Companies consider production costs and expected demand.",
+        "weight": 1
+      },
+      {
+        "text": "Profit maximization guides production decisions.",
+        "weight": 1
+      }
+    ],
+    "category": "rubric_added"
+  }
+]

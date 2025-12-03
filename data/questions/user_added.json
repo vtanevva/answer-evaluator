@@ -1,0 +1,17 @@
+[
+  {
+    "question_id": 259,
+    "question_text": "hey",
+    "key_points": [
+      {
+        "text": "hey",
+        "weight": 1
+      },
+      {
+        "text": "hey",
+        "weight": 1
+      }
+    ],
+    "category": "user"
+  }
+]
