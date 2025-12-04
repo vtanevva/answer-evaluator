@@ -36,12 +36,12 @@ class EmbeddingStorage:
         self._pc = Pinecone(api_key=self._pinecone_config.api_key)
         
         # Get the correct dimensions from embedding config
-        self._embedding_dimensions = settings.embeddings.current_dimensions
+        self._embedding_dimensions = settings.embeddings.dimensions
         
-        # Build an index name that encodes provider and dimension to avoid conflicts
+        # Build an index name that encodes model and dimension to avoid conflicts
         base_name = self._pinecone_config.index_name
-        provider = settings.embeddings.provider.replace(" ", "-").lower()
-        self._index_name = f"{base_name}-{provider}-{self._embedding_dimensions}"
+        model_slug = settings.embeddings.model.replace("/", "-").replace(" ", "-").lower()
+        self._index_name = f"{base_name}-{model_slug}-{self._embedding_dimensions}"
 
         # Initialize or get the index
         self._index = self._get_or_create_index()
@@ -75,7 +75,7 @@ class EmbeddingStorage:
         # Try to create the index, but handle case where it already exists
         try:
             print(f"🔧 Creating Pinecone index: {index_name}")
-            print(f"📏 Using dimensions: {self._embedding_dimensions} for {settings.embeddings.provider}")
+            print(f"📏 Using dimensions: {self._embedding_dimensions} for {settings.embeddings.model}")
             self._pc.create_index(
                 name=index_name,
                 dimension=self._embedding_dimensions,
@@ -135,8 +135,8 @@ class EmbeddingStorage:
                         "key_points_count": question_meta.get("key_points_count", 0),
                         "keywords": list(question_keywords[idx]) if idx < len(question_keywords) else [],
                         "created_at": datetime.now().isoformat(),
-                        "embedding_provider": settings.embeddings.provider,
-                        "embedding_model": settings.embeddings.current_model
+                        "embedding_type": settings.embeddings.type,
+                        "embedding_model": settings.embeddings.model
                     }
                     
                     vectors_to_upsert.append({

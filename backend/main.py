@@ -1,6 +1,5 @@
 import os
 import uvicorn
-from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
@@ -12,72 +11,83 @@ from routes import routes
 from services.question_service import QuestionService
 from services.grading_service import GradingService
 
-# Load environment variables from .env file
+# Conditionally import NLI service only if needed
+if getattr(settings.grading, 'grading_method', 'embedding') in ['nli', 'hybrid']:
+    from services.nli_grading_service import NLIGradingService
+
+# Load environment variables
 load_dotenv()
 
 # Global service instances
 question_service: QuestionService = None
-grading_service: GradingService = None
+grading_service = None
+_initialized = False
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """
-    Lifespan event handler - initialize services on startup and cleanup on shutdown
-    This replaces the deprecated @app.on_event("startup") decorator
-    """
-    global question_service, grading_service
+def initialize_services():
+    """Initialize services on first request (Windows-compatible)"""
+    global question_service, grading_service, _initialized
     
-    # Startup
-    print("🚀 Starting Answer Evaluator Backend...")
+    if _initialized:
+        return
     
-    # Check for OpenAI API key
+    print("Starting Answer Evaluator Backend...")
+    
     api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key or len(api_key) == 0:
-        print("❌ OPENAI_API_KEY not found in environment variables!")
-        print("Please set your OpenAI API key in .env file")
-        raise RuntimeError("OpenAI API key not found")
-    
-    # Check for Pinecone API key
+    if not api_key:
+        raise RuntimeError("OPENAI_API_KEY not found in environment variables!")
+
     pinecone_key = os.getenv("PINECONE_API_KEY")
-    if not pinecone_key or len(pinecone_key) == 0:
-        print("❌ PINECONE_API_KEY not found in environment variables!")
-        print("Please set your Pinecone API key in .env file")
-        raise RuntimeError("Pinecone API key not found")
-    
-    # Initialize OpenAI client
+    if not pinecone_key:
+        raise RuntimeError("PINECONE_API_KEY not found in environment variables!")
+
     openai_client = OpenAI(api_key=api_key)
-    print("✅ OpenAI API key loaded")
-    print("✅ Pinecone API key loaded")
-    
-    # Initialize services
+    print("OpenAI API key loaded")
+    print("Pinecone API key loaded")
+
     question_service = QuestionService()
     question_service.load_questions_bank()
+
+    grading_method = getattr(settings.grading, 'grading_method', 'embedding')
     
-    # Pass the OpenAI client instance to the grading service
-    grading_service = GradingService(question_service, openai_client)
-    grading_service.precompute_embeddings()
-    
-    # Set service instances in routes module for dependency injection
+    if grading_method == 'nli':
+        print("Using NLI-based grading (semantic inference)")
+        grading_service = NLIGradingService(question_service)
+    elif grading_method == 'hybrid':
+        print("Using HYBRID grading (embedding + NLI verification)")
+        print("  ✓ High similarity (>=85%): Auto-pass (no NLI check)")
+        print("  ✓ Mid similarity (70-85%): NLI verification (contradiction-aware)")
+        print("  ✓ Low similarity (<70%): Embedding fallback (NLI deep check disabled)")
+        grading_service = GradingService(question_service, openai_client)
+        grading_service.precompute_embeddings()
+    else:
+        print("Using embedding-based grading (cosine similarity)")
+        grading_service = GradingService(question_service, openai_client)
+        grading_service.precompute_embeddings()
+
+    # Inject into routes module
     routes.question_service = question_service
     routes.grading_service = grading_service
-    
-    print("✅ Backend ready!")
-    
-    yield  # Application runs here
-    
-    # Shutdown (cleanup if needed)
-    print("🔄 Shutting down Answer Evaluator Backend...")
+
+    _initialized = True
+    print("Backend ready!")
 
 
-# Initialize FastAPI app
+# Create FastAPI app WITHOUT lifespan (Windows compatibility)
 app = FastAPI(
     title=settings.server.title,
-    description=settings.server.description,
-    lifespan=lifespan
+    description=settings.server.description
 )
 
-# Enable CORS for frontend communication
+# Initialize services at startup
+@app.on_event("startup")
+async def startup_event():
+    """Initialize all services when the server starts"""
+    print("\n🚀 Starting Answer Evaluator Backend...")
+    initialize_services()
+    print("✅ Server ready to accept requests!\n")
+
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors.allowed_origins,
@@ -86,17 +96,20 @@ app.add_middleware(
     allow_headers=settings.cors.allowed_headers,
 )
 
-# Include API routes
+# Include routes
 app.include_router(router)
 
+
 if __name__ == "__main__":
-    """
-    Run the FastAPI server
-    Development server - use uvicorn for production
-    """
-    uvicorn.run(
-        "main:app",  # Use import string format for reload support
-        host=settings.server.host, 
-        port=settings.server.port, 
-        reload=settings.server.reload
-    )
+    try:
+        uvicorn.run(
+            "main:app",
+            host=settings.server.host,
+            port=settings.server.port,
+            reload=False,
+            log_level="info"
+        )
+    except KeyboardInterrupt:
+        print("\nServer stopped by user. Goodbye!")
+    except Exception as e:
+        print(f"\nServer crashed: {e}")

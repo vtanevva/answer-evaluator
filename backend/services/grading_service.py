@@ -4,6 +4,9 @@ Answer grading service using embeddings and text analysis
 
 from typing import List, Dict, Set, Optional, Any, Tuple
 from fastapi import HTTPException
+import json
+from datetime import datetime
+from pathlib import Path
 
 from models.models import AnswerResponse
 from services.embedding_service import EmbeddingService
@@ -13,6 +16,14 @@ from services.embedding_storage import EmbeddingStorage
 from services.smart_antonym_detector import SmartAntonymDetector, AntonymConfidence
 from services.verification import LLMVerificationService, LLMVerificationResult
 from core.config import settings
+
+# Conditional NLI import (only for hybrid/nli modes)
+if getattr(settings.grading, 'grading_method', 'embedding') in ["hybrid", "nli"]:
+    from services.nli_service import NLIService
+
+# Conditional LLM arbiter import (only if enabled)
+if getattr(settings.grading, 'llm_arbiter_enabled', False):
+    from services.llm_arbiter_service import LLMArbiterService
 
 
 class GradingService:
@@ -24,6 +35,7 @@ class GradingService:
     - Grading user answers using semantic similarity
     - Combining semantic and lexical analysis
     - Generating feedback based on grading results
+    - Logging uncertain cases for active learning
     """
     
     def __init__(self, question_service: QuestionService, openai_client):
@@ -43,6 +55,17 @@ class GradingService:
             LLMVerificationService(openai_client) if openai_client else None
         )
         
+        # Initialize NLI service for hybrid/nli modes
+        self._nli_service = None
+        if getattr(settings.grading, 'grading_method', 'embedding') in ["hybrid", "nli"]:
+            print("Initializing NLI service for hybrid grading...")
+            self._nli_service = NLIService()
+        
+        # Initialize LLM arbiter for high-uncertainty cases (optional, ultra-low-cost)
+        self._llm_arbiter = None
+        if getattr(settings.grading, 'llm_arbiter_enabled', False):
+            self._llm_arbiter = LLMArbiterService()
+        
         # Storage for precomputed embeddings and keywords
         self._key_point_embeddings: Dict[int, List[List[float]]] = {}
         self._key_point_keywords: Dict[int, List[Set[str]]] = {}
@@ -52,6 +75,119 @@ class GradingService:
         self._feedback_config = settings.grading.feedback_messages
         self._validation_config = settings.grading.answer_validation
         self._antonym_config = settings.antonym_detection
+        
+        # Uncertainty logging for active learning (zero cost)
+        self._log_uncertain = getattr(settings.grading, 'log_uncertain_cases', False)
+        self._uncertainty_threshold = getattr(settings.grading, 'uncertainty_threshold', 0.7)
+        self._uncertain_cases_file = Path("uncertain_cases.jsonl")
+        
+        # Hybrid mode thresholds - NEW 4-TRACK APPROACH
+        if getattr(settings.grading, 'grading_method', 'embedding') == "hybrid":
+            # Fast track (Track 1)
+            self._fast_track_threshold = getattr(settings.grading, 'fast_track_cosine_high', 0.92)
+            # Standard track bounds (Track 2)
+            self._standard_track_min = getattr(settings.grading, 'standard_track_min', 0.70)
+            # Disagreement thresholds for escalation
+            self._agreement_threshold = getattr(settings.grading, 'agreement_threshold', 0.15)
+            self._high_disagreement = getattr(settings.grading, 'high_disagreement', 0.55)
+            
+            print(f"🚀 HYBRID 4-TRACK GRADING enabled:")
+            print(f"   Track 1 (Fast): cosine ≥ {self._fast_track_threshold} → instant pass")
+            print(f"   Track 2 (Standard): {self._standard_track_min}-{self._fast_track_threshold} → NLI-small verify")
+            print(f"   Track 3 (Deep): disagreement > {self._agreement_threshold} → NLI-base verify")
+            print(f"   Track 4 (Critical): disagreement > {self._high_disagreement} → LLM arbiter")
+            if self._log_uncertain:
+                print(f"   Uncertainty logging: enabled (threshold={self._uncertainty_threshold})")
+    
+    def _calculate_uncertainty_score(
+        self, 
+        similarity: float, 
+        nli_entailment: float = None,
+        nli_contradiction: float = None,
+        overlap: float = 0.0
+    ) -> float:
+        """
+        Calculate uncertainty score for active learning (0-1, higher = more uncertain)
+        
+        Cases with high uncertainty are logged for human review to improve the system.
+        This is a zero-cost approach to continuous improvement.
+        """
+        # Factor 1: Decision boundary proximity
+        boundary_70 = abs(similarity - 0.70)
+        boundary_85 = abs(similarity - 0.85)
+        boundary_uncertainty = max(0, 1 - min(boundary_70, boundary_85) / 0.15)
+        
+        # Factor 2: Cosine-NLI disagreement
+        disagreement = 0
+        if nli_entailment is not None:
+            disagreement = abs(similarity - nli_entailment)
+        
+        # Factor 3: NLI confidence (if available)
+        nli_uncertainty = 0
+        if nli_entailment is not None and nli_contradiction is not None:
+            nli_max = max(nli_entailment, nli_contradiction)
+            nli_uncertainty = 1 - nli_max
+        
+        # Factor 4: Cosine-overlap mismatch
+        cosine_overlap_mismatch = 0
+        if similarity > 0.75 and overlap < 0.3:
+            cosine_overlap_mismatch = similarity - overlap - 0.3
+        
+        # Weighted combination
+        uncertainty = (
+            0.40 * boundary_uncertainty +
+            0.30 * disagreement +
+            0.20 * nli_uncertainty +
+            0.10 * cosine_overlap_mismatch
+        )
+        
+        return min(1.0, uncertainty)
+    
+    def _log_uncertain_case(
+        self,
+        question_id: int,
+        question_text: str,
+        key_point: str,
+        student_answer: str,
+        similarity: float,
+        nli_result: Dict = None,
+        overlap: float = 0.0,
+        decision: bool = False,
+        uncertainty_score: float = 0.0
+    ) -> None:
+        """
+        Log uncertain case for human review (active learning - zero cost)
+        
+        Logged cases can be periodically reviewed to:
+        - Validate system decisions
+        - Find patterns in errors
+        - Fine-tune thresholds
+        - Improve NLI model
+        """
+        if not self._log_uncertain:
+            return
+        
+        case = {
+            "timestamp": datetime.now().isoformat(),
+            "question_id": question_id,
+            "question_text": question_text,
+            "key_point": key_point,
+            "student_answer": student_answer,
+            "similarity": round(similarity, 3),
+            "overlap": round(overlap, 3),
+            "nli_entailment": round(nli_result.get("best_entailment", 0), 3) if nli_result else None,
+            "nli_contradiction": nli_result.get("has_contradiction", False) if nli_result else None,
+            "uncertainty_score": round(uncertainty_score, 3),
+            "decision": decision,
+            "needs_review": True
+        }
+        
+        # Append to JSONL file (one JSON object per line)
+        try:
+            with open(self._uncertain_cases_file, "a", encoding="utf-8") as f:
+                f.write(json.dumps(case, ensure_ascii=False) + "\n")
+        except Exception as e:
+            print(f"⚠️ Failed to log uncertain case: {e}")
     
     def precompute_embeddings(self) -> None:
         """
@@ -126,6 +262,7 @@ class GradingService:
             }
         
         return metadata
+
     
     def _compute_new_embeddings(self, questions: List[Dict]) -> None:
         """
@@ -265,6 +402,43 @@ class GradingService:
         # Process user answer tokens for lexical matching
         user_tokens = self._text_processor.normalize_text(user_answer)
         
+        # DETECT COMPREHENSIVE BALANCED ANSWERS
+        # Answers discussing both positive and negative perspectives should NOT trigger contradiction checks
+        # STRICTER: Require multiple indicators or specific phrases, not just single words
+        balanced_phrases = [
+            "on one hand", "on the other hand", "both positive and negative",
+            "benefits and challenges", "advantages and disadvantages",
+            "pros and cons", "both sides", "dual effect"
+        ]
+        # Require at least one phrase OR combination of "both" with perspective words
+        user_lower = user_answer.lower()
+        has_balanced_phrase = any(phrase in user_lower for phrase in balanced_phrases)
+        has_both_perspectives = "both" in user_lower and any(w in user_lower for w in ["positive", "negative", "good", "bad"])
+        is_comprehensive_answer = has_balanced_phrase or has_both_perspectives
+        
+        if is_comprehensive_answer:
+            print(f"\n📝 COMPREHENSIVE ANSWER DETECTED: Discussing multiple perspectives")
+            print(f"   → Skipping contradiction checks for individual sentences")
+        
+        # GLOBAL CONTRADICTION CHECK: Check if answer contradicts the question itself
+        # This prevents false positives when student negates the main premise
+        global_contradiction_detected = False
+        if getattr(settings.grading, 'grading_method', 'embedding') == "hybrid" and self._nli_service:
+            # Check the main question text against the answer for fundamental contradictions
+            question_text = question["question_text"]
+            global_nli_result = self._nli_service.evaluate_answer_against_keypoint(
+                student_answer=user_answer,
+                key_point=question_text,
+                sentences=sentences
+            )
+            # Only flag global contradiction if NOT a comprehensive answer
+            # (comprehensive answers naturally discuss negatives, which shouldn't be flagged)
+            if not is_comprehensive_answer and global_nli_result["has_contradiction"] and global_nli_result["best_entailment"] < 0.3:
+                global_contradiction_detected = True
+                print(f"\n⚠️ GLOBAL CONTRADICTION: Answer contradicts the question premise")
+                print(f"   Question: '{question_text}'")
+                print(f"   Contradiction score: {global_nli_result['has_contradiction']}")
+        
         # Evaluate each key point
         hit_key_points = []
         missing_key_points = []
@@ -274,6 +448,7 @@ class GradingService:
         for i, key_point in enumerate(key_points):
             key_point_embedding = self._key_point_embeddings[question_id][i]
             key_point_tokens = list(self._key_point_keywords[question_id][i])
+            key_point_text = key_point["text"]
             
             # Calculate semantic similarity (best sentence match)
             similarity, best_sentence = self._find_best_sentence_match(
@@ -287,55 +462,177 @@ class GradingService:
             )
             raw_overlap = overlap
             
-            # Check for semantic conflicts using AI-powered antonym detection
-            has_conflict = self._detect_antonym_conflict(user_answer, key_point["text"], question["question_text"])
+            # THREE-TIER HYBRID GRADING SYSTEM
+            is_hit = False
+            verification_method = ""
             
-            # If we detect opposing claims, apply penalty based on confidence
-            if has_conflict:
-                penalty_multiplier = self._antonym_config.antonym_penalty_multiplier
-                similarity *= penalty_multiplier
-                overlap *= penalty_multiplier
-            penalized_similarity = similarity
+            # If global contradiction detected, auto-fail all key points
+            if global_contradiction_detected:
+                is_hit = False
+                verification_method = "global-contradiction-fail"
+                print(f"  ❌ '{key_point_text[:30]}...': FAILED (global contradiction)")
             
-            llm_result = self._apply_llm_verification(
-                similarity, best_sentence, reference_chunks
-            )
-            llm_confirmed = False
-            llm_executed = False
-            if llm_result:
-                llm_executed = llm_result.llm_used
-                if llm_result.llm_used and llm_result.decision:
-                    llm_confirmed = llm_result.decision.is_similar
-                    if (
-                        self._similarity_config.llm_verification_threshold
-                        < raw_similarity
-                        < self._similarity_config.high_similarity
-                    ):
-                        status = "PASS" if llm_confirmed else "FAIL"
-                        print(
-                            f"    🤖 LLM verification ({status}): reason={llm_result.reason}"
+            elif getattr(settings.grading, 'grading_method', 'embedding') == "hybrid" and self._nli_service:
+                # ===========================================
+                # HYBRID 4-TRACK ROUTING WITH SEQUENTIAL REFINEMENT
+                # ===========================================
+                # Track 1 (Fast): cosine ≥0.92 → instant pass
+                # Track 2 (Standard): NLI-small, check agreement
+                # Track 3 (Deep): NLI-base if disagreement >15%
+                # Track 4 (Critical): LLM arbiter if disagreement >55%
+                # ===========================================
+                
+                # Use the new hybrid_evaluate method
+                hybrid_result = self._nli_service.hybrid_evaluate(
+                    student_answer=user_answer,
+                    key_point=key_point_text,
+                    cosine_score=similarity,
+                    sentences=sentences
+                )
+                
+                track = hybrid_result["track"]
+                track_name = hybrid_result["track_name"]
+                is_hit = hybrid_result["is_covered"]
+                final_score = hybrid_result["final_score"]
+                disagreement = hybrid_result["disagreement"]
+                needs_llm = hybrid_result["needs_llm"]
+                
+                # Track 1: FAST - instant decision
+                if track == 1:
+                    verification_method = f"hybrid-{track_name}"
+                    print(f"  ⚡ '{key_point_text[:30]}...': Track 1 ({track_name}) sim={similarity:.3f} → {'PASS' if is_hit else 'FAIL'}")
+                
+                # Track 2: STANDARD - NLI verified
+                elif track == 2:
+                    verification_method = f"hybrid-{track_name}"
+                    print(f"  ✅ '{key_point_text[:30]}...': Track 2 (standard) sim={similarity:.3f}→{final_score:.3f}, disagree={disagreement:.3f}")
+                
+                # Track 3: DEEP - Multi-model verification
+                elif track == 3:
+                    verification_method = f"hybrid-{track_name}"
+                    print(f"  🔍 '{key_point_text[:30]}...': Track 3 (deep) sim={similarity:.3f}→{final_score:.3f}, disagree={disagreement:.3f}")
+                
+                # Track 4: CRITICAL - Needs LLM arbiter
+                elif track == 4:
+                    verification_method = f"hybrid-{track_name}"
+                    nli_scores = hybrid_result.get("nli_scores", {})
+                    nli_small = nli_scores.get("small", {})
+                    
+                    # Check if LLM arbiter should be triggered
+                    if needs_llm and self._llm_arbiter:
+                        # Calculate uncertainty for LLM trigger
+                        uncertainty = self._calculate_uncertainty_score(
+                            similarity=similarity,
+                            nli_entailment=nli_small.get("best_entailment", 0.5),
+                            nli_contradiction=nli_small.get("max_contradiction", 0),
+                            overlap=overlap
                         )
-
-            # Determine if key point is hit based on adjusted scores
-            is_hit = (not has_conflict) and self._is_key_point_hit(similarity, overlap)
-            if not is_hit and llm_confirmed:
-                is_hit = True
+                        
+                        if self._llm_arbiter.should_trigger(uncertainty):
+                            print(f"     🤖 Track 4: High disagreement ({disagreement:.2f}) + uncertainty ({uncertainty:.2f}) - triggering LLM arbiter")
+                            
+                            import asyncio
+                            try:
+                                llm_result = asyncio.run(self._llm_arbiter.verify_answer(
+                                    question_text=question.get("question_text", ""),
+                                    key_point=key_point_text,
+                                    student_answer=user_answer,
+                                    cosine_similarity=similarity,
+                                    nli_entailment=nli_small.get("best_entailment", 0.5),
+                                    nli_contradiction=nli_small.get("has_contradiction", False)
+                                ))
+                                
+                                # LLM overrides the decision
+                                is_hit = llm_result["is_correct"]
+                                verification_method = "hybrid-llm-arbiter"
+                                print(f"     ✨ LLM decision: {'PASS' if is_hit else 'FAIL'} (confidence: {llm_result['confidence']:.2f})")
+                                print(f"        Reasoning: {llm_result['reasoning']}")
+                            except Exception as e:
+                                print(f"     ⚠️ LLM arbiter failed: {e}, using NLI decision")
+                    
+                    print(f"  ⚠️ '{key_point_text[:30]}...': Track 4 (critical) sim={similarity:.3f}→{final_score:.3f}, disagree={disagreement:.3f}")
+                
+                # Log uncertain cases for active learning
+                if hybrid_result.get("confidence", 1.0) < 0.7 or needs_llm:
+                    uncertainty = self._calculate_uncertainty_score(
+                        similarity=similarity,
+                        nli_entailment=hybrid_result.get("nli_scores", {}).get("small", {}).get("best_entailment", 0),
+                        nli_contradiction=hybrid_result.get("nli_scores", {}).get("small", {}).get("max_contradiction", 0),
+                        overlap=overlap
+                    )
+                    
+                    if uncertainty >= self._uncertainty_threshold:
+                        self._log_uncertain_case(
+                            question_id=question_id,
+                            question_text=question.get("question_text", ""),
+                            key_point=key_point_text,
+                            student_answer=user_answer,
+                            similarity=similarity,
+                            nli_result=hybrid_result.get("nli_scores", {}).get("small", {}),
+                            overlap=overlap,
+                            decision=is_hit,
+                            uncertainty_score=uncertainty
+                        )
             
-            if is_hit:
-                hit_key_points.append(key_point["text"])
             else:
-                missing_key_points.append(key_point["text"])
+                # Fallback to pure embedding mode
+                is_hit = self._is_key_point_hit(similarity, overlap)
+                verification_method = "embedding-only"
+                print(f"  📊 '{key_point_text[:30]}...': sim={similarity:.3f}, overlap={overlap:.2f}, hit={is_hit}")
             
-            print(
-                f"  📊 Key point '{key_point['text'][:30]}...': "
-                f"sim_raw={raw_similarity:.3f}, "
-                f"sim_penalized={penalized_similarity:.3f}, "
-                f"sim_final={similarity:.3f}, "
-                f"overlap_raw={raw_overlap:.2f}, "
-                f"overlap_final={overlap:.2f}, "
-                f"hit={is_hit}"
-                + (", llm=used" if llm_executed else "")
-            )
+            # Categorize result
+            if is_hit:
+                hit_key_points.append(key_point_text)
+            else:
+                missing_key_points.append(key_point_text)
+        
+        # ===========================================
+        # LLM HOLISTIC GRADING - Most Accurate Mode
+        # ===========================================
+        # If enabled, use LLM to grade the ENTIRE answer like a teacher
+        # This overrides the sentence-by-sentence matching results
+        llm_holistic_mode = getattr(settings.grading, 'llm_holistic_mode', 'never')
+        
+        if llm_holistic_mode != "never" and self._llm_arbiter:
+            should_use_llm = False
+            
+            if llm_holistic_mode == "always":
+                should_use_llm = True
+                print("\n🤖 LLM Holistic Mode: ALWAYS - using LLM to grade entire answer")
+            
+            elif llm_holistic_mode == "fallback":
+                # Use LLM if there's any uncertainty or disagreement
+                # Check if score is not clearly 0% or 100%
+                preliminary_score = self._calculate_score(len(hit_key_points), len(key_points))
+                if 0 < preliminary_score < 100:
+                    should_use_llm = True
+                    print(f"\n🤖 LLM Holistic Mode: FALLBACK - preliminary score {preliminary_score:.0f}% is uncertain, using LLM")
+            
+            if should_use_llm:
+                import asyncio
+                try:
+                    key_point_texts = [kp["text"] for kp in key_points]
+                    llm_result = asyncio.run(self._llm_arbiter.grade_holistically(
+                        question_text=question.get("question_text", ""),
+                        key_points=key_point_texts,
+                        student_answer=user_answer
+                    ))
+                    
+                    if llm_result:
+                        # Override with LLM's holistic assessment
+                        hit_key_points = []
+                        missing_key_points = []
+                        
+                        for i, (kp_text, is_covered) in enumerate(zip(key_point_texts, llm_result["covered"])):
+                            if is_covered:
+                                hit_key_points.append(kp_text)
+                            else:
+                                missing_key_points.append(kp_text)
+                        
+                        print(f"   ✨ LLM Override: {len(hit_key_points)}/{len(key_points)} key points covered")
+                        
+                except Exception as e:
+                    print(f"   ⚠️ LLM holistic grading failed: {e}, using embedding/NLI results")
         
         # Calculate score and generate feedback
         score = self._calculate_score(len(hit_key_points), len(key_points))

@@ -17,21 +17,30 @@ python main.py
 The backend will start on `http://localhost:8000`
 
 **Required Environment Variables:**
-- `OPENAI_API_KEY`: Your OpenAI API key for generating embeddings (if using OpenAI provider)
+- `OPENAI_API_KEY`: Your OpenAI API key (only if using OpenAI model)
 - `PINECONE_API_KEY`: Your Pinecone API key for vector storage
 
-**Embedding Providers:**
-The system supports multiple embedding models with easy switching:
+**Unified Embeddings Interface:**
+The system uses a unified embeddings interface that supports any embedding model with easy switching through configuration.
 
+**Supported Models:**
 1. **OpenAI** (text-embedding-ada-002): High-quality embeddings, requires API credits
 2. **GTE-Multilingual** (Alibaba-NLP/gte-multilingual-base): Free local model, supports 100+ languages
+3. **MiniLM** (sentence-transformers/all-MiniLM-L6-v2): Fast, lightweight, free
+4. **Any HuggingFace Model**: Use any sentence-transformer compatible model
 
-To switch providers, simply change the `provider` setting in `backend/settings.yaml`:
+To switch models, edit `backend/settings.yaml`:
 
 ```yaml
 embeddings:
-  provider: "gte-multilingual"  # Change to "openai" for OpenAI embeddings
+  model: "Alibaba-NLP/gte-multilingual-base"  # Model name or path
+  type: "sentence-transformer"  # "openai" or "sentence-transformer"
+  dimensions: 768  # Must match model's output dimensions
 ```
+
+**Quick Reference:**
+- See `backend/MODEL_SWITCHING_GUIDE.md` for common model configurations
+- See `backend/EMBEDDINGS_INTERFACE.md` for detailed architecture documentation
 
 ### Frontend Setup
 

@@ -19,7 +19,7 @@ def load_questions_from_file(file_path="questions.json"):
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             questions = json.load(f)
-        print(f"✅ Loaded {len(questions)} questions from {file_path}")
+        print(f"Loaded {len(questions)} questions from {file_path}")
         return questions
     except FileNotFoundError:
         print(f"❌ Questions file {file_path} not found")
