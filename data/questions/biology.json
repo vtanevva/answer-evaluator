@@ -22,7 +22,7 @@
     "question_id": 1
   },
   {
-    "question_id": 3,
+    "question_id": 2,
     "question_text": "How do plants make their own food?",
     "key_points": [
       {
@@ -55,7 +55,7 @@
         "weight": 1
       }
     ],
-    "question_id": 4
+    "question_id": 3
   },
   {
     "question_text": "What are some adaptations that help animals survive in their environments?",
@@ -73,7 +73,7 @@
         "weight": 1
       }
     ],
-    "question_id": 6
+    "question_id": 4
   },
   {
     "question_text": "What are the main functions of the human skeletal system?",
@@ -95,7 +95,7 @@
         "weight": 1
       }
     ],
-    "question_id": 7
+    "question_id": 5
   },
   {
     "question_text": "What adaptations help animals survive in their environments?",
@@ -113,7 +113,7 @@
         "weight": 1
       }
     ],
-    "question_id": 8
+    "question_id": 6
   },
   {
     "question_text": "How do human activities impact biodiversity in ecosystems?",
@@ -135,7 +135,7 @@
         "weight": 1
       }
     ],
-    "question_id": 9
+    "question_id": 7
   },
   {
     "question_text": "What is the role of genes in determining traits in living organisms?",
@@ -157,7 +157,7 @@
         "weight": 1
       }
     ],
-    "question_id": 10
+    "question_id": 8
   },
   {
     "question_text": "What are the main components of an ecosystem?",
@@ -179,10 +179,10 @@
         "weight": 1
       }
     ],
-    "question_id": 11
+    "question_id": 9
   },
   {
-    "question_id": 12,
+    "question_id": 10,
     "question_text": "What are three adaptations that help desert animals survive?",
     "key_points": [
       {
@@ -219,7 +219,7 @@
         "weight": 1
       }
     ],
-    "question_id": 13
+    "question_id": 11
   },
   {
     "question_text": "How does deforestation impact local ecosystems?",
@@ -237,7 +237,7 @@
         "weight": 1
       }
     ],
-    "question_id": 14
+    "question_id": 12
   },
   {
     "question_text": "What are some unique adaptations that help animals survive in their habitats?",
@@ -259,7 +259,7 @@
         "weight": 1
       }
     ],
-    "question_id": 15
+    "question_id": 13
   },
   {
     "question_text": "What are the main parts of a plant and their functions?",
@@ -281,7 +281,7 @@
         "weight": 1
       }
     ],
-    "question_id": 16
+    "question_id": 14
   },
   {
     "question_text": "What are the main differences between plant and animal cells?",
@@ -303,7 +303,7 @@
         "weight": 1
       }
     ],
-    "question_id": 17
+    "question_id": 15
   },
   {
     "question_text": "What is natural selection and how does it relate to evolution?",
@@ -321,7 +321,7 @@
         "weight": 1
       }
     ],
-    "question_id": 18
+    "question_id": 16
   },
   {
     "question_text": "What are the main functions of the human circulatory system?",
@@ -343,7 +343,7 @@
         "weight": 1
       }
     ],
-    "question_id": 19
+    "question_id": 17
   },
   {
     "question_text": "What factors affect the balance of an ecosystem?",
@@ -365,7 +365,7 @@
         "weight": 1
       }
     ],
-    "question_id": 20
+    "question_id": 18
   },
   {
     "question_text": "What are some mechanisms that drive evolution in species?",
@@ -387,7 +387,7 @@
         "weight": 1
       }
     ],
-    "question_id": 21
+    "question_id": 19
   },
   {
     "question_text": "What are the main stages of a butterfly's life cycle?",
@@ -409,7 +409,7 @@
         "weight": 1
       }
     ],
-    "question_id": 22
+    "question_id": 20
   },
   {
     "question_text": "What are the main functions of roots in plants?",
@@ -427,7 +427,7 @@
         "weight": 1
       }
     ],
-    "question_id": 23
+    "question_id": 21
   },
   {
     "question_text": "What are some key components that make up an ecosystem?",
@@ -449,7 +449,7 @@
         "weight": 1
       }
     ],
-    "question_id": 24
+    "question_id": 22
   },
   {
     "question_text": "What are the main functions of leaves in plants?",
@@ -471,7 +471,7 @@
         "weight": 1
       }
     ],
-    "question_id": 25
+    "question_id": 23
   },
   {
     "question_text": "What are the effects of pollution on aquatic ecosystems?",
@@ -493,7 +493,7 @@
         "weight": 1
       }
     ],
-    "question_id": 26
+    "question_id": 24
   },
   {
     "question_text": "What is the role of genes in determining traits?",
@@ -515,7 +515,7 @@
         "weight": 1
       }
     ],
-    "question_id": 27
+    "question_id": 25
   },
   {
     "question_text": "What are some important stages in a butterfly's life cycle?",
@@ -537,7 +537,7 @@
         "weight": 1
       }
     ],
-    "question_id": 28
+    "question_id": 26
   },
   {
     "question_text": "What are three ways animals adapt to their environment?",
@@ -555,7 +555,7 @@
         "weight": 1
       }
     ],
-    "question_id": 29
+    "question_id": 27
   },
   {
     "question_text": "What are some key mechanisms of evolution?",
@@ -577,7 +577,7 @@
         "weight": 1
       }
     ],
-    "question_id": 30
+    "question_id": 28
   },
   {
     "question_text": "What is the role of DNA in genetics?",
@@ -599,7 +599,7 @@
         "weight": 1
       }
     ],
-    "question_id": 31
+    "question_id": 29
   },
   {
     "question_text": "What are some important roles of producers in an ecosystem?",
@@ -617,7 +617,7 @@
         "weight": 1
       }
     ],
-    "question_id": 32
+    "question_id": 30
   },
   {
     "question_text": "What are the main functions of the human respiratory system?",
@@ -635,7 +635,7 @@
         "weight": 1
       }
     ],
-    "question_id": 33
+    "question_id": 31
   },
   {
     "question_text": "What are some key concepts of evolution by natural selection?",
@@ -653,7 +653,7 @@
         "weight": 1
       }
     ],
-    "question_id": 34
+    "question_id": 32
   },
   {
     "question_text": "What are the main functions of a cell's organelles?",
@@ -675,7 +675,7 @@
         "weight": 1
       }
     ],
-    "question_id": 35
+    "question_id": 33
   },
   {
     "question_text": "What are the main functions of the cell membrane in a cell?",
@@ -693,7 +693,7 @@
         "weight": 1
       }
     ],
-    "question_id": 36
+    "question_id": 34
   },
   {
     "question_text": "What are the main functions of cell organelles in a plant cell?",
@@ -715,7 +715,7 @@
         "weight": 1
       }
     ],
-    "question_id": 37
+    "question_id": 35
   },
   {
     "question_text": "What are some ways animals adapt to their environments?",
@@ -737,7 +737,7 @@
         "weight": 1
       }
     ],
-    "question_id": 38
+    "question_id": 36
   },
   {
     "question_text": "What are some key adaptations that help animals survive in their environments?",
@@ -755,7 +755,7 @@
         "weight": 1
       }
     ],
-    "question_id": 39
+    "question_id": 37
   },
   {
     "question_text": "What are some key mechanisms that drive evolution?",
@@ -777,7 +777,7 @@
         "weight": 1
       }
     ],
-    "question_id": 40
+    "question_id": 38
   },
   {
     "question_text": "What are the three main parts of a plant, and what is the function of each?",
@@ -795,7 +795,7 @@
         "weight": 1
       }
     ],
-    "question_id": 41
+    "question_id": 39
   },
   {
     "question_text": "What are the primary functions of the human circulatory system?",
@@ -817,7 +817,7 @@
         "weight": 1
       }
     ],
-    "question_id": 42
+    "question_id": 40
   },
   {
     "question_text": "What are the main differences between mammals and reptiles?",
@@ -839,7 +839,7 @@
         "weight": 1
       }
     ],
-    "question_id": 43
+    "question_id": 41
   },
   {
     "question_text": "What are some important characteristics of butterflies?",
@@ -861,7 +861,7 @@
         "weight": 1
       }
     ],
-    "question_id": 44
+    "question_id": 42
   },
   {
     "question_text": "What are the main components of DNA and their roles in genetics?",
@@ -883,7 +883,7 @@
         "weight": 1
       }
     ],
-    "question_id": 45
+    "question_id": 43
   },
   {
     "question_text": "What are the different roles of organisms in an ecosystem?",
@@ -901,7 +901,7 @@
         "weight": 1
       }
     ],
-    "question_id": 46
+    "question_id": 44
   },
   {
     "question_text": "What are the main functions of the human skeleton?",
@@ -923,7 +923,7 @@
         "weight": 1
       }
     ],
-    "question_id": 47
+    "question_id": 45
   },
   {
     "question_text": "What are three main functions of the human respiratory system?",
@@ -941,7 +941,7 @@
         "weight": 1
       }
     ],
-    "question_id": 48
+    "question_id": 46
   },
   {
     "question_text": "What are the main effects of deforestation on the environment?",
@@ -963,7 +963,7 @@
         "weight": 1
       }
     ],
-    "question_id": 49
+    "question_id": 47
   },
   {
     "question_text": "What are the key stages in a butterfly's life cycle?",
@@ -985,7 +985,7 @@
         "weight": 1
       }
     ],
-    "question_id": 50
+    "question_id": 48
   },
   {
     "question_text": "What are the main characteristics of mammals?",
@@ -1007,7 +1007,7 @@
         "weight": 1
       }
     ],
-    "question_id": 51
+    "question_id": 49
   },
   {
     "question_text": "What roles do genes play in determining traits in living organisms?",
@@ -1029,7 +1029,7 @@
         "weight": 1
       }
     ],
-    "question_id": 52
+    "question_id": 50
   },
   {
     "question_text": "How do human activities impact local ecosystems?",
@@ -1047,7 +1047,7 @@
         "weight": 1
       }
     ],
-    "question_id": 53
+    "question_id": 51
   },
   {
     "question_text": "What are the basic principles of genetic inheritance?",
@@ -1069,7 +1069,7 @@
         "weight": 1
       }
     ],
-    "question_id": 54
+    "question_id": 52
   },
   {
     "question_text": "What are the stages of a butterfly's life cycle?",
@@ -1091,7 +1091,7 @@
         "weight": 1
       }
     ],
-    "question_id": 55
+    "question_id": 53
   },
   {
     "question_text": "What are three main effects of deforestation on the environment?",
@@ -1109,7 +1109,7 @@
         "weight": 1
       }
     ],
-    "question_id": 56
+    "question_id": 54
   },
   {
     "question_text": "What are the basic functions of genes in living organisms?",
@@ -1127,7 +1127,7 @@
         "weight": 1
       }
     ],
-    "question_id": 57
+    "question_id": 55
   },
   {
     "question_text": "What are the key stages in the life cycle of a butterfly?",
@@ -1149,10 +1149,10 @@
         "weight": 1
       }
     ],
-    "question_id": 58
+    "question_id": 56
   },
   {
-    "question_id": 59,
+    "question_id": 57,
     "question_text": "Describe three characteristics of butterflies.",
     "key_points": [
       {

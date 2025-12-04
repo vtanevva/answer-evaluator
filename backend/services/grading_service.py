@@ -442,6 +442,7 @@ class GradingService:
         # Evaluate each key point
         hit_key_points = []
         missing_key_points = []
+        confidence_scores = []  # Track confidence for smart LLM fallback
         
         reference_chunks = [kp["text"] for kp in key_points]
 
@@ -465,6 +466,7 @@ class GradingService:
             # THREE-TIER HYBRID GRADING SYSTEM
             is_hit = False
             verification_method = ""
+            hybrid_result = None  # Track for LLM fallback confidence
             
             # If global contradiction detected, auto-fail all key points
             if global_contradiction_detected:
@@ -580,35 +582,82 @@ class GradingService:
                 verification_method = "embedding-only"
                 print(f"  📊 '{key_point_text[:30]}...': sim={similarity:.3f}, overlap={overlap:.2f}, hit={is_hit}")
             
+            # Track confidence metrics for smart LLM fallback
+            had_contradiction = False
+            if hybrid_result:
+                nli_scores = hybrid_result.get("nli_scores", {})
+                if nli_scores:
+                    small_scores = nli_scores.get("small", {})
+                    if small_scores and small_scores.get("has_contradiction", False):
+                        had_contradiction = True
+            
+            key_point_confidence = {
+                "cosine": similarity,
+                "is_hit": is_hit,
+                "in_gray_zone": 0.58 <= similarity <= 0.78,  # Uncertain range
+                "had_contradiction": had_contradiction
+            }
+            confidence_scores.append(key_point_confidence)
+            
             # Categorize result
             if is_hit:
                 hit_key_points.append(key_point_text)
             else:
                 missing_key_points.append(key_point_text)
         
+        # ==========================================
+        # LLM SMART FALLBACK - Confidence-Based
         # ===========================================
-        # LLM HOLISTIC GRADING - Most Accurate Mode
-        # ===========================================
-        # If enabled, use LLM to grade the ENTIRE answer like a teacher
-        # This overrides the sentence-by-sentence matching results
+        # Only call LLM when there's genuine uncertainty
         llm_holistic_mode = getattr(settings.grading, 'llm_holistic_mode', 'never')
         
         if llm_holistic_mode != "never" and self._llm_arbiter:
             should_use_llm = False
+            llm_reason = ""
             
             if llm_holistic_mode == "always":
                 should_use_llm = True
-                print("\n🤖 LLM Holistic Mode: ALWAYS - using LLM to grade entire answer")
+                llm_reason = "mode=always"
             
             elif llm_holistic_mode == "fallback":
-                # Use LLM if there's any uncertainty or disagreement
-                # Check if score is not clearly 0% or 100%
                 preliminary_score = self._calculate_score(len(hit_key_points), len(key_points))
-                if 0 < preliminary_score < 100:
+                
+                # Calculate overall confidence
+                gray_zone_count = sum(1 for c in confidence_scores if c["in_gray_zone"])
+                contradiction_count = sum(1 for c in confidence_scores if c["had_contradiction"])
+                
+                # HIGH CONFIDENCE (skip LLM):
+                # - Score is 0% AND all cosine < 0.55 (clearly wrong)
+                # - Score is 100% AND all cosine > 0.80 (clearly correct)
+                all_low = all(c["cosine"] < 0.55 for c in confidence_scores)
+                all_high = all(c["cosine"] > 0.80 for c in confidence_scores)
+                
+                if preliminary_score == 0 and all_low:
+                    should_use_llm = False
+                    print(f"\n✅ High confidence: 0% with all low cosine - skipping LLM")
+                elif preliminary_score == 100 and all_high:
+                    should_use_llm = False
+                    print(f"\n✅ High confidence: 100% with all high cosine - skipping LLM")
+                # LOW CONFIDENCE (use LLM):
+                # - Score in middle range (25-75%)
+                # - Any key point in gray zone
+                # - Any contradiction detected
+                elif 25 <= preliminary_score <= 75:
                     should_use_llm = True
-                    print(f"\n🤖 LLM Holistic Mode: FALLBACK - preliminary score {preliminary_score:.0f}% is uncertain, using LLM")
+                    llm_reason = f"uncertain score ({preliminary_score:.0f}%)"
+                elif gray_zone_count > 0:
+                    should_use_llm = True
+                    llm_reason = f"{gray_zone_count} key points in gray zone"
+                elif contradiction_count > 0:
+                    should_use_llm = True
+                    llm_reason = f"{contradiction_count} contradictions detected"
+                # MEDIUM CONFIDENCE: 0-25% or 75-100% with clear signals
+                else:
+                    should_use_llm = False
+                    print(f"\n✅ Medium confidence: {preliminary_score:.0f}% with clear signals - skipping LLM")
             
             if should_use_llm:
+                print(f"\n🤖 LLM Fallback triggered: {llm_reason}")
                 import asyncio
                 try:
                     key_point_texts = [kp["text"] for kp in key_points]
@@ -632,7 +681,7 @@ class GradingService:
                         print(f"   ✨ LLM Override: {len(hit_key_points)}/{len(key_points)} key points covered")
                         
                 except Exception as e:
-                    print(f"   ⚠️ LLM holistic grading failed: {e}, using embedding/NLI results")
+                    print(f"   ⚠️ LLM fallback failed: {e}, using embedding/NLI results")
         
         # Calculate score and generate feedback
         score = self._calculate_score(len(hit_key_points), len(key_points))

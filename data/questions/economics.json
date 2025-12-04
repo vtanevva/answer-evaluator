@@ -1,6 +1,6 @@
 [
   {
-    "question_id": 1,
+    "question_id": 100,
     "question_text": "Define the core economic problem of 'scarcity'.",
     "key_points": [
       {
@@ -22,7 +22,7 @@
     ]
   },
   {
-    "question_id": 2,
+    "question_id": 101,
     "question_text": "What is 'opportunity cost'?",
     "key_points": [
       {
@@ -44,7 +44,7 @@
     ]
   },
   {
-    "question_id": 3,
+    "question_id": 102,
     "question_text": "Give an example of a resource that is scarce.",
     "key_points": [
       {
@@ -66,7 +66,7 @@
     ]
   },
   {
-    "question_id": 4,
+    "question_id": 103,
     "question_text": "Explain the difference between a need and a want.",
     "key_points": [
       {
@@ -88,7 +88,7 @@
     ]
   },
   {
-    "question_id": 5,
+    "question_id": 104,
     "question_text": "How does scarcity force the government to make choices?",
     "key_points": [
       {
@@ -110,7 +110,7 @@
     ]
   },
   {
-    "question_id": 6,
+    "question_id": 105,
     "question_text": "What is the primary function of exchange in an economy?",
     "key_points": [
       {
@@ -132,7 +132,7 @@
     ]
   },
   {
-    "question_id": 7,
+    "question_id": 106,
     "question_text": "Explain 'division of labor'.",
     "key_points": [
       {
@@ -154,7 +154,7 @@
     ]
   },
   {
-    "question_id": 8,
+    "question_id": 107,
     "question_text": "What is 'barter' and what is its main drawback?",
     "key_points": [
       {
@@ -176,7 +176,7 @@
     ]
   },
   {
-    "question_id": 9,
+    "question_id": 108,
     "question_text": "List four functions of money.",
     "key_points": [
       {
@@ -198,7 +198,7 @@
     ]
   },
   {
-    "question_id": 10,
+    "question_id": 109,
     "question_text": "What is the concept of 'comparative advantage'?",
     "key_points": [
       {
@@ -220,7 +220,7 @@
     ]
   },
   {
-    "question_id": 11,
+    "question_id": 110,
     "question_text": "How does money make the exchange process smoother?",
     "key_points": [
       {
@@ -242,7 +242,7 @@
     ]
   },
   {
-    "question_id": 12,
+    "question_id": 111,
     "question_text": "Define the term 'market' in economics.",
     "key_points": [
       {
@@ -264,7 +264,7 @@
     ]
   },
   {
-    "question_id": 13,
+    "question_id": 112,
     "question_text": "What is the role of price in coordinating choices in a market?",
     "key_points": [
       {
@@ -286,7 +286,7 @@
     ]
   },
   {
-    "question_id": 14,
+    "question_id": 113,
     "question_text": "Define 'demand'.",
     "key_points": [
       {
@@ -308,7 +308,7 @@
     ]
   },
   {
-    "question_id": 15,
+    "question_id": 114,
     "question_text": "State the Law of Demand.",
     "key_points": [
       {
@@ -330,7 +330,7 @@
     ]
   },
   {
-    "question_id": 16,
+    "question_id": 115,
     "question_text": "Define 'supply'.",
     "key_points": [
       {
@@ -352,7 +352,7 @@
     ]
   },
   {
-    "question_id": 17,
+    "question_id": 116,
     "question_text": "State the Law of Supply.",
     "key_points": [
       {
@@ -374,7 +374,7 @@
     ]
   },
   {
-    "question_id": 18,
+    "question_id": 117,
     "question_text": "What is 'market equilibrium'?",
     "key_points": [
       {
@@ -396,7 +396,7 @@
     ]
   },
   {
-    "question_id": 19,
+    "question_id": 118,
     "question_text": "Explain what a 'surplus' is and how the market corrects it.",
     "key_points": [
       {
@@ -418,7 +418,7 @@
     ]
   },
   {
-    "question_id": 20,
+    "question_id": 119,
     "question_text": "Explain what a 'shortage' is and how the market corrects it.",
     "key_points": [
       {
@@ -440,7 +440,7 @@
     ]
   },
   {
-    "question_id": 21,
+    "question_id": 120,
     "question_text": "What are the four main market structures (market forms)?",
     "key_points": [
       {
@@ -462,7 +462,7 @@
     ]
   },
   {
-    "question_id": 22,
+    "question_id": 121,
     "question_text": "What is the key characteristic of a 'monopoly'?",
     "key_points": [
       {
@@ -484,7 +484,7 @@
     ]
   },
   {
-    "question_id": 23,
+    "question_id": 122,
     "question_text": "What is 'intertemporal exchange'?",
     "key_points": [
       {
@@ -506,7 +506,7 @@
     ]
   },
   {
-    "question_id": 24,
+    "question_id": 123,
     "question_text": "What is the price that coordinates intertemporal exchange?",
     "key_points": [
       {
@@ -528,7 +528,7 @@
     ]
   },
   {
-    "question_id": 25,
+    "question_id": 124,
     "question_text": "Explain the role of interest for households (families).",
     "key_points": [
       {
@@ -550,7 +550,7 @@
     ]
   },
   {
-    "question_id": 26,
+    "question_id": 125,
     "question_text": "Explain the role of interest for businesses (firms).",
     "key_points": [
       {
@@ -572,7 +572,7 @@
     ]
   },
   {
-    "question_id": 27,
+    "question_id": 126,
     "question_text": "How does 'inflation' affect the real value of savings over time?",
     "key_points": [
       {
@@ -594,7 +594,7 @@
     ]
   },
   {
-    "question_id": 28,
+    "question_id": 127,
     "question_text": "What is the concept of 'risk' in intertemporal exchange?",
     "key_points": [
       {
@@ -616,7 +616,7 @@
     ]
   },
   {
-    "question_id": 29,
+    "question_id": 128,
     "question_text": "Give an example of 'exchange over time' for the government.",
     "key_points": [
       {
@@ -638,7 +638,7 @@
     ]
   },
   {
-    "question_id": 30,
+    "question_id": 129,
     "question_text": "Why do individuals often prefer consumption now over consumption later?",
     "key_points": [
       {
@@ -660,7 +660,7 @@
     ]
   },
   {
-    "question_id": 31,
+    "question_id": 130,
     "question_text": "Explain why cooperation can be more beneficial than individual action when interests conflict.",
     "key_points": [
       {
@@ -682,7 +682,7 @@
     ]
   },
   {
-    "question_id": 32,
+    "question_id": 131,
     "question_text": "What is a 'collective good' (or public good)?",
     "key_points": [
       {
@@ -704,7 +704,7 @@
     ]
   },
   {
-    "question_id": 33,
+    "question_id": 132,
     "question_text": "What is the 'free-rider problem'?",
     "key_points": [
       {
@@ -726,7 +726,7 @@
     ]
   },
   {
-    "question_id": 34,
+    "question_id": 133,
     "question_text": "How can 'coercion' (centralization) resolve the free-rider problem?",
     "key_points": [
       {
@@ -748,7 +748,7 @@
     ]
   },
   {
-    "question_id": 35,
+    "question_id": 134,
     "question_text": "Give an example of cooperation between businesses.",
     "key_points": [
       {
@@ -770,7 +770,7 @@
     ]
   },
   {
-    "question_id": 36,
+    "question_id": 135,
     "question_text": "What is the purpose of a 'collective labor agreement' (CAO in Dutch)?",
     "key_points": [
       {
@@ -792,7 +792,7 @@
     ]
   },
   {
-    "question_id": 37,
+    "question_id": 136,
     "question_text": "What is an 'externality'?",
     "key_points": [
       {
@@ -814,7 +814,7 @@
     ]
   },
   {
-    "question_id": 38,
+    "question_id": 137,
     "question_text": "Give an example of a negative externality.",
     "key_points": [
       {
@@ -836,7 +836,7 @@
     ]
   },
   {
-    "question_id": 39,
+    "question_id": 138,
     "question_text": "How can government intervention (centralization) address a negative externality?",
     "key_points": [
       {
@@ -858,7 +858,7 @@
     ]
   },
   {
-    "question_id": 40,
+    "question_id": 139,
     "question_text": "What is a 'budget line' (or budget constraint) for a household?",
     "key_points": [
       {
@@ -880,7 +880,7 @@
     ]
   },
   {
-    "question_id": 41,
+    "question_id": 140,
     "question_text": "How does an increase in income affect a consumer's budget line?",
     "key_points": [
       {
@@ -902,7 +902,7 @@
     ]
   },
   {
-    "question_id": 42,
+    "question_id": 141,
     "question_text": "What is the purpose of 'financial key figures' (financial ratios) for a business?",
     "key_points": [
       {
@@ -924,7 +924,7 @@
     ]
   },
   {
-    "question_id": 43,
+    "question_id": 142,
     "question_text": "What is a 'subsidy' and how does it affect the market?",
     "key_points": [
       {
@@ -946,7 +946,7 @@
     ]
   },
   {
-    "question_id": 44,
+    "question_id": 143,
     "question_text": "Define 'price elasticity of demand' ($E_d$).",
     "key_points": [
       {
@@ -968,7 +968,7 @@
     ]
   },
   {
-    "question_id": 45,
+    "question_id": 144,
     "question_text": "If a small price increase on a necessary medicine causes very few people to stop buying it, is the demand elastic or inelastic?",
     "key_points": [
       {
@@ -990,7 +990,7 @@
     ]
   },
   {
-    "question_id": 46,
+    "question_id": 145,
     "question_text": "If a firm operates in a perfectly competitive market, what is its relationship with the market price?",
     "key_points": [
       {
@@ -1012,7 +1012,7 @@
     ]
   },
   {
-    "question_id": 47,
+    "question_id": 146,
     "question_text": "What is 'disposable income' for a household?",
     "key_points": [
       {
@@ -1034,7 +1034,7 @@
     ]
   },
   {
-    "question_id": 48,
+    "question_id": 147,
     "question_text": "How does a decrease in the interest rate generally affect borrowing and saving behavior?",
     "key_points": [
       {
@@ -1056,7 +1056,7 @@
     ]
   },
   {
-    "question_id": 49,
+    "question_id": 148,
     "question_text": "What is a 'collective action problem'?",
     "key_points": [
       {
@@ -1078,7 +1078,7 @@
     ]
   },
   {
-    "question_id": 50,
+    "question_id": 149,
     "question_text": "Give an example of a policy choice involving a trade-off due to scarcity (Domain B).",
     "key_points": [
       {
@@ -1100,7 +1100,7 @@
     ]
   },
   {
-    "question_id": 51,
+    "question_id": 150,
     "question_text": "What is the main goal of a profit-maximizing firm?",
     "key_points": [
       {
@@ -1122,7 +1122,7 @@
     ]
   },
   {
-    "question_id": 52,
+    "question_id": 151,
     "question_text": "What are 'fixed costs' for a business?",
     "key_points": [
       {
@@ -1144,7 +1144,7 @@
     ]
   },
   {
-    "question_id": 53,
+    "question_id": 152,
     "question_text": "What are 'variable costs' for a business?",
     "key_points": [
       {
@@ -1166,7 +1166,7 @@
     ]
   },
   {
-    "question_id": 54,
+    "question_id": 153,
     "question_text": "How is 'productivity' measured in economics?",
     "key_points": [
       {
@@ -1188,7 +1188,7 @@
     ]
   },
   {
-    "question_id": 55,
+    "question_id": 154,
     "question_text": "Why is 'specialization' important for a country's welfare?",
     "key_points": [
       {
@@ -1210,7 +1210,7 @@
     ]
   },
   {
-    "question_id": 56,
+    "question_id": 155,
     "question_text": "What is a 'price floor' and what is its potential consequence?",
     "key_points": [
       {
@@ -1232,7 +1232,7 @@
     ]
   },
   {
-    "question_id": 57,
+    "question_id": 156,
     "question_text": "What is a 'price ceiling' and what is its potential consequence?",
     "key_points": [
       {
@@ -1254,7 +1254,7 @@
     ]
   },
   {
-    "question_id": 58,
+    "question_id": 157,
     "question_text": "What is 'price discrimination'?",
     "key_points": [
       {
@@ -1276,7 +1276,7 @@
     ]
   },
   {
-    "question_id": 59,
+    "question_id": 158,
     "question_text": "In the context of the business cycle, what is a 'recession'?",
     "key_points": [
       {
@@ -1298,7 +1298,7 @@
     ]
   },
   {
-    "question_id": 60,
+    "question_id": 159,
     "question_text": "Define 'Gross Domestic Product (GDP)'.",
     "key_points": [
       {
@@ -1320,7 +1320,7 @@
     ]
   },
   {
-    "question_id": 61,
+    "question_id": 160,
     "question_text": "What is the difference between 'nominal GDP' and 'real GDP'?",
     "key_points": [
       {
@@ -1342,7 +1342,7 @@
     ]
   },
   {
-    "question_id": 62,
+    "question_id": 161,
     "question_text": "What is 'monetary policy' and who is typically responsible for it in the Eurozone?",
     "key_points": [
       {
@@ -1364,7 +1364,7 @@
     ]
   },
   {
-    "question_id": 63,
+    "question_id": 162,
     "question_text": "What is 'fiscal policy' and who is typically responsible for it in the Netherlands?",
     "key_points": [
       {
@@ -1386,7 +1386,7 @@
     ]
   },
   {
-    "question_id": 64,
+    "question_id": 163,
     "question_text": "What is the main goal of the European Central Bank (ECB)?",
     "key_points": [
       {
@@ -1408,7 +1408,7 @@
     ]
   },
   {
-    "question_id": 65,
+    "question_id": 164,
     "question_text": "What is the primary indicator of inflation used in the Eurozone?",
     "key_points": [
       {
@@ -1430,7 +1430,7 @@
     ]
   },
   {
-    "question_id": 66,
+    "question_id": 165,
     "question_text": "How does a government budget deficit relate to 'exchange over time' (Domain E)?",
     "key_points": [
       {
@@ -1452,7 +1452,7 @@
     ]
   },
   {
-    "question_id": 67,
+    "question_id": 166,
     "question_text": "What is a 'stock' in economics, and give an example.",
     "key_points": [
       {
@@ -1474,7 +1474,7 @@
     ]
   },
   {
-    "question_id": 68,
+    "question_id": 167,
     "question_text": "What is a 'flow' in economics, and give an example.",
     "key_points": [
       {
@@ -1496,7 +1496,7 @@
     ]
   },
   {
-    "question_id": 69,
+    "question_id": 168,
     "question_text": "What is the significance of the 'price mechanism' in a market economy?",
     "key_points": [
       {
@@ -1518,7 +1518,7 @@
     ]
   },
   {
-    "question_id": 70,
+    "question_id": 169,
     "question_text": "In a market, what is meant by 'homogeneity' of a product?",
     "key_points": [
       {
@@ -1540,7 +1540,7 @@
     ]
   },
   {
-    "question_id": 71,
+    "question_id": 170,
     "question_text": "What is 'asymmetric information'?",
     "key_points": [
       {
@@ -1562,7 +1562,7 @@
     ]
   },
   {
-    "question_id": 72,
+    "question_id": 171,
     "question_text": "Give an example of a situation where negotiation is a better choice than individual action for a consumer.",
     "key_points": [
       {
@@ -1584,7 +1584,7 @@
     ]
   },
   {
-    "question_id": 73,
+    "question_id": 172,
     "question_text": "What is the concept of 'rent-seeking'?",
     "key_points": [
       {
@@ -1606,7 +1606,7 @@
     ]
   },
   {
-    "question_id": 74,
+    "question_id": 173,
     "question_text": "Explain the concept of 'net wealth' for a household.",
     "key_points": [
       {
@@ -1628,7 +1628,7 @@
     ]
   },
   {
-    "question_id": 75,
+    "question_id": 174,
     "question_text": "What is the 'real interest rate'?",
     "key_points": [
       {
@@ -1650,7 +1650,7 @@
     ]
   },
   {
-    "question_id": 76,
+    "question_id": 175,
     "question_text": "What is the 'time value of money'?",
     "key_points": [
       {
@@ -1672,7 +1672,7 @@
     ]
   },
   {
-    "question_id": 77,
+    "question_id": 176,
     "question_text": "Explain 'marginal cost'.",
     "key_points": [
       {
@@ -1694,7 +1694,7 @@
     ]
   },
   {
-    "question_id": 78,
+    "question_id": 177,
     "question_text": "Explain 'marginal revenue'.",
     "key_points": [
       {
@@ -1716,7 +1716,7 @@
     ]
   },
   {
-    "question_id": 79,
+    "question_id": 178,
     "question_text": "What is the profit-maximising rule for a firm in any market structure?",
     "key_points": [
       {
@@ -1738,7 +1738,7 @@
     ]
   },
   {
-    "question_id": 80,
+    "question_id": 179,
     "question_text": "What is the difference between 'capital' and 'labor' as factors of production?",
     "key_points": [
       {
@@ -1760,7 +1760,7 @@
     ]
   },
   {
-    "question_id": 81,
+    "question_id": 180,
     "question_text": "What is the effect on the market for a normal good if consumers' income increases?",
     "key_points": [
       {
@@ -1782,7 +1782,7 @@
     ]
   },
   {
-    "question_id": 82,
+    "question_id": 181,
     "question_text": "What is an 'inferior good'?",
     "key_points": [
       {
@@ -1804,7 +1804,7 @@
     ]
   },
   {
-    "question_id": 83,
+    "question_id": 182,
     "question_text": "What is the primary way banks create new money (money creation)?",
     "key_points": [
       {
@@ -1826,7 +1826,7 @@
     ]
   },
   {
-    "question_id": 84,
+    "question_id": 183,
     "question_text": "Why is 'perfect information' a necessary condition for a perfectly competitive market?",
     "key_points": [
       {
@@ -1848,7 +1848,7 @@
     ]
   },
   {
-    "question_id": 85,
+    "question_id": 184,
     "question_text": "What is the 'Prisoner's Dilemma' and which Domain does it illustrate?",
     "key_points": [
       {
@@ -1870,7 +1870,7 @@
     ]
   },
   {
-    "question_id": 86,
+    "question_id": 185,
     "question_text": "How can a firm use 'product differentiation'?",
     "key_points": [
       {
@@ -1892,7 +1892,7 @@
     ]
   },
   {
-    "question_id": 87,
+    "question_id": 186,
     "question_text": "What is 'consumption' in macroeconomic terms?",
     "key_points": [
       {
@@ -1914,7 +1914,7 @@
     ]
   },
   {
-    "question_id": 88,
+    "question_id": 187,
     "question_text": "What is 'investment' in macroeconomic terms?",
     "key_points": [
       {
@@ -1936,7 +1936,7 @@
     ]
   },
   {
-    "question_id": 89,
+    "question_id": 188,
     "question_text": "Explain the concept of 'economic growth'.",
     "key_points": [
       {
@@ -1958,7 +1958,7 @@
     ]
   },
   {
-    "question_id": 90,
+    "question_id": 189,
     "question_text": "What is 'unemployment' and how is the unemployment rate calculated?",
     "key_points": [
       {
@@ -1980,7 +1980,7 @@
     ]
   },
   {
-    "question_id": 91,
+    "question_id": 190,
     "question_text": "What is 'debt-to-GDP ratio' and why is it important for a government?",
     "key_points": [
       {
@@ -2002,7 +2002,7 @@
     ]
   },
   {
-    "question_id": 92,
+    "question_id": 191,
     "question_text": "How does technology increase efficiency (Domain C)?",
     "key_points": [
       {
@@ -2024,7 +2024,7 @@
     ]
   },
   {
-    "question_id": 93,
+    "question_id": 192,
     "question_text": "What is the role of a 'financial intermediary' (e.g., a bank) in intertemporal exchange (Domain E)?",
     "key_points": [
       {
@@ -2046,7 +2046,7 @@
     ]
   },
   {
-    "question_id": 94,
+    "question_id": 193,
     "question_text": "Explain 'market failure'.",
     "key_points": [
       {
@@ -2068,7 +2068,7 @@
     ]
   },
   {
-    "question_id": 95,
+    "question_id": 194,
     "question_text": "What is a 'coordination mechanism' other than the market price?",
     "key_points": [
       {
@@ -2090,7 +2090,7 @@
     ]
   },
   {
-    "question_id": 96,
+    "question_id": 195,
     "question_text": "What is the key difference between a 'price maker' and a 'price taker'?",
     "key_points": [
       {
@@ -2112,7 +2112,7 @@
     ]
   },
   {
-    "question_id": 97,
+    "question_id": 196,
     "question_text": "How does competition affect a company's profit and product price?",
     "key_points": [
       {
@@ -2134,7 +2134,7 @@
     ]
   },
   {
-    "question_id": 98,
+    "question_id": 197,
     "question_text": "Explain the relationship between saving and investment in the economy.",
     "key_points": [
       {
@@ -2156,7 +2156,7 @@
     ]
   },
   {
-    "question_id": 99,
+    "question_id": 198,
     "question_text": "Why is the Dutch government interested in promoting comparative advantage?",
     "key_points": [
       {
@@ -2178,7 +2178,7 @@
     ]
   },
   {
-    "question_id": 100,
+    "question_id": 199,
     "question_text": "Explain one type of 'economic policy' (e.g., competition policy) and its goal (Domain D).",
     "key_points": [
       {
@@ -2200,7 +2200,7 @@
     ]
   },
   {
-    "question_id": 101,
+    "question_id": 200,
     "question_text": "Explain inflation",
     "key_points": [
       {
@@ -2214,7 +2214,7 @@
     ]
   },
   {
-    "question_id": 102,
+    "question_id": 201,
     "question_text": "What are the three main factors of production (input resources)?",
     "key_points": [
       {
@@ -2236,7 +2236,7 @@
     ]
   },
   {
-    "question_id": 103,
+    "question_id": 202,
     "question_text": "How can a country increase its potential for economic growth?",
     "key_points": [
       {
@@ -2258,7 +2258,7 @@
     ]
   },
   {
-    "question_id": 104,
+    "question_id": 203,
     "question_text": "Explain the concept of 'economic sectors' (primary, secondary, and tertiary).",
     "key_points": [
       {
@@ -2280,7 +2280,7 @@
     ]
   },
   {
-    "question_id": 105,
+    "question_id": 204,
     "question_text": "What is the relationship between 'wealth' and 'income'?",
     "key_points": [
       {
@@ -2302,7 +2302,7 @@
     ]
   },
   {
-    "question_id": 106,
+    "question_id": 205,
     "question_text": "How does competition lead to innovation?",
     "key_points": [
       {
@@ -2324,7 +2324,7 @@
     ]
   },
   {
-    "question_id": 107,
+    "question_id": 206,
     "question_text": "What is the key characteristic that distinguishes an 'oligopoly' market structure?",
     "key_points": [
       {
@@ -2346,7 +2346,7 @@
     ]
   },
   {
-    "question_id": 108,
+    "question_id": 207,
     "question_text": "Explain why saving money is an example of exchange over time.",
     "key_points": [
       {
@@ -2368,7 +2368,7 @@
     ]
   },
   {
-    "question_id": 109,
+    "question_id": 208,
     "question_text": "What is a 'business cycle'?",
     "key_points": [
       {
@@ -2390,7 +2390,7 @@
     ]
   },
   {
-    "question_id": 110,
+    "question_id": 209,
     "question_text": "How does 'inflation' cause a reduction in purchasing power?",
     "key_points": [
       {
@@ -2412,7 +2412,7 @@
     ]
   },
   {
-    "question_id": 111,
+    "question_id": 210,
     "question_text": "Give an example of a situation where the government uses 'coercion' to improve the economy.",
     "key_points": [
       {
@@ -2434,7 +2434,7 @@
     ]
   },
   {
-    "question_id": 112,
+    "question_id": 211,
     "question_text": "What does it mean for a household to be 'financially illiterate'?",
     "key_points": [
       {
@@ -2456,7 +2456,7 @@
     ]
   },
   {
-    "question_id": 113,
+    "question_id": 212,
     "question_text": "Explain the role of supply in determining the market price of a good.",
     "key_points": [
       {
@@ -2478,7 +2478,7 @@
     ]
   },
   {
-    "question_id": 114,
+    "question_id": 213,
     "question_text": "What is the difference between 'absolute advantage' and 'comparative advantage'?",
     "key_points": [
       {
@@ -2500,7 +2500,7 @@
     ]
   },
   {
-    "question_id": 115,
+    "question_id": 214,
     "question_text": "What is 'human capital' and why is it important for economic success?",
     "key_points": [
       {
@@ -2522,7 +2522,7 @@
     ]
   },
   {
-    "question_id": 116,
+    "question_id": 215,
     "question_text": "Explain the concept of 'net profit' for a business.",
     "key_points": [
       {
@@ -2544,7 +2544,7 @@
     ]
   },
   {
-    "question_id": 117,
+    "question_id": 216,
     "question_text": "How does a reduction in taxes affect a consumer's decision-making due to scarcity?",
     "key_points": [
       {
@@ -2566,7 +2566,7 @@
     ]
   },
   {
-    "question_id": 118,
+    "question_id": 217,
     "question_text": "What is the 'opportunity cost' of spending money on national defense?",
     "key_points": [
       {
@@ -2588,7 +2588,7 @@
     ]
   },
   {
-    "question_id": 119,
+    "question_id": 218,
     "question_text": "Explain the concept of 'default risk' for a lender (like a bank).",
     "key_points": [
       {
@@ -2610,7 +2610,7 @@
     ]
   },
   {
-    "question_id": 120,
+    "question_id": 219,
     "question_text": "In a market, what is the effect of an increase in the cost of raw materials on the market price?",
     "key_points": [
       {
@@ -2632,7 +2632,7 @@
     ]
   },
   {
-    "question_id": 121,
+    "question_id": 220,
     "question_text": "What is the key problem with 'barter' that led to the invention of money?",
     "key_points": [
       {
@@ -2654,7 +2654,7 @@
     ]
   },
   {
-    "question_id": 122,
+    "question_id": 221,
     "question_text": "Why do cartels often fail or break apart (Domain F)?",
     "key_points": [
       {
@@ -2676,7 +2676,7 @@
     ]
   },
   {
-    "question_id": 123,
+    "question_id": 222,
     "question_text": "What is 'liquidity' for a business and why is it important?",
     "key_points": [
       {
@@ -2698,7 +2698,7 @@
     ]
   },
   {
-    "question_id": 124,
+    "question_id": 223,
     "question_text": "Define 'monopolistic competition' and give an example.",
     "key_points": [
       {
@@ -2720,7 +2720,7 @@
     ]
   },
   {
-    "question_id": 125,
+    "question_id": 224,
     "question_text": "How does the Central Bank's increase of the interest rate affect the economy?",
     "key_points": [
       {
@@ -2742,7 +2742,7 @@
     ]
   },
   {
-    "question_id": 126,
+    "question_id": 225,
     "question_text": "What is the concept of 'market transparency'?",
     "key_points": [
       {
@@ -2764,7 +2764,7 @@
     ]
   },
   {
-    "question_id": 127,
+    "question_id": 226,
     "question_text": "Give an example of a positive externality.",
     "key_points": [
       {
@@ -2786,7 +2786,7 @@
     ]
   },
   {
-    "question_id": 128,
+    "question_id": 227,
     "question_text": "Why do governments sometimes offer subsidies to address positive externalities?",
     "key_points": [
       {
@@ -2808,7 +2808,7 @@
     ]
   },
   {
-    "question_id": 129,
+    "question_id": 228,
     "question_text": "In the context of scarcity, what does the phrase 'there is no such thing as a free lunch' mean?",
     "key_points": [
       {
@@ -2830,7 +2830,7 @@
     ]
   },
   {
-    "question_id": 130,
+    "question_id": 229,
     "question_text": "What is the function of a Unit of Account for money?",
     "key_points": [
       {
@@ -2852,7 +2852,7 @@
     ]
   },
   {
-    "question_id": 131,
+    "question_id": 230,
     "question_text": "What is the dependency ratio in an aging country like the Netherlands?",
     "key_points": [
       {
@@ -2874,7 +2874,7 @@
     ]
   },
   {
-    "question_id": 132,
+    "question_id": 231,
     "question_text": "How does a government use public spending to try to end a recession (expansionary fiscal policy)?",
     "key_points": [
       {
@@ -2896,7 +2896,7 @@
     ]
   },
   {
-    "question_id": 133,
+    "question_id": 232,
     "question_text": "Why do interest rates for short-term loans tend to be lower than for long-term loans?",
     "key_points": [
       {
@@ -2918,7 +2918,7 @@
     ]
   },
   {
-    "question_id": 134,
+    "question_id": 233,
     "question_text": "What is a production possibility curve (PPC) and what does it illustrate?",
     "key_points": [
       {
@@ -2940,7 +2940,7 @@
     ]
   },
   {
-    "question_id": 135,
+    "question_id": 234,
     "question_text": "How does the specialization of countries lead to a higher global output (Domain C)?",
     "key_points": [
       {
@@ -2962,7 +2962,7 @@
     ]
   },
   {
-    "question_id": 136,
+    "question_id": 235,
     "question_text": "Explain the role of the European Union (EU) in facilitating exchange (Domain C).",
     "key_points": [
       {
@@ -2984,7 +2984,7 @@
     ]
   },
   {
-    "question_id": 137,
+    "question_id": 236,
     "question_text": "What is the income elasticity of demand and what does a negative value indicate?",
     "key_points": [
       {
@@ -3006,7 +3006,7 @@
     ]
   },
   {
-    "question_id": 138,
+    "question_id": 237,
     "question_text": "How can a household use a loan (intertemporal exchange) to improve its welfare?",
     "key_points": [
       {
@@ -3028,7 +3028,7 @@
     ]
   },
   {
-    "question_id": 139,
+    "question_id": 238,
     "question_text": "Explain the concept of diminishing returns to scale in production.",
     "key_points": [
       {
@@ -3050,7 +3050,7 @@
     ]
   },
   {
-    "question_id": 140,
+    "question_id": 239,
     "question_text": "What is the difference between a deficit and debt for a government?",
     "key_points": [
       {
@@ -3072,7 +3072,7 @@
     ]
   },
   {
-    "question_id": 141,
+    "question_id": 240,
     "question_text": "How can cooperation (Domain F) between a company and a trade union benefit both parties?",
     "key_points": [
       {
@@ -3094,7 +3094,7 @@
     ]
   },
   {
-    "question_id": 142,
+    "question_id": 241,
     "question_text": "What is the main goal of a Trade Union (vakbond) in the labor market?",
     "key_points": [
       {
@@ -3116,7 +3116,7 @@
     ]
   },
   {
-    "question_id": 143,
+    "question_id": 242,
     "question_text": "Explain what a speculator does in a market.",
     "key_points": [
       {
@@ -3138,7 +3138,7 @@
     ]
   },
   {
-    "question_id": 144,
+    "question_id": 243,
     "question_text": "What is the concept of a capital-intensive production process?",
     "key_points": [
       {
@@ -3160,7 +3160,7 @@
     ]
   },
   {
-    "question_id": 145,
+    "question_id": 244,
     "question_text": "What is the concept of a labor-intensive production process?",
     "key_points": [
       {
@@ -3182,7 +3182,7 @@
     ]
   },
   {
-    "question_id": 146,
+    "question_id": 245,
     "question_text": "Why is trust important for the function of money (Domain C)?",
     "key_points": [
       {
@@ -3204,7 +3204,7 @@
     ]
   },
   {
-    "question_id": 147,
+    "question_id": 246,
     "question_text": "How does the Central Bank's reserve requirement affect money creation?",
     "key_points": [
       {
@@ -3226,7 +3226,7 @@
     ]
   },
   {
-    "question_id": 148,
+    "question_id": 247,
     "question_text": "Explain the concept of moral hazard in financial markets.",
     "key_points": [
       {
@@ -3248,7 +3248,7 @@
     ]
   },
   {
-    "question_id": 149,
+    "question_id": 248,
     "question_text": "What is a progressive tax system?",
     "key_points": [
       {
@@ -3270,7 +3270,7 @@
     ]
   },
   {
-    "question_id": 150,
+    "question_id": 249,
     "question_text": "How does a regressive tax system affect people with different income levels?",
     "key_points": [
       {
@@ -3292,7 +3292,7 @@
     ]
   },
   {
-    "question_id": 151,
+    "question_id": 250,
     "question_text": "In the context of government finance, what is a transfer payment?",
     "key_points": [
       {
@@ -3314,7 +3314,7 @@
     ]
   },
   {
-    "question_id": 152,
+    "question_id": 251,
     "question_text": "What is the difference between a share (stock) and a bond?",
     "key_points": [
       {
@@ -3336,7 +3336,7 @@
     ]
   },
   {
-    "question_id": 153,
+    "question_id": 252,
     "question_text": "How does the concept of risk aversion influence consumer choices?",
     "key_points": [
       {
@@ -3358,7 +3358,7 @@
     ]
   },
   {
-    "question_id": 154,
+    "question_id": 253,
     "question_text": "Define external costs and give an example.",
     "key_points": [
       {
@@ -3380,7 +3380,7 @@
     ]
   },
   {
-    "question_id": 155,
+    "question_id": 254,
     "question_text": "What is the multiplier effect of government spending?",
     "key_points": [
       {
@@ -3402,7 +3402,7 @@
     ]
   },
   {
-    "question_id": 156,
+    "question_id": 255,
     "question_text": "What is the function of the World Trade Organization (WTO) in global exchange?",
     "key_points": [
       {
@@ -3424,7 +3424,7 @@
     ]
   },
   {
-    "question_id": 157,
+    "question_id": 256,
     "question_text": "How does a reduction in the cost of production affect the equilibrium price and quantity?",
     "key_points": [
       {
@@ -3446,7 +3446,7 @@
     ]
   },
   {
-    "question_id": 158,
+    "question_id": 257,
     "question_text": "What are economies of scale for a business?",
     "key_points": [
       {
@@ -3468,7 +3468,7 @@
     ]
   },
   {
-    "question_id": 159,
+    "question_id": 258,
     "question_text": "Why do most real-world economies today operate as mixed economies?",
     "key_points": [
       {
@@ -3490,7 +3490,7 @@
     ]
   },
   {
-    "question_id": 160,
+    "question_id": 259,
     "question_text": "What is the role of the stock market (or bourse) in the economy?",
     "key_points": [
       {
@@ -3512,7 +3512,7 @@
     ]
   },
   {
-    "question_id": 161,
+    "question_id": 260,
     "question_text": "In the context of scarcity, what does rational choice mean for a consumer?",
     "key_points": [
       {
@@ -3534,7 +3534,7 @@
     ]
   },
   {
-    "question_id": 162,
+    "question_id": 261,
     "question_text": "What is the definition of a substitute good and how does it affect demand?",
     "key_points": [
       {
@@ -3556,7 +3556,7 @@
     ]
   },
   {
-    "question_id": 163,
+    "question_id": 262,
     "question_text": "What is the definition of a complementary good and how does it affect demand?",
     "key_points": [
       {
@@ -3578,7 +3578,7 @@
     ]
   },
   {
-    "question_id": 164,
+    "question_id": 263,
     "question_text": "Explain what a speculative bubble is in a financial market.",
     "key_points": [
       {
@@ -3600,7 +3600,7 @@
     ]
   },
   {
-    "question_id": 165,
+    "question_id": 264,
     "question_text": "What is the role of insurance in managing risk (Domain E)?",
     "key_points": [
       {
@@ -3622,7 +3622,7 @@
     ]
   },
   {
-    "question_id": 166,
+    "question_id": 265,
     "question_text": "What is the difference between short-term and long-term unemployment?",
     "key_points": [
       {
@@ -3644,7 +3644,7 @@
     ]
   },
   {
-    "question_id": 167,
+    "question_id": 266,
     "question_text": "Explain structural unemployment.",
     "key_points": [
       {
@@ -3666,7 +3666,7 @@
     ]
   },
   {
-    "question_id": 168,
+    "question_id": 267,
     "question_text": "What is frictional unemployment?",
     "key_points": [
       {
@@ -3688,7 +3688,7 @@
     ]
   },
   {
-    "question_id": 169,
+    "question_id": 268,
     "question_text": "How does technological unemployment occur?",
     "key_points": [
       {
@@ -3710,7 +3710,7 @@
     ]
   },
   {
-    "question_id": 170,
+    "question_id": 269,
     "question_text": "Explain the relationship between scarcity and the need for a pricing system (Domain D).",
     "key_points": [
       {
@@ -3732,7 +3732,7 @@
     ]
   },
   {
-    "question_id": 171,
+    "question_id": 270,
     "question_text": "What is economic inequality?",
     "key_points": [
       {
@@ -3754,7 +3754,7 @@
     ]
   },
   {
-    "question_id": 172,
+    "question_id": 271,
     "question_text": "How does the value of money change during a period of deflation?",
     "key_points": [
       {
@@ -3776,7 +3776,7 @@
     ]
   },
   {
-    "question_id": 173,
+    "question_id": 272,
     "question_text": "What is the economic concept of utility?",
     "key_points": [
       {
@@ -3798,7 +3798,7 @@
     ]
   },
   {
-    "question_id": 174,
+    "question_id": 273,
     "question_text": "Explain the law of diminishing marginal utility.",
     "key_points": [
       {
@@ -3820,7 +3820,7 @@
     ]
   },
   {
-    "question_id": 175,
+    "question_id": 274,
     "question_text": "What is a public-private partnership (PPP) and how does it relate to cooperation (Domain F)?",
     "key_points": [
       {
@@ -3842,7 +3842,7 @@
     ]
   },
   {
-    "question_id": 176,
+    "question_id": 275,
     "question_text": "How can a government use regulations to try to prevent monopolies?",
     "key_points": [
       {
@@ -3864,7 +3864,7 @@
     ]
   },
   {
-    "question_id": 177,
+    "question_id": 276,
     "question_text": "What is the financial sector and what is its main purpose?",
     "key_points": [
       {
@@ -3886,7 +3886,7 @@
     ]
   },
   {
-    "question_id": 178,
+    "question_id": 277,
     "question_text": "What is balance of trade and what is the difference between a surplus and a deficit?",
     "key_points": [
       {
@@ -3908,7 +3908,7 @@
     ]
   },
   {
-    "question_id": 179,
+    "question_id": 278,
     "question_text": "How can a government try to reduce a large trade deficit?",
     "key_points": [
       {
@@ -3930,7 +3930,7 @@
     ]
   },
   {
-    "question_id": 180,
+    "question_id": 279,
     "question_text": "What is the role of the interest rate in determining exchange rates?",
     "key_points": [
       {
@@ -3952,7 +3952,7 @@
     ]
   },
   {
-    "question_id": 181,
+    "question_id": 280,
     "question_text": "Explain the concept of price leadership in an oligopoly (Domain D).",
     "key_points": [
       {
@@ -3974,7 +3974,7 @@
     ]
   },
   {
-    "question_id": 182,
+    "question_id": 281,
     "question_text": "What is consumer surplus in a market?",
     "key_points": [
       {
@@ -3996,7 +3996,7 @@
     ]
   },
   {
-    "question_id": 183,
+    "question_id": 282,
     "question_text": "What is producer surplus in a market?",
     "key_points": [
       {
@@ -4018,7 +4018,7 @@
     ]
   },
   {
-    "question_id": 184,
+    "question_id": 283,
     "question_text": "What is the main purpose of the World Bank?",
     "key_points": [
       {
@@ -4040,7 +4040,7 @@
     ]
   },
   {
-    "question_id": 185,
+    "question_id": 284,
     "question_text": "Explain the concept of absolute poverty.",
     "key_points": [
       {
@@ -4062,7 +4062,7 @@
     ]
   },
   {
-    "question_id": 186,
+    "question_id": 285,
     "question_text": "Explain the concept of relative poverty.",
     "key_points": [
       {
@@ -4084,7 +4084,7 @@
     ]
   },
   {
-    "question_id": 187,
+    "question_id": 286,
     "question_text": "What is the economic concept of a tax base?",
     "key_points": [
       {
@@ -4106,7 +4106,7 @@
     ]
   },
   {
-    "question_id": 188,
+    "question_id": 287,
     "question_text": "How does the price mechanism help solve the basic economic question 'For whom to produce?' (Domain D).",
     "key_points": [
       {
@@ -4128,7 +4128,7 @@
     ]
   },
   {
-    "question_id": 189,
+    "question_id": 288,
     "question_text": "Explain the concept of capital flight.",
     "key_points": [
       {
@@ -4150,7 +4150,7 @@
     ]
   },
   {
-    "question_id": 190,
+    "question_id": 289,
     "question_text": "What is the terms of trade for a country?",
     "key_points": [
       {
@@ -4172,7 +4172,7 @@
     ]
   },
   {
-    "question_id": 191,
+    "question_id": 290,
     "question_text": "Why is perfect competition considered the most desirable market structure by some economists?",
     "key_points": [
       {
@@ -4194,7 +4194,7 @@
     ]
   },
   {
-    "question_id": 192,
+    "question_id": 291,
     "question_text": "Explain the concept of elasticity of supply ($E_s$).",
     "key_points": [
       {
@@ -4216,7 +4216,7 @@
     ]
   },
   {
-    "question_id": 193,
+    "question_id": 292,
     "question_text": "How can a government policy that changes the price of one good affect the market for a complementary good?",
     "key_points": [
       {
@@ -4238,7 +4238,7 @@
     ]
   },
   {
-    "question_id": 194,
+    "question_id": 293,
     "question_text": "What are barriers to entry in a market, and why are they important?",
     "key_points": [
       {
@@ -4260,7 +4260,7 @@
     ]
   },
   {
-    "question_id": 195,
+    "question_id": 294,
     "question_text": "How does economic growth (increase in GDP) influence government spending and income?",
     "key_points": [
       {
@@ -4282,7 +4282,7 @@
     ]
   },
   {
-    "question_id": 196,
+    "question_id": 295,
     "question_text": "Explain the concept of crowding out.",
     "key_points": [
       {
@@ -4304,7 +4304,7 @@
     ]
   },
   {
-    "question_id": 197,
+    "question_id": 296,
     "question_text": "What is euthanasia of capital in the context of intertemporal exchange?",
     "key_points": [
       {
@@ -4326,7 +4326,7 @@
     ]
   },
   {
-    "question_id": 198,
+    "question_id": 297,
     "question_text": "How does advertising affect the demand curve for a product in a monopolistically competitive market?",
     "key_points": [
       {
@@ -4348,7 +4348,7 @@
     ]
   },
   {
-    "question_id": 199,
+    "question_id": 298,
     "question_text": "What is disintermediation in the financial sector?",
     "key_points": [
       {
@@ -4370,7 +4370,7 @@
     ]
   },
   {
-    "question_id": 200,
+    "question_id": 299,
     "question_text": "How does a government try to address the tragedy of the commons problem (Domain F)?",
     "key_points": [
       {
@@ -4392,7 +4392,7 @@
     ]
   },
   {
-    "question_id": 201,
+    "question_id": 300,
     "question_text": "What are export subsidies and how do they affect a country's trade balance?",
     "key_points": [
       {
@@ -4414,7 +4414,7 @@
     ]
   },
   {
-    "question_id": 202,
+    "question_id": 301,
     "question_text": "Explain inflation.",
     "key_points": [
       {
@@ -4428,7 +4428,7 @@
     ]
   },
   {
-    "question_id": 203,
+    "question_id": 302,
     "question_text": "What is scarcity in economics?",
     "key_points": [
       {
@@ -4446,7 +4446,7 @@
     ]
   },
   {
-    "question_id": 204,
+    "question_id": 303,
     "question_text": "Define opportunity cost.",
     "key_points": [
       {
@@ -4460,7 +4460,7 @@
     ]
   },
   {
-    "question_id": 205,
+    "question_id": 304,
     "question_text": "What is supply and demand?",
     "key_points": [
       {
@@ -4478,7 +4478,7 @@
     ]
   },
   {
-    "question_id": 206,
+    "question_id": 305,
     "question_text": "Explain the concept of a market economy.",
     "key_points": [
       {
@@ -4492,7 +4492,7 @@
     ]
   },
   {
-    "question_id": 207,
+    "question_id": 306,
     "question_text": "What are public goods?",
     "key_points": [
       {
@@ -4506,7 +4506,7 @@
     ]
   },
   {
-    "question_id": 208,
+    "question_id": 307,
     "question_text": "Describe the division of labor.",
     "key_points": [
       {
@@ -4520,7 +4520,7 @@
     ]
   },
   {
-    "question_id": 209,
+    "question_id": 308,
     "question_text": "What is the role of money in an economy?",
     "key_points": [
       {
@@ -4538,7 +4538,7 @@
     ]
   },
   {
-    "question_id": 210,
+    "question_id": 309,
     "question_text": "Explain the concept of comparative advantage.",
     "key_points": [
       {
@@ -4552,7 +4552,7 @@
     ]
   },
   {
-    "question_id": 211,
+    "question_id": 310,
     "question_text": "What is the price mechanism?",
     "key_points": [
       {
@@ -4566,7 +4566,7 @@
     ]
   },
   {
-    "question_id": 212,
+    "question_id": 311,
     "question_text": "What are externalities?",
     "key_points": [
       {
@@ -4580,7 +4580,7 @@
     ]
   },
   {
-    "question_id": 213,
+    "question_id": 312,
     "question_text": "Define the term 'market failure'.",
     "key_points": [
       {
@@ -4594,7 +4594,7 @@
     ]
   },
   {
-    "question_id": 214,
+    "question_id": 313,
     "question_text": "What is the role of government in a market economy?",
     "key_points": [
       {
@@ -4612,7 +4612,7 @@
     ]
   },
   {
-    "question_id": 215,
+    "question_id": 314,
     "question_text": "Explain 'demand elasticity'.",
     "key_points": [
       {
@@ -4626,7 +4626,7 @@
     ]
   },
   {
-    "question_id": 216,
+    "question_id": 315,
     "question_text": "What is a mixed economy?",
     "key_points": [
       {
@@ -4640,7 +4640,7 @@
     ]
   },
   {
-    "question_id": 217,
+    "question_id": 316,
     "question_text": "Describe the concept of 'trade-offs'.",
     "key_points": [
       {
@@ -4654,7 +4654,7 @@
     ]
   },
   {
-    "question_id": 218,
+    "question_id": 317,
     "question_text": "What is the function of the central bank?",
     "key_points": [
       {
@@ -4668,7 +4668,7 @@
     ]
   },
   {
-    "question_id": 219,
+    "question_id": 318,
     "question_text": "Explain the term 'economic growth'.",
     "key_points": [
       {
@@ -4686,7 +4686,7 @@
     ]
   },
   {
-    "question_id": 220,
+    "question_id": 319,
     "question_text": "What is a monopoly?",
     "key_points": [
       {
@@ -4700,7 +4700,7 @@
     ]
   },
   {
-    "question_id": 221,
+    "question_id": 320,
     "question_text": "Define 'consumer surplus'.",
     "key_points": [
       {
@@ -4714,7 +4714,7 @@
     ]
   },
   {
-    "question_id": 222,
+    "question_id": 321,
     "question_text": "What is fiscal policy?",
     "key_points": [
       {
@@ -4728,7 +4728,7 @@
     ]
   },
   {
-    "question_id": 223,
+    "question_id": 322,
     "question_text": "Explain the 'invisible hand' concept.",
     "key_points": [
       {
@@ -4742,7 +4742,7 @@
     ]
   },
   {
-    "question_id": 224,
+    "question_id": 323,
     "question_text": "What is GDP?",
     "key_points": [
       {
@@ -4760,7 +4760,7 @@
     ]
   },
   {
-    "question_id": 225,
+    "question_id": 324,
     "question_text": "What is a free market?",
     "key_points": [
       {
@@ -4774,7 +4774,7 @@
     ]
   },
   {
-    "question_id": 226,
+    "question_id": 325,
     "question_text": "Describe 'price elasticity of supply'.",
     "key_points": [
       {
@@ -4788,7 +4788,7 @@
     ]
   },
   {
-    "question_id": 227,
+    "question_id": 326,
     "question_text": "What are the characteristics of a command economy?",
     "key_points": [
       {
@@ -4802,7 +4802,7 @@
     ]
   },
   {
-    "question_id": 228,
+    "question_id": 327,
     "question_text": "Explain 'perfect competition'.",
     "key_points": [
       {
@@ -4820,7 +4820,7 @@
     ]
   },
   {
-    "question_id": 229,
+    "question_id": 328,
     "question_text": "What is the law of supply?",
     "key_points": [
       {
@@ -4834,7 +4834,7 @@
     ]
   },
   {
-    "question_id": 230,
+    "question_id": 329,
     "question_text": "What is the law of demand?",
     "key_points": [
       {
@@ -4848,7 +4848,7 @@
     ]
   },
   {
-    "question_id": 231,
+    "question_id": 330,
     "question_text": "What is market equilibrium?",
     "key_points": [
       {
@@ -4862,7 +4862,7 @@
     ]
   },
   {
-    "question_id": 232,
+    "question_id": 331,
     "question_text": "Define 'marginal cost'.",
     "key_points": [
       {
@@ -4876,7 +4876,7 @@
     ]
   },
   {
-    "question_id": 233,
+    "question_id": 332,
     "question_text": "Explain 'marginal utility'.",
     "key_points": [
       {
@@ -4890,7 +4890,7 @@
     ]
   },
   {
-    "question_id": 234,
+    "question_id": 333,
     "question_text": "What are inferior goods?",
     "key_points": [
       {
@@ -4904,7 +4904,7 @@
     ]
   },
   {
-    "question_id": 235,
+    "question_id": 334,
     "question_text": "What are normal goods?",
     "key_points": [
       {
@@ -4918,7 +4918,7 @@
     ]
   },
   {
-    "question_id": 236,
+    "question_id": 335,
     "question_text": "What is a tariff?",
     "key_points": [
       {
@@ -4932,7 +4932,7 @@
     ]
   },
   {
-    "question_id": 237,
+    "question_id": 336,
     "question_text": "Define 'subsidy'.",
     "key_points": [
       {
@@ -4946,7 +4946,7 @@
     ]
   },
   {
-    "question_id": 238,
+    "question_id": 337,
     "question_text": "What is a quota?",
     "key_points": [
       {
@@ -4960,7 +4960,7 @@
     ]
   },
   {
-    "question_id": 239,
+    "question_id": 338,
     "question_text": "What is a price ceiling?",
     "key_points": [
       {
@@ -4974,7 +4974,7 @@
     ]
   },
   {
-    "question_id": 240,
+    "question_id": 339,
     "question_text": "What is a price floor?",
     "key_points": [
       {
@@ -4988,7 +4988,7 @@
     ]
   },
   {
-    "question_id": 241,
+    "question_id": 340,
     "question_text": "Define 'trade balance'.",
     "key_points": [
       {
@@ -5002,7 +5002,7 @@
     ]
   },
   {
-    "question_id": 242,
+    "question_id": 341,
     "question_text": "What is hyperinflation?",
     "key_points": [
       {
@@ -5016,7 +5016,7 @@
     ]
   },
   {
-    "question_id": 243,
+    "question_id": 342,
     "question_text": "What is deflation?",
     "key_points": [
       {
@@ -5030,7 +5030,7 @@
     ]
   },
   {
-    "question_id": 244,
+    "question_id": 343,
     "question_text": "Explain what a budget deficit is.",
     "key_points": [
       {
@@ -5044,7 +5044,7 @@
     ]
   },
   {
-    "question_id": 245,
+    "question_id": 344,
     "question_text": "What is a budget surplus?",
     "key_points": [
       {
@@ -5058,7 +5058,7 @@
     ]
   },
   {
-    "question_id": 246,
+    "question_id": 345,
     "question_text": "What is monetary policy?",
     "key_points": [
       {
@@ -5072,7 +5072,7 @@
     ]
   },
   {
-    "question_id": 247,
+    "question_id": 346,
     "question_text": "What is unemployment?",
     "key_points": [
       {
@@ -5086,7 +5086,7 @@
     ]
   },
   {
-    "question_id": 248,
+    "question_id": 347,
     "question_text": "What is the function of interest rates?",
     "key_points": [
       {
@@ -5100,7 +5100,7 @@
     ]
   },
   {
-    "question_id": 249,
+    "question_id": 348,
     "question_text": "What is a recession?",
     "key_points": [
       {
@@ -5114,7 +5114,7 @@
     ]
   },
   {
-    "question_id": 250,
+    "question_id": 349,
     "question_text": "What is a trade embargo?",
     "key_points": [
       {
@@ -5128,7 +5128,7 @@
     ]
   },
   {
-    "question_id": 251,
+    "question_id": 350,
     "question_text": "What is economic globalization?",
     "key_points": [
       {

@@ -63,30 +63,10 @@ pinecone:
 
 # Evaluation Configuration
 grading:
-  # Grading Method Selection
-  # ============================================
-  # Set grading_method to choose grading approach:
-  # - "hybrid": Embedding + NLI verification (RECOMMENDED)
-  #          ✓ Fast embedding-based similarity first
-  #          ✓ NLI verification for edge cases (70-85% similarity)
-  #          ✓ Automatically handles negations, antonyms, synonyms
-  #          ✓ No manual filters needed
-  #          ✓ Best accuracy + performance balance
-  # 
-  # - "nli": Pure Natural Language Inference
-  #          Full NLI checking for every key point (slower but thorough)
-  # 
-  # - "embedding": Pure embedding similarity (fallback)
-  #          Basic cosine similarity only (fastest but limited)
-  # ============================================
+  
   grading_method: "hybrid"  # "hybrid", "nli", or "embedding"
   
-  # NLI Configuration - OPTIMIZED FOR SPEED
-  # ============================================
-  # Strategy: Start small, escalate only when needed
-  # - Small model: 50ms, handles 95% of cases correctly
-  # - Base model: 150ms, only for disagreements
-  # - Large model: 250ms, reserved (not used by default)
+  # NLI Model Configuration
   # ============================================
   nli_model_small: "cross-encoder/nli-deberta-v3-small"      # Primary (140MB, 50ms)
   nli_model_base: "cross-encoder/nli-deberta-v3-base"        # Escalation (430MB, 150ms)
@@ -105,21 +85,20 @@ grading:
   
   # LLM Arbiter Configuration - GROQ LLAMA 70B
   # ============================================
-  # Using Llama 3.1 70B for near-GPT-4 accuracy
   # Cost: ~$0.20 per 1000 answers (very affordable)
   # ============================================
+
   llm_arbiter_enabled: true
   llm_arbiter_provider: "groq"
-  llm_arbiter_model: "llama-3.1-70b-versatile"  # Upgraded from 8b for better accuracy
-  llm_arbiter_timeout: 5                         # Slightly longer for 70B
+  llm_arbiter_model: "llama-3.1-70b-versatile"  
+  llm_arbiter_timeout: 5                      
   llm_arbiter_max_tokens: 150
   
-  # LLM Holistic Grading - ALWAYS USE LLM
+  # LLM Smart Fallback - DISABLED FOR NOW
   # ============================================
-  # For best accuracy, always use LLM to grade
-  # Cost is minimal with Groq (~$0.0002 per answer)
+  # Set to "fallback" and add GROQ_API_KEY to enable
   # ============================================
-  llm_holistic_mode: "always"                   # "never", "always", or "fallback"
+  llm_holistic_mode: "never"                    # "never", "always", or "fallback"
   llm_holistic_uncertainty_threshold: 0.20
   
   # Trigger conditions (ALL must be met OR any critical flag)
@@ -127,33 +106,7 @@ grading:
     min_disagreement: 0.55                  # Cosine-NLI difference >55%
     min_uncertainty: 0.80                   # Combined uncertainty score
     enable_on_contradiction_conflict: true  # NLI says contradiction but cosine high
-  
-  # Hybrid Mode Thresholds - OPTIMIZED FOR <100ms PERFORMANCE
-  # ============================================
-  # ULTRA-FAST 4-TRACK ROUTING:
-  # 
-  # Track 1: FAST (35%) - High confidence, instant decision
-  #   Trigger: Cosine ≥0.92 OR (Cosine ≥0.88 AND Overlap ≥0.5)
-  #   Action: Auto-pass (skip all verification)
-  #   Time: 10ms | Cost: €0
-  #
-  # Track 2: STANDARD (40%) - Parallel verification with agreement check
-  #   Trigger: Cosine 0.70-0.92 AND not Fast Track
-  #   Action: Cosine + Small NLI (parallel)
-  #     - Agreement (<15% diff): Trust average
-  #     - Disagreement (15-45% diff): Use NLI decision
-  #   Time: 60ms | Cost: €0
-  #
-  # Track 3: DEEP VERIFY (20%) - Multi-model verification
-  #   Trigger: High disagreement (>45% diff) OR Contradiction detected
-  #   Action: Add Base NLI model for tie-breaking
-  #   Time: 150ms | Cost: €0
-  #
-  # Track 4: ULTRA CRITICAL (5%) - LLM arbitration
-  #   Trigger: Models strongly disagree (>55% diff) OR All uncertain
-  #   Action: LLM arbiter (Llama 3.1 8B via Groq)
-  #   Time: 600ms | Cost: €0.00012
-  # ============================================
+
   
   # Fast Track thresholds
   fast_track_cosine_high: 0.92              # ≥92% similarity = instant pass

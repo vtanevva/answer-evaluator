@@ -236,23 +236,23 @@ class NLIService:
             return new_score, confidence
         
         # CASE 3: High entailment AND low contradiction → NLI confirms
-        # BUT: NLI should not boost scores above cosine by too much (max +0.15)
+        # BUT: NLI should not boost scores above cosine by too much (max +0.10)
         # This prevents topically related but semantically different content from getting boosted
         if entailment > 0.75 and contradiction < 0.30:
             # NLI strongly confirms - use weighted average favoring NLI
-            tentative_score = current_score * 0.3 + entailment * 0.7
-            # Limit how much NLI can boost above cosine
-            max_boost = current_score + 0.15
+            tentative_score = current_score * 0.4 + entailment * 0.6
+            # STRICT: Limit how much NLI can boost above cosine
+            max_boost = current_score + 0.10
             new_score = min(tentative_score, max_boost)
             if tentative_score > max_boost:
                 print(f"         ⚡ NLI boost capped: {tentative_score:.3f} → {new_score:.3f} (cosine was {current_score:.3f})")
             
         # CASE 4: Moderate entailment → Slight adjustment toward NLI
         elif entailment > 0.50 and contradiction < 0.40:
-            # Blend scores: 60% current, 40% NLI entailment
-            tentative_score = current_score * 0.6 + entailment * 0.4
+            # Blend scores: 70% current, 30% NLI entailment
+            tentative_score = current_score * 0.7 + entailment * 0.3
             # Limit boost for moderate entailment too
-            max_boost = current_score + 0.10
+            max_boost = current_score + 0.08
             new_score = min(tentative_score, max_boost)
             
         # CASE 5: Low entailment or uncertain → Be conservative
@@ -311,8 +311,9 @@ class NLIService:
                 "details": f"Fast track: cosine {cosine_score:.3f} ≥ {self.fast_track_threshold}"
             }
         
-        # Track 1b: Very low cosine, likely wrong - skip NLI
-        if cosine_score < 0.55:
+        # Track 1b: Low cosine, likely wrong - skip NLI (fast fail)
+        # Raised from 0.55 to 0.60 to catch more false positives
+        if cosine_score < 0.60:
             return {
                 "track": 1,
                 "track_name": "fast-fail",
@@ -322,7 +323,7 @@ class NLIService:
                 "nli_scores": None,
                 "disagreement": 0.0,
                 "needs_llm": False,
-                "details": f"Fast fail: cosine {cosine_score:.3f} < 0.55"
+                "details": f"Fast fail: cosine {cosine_score:.3f} < 0.60"
             }
         
         # Prepare sentences for NLI
@@ -345,7 +346,7 @@ class NLIService:
         
         # CRITICAL: Cap how much NLI can boost above original cosine score
         # This prevents topically-related but semantically different content from being over-boosted
-        max_nli_boost_t2 = 0.15  # Smaller boost limit for Track 2
+        max_nli_boost_t2 = 0.10  # Stricter boost limit for Track 2
         if x2 > cosine_score + max_nli_boost_t2:
             original_x2 = x2
             x2 = cosine_score + max_nli_boost_t2
@@ -363,9 +364,15 @@ class NLIService:
             # Use threshold to determine if covered
             threshold = getattr(settings.grading, 'nli_entailment_threshold', 0.50)
             
-            # Relaxed check: Trust NLI more when it shows good entailment
-            # Even if cosine is moderate (0.65+), accept if NLI entailment is decent (0.45+)
-            is_covered = x2 >= 0.60 and nli_small_result["best_entailment"] >= threshold and not nli_small_result["has_contradiction"]
+            # STRICTER: Require BOTH good cosine AND good final score
+            # 1. Original cosine must be >= 0.68 (prevent NLI from saving bad matches)
+            # 2. Final score must be >= 0.72 
+            # 3. NLI entailment must meet threshold
+            min_cosine_for_pass = 0.68
+            is_covered = (cosine_score >= min_cosine_for_pass and 
+                         x2 >= 0.72 and 
+                         nli_small_result["best_entailment"] >= threshold and 
+                         not nli_small_result["has_contradiction"])
             
             return {
                 "track": 2,
@@ -396,7 +403,7 @@ class NLIService:
         
         # CRITICAL: Cap how much NLI can boost above original cosine score
         # This prevents topically-related but semantically different content from being over-boosted
-        max_nli_boost = 0.25  # Maximum boost above cosine
+        max_nli_boost = 0.15  # Maximum boost above cosine (stricter than before)
         if x3 > cosine_score + max_nli_boost:
             original_x3 = x3
             x3 = cosine_score + max_nli_boost
@@ -415,7 +422,12 @@ class NLIService:
             avg_entailment = (nli_small_result["best_entailment"] + nli_base_result["best_entailment"]) / 2
             has_any_contradiction = nli_small_result["has_contradiction"] or nli_base_result["has_contradiction"]
             
-            is_covered = x3 >= 0.60 and avg_entailment >= threshold and not has_any_contradiction
+            # STRICTER: Require minimum cosine >= 0.65 AND final score >= 0.72
+            min_cosine_for_pass = 0.65
+            is_covered = (cosine_score >= min_cosine_for_pass and
+                         x3 >= 0.72 and 
+                         avg_entailment >= threshold and 
+                         not has_any_contradiction)
             
             return {
                 "track": 3,
@@ -437,8 +449,13 @@ class NLIService:
         avg_entailment = (nli_small_result["best_entailment"] + nli_base_result["best_entailment"]) / 2
         has_any_contradiction = nli_small_result["has_contradiction"] or nli_base_result["has_contradiction"]
         
-        # Tentative decision (may be overridden by LLM)
-        tentative_covered = x3 >= 0.55 and avg_entailment >= threshold and not has_any_contradiction
+        # Tentative decision (may be overridden by LLM) - STRICTER threshold
+        # Require minimum cosine >= 0.60 AND final score >= 0.68
+        min_cosine_for_pass = 0.60
+        tentative_covered = (cosine_score >= min_cosine_for_pass and
+                            x3 >= 0.68 and 
+                            avg_entailment >= threshold and 
+                            not has_any_contradiction)
         
         return {
             "track": 4,
@@ -498,11 +515,10 @@ class NLIService:
             
             sentence_lower = sentence.lower()
             
-            # SMART NEGATION DETECTION:
-            # Check if negation is DENYING the key point (bad) vs CONFIRMING it (good)
-            # Examples:
-            #   - "not everyone gets equal access" + KP "access becomes unequal" → CONFIRMING ✓
-            #   - "prices do not increase" + KP "prices increase" → DENYING ✗
+            # SMART NEGATION DETECTION v2:
+            # Only flag as contradiction if negation DIRECTLY PRECEDES a key concept
+            # This prevents false positives like "money that didn't exist" being flagged
+            # when checking "banks create money" (the negation is about existence, not creation)
             sentence_has_negation = False
             is_confirming_negation = False
             
@@ -526,15 +542,27 @@ class NLIService:
                     is_confirming_negation = True
                     print(f"         ✅ Confirming negation: sentence negates positive to match negative KP")
                 else:
-                    # Check if negation directly opposes the key point concept
+                    # v2: Only flag if negation DIRECTLY precedes the key concept
+                    # Pattern: "not/don't/doesn't [verb]? CONCEPT" or "no CONCEPT"
+                    # This catches "do not create money" but NOT "money that didn't exist"
+                    import re
+                    
                     for concept in key_concepts:
-                        if concept in sentence_lower:
-                            # Negation + key concept might be contradiction
-                            # But only if it's not a confirming pattern
-                            if not is_confirming_negation:
-                                sentence_has_negation = True
-                                has_explicit_negation = True
-                                print(f"         🔴 Denying negation detected: '{concept}' negated in sentence")
+                        # Check for direct negation patterns:
+                        # 1. "not/no/never + [optional verb] + concept" (e.g., "do not create money")
+                        # 2. "concept + is/are/was/were + not" (e.g., "money is not created")
+                        direct_negation_patterns = [
+                            rf"\b(not|no|never|don\'t|doesn\'t|didn\'t|won\'t|can\'t|cannot)\s+(\w+\s+)?{re.escape(concept)}\b",
+                            rf"\b{re.escape(concept)}\s+(is|are|was|were|has|have|had)\s+(not|never)\b",
+                            rf"\b(without|lack of|absence of)\s+(\w+\s+)?{re.escape(concept)}\b"
+                        ]
+                        
+                        is_direct_negation = any(re.search(p, sentence_lower) for p in direct_negation_patterns)
+                        
+                        if is_direct_negation:
+                            sentence_has_negation = True
+                            has_explicit_negation = True
+                            print(f"         🔴 Direct negation detected: '{concept}' directly negated")
                             break
             
             # NLI direction: Check if student's SENTENCE entails the KEY POINT

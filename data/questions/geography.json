@@ -19,7 +19,7 @@
         "weight": 1
       }
     ],
-    "question_id": 1
+    "question_id": 400
   },
   {
     "question_text": "Discuss the impact of globalization on local economies.",
@@ -41,7 +41,7 @@
         "weight": 1
       }
     ],
-    "question_id": 2
+    "question_id": 401
   },
   {
     "question_text": "How does globalization affect economic development in emerging countries?",
@@ -63,7 +63,7 @@
         "weight": 1
       }
     ],
-    "question_id": 3
+    "question_id": 402
   },
   {
     "question_text": "What are the major factors affecting agricultural productivity?",
@@ -81,7 +81,7 @@
         "weight": 1
       }
     ],
-    "question_id": 4
+    "question_id": 403
   },
   {
     "question_text": "Describe the processes that shape river landscapes.",
@@ -103,7 +103,7 @@
         "weight": 1
       }
     ],
-    "question_id": 5
+    "question_id": 404
   },
   {
     "question_text": "What are the primary differences between climate and weather?",
@@ -125,7 +125,7 @@
         "weight": 1
       }
     ],
-    "question_id": 6
+    "question_id": 405
   },
   {
     "question_text": "What are the consequences of urbanization on rural communities?",
@@ -143,7 +143,7 @@
         "weight": 1
       }
     ],
-    "question_id": 7
+    "question_id": 406
   },
   {
     "question_text": "How do human activities influence local weather patterns?",
@@ -161,7 +161,7 @@
         "weight": 1
       }
     ],
-    "question_id": 8
+    "question_id": 407
   },
   {
     "question_text": "What are the key factors that affect river flow and discharge?",
@@ -179,7 +179,7 @@
         "weight": 1
       }
     ],
-    "question_id": 9
+    "question_id": 408
   },
   {
     "question_text": "What are the effects of globalization on cultural identity?",
@@ -201,7 +201,7 @@
         "weight": 1
       }
     ],
-    "question_id": 10
+    "question_id": 409
   },
   {
     "question_text": "How do different biomes contribute to global biodiversity?",
@@ -223,7 +223,7 @@
         "weight": 1
       }
     ],
-    "question_id": 11
+    "question_id": 410
   },
   {
     "question_text": "What are the main processes that contribute to the formation of deserts?",
@@ -245,7 +245,7 @@
         "weight": 1
       }
     ],
-    "question_id": 12
+    "question_id": 411
   },
   {
     "question_text": "How does globalization influence environmental sustainability?",
@@ -263,7 +263,7 @@
         "weight": 1
       }
     ],
-    "question_id": 13
+    "question_id": 412
   },
   {
     "question_text": "What factors contribute to the formation of deserts?",
@@ -285,7 +285,7 @@
         "weight": 1
       }
     ],
-    "question_id": 14
+    "question_id": 413
   },
   {
     "question_text": "What natural processes contribute to the formation of mountains?",
@@ -303,7 +303,7 @@
         "weight": 1
       }
     ],
-    "question_id": 15
+    "question_id": 414
   },
   {
     "question_text": "How does climate affect agricultural practices around the world?",
@@ -321,7 +321,7 @@
         "weight": 1
       }
     ],
-    "question_id": 16
+    "question_id": 415
   },
   {
     "question_text": "What are the challenges faced by modern agriculture?",
@@ -343,7 +343,7 @@
         "weight": 1
       }
     ],
-    "question_id": 17
+    "question_id": 416
   },
   {
     "question_text": "How does urbanization relate to globalization and development?",
@@ -361,7 +361,7 @@
         "weight": 1
       }
     ],
-    "question_id": 18
+    "question_id": 417
   },
   {
     "question_text": "What are the main characteristics of river ecosystems?",
@@ -379,7 +379,7 @@
         "weight": 1
       }
     ],
-    "question_id": 19
+    "question_id": 418
   },
   {
     "question_text": "What are the key challenges and benefits of renewable energy sources?",
@@ -401,7 +401,7 @@
         "weight": 1
       }
     ],
-    "question_id": 20
+    "question_id": 419
   },
   {
     "question_text": "How do transportation networks influence international trade?",
@@ -423,7 +423,7 @@
         "weight": 1
       }
     ],
-    "question_id": 21
+    "question_id": 420
   },
   {
     "question_text": "Explain the relationship between tectonic plate movements and volcanic activity.",
@@ -441,7 +441,7 @@
         "weight": 1
       }
     ],
-    "question_id": 22
+    "question_id": 421
   },
   {
     "question_text": "Describe the mechanisms behind tectonic plate movement.",
@@ -463,7 +463,7 @@
         "weight": 1
       }
     ],
-    "question_id": 23
+    "question_id": 422
   },
   {
     "question_text": "What are the key differences between climate and weather?",
@@ -481,7 +481,7 @@
         "weight": 1
       }
     ],
-    "question_id": 24
+    "question_id": 423
   },
   {
     "question_text": "What are the primary factors affecting river flow and dynamics?",
@@ -503,7 +503,7 @@
         "weight": 1
       }
     ],
-    "question_id": 25
+    "question_id": 424
   },
   {
     "question_text": "What are the primary factors that influence climate patterns?",
@@ -525,7 +525,7 @@
         "weight": 1
       }
     ],
-    "question_id": 26
+    "question_id": 425
   },
   {
     "question_text": "Explain the process of river erosion and its impact on landscapes.",
@@ -543,7 +543,7 @@
         "weight": 1
       }
     ],
-    "question_id": 27
+    "question_id": 426
   },
   {
     "question_text": "What are the key factors that determine the locations of earthquakes and volcanoes?",
@@ -561,7 +561,7 @@
         "weight": 1
       }
     ],
-    "question_id": 28
+    "question_id": 427
   },
   {
     "question_text": "What are the primary factors that shape river systems?",
@@ -583,7 +583,7 @@
         "weight": 1
       }
     ],
-    "question_id": 29
+    "question_id": 428
   },
   {
     "question_text": "How does urbanization impact economic development in developing countries?",
@@ -605,7 +605,7 @@
         "weight": 1
       }
     ],
-    "question_id": 30
+    "question_id": 429
   },
   {
     "question_text": "What are the key drivers of international migration patterns?",
@@ -623,7 +623,7 @@
         "weight": 1
       }
     ],
-    "question_id": 31
+    "question_id": 430
   },
   {
     "question_text": "Explain the relationship between biomes and biodiversity.",
@@ -645,7 +645,7 @@
         "weight": 1
       }
     ],
-    "question_id": 32
+    "question_id": 431
   },
   {
     "question_text": "What are the consequences of rapid urbanization in modern cities?",
@@ -667,7 +667,7 @@
         "weight": 1
       }
     ],
-    "question_id": 33
+    "question_id": 432
   },
   {
     "question_text": "Describe the main characteristics of temperate forest ecosystems.",
@@ -685,7 +685,7 @@
         "weight": 1
       }
     ],
-    "question_id": 34
+    "question_id": 433
   },
   {
     "question_text": "How does transportation infrastructure influence trade patterns?",
@@ -707,7 +707,7 @@
         "weight": 1
       }
     ],
-    "question_id": 35
+    "question_id": 434
   },
   {
     "question_text": "What are the social implications of urbanization in modern cities?",
@@ -725,7 +725,7 @@
         "weight": 1
       }
     ],
-    "question_id": 36
+    "question_id": 435
   },
   {
     "question_text": "Describe the processes involved in plate tectonics.",
@@ -747,7 +747,7 @@
         "weight": 1
       }
     ],
-    "question_id": 37
+    "question_id": 436
   },
   {
     "question_text": "What are the key drivers of international migration?",
@@ -769,7 +769,7 @@
         "weight": 1
       }
     ],
-    "question_id": 38
+    "question_id": 437
   },
   {
     "question_text": "What are the key components of Geographic Information Systems (GIS)?",
@@ -791,7 +791,7 @@
         "weight": 1
       }
     ],
-    "question_id": 39
+    "question_id": 438
   },
   {
     "question_text": "How do political factors influence migration patterns?",
@@ -809,7 +809,7 @@
         "weight": 1
       }
     ],
-    "question_id": 40
+    "question_id": 439
   },
   {
     "question_text": "Describe the main processes shaping coastal landforms.",
@@ -827,7 +827,7 @@
         "weight": 1
       }
     ],
-    "question_id": 41
+    "question_id": 440
   },
   {
     "question_text": "What are the main drivers of erosion in coastal areas?",
@@ -849,7 +849,7 @@
         "weight": 1
       }
     ],
-    "question_id": 42
+    "question_id": 441
   },
   {
     "question_text": "What are the impacts of climate change on agriculture?",
@@ -867,7 +867,7 @@
         "weight": 1
       }
     ],
-    "question_id": 43
+    "question_id": 442
   },
   {
     "question_text": "How do transportation networks influence global trade patterns?",
@@ -889,7 +889,7 @@
         "weight": 1
       }
     ],
-    "question_id": 44
+    "question_id": 443
   },
   {
     "question_text": "Describe the stages of a river's lifecycle.",
@@ -907,7 +907,7 @@
         "weight": 1
       }
     ],
-    "question_id": 45
+    "question_id": 444
   },
   {
     "question_text": "How do tectonic plate movements affect earthquakes?",
@@ -925,7 +925,7 @@
         "weight": 1
       }
     ],
-    "question_id": 46
+    "question_id": 445
   },
   {
     "question_text": "How do human activities influence various ecosystems?",
@@ -943,7 +943,7 @@
         "weight": 1
       }
     ],
-    "question_id": 47
+    "question_id": 446
   },
   {
     "question_text": "How do maps and GIS enhance spatial analysis in geography?",
@@ -961,7 +961,7 @@
         "weight": 1
       }
     ],
-    "question_id": 48
+    "question_id": 447
   },
   {
     "question_text": "What are the main factors driving rural-to-urban migration?",
@@ -983,7 +983,7 @@
         "weight": 1
       }
     ],
-    "question_id": 49
+    "question_id": 448
   },
   {
     "question_text": "What are the causes and effects of rural to urban migration?",
@@ -1005,6 +1005,6 @@
         "weight": 1
       }
     ],
-    "question_id": 50
+    "question_id": 449
   }
 ]
