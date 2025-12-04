@@ -7,6 +7,11 @@ OPENAI_API_KEY=your-openai-api-key-here
 # Get your API key from: https://www.pinecone.io/
 PINECONE_API_KEY=your-pinecone-api-key-here
 
+# Groq API Configuration (Optional - for LLM arbiter with Llama 3.1 8B)
+# Get your API key from: https://console.groq.com/keys
+# Ultra-low-cost: ~€0.00012 per verification (fits within €0.10/1000 answers budget)
+GROQ_API_KEY=your-groq-api-key-here
+
 # Server Configuration
 PORT=8000
 HOST=0.0.0.0

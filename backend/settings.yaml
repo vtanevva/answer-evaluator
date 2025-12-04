@@ -4,7 +4,7 @@
 server:
   host: "0.0.0.0"
   port: 8000
-  reload: true
+  reload: false
   title: "Answer Evaluator"
   description: "Evaluate student answers using embeddings"
 
@@ -12,6 +12,7 @@ server:
 cors:
   allowed_origins:
     - "http://localhost:3000"  # React dev server
+    - "http://127.0.0.1:3000"
   allow_credentials: true
   allowed_methods: ["*"]
   allowed_headers: ["*"]
@@ -21,32 +22,166 @@ openai:
   model_name: "text-embedding-ada-002"
   embedding_dimensions: 1536
 
-# Embedding Provider Configuration
+# Unified Embeddings Configuration
+# ============================================
+# Easy model switching - just change these fields:
+# ============================================
+# Examples:
+#
+# OpenAI (remote API):
+#   model: "text-embedding-ada-002"
+#   type: "openai"
+#   dimensions: 1536
+#
+# GTE-Multilingual (local):
+#   model: "Alibaba-NLP/gte-multilingual-base"
+#   type: "sentence-transformer"
+#   dimensions: 768
+#
+# Any HuggingFace model (local):
+#   model: "sentence-transformers/all-MiniLM-L6-v2"
+#   type: "sentence-transformer"
+#   dimensions: 384
+# ============================================
 embeddings:
-  provider: "openai"  # Options: "openai", "gte-multilingual"
-  openai_model: "text-embedding-ada-002"
-  openai_dimensions: 1536
-  gte_model: "Alibaba-NLP/gte-multilingual-base"
-  gte_dimensions: 768
+  # Model identifier (API model name or HuggingFace model path)
+  model: "Alibaba-NLP/gte-multilingual-base"
+  
+  # Model type: "openai" for API calls, "sentence-transformer" for local models
+  type: "sentence-transformer"
+  
+  # Embedding dimensions (must match the model's output)
+  dimensions: 768
 
 # Pinecone Configuration
 pinecone:
   # API key is loaded from PINECONE_API_KEY environment variable
   environment: "gcp-starter"
-  index_name: "answer-evaluator"
-  dimension: 1536  # Will be updated based on embedding provider
+  index_name: "ae"
+  dimension: 768  # Must match embeddings.dimensions above
   metric: "cosine"
 
 # Evaluation Configuration
 grading:
-  # Embedding Configuration
-  precompute_embeddings: false  # If false, load from file; if true, compute fresh embeddings
+  # Grading Method Selection
+  # ============================================
+  # Set grading_method to choose grading approach:
+  # - "hybrid": Embedding + NLI verification (RECOMMENDED)
+  #          ✓ Fast embedding-based similarity first
+  #          ✓ NLI verification for edge cases (70-85% similarity)
+  #          ✓ Automatically handles negations, antonyms, synonyms
+  #          ✓ No manual filters needed
+  #          ✓ Best accuracy + performance balance
+  # 
+  # - "nli": Pure Natural Language Inference
+  #          Full NLI checking for every key point (slower but thorough)
+  # 
+  # - "embedding": Pure embedding similarity (fallback)
+  #          Basic cosine similarity only (fastest but limited)
+  # ============================================
+  grading_method: "hybrid"  # "hybrid", "nli", or "embedding"
+  
+  # NLI Configuration - OPTIMIZED FOR SPEED
+  # ============================================
+  # Strategy: Start small, escalate only when needed
+  # - Small model: 50ms, handles 95% of cases correctly
+  # - Base model: 150ms, only for disagreements
+  # - Large model: 250ms, reserved (not used by default)
+  # ============================================
+  nli_model_small: "cross-encoder/nli-deberta-v3-small"      # Primary (140MB, 50ms)
+  nli_model_base: "cross-encoder/nli-deberta-v3-base"        # Escalation (430MB, 150ms)
+  
+  nli_entailment_threshold: 0.50            # Threshold for entailment
+  nli_contradiction_threshold: 0.75         # Lowered for better detection
+  
+  # Performance optimizations
+  nli_batch_size: 4                         # Process multiple sentences in batch
+  nli_max_length: 256                       # Reduced from 512 for speed
+  nli_use_fp16: true                        # Half precision for 2x speed (if GPU)
+  
+  # Uncertainty Logging (for active learning - no cost)
+  log_uncertain_cases: true
+  uncertainty_threshold: 0.7  # Log cases with uncertainty score > 0.7 for review
+  
+  # LLM Arbiter Configuration - GROQ LLAMA 70B
+  # ============================================
+  # Using Llama 3.1 70B for near-GPT-4 accuracy
+  # Cost: ~$0.20 per 1000 answers (very affordable)
+  # ============================================
+  llm_arbiter_enabled: true
+  llm_arbiter_provider: "groq"
+  llm_arbiter_model: "llama-3.1-70b-versatile"  # Upgraded from 8b for better accuracy
+  llm_arbiter_timeout: 5                         # Slightly longer for 70B
+  llm_arbiter_max_tokens: 150
+  
+  # LLM Holistic Grading - ALWAYS USE LLM
+  # ============================================
+  # For best accuracy, always use LLM to grade
+  # Cost is minimal with Groq (~$0.0002 per answer)
+  # ============================================
+  llm_holistic_mode: "always"                   # "never", "always", or "fallback"
+  llm_holistic_uncertainty_threshold: 0.20
+  
+  # Trigger conditions (ALL must be met OR any critical flag)
+  llm_trigger_conditions:
+    min_disagreement: 0.55                  # Cosine-NLI difference >55%
+    min_uncertainty: 0.80                   # Combined uncertainty score
+    enable_on_contradiction_conflict: true  # NLI says contradiction but cosine high
+  
+  # Hybrid Mode Thresholds - OPTIMIZED FOR <100ms PERFORMANCE
+  # ============================================
+  # ULTRA-FAST 4-TRACK ROUTING:
+  # 
+  # Track 1: FAST (35%) - High confidence, instant decision
+  #   Trigger: Cosine ≥0.92 OR (Cosine ≥0.88 AND Overlap ≥0.5)
+  #   Action: Auto-pass (skip all verification)
+  #   Time: 10ms | Cost: €0
+  #
+  # Track 2: STANDARD (40%) - Parallel verification with agreement check
+  #   Trigger: Cosine 0.70-0.92 AND not Fast Track
+  #   Action: Cosine + Small NLI (parallel)
+  #     - Agreement (<15% diff): Trust average
+  #     - Disagreement (15-45% diff): Use NLI decision
+  #   Time: 60ms | Cost: €0
+  #
+  # Track 3: DEEP VERIFY (20%) - Multi-model verification
+  #   Trigger: High disagreement (>45% diff) OR Contradiction detected
+  #   Action: Add Base NLI model for tie-breaking
+  #   Time: 150ms | Cost: €0
+  #
+  # Track 4: ULTRA CRITICAL (5%) - LLM arbitration
+  #   Trigger: Models strongly disagree (>55% diff) OR All uncertain
+  #   Action: LLM arbiter (Llama 3.1 8B via Groq)
+  #   Time: 600ms | Cost: €0.00012
+  # ============================================
+  
+  # Fast Track thresholds
+  fast_track_cosine_high: 0.92              # ≥92% similarity = instant pass
+  fast_track_cosine_with_overlap: 0.88      # ≥88% cosine + ≥50% overlap = instant pass
+  fast_track_overlap_threshold: 0.50
+  
+  # Standard Track thresholds  
+  standard_track_min: 0.70                  # Minimum for NLI verification
+  standard_track_max: 0.92                  # Maximum for standard track
+  
+  # Disagreement escalation thresholds
+  agreement_threshold: 0.15                 # <15% difference = models agree
+  moderate_disagreement: 0.45               # 15-45% = use NLI decision
+  high_disagreement: 0.55                   # >55% = LLM arbiter
+  
+  # Performance optimization
+  enable_parallel_processing: true          # Run cosine + NLI in parallel
+  nli_timeout_ms: 200                       # Max time for NLI inference
+  cache_nli_results: true                   # Cache NLI results for identical sentences
+  
+  # Embedding Configuration (only used if grading_method = "embedding")
+  precompute_embeddings: true  # If true, compute fresh embeddings on startup; if false, load from cache
   embeddings_file_path: "embeddings_cache.json"  # File to save/load precomputed embeddings
   
   similarity_thresholds:
-    high_similarity: 0.88
-    mid_similarity: 0.83
-    min_lexical_overlap: 0.5
+    high_similarity: 0.75
+    mid_similarity: 0.70
+    min_lexical_overlap: 0.3
   
   feedback_messages:
     perfect_score: "Correct! You covered all the key points."

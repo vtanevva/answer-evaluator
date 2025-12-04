@@ -32,32 +32,27 @@ class OpenAIConfig:
 
 
 @dataclass
+@dataclass
 class EmbeddingConfig:
-    provider: str = "openai"  # Options: "openai", "gte-multilingual"
-    openai_model: str = "text-embedding-ada-002"
-    openai_dimensions: int = 1536
-    gte_model: str = "Alibaba-NLP/gte-multilingual-base"
-    gte_dimensions: int = 768
+    """Unified embeddings configuration supporting any model"""
+    # Model identifier (API model name or local model path)
+    model: str = "text-embedding-ada-002"
+    
+    # Model type: "openai" or "sentence-transformer"
+    type: str = "openai"
+    
+    # Embedding dimensions
+    dimensions: int = 1536
     
     @property
-    def current_model(self) -> str:
-        """Get the current model name based on provider"""
-        if self.provider == "openai":
-            return self.openai_model
-        elif self.provider == "gte-multilingual":
-            return self.gte_model
-        else:
-            raise ValueError(f"Unknown embedding provider: {self.provider}")
+    def is_local(self) -> bool:
+        """Check if this is a local model"""
+        return self.type == "sentence-transformer"
     
     @property
-    def current_dimensions(self) -> int:
-        """Get the current embedding dimensions based on provider"""
-        if self.provider == "openai":
-            return self.openai_dimensions
-        elif self.provider == "gte-multilingual":
-            return self.gte_dimensions
-        else:
-            raise ValueError(f"Unknown embedding provider: {self.provider}")
+    def is_remote(self) -> bool:
+        """Check if this is a remote API model"""
+        return self.type == "openai"
 
 
 @dataclass
@@ -94,8 +89,24 @@ class AnswerValidation:
 
 @dataclass
 class GradingConfig:
+    # Grading method: "hybrid", "nli", or "embedding"
+    grading_method: str = "embedding"
+    
+    # NLI-specific settings
+    nli_model: str = "microsoft/deberta-v3-small"
+    nli_entailment_threshold: float = 0.6
+    nli_contradiction_threshold: float = 0.7
+    
+    # Hybrid mode thresholds (three-tier verification)
+    auto_pass_threshold: float = 0.85      # >= 85% similarity = auto-pass (no NLI)
+    nli_verify_threshold: float = 0.70     # 70-85% similarity = NLI verification
+    nli_deep_check_threshold: float = 0.70 # < 70% similarity = NLI deep check
+    
+    # Embedding-specific settings
     precompute_embeddings: bool = True
     similarity_thresholds: SimilarityThresholds = field(default_factory=SimilarityThresholds)
+    
+    # Common settings
     feedback_messages: FeedbackMessages = field(default_factory=FeedbackMessages)
     answer_validation: AnswerValidation = field(default_factory=AnswerValidation)
 
@@ -166,6 +177,16 @@ def _create_grading_config(data: Dict[str, Any]) -> GradingConfig:
     """Create GradingConfig with validation and graceful fallbacks"""
     try:
         # Extract simple fields with defaults
+        grading_method = data.get('grading_method', 'embedding')
+        nli_model = data.get('nli_model', 'microsoft/deberta-v3-small')
+        nli_entailment_threshold = data.get('nli_entailment_threshold', 0.6)
+        nli_contradiction_threshold = data.get('nli_contradiction_threshold', 0.7)
+        
+        # Hybrid mode thresholds
+        auto_pass_threshold = data.get('auto_pass_threshold', 0.85)
+        nli_verify_threshold = data.get('nli_verify_threshold', 0.70)
+        nli_deep_check_threshold = data.get('nli_deep_check_threshold', 0.70)
+        
         precompute_embeddings = data.get('precompute_embeddings', True)
 
         
@@ -195,6 +216,13 @@ def _create_grading_config(data: Dict[str, Any]) -> GradingConfig:
                 print("📋 Using default answer validation")
         
         return GradingConfig(
+            grading_method=grading_method,
+            nli_model=nli_model,
+            nli_entailment_threshold=nli_entailment_threshold,
+            nli_contradiction_threshold=nli_contradiction_threshold,
+            auto_pass_threshold=auto_pass_threshold,
+            nli_verify_threshold=nli_verify_threshold,
+            nli_deep_check_threshold=nli_deep_check_threshold,
             precompute_embeddings=precompute_embeddings,
             similarity_thresholds=similarity_thresholds,
             feedback_messages=feedback_messages,
@@ -377,38 +405,38 @@ def load_settings_from_yaml(yaml_file_path: str = "settings.yaml") -> Settings:
         # Create settings from YAML data
         if yaml_data:
             settings = create_config_from_dict(yaml_data)
-            print(f"✅ Successfully loaded configuration from {resolved_path}")
+            print(f"Successfully loaded configuration from {resolved_path}")
             
             # Log any sections that weren't found in the file
             expected_sections = ['server', 'cors', 'openai', 'grading', 'questions', 'text_processing']
             missing_sections = [section for section in expected_sections if section not in yaml_data]
             if missing_sections:
-                print(f"📋 Using defaults for missing sections: {', '.join(missing_sections)}")
+                print(f"Using defaults for missing sections: {', '.join(missing_sections)}")
             
             return settings
         else:
-            print(f"⚠️ Configuration file is empty, using all defaults: {resolved_path}")
+            print(f"Warning: Configuration file is empty, using all defaults: {resolved_path}")
             return Settings()
             
     except FileNotFoundError as e:
-        print(f"⚠️ Configuration file not found: {e}")
-        print("📋 Using all default settings")
+        print(f"Warning: Configuration file not found: {e}")
+        print("Using all default settings")
         
     except yaml.YAMLError as e:
-        print(f"❌ YAML parsing error: {e}")
-        print("📋 Using all default settings")
+        print(f"Error: YAML parsing error: {e}")
+        print("Using all default settings")
         
     except IOError as e:
-        print(f"❌ File access error: {e}")
-        print("📋 Using all default settings")
+        print(f"Error: File access error: {e}")
+        print("Using all default settings")
         
     except ValueError as e:
-        print(f"❌ Configuration validation error: {e}")
-        print("📋 Using all default settings")
+        print(f"Error: Configuration validation error: {e}")
+        print("Using all default settings")
         
     except Exception as e:
-        print(f"❌ Unexpected error loading configuration: {e}")
-        print("📋 Using all default settings")
+        print(f"Error: Unexpected error loading configuration: {e}")
+        print("Using all default settings")
     
     # Return default settings for any error
     return Settings()

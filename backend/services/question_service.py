@@ -36,7 +36,7 @@ class QuestionService:
         
         if loaded_questions:
             self._questions_bank = loaded_questions
-            print(f"✅ Loaded {len(self._questions_bank)} questions from {file_path}")
+            print(f"Loaded {len(self._questions_bank)} questions from {file_path}")
         else:
             # Use fallback questions from configuration
             self._questions_bank = self._get_fallback_questions()

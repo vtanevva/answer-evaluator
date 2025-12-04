@@ -1,0 +1,95 @@
+================================================================================
+PINECONE VECTOR DATABASE SETUP GUIDE
+================================================================================
+
+================================================================================
+REQUIRED ENVIRONMENT VARIABLES
+================================================================================
+
+You need TWO environment variables in your .env file:
+
+1. PINECONE_API_KEY=your-pinecone-api-key-here
+2. OPENAI_API_KEY=your-openai-api-key-here (optional if using GTE-multilingual)
+
+
+================================================================================
+SETUP STEPS
+================================================================================
+
+STEP 1: Get Your Pinecone API Key
+----------------------------------
+1. Go to https://www.pinecone.io/
+2. Sign up or log in to your account
+3. Go to your dashboard
+4. Click on "API Keys" in the left sidebar
+5. Copy your API key
+
+
+STEP 2: Create .env File in Backend Directory
+----------------------------------------------
+1. Navigate to: answer-evaluator/backend/
+2. Create a file named: .env
+3. Add the following content:
+
+# Pinecone API Key (REQUIRED)
+PINECONE_API_KEY=your-actual-pinecone-api-key-here
+
+# OpenAI API Key (Optional - only needed if using OpenAI embeddings)
+# If using GTE-multilingual (free local model), you can skip this
+OPENAI_API_KEY=your-actual-openai-api-key-here
+
+
+STEP 3: Configure Embedding Model (Optional)
+---------------------------------------------
+Edit backend/settings.yaml to choose your embedding model:
+
+For GTE-Multilingual (FREE, no API key needed):
+  embeddings:
+    provider: "gte-multilingual"
+  pinecone:
+    dimension: 768
+
+For OpenAI (requires API credits):
+  embeddings:
+    provider: "openai"
+  pinecone:
+    dimension: 1536
+
+
+STEP 4: Start the Backend
+--------------------------
+cd backend
+python main.py
+
+The application will:
+- Connect to Pinecone automatically using your API key
+- Create an index if it doesn't exist (name: answer-evaluator-{provider}-{dimension})
+- Load questions from questions.json
+- Start the server on http://localhost:8000
+
+
+================================================================================
+PINECONE INDEX CONFIGURATION (Automatic)
+================================================================================
+
+The app automatically creates a Pinecone index with:
+- Index Name: answer-evaluator-{provider}-{dimension}
+  Examples:
+    * answer-evaluator-gte-multilingual-768
+    * answer-evaluator-openai-1536
+- Dimension: 768 (GTE) or 1536 (OpenAI)
+- Metric: cosine similarity
+- Cloud: AWS
+- Region: us-east-1
+- Type: Serverless (free tier available)
+
+================================================================================
+EXAMPLE .env FILE (COPY THIS)
+================================================================================
+
+# Pinecone Configuration
+PINECONE_API_KEY=pcsk_123456_abcdefghijklmnopqrstuvwxyz
+
+# OpenAI Configuration (Optional)
+OPENAI_API_KEY=sk-proj-abcdefghijklmnopqrstuvwxyz123456789
+
