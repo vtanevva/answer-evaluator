@@ -236,14 +236,24 @@ class NLIService:
             return new_score, confidence
         
         # CASE 3: High entailment AND low contradiction → NLI confirms
+        # BUT: NLI should not boost scores above cosine by too much (max +0.15)
+        # This prevents topically related but semantically different content from getting boosted
         if entailment > 0.75 and contradiction < 0.30:
             # NLI strongly confirms - use weighted average favoring NLI
-            new_score = current_score * 0.3 + entailment * 0.7
+            tentative_score = current_score * 0.3 + entailment * 0.7
+            # Limit how much NLI can boost above cosine
+            max_boost = current_score + 0.15
+            new_score = min(tentative_score, max_boost)
+            if tentative_score > max_boost:
+                print(f"         ⚡ NLI boost capped: {tentative_score:.3f} → {new_score:.3f} (cosine was {current_score:.3f})")
             
         # CASE 4: Moderate entailment → Slight adjustment toward NLI
         elif entailment > 0.50 and contradiction < 0.40:
             # Blend scores: 60% current, 40% NLI entailment
-            new_score = current_score * 0.6 + entailment * 0.4
+            tentative_score = current_score * 0.6 + entailment * 0.4
+            # Limit boost for moderate entailment too
+            max_boost = current_score + 0.10
+            new_score = min(tentative_score, max_boost)
             
         # CASE 5: Low entailment or uncertain → Be conservative
         else:
@@ -333,6 +343,14 @@ class NLIService:
         }, has_contradiction=nli_small_result["has_contradiction"],
            has_explicit_negation=nli_small_result.get("has_explicit_negation", False))
         
+        # CRITICAL: Cap how much NLI can boost above original cosine score
+        # This prevents topically-related but semantically different content from being over-boosted
+        max_nli_boost_t2 = 0.15  # Smaller boost limit for Track 2
+        if x2 > cosine_score + max_nli_boost_t2:
+            original_x2 = x2
+            x2 = cosine_score + max_nli_boost_t2
+            print(f"         ⚡ T2 NLI boost capped: {original_x2:.3f} → {x2:.3f} (cosine was {cosine_score:.3f})")
+        
         disagreement = abs(x2 - cosine_score)
         
         # If contradiction detected, force Track 3/4 for deeper verification
@@ -345,15 +363,9 @@ class NLIService:
             # Use threshold to determine if covered
             threshold = getattr(settings.grading, 'nli_entailment_threshold', 0.50)
             
-            # ADDITIONAL CHECK: Require minimum specificity
-            # If cosine score is low (<0.80), require higher NLI entailment (>0.70)
-            # This prevents vague phrases like "causes problems" from matching specific concepts
-            if cosine_score < 0.80 and nli_small_result["best_entailment"] < 0.70:
-                # Vague match - require more evidence
-                is_covered = False
-                print(f"         ⚠️ Vague match rejected: cosine={cosine_score:.3f} < 0.80, entailment={nli_small_result['best_entailment']:.3f} < 0.70")
-            else:
-                is_covered = x2 >= 0.65 and nli_small_result["best_entailment"] >= threshold and not nli_small_result["has_contradiction"]
+            # Relaxed check: Trust NLI more when it shows good entailment
+            # Even if cosine is moderate (0.65+), accept if NLI entailment is decent (0.45+)
+            is_covered = x2 >= 0.60 and nli_small_result["best_entailment"] >= threshold and not nli_small_result["has_contradiction"]
             
             return {
                 "track": 2,
@@ -381,6 +393,14 @@ class NLIService:
             "neutral": 1 - nli_base_result["best_entailment"] - nli_base_result["max_contradiction"]
         }, has_contradiction=nli_base_result["has_contradiction"],
            has_explicit_negation=nli_base_result.get("has_explicit_negation", False))
+        
+        # CRITICAL: Cap how much NLI can boost above original cosine score
+        # This prevents topically-related but semantically different content from being over-boosted
+        max_nli_boost = 0.25  # Maximum boost above cosine
+        if x3 > cosine_score + max_nli_boost:
+            original_x3 = x3
+            x3 = cosine_score + max_nli_boost
+            print(f"         ⚡ NLI boost capped: {original_x3:.3f} → {x3:.3f} (cosine was {cosine_score:.3f})")
         
         # Average confidence from both models
         combined_confidence = (conf_small + conf_base) / 2
@@ -478,49 +498,78 @@ class NLIService:
             
             sentence_lower = sentence.lower()
             
-            # Check for PURE negation patterns (always bad)
-            # These are words like "no", "not", "never" that clearly negate
+            # SMART NEGATION DETECTION:
+            # Check if negation is DENYING the key point (bad) vs CONFIRMING it (good)
+            # Examples:
+            #   - "not everyone gets equal access" + KP "access becomes unequal" → CONFIRMING ✓
+            #   - "prices do not increase" + KP "prices increase" → DENYING ✗
             sentence_has_negation = False
-            for pattern in pure_negators:
-                if pattern in sentence_lower:
-                    # Check if negation is near a CORE key concept (not just any word)
+            is_confirming_negation = False
+            
+            # First, check if sentence uses negation
+            has_negation_word = any(pattern in sentence_lower for pattern in pure_negators)
+            
+            if has_negation_word:
+                # Check if key point itself expresses a negative concept
+                # (inequality, unequal, higher prices = negative outcomes)
+                negative_concepts = ["unequal", "inequal", "higher", "increase", "expensive", 
+                                    "scarce", "lack", "shortage", "crowd", "congest", "problem"]
+                key_point_is_negative = any(neg in key_point_lower for neg in negative_concepts)
+                
+                # Check if sentence negates a POSITIVE to confirm a negative key point
+                # e.g., "not equal" confirms "unequal", "not cheap" confirms "expensive"
+                positive_words = ["equal", "same", "cheap", "afford", "decrease", "lower", "reduce", "everyone", "all "]
+                sentence_negates_positive = any(pos in sentence_lower for pos in positive_words)
+                
+                if key_point_is_negative and sentence_negates_positive:
+                    # This is a CONFIRMING negation - "not equal" confirms "unequal"
+                    is_confirming_negation = True
+                    print(f"         ✅ Confirming negation: sentence negates positive to match negative KP")
+                else:
+                    # Check if negation directly opposes the key point concept
                     for concept in key_concepts:
                         if concept in sentence_lower:
-                            # Pure negation + key concept = likely contradiction
-                            sentence_has_negation = True
-                            has_explicit_negation = True
-                            print(f"         🔴 Explicit negation detected: '{pattern.strip()}' near '{concept}'")
+                            # Negation + key concept might be contradiction
+                            # But only if it's not a confirming pattern
+                            if not is_confirming_negation:
+                                sentence_has_negation = True
+                                has_explicit_negation = True
+                                print(f"         🔴 Denying negation detected: '{concept}' negated in sentence")
                             break
-                if sentence_has_negation:
-                    break
             
+            # NLI direction: Check if student's SENTENCE entails the KEY POINT
+            # This tests: "If student's claim is true, does that mean the key point is covered?"
             scores = self.check_entailment(
-                premise=sentence,
-                hypothesis=key_point,
+                premise=sentence,       # Student's claim (what they said)
+                hypothesis=key_point,   # Reference (what we need to verify is covered)
                 use_base_model=use_base
             )
             
             details.append({
                 "sentence": sentence,
                 "has_explicit_negation": sentence_has_negation,
+                "is_confirming_negation": is_confirming_negation,
                 **scores
             })
             
-            if scores["entailment"] > best_entailment and not sentence_has_negation:
-                best_entailment = scores["entailment"]
+            # Update best entailment (skip if denying negation, include if confirming)
+            if scores["entailment"] > best_entailment:
+                if not sentence_has_negation or is_confirming_negation:
+                    best_entailment = scores["entailment"]
             
             if scores["contradiction"] > max_contradiction:
                 max_contradiction = scores["contradiction"]
             
             # IMPROVED contradiction detection:
-            # 1. Explicit negation pattern detected, OR
+            # 1. Explicit DENYING negation pattern detected (not confirming), OR
             # 2. NLI high contradiction with low entailment
-            if sentence_has_negation:
+            if sentence_has_negation and not is_confirming_negation:
                 has_contradiction = True
-                print(f"         🚨 Contradiction (explicit negation): '{sentence[:50]}...'")
-            elif (scores["contradiction"] > 0.60 and 
-                  scores["entailment"] < 0.35 and 
-                  (scores["contradiction"] - scores["entailment"]) > 0.30):
+                print(f"         🚨 Contradiction (denying negation): '{sentence[:50]}...'")
+            elif (scores["contradiction"] > 0.70 and 
+                  scores["entailment"] < 0.25 and 
+                  (scores["contradiction"] - scores["entailment"]) > 0.40):
+                # Stricter NLI-only contradiction (require higher confidence)
                 has_contradiction = True
                 print(f"         🚨 Contradiction (NLI): ent={scores['entailment']:.3f}, con={scores['contradiction']:.3f}")
         
