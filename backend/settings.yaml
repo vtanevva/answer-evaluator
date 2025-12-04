@@ -44,9 +44,10 @@ grading:
   embeddings_file_path: "embeddings_cache.json"  # File to save/load precomputed embeddings
   
   similarity_thresholds:
-    high_similarity: 0.88
-    mid_similarity: 0.83
-    min_lexical_overlap: 0.5
+    high_similarity: 0.855  # Increased from 0.80 - be even more strict
+    mid_similarity: 0.80   # Increased from 0.75 - be even more strict
+    llm_verification_threshold: 0.8  # LLM double-check threshold for borderline matches
+    min_lexical_overlap: 0.4  # Increased from 0.3 - require more word overlap
   
   feedback_messages:
     perfect_score: "Correct! You covered all the key points."
@@ -60,12 +61,28 @@ grading:
     min_word_count: 2
     invalid_answers:
       - "i don't know"
-      - "i don't know."
-      - "dont know"
+      - "not sure"
+      - "i forgot"
+      - "i don't remember"
+      - "i hate"
+    violent_answers:
+      - "kill"
+      - "murder"
+      - "beat"
+      - "beat up"
+      - "beat down"
+      - "fuck"
+      - "rape"
+      - "shoot"
+      - "stab"
+      - "assault"
+      - "shit"
+    feedback_message: "{invalid_answer} is not a valid answer to the question. Try again."
+
 
 # Questions Configuration
 questions:
-  default_file_path: "questions.json"
+  default_file_path: "../data/questions/"
   fallback_questions:
     - question_id: 1
       question_text: "What is inflation?"
@@ -96,3 +113,37 @@ text_processing:
   additional_stopwords: "vs versus per each e.g. i.e. etc"
   stemming_suffixes: ["ing", "ed", "es", "s"]
   min_token_length: 4
+
+# AI Antonym Detection Configuration
+antonym_detection:
+  # Semantic distance threshold (lower = more similar, antonyms should be far apart)
+  semantic_distance_threshold: 0.05
+  
+  # Context similarity threshold (high context similarity + low semantic similarity = antonym)
+  context_similarity_threshold: 0.7
+  
+  # Confidence thresholds for different detection levels
+  confidence_thresholds:
+    high: 0.8
+    medium: 0.6
+    low: 0.4
+  
+  # Whether to use LLM validation for complex cases
+  use_llm_validation: true
+  
+  # Threshold below which to use LLM validation
+  llm_validation_threshold: 0.5
+  
+  # Method weights for combining results
+  method_weights:
+    semantic_distance: 0.3
+    contextual_analysis: 0.2
+    known_pattern: 0.5
+    negation_pattern: 0.5
+    llm_validation: 0.3
+  
+  # Penalty multiplier for detected antonyms in evaluation
+  antonym_penalty_multiplier: 0.8  # Reduced from 0.2 (80% reduction → 20% reduction)
+  
+  # Minimum confidence required to apply antonym penalty
+  min_confidence_for_penalty: "medium"

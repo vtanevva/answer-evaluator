@@ -11,7 +11,7 @@ import json
 import csv
 import time
 import random
-from typing import List, Dict, Any, Tuple
+from typing import List, Dict, Any
 from dotenv import load_dotenv
 from config_weighted import *
 
@@ -31,25 +31,14 @@ except ImportError:
 # Global token tracking
 total_input_tokens = 0
 total_output_tokens = 0
-total_cost_usd = 0.0
 seen_questions: set[str] = set()
-
-def calculate_cost(input_tokens: int, output_tokens: int) -> float:
-    """Calculate cost based on token usage"""
-    input_cost = (input_tokens / 1000) * GPT4O_MINI_INPUT_COST_PER_1K_TOKENS
-    output_cost = (output_tokens / 1000) * GPT4O_MINI_OUTPUT_COST_PER_1K_TOKENS
-    return input_cost + output_cost
 
 def update_token_tracking(input_tokens: int, output_tokens: int):
     """Update global token tracking"""
-    global total_input_tokens, total_output_tokens, total_cost_usd
-    
+    global total_input_tokens, total_output_tokens
+
     total_input_tokens += input_tokens
     total_output_tokens += output_tokens
-    cost = calculate_cost(input_tokens, output_tokens)
-    total_cost_usd += cost
-    
-    return cost
 
 def _parse_json_response(text: str) -> Dict[str, Any]:
     """Parse JSON from model output; tolerate code fences and extra text."""
@@ -71,10 +60,10 @@ def _parse_json_response(text: str) -> Dict[str, Any]:
     raise ValueError("Invalid JSON from model")
 
 
-def generate_weighted_question(question_id: int, prior_examples: List[str] | None = None) -> Tuple[Dict[str, Any], float]:
+def generate_weighted_question(question_id: int, prior_examples: List[str] | None = None) -> Dict[str, Any]:
     """
-    Generate a question with weighted key points using GPT-4o-mini
-    Returns: (question_data, cost_usd)
+    Generate a question with weighted key points using GPT-4o-mini.
+    Returns a dictionary describing the question.
     """
     # Randomly select a question type
     question_type = random.choice(QUESTION_TYPES)
@@ -123,8 +112,8 @@ def generate_weighted_question(question_id: int, prior_examples: List[str] | Non
             # Extract token usage
             input_tokens = response.usage.prompt_tokens
             output_tokens = response.usage.completion_tokens
-            cost = update_token_tracking(input_tokens, output_tokens)
-            
+            update_token_tracking(input_tokens, output_tokens)
+
             result = _parse_json_response(response.choices[0].message.content)
         else:
             response = openai.ChatCompletion.create(
@@ -137,14 +126,14 @@ def generate_weighted_question(question_id: int, prior_examples: List[str] | Non
             # Extract token usage (older API format)
             input_tokens = response.usage.prompt_tokens
             output_tokens = response.usage.completion_tokens
-            cost = update_token_tracking(input_tokens, output_tokens)
-            
+            update_token_tracking(input_tokens, output_tokens)
+
             result = _parse_json_response(response.choices[0].message.content)
         
         # Add question_id to the result
         result["question_id"] = question_id
         
-        return result, cost
+        return result
         
     except Exception as e:
         print(f"Error generating weighted question: {e}")
@@ -186,18 +175,18 @@ def generate_weighted_question(question_id: int, prior_examples: List[str] | Non
                 ]
             }
         ]
-        return random.choice(fallback_questions), 0.0
+        return random.choice(fallback_questions)
 
 def save_weighted_data(records: List[Dict[str, Any]], filename: str):
     """Save weighted records to JSON file"""
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(records, f, indent=2, ensure_ascii=False)
 
-def print_progress_weighted(question_num: int, total_questions: int, current_cost: float):
-    """Print progress information with cost tracking"""
+def print_progress_weighted(question_num: int, total_questions: int):
+    """Print progress information"""
     if SHOW_PROGRESS:
         percentage = (question_num / total_questions) * 100
-        print(f"📊 Progress: {question_num}/{total_questions} questions ({percentage:.1f}%) - Cost: ${current_cost:.4f}")
+        print(f"📊 Progress: {question_num}/{total_questions} questions ({percentage:.1f}%)")
 
 def main():
     """Main function to generate weighted synthetic data"""
@@ -222,10 +211,8 @@ def main():
             
             # Generate with retries and de-duplication
             question_data = None
-            cost_accum = 0.0
             for attempt in range(4):
-                candidate, question_cost = generate_weighted_question(question_num, prior_examples=list(seen_questions))
-                cost_accum += question_cost
+                candidate = generate_weighted_question(question_num, prior_examples=list(seen_questions))
                 qt = candidate.get("question_text", "").strip().lower()
                 if qt and qt not in seen_questions:
                     question_data = candidate
@@ -233,7 +220,7 @@ def main():
                     break
                 time.sleep(0.2)
             if question_data is None:
-                candidate, _ = generate_weighted_question(question_num)
+                candidate = generate_weighted_question(question_num)
                 qt = candidate.get("question_text", "Untitled question")
                 candidate["question_text"] = f"{qt} (variant {question_num})"
                 question_data = candidate
@@ -242,40 +229,37 @@ def main():
             if SHOW_PROGRESS:
                 print(f"   Question: {question_data['question_text'][:60]}{'...' if len(question_data['question_text']) > 60 else ''}")
                 print(f"   Key points: {len(question_data['key_points'])}")
-                print(f"   Question generation cost: ${cost_accum:.4f}")
             
             all_records.append(question_data)
             
             if SHOW_PROGRESS:
-                print_progress_weighted(question_num, M_QUESTIONS, total_cost_usd)
+                print_progress_weighted(question_num, M_QUESTIONS)
             
             # Add delay to be respectful to API
             time.sleep(API_DELAY)
             print()
     
     except KeyboardInterrupt:
-        print(f"\n⏹️ Generation interrupted by user. Saving {len(all_records)} questions generated so far...")
+        print(f"\nGeneration interrupted by user. Saving {len(all_records)} questions generated so far...")
     
     # Save results
-    output_file = "weighted_biology_questions1.json"
+    output_file = "generated_data/economy.json"
     print(f"💾 Saving {len(all_records)} questions to {output_file}...")
     save_weighted_data(all_records, output_file)
     
     end_time = time.time()
     duration = end_time - start_time
     
-    print("✅ Generation complete!")
-    print(f"📊 Final Statistics:")
+    print(f"Statistics:")
     print(f"   - Total questions: {len(all_records)}")
     print(f"   - Time taken: {duration:.1f} seconds")
-    print(f"   - Questions per second: {len(all_records)/duration:.1f}")
+    questions_per_second = (len(all_records) / duration) if duration > 0 else 0.0
+    print(f"   - Questions per second: {questions_per_second:.1f}")
     print(f"   - Output file: {output_file}")
-    print(f"💰 Cost Analysis:")
+    print(f"Token usage:")
     print(f"   - Total input tokens: {total_input_tokens:,}")
     print(f"   - Total output tokens: {total_output_tokens:,}")
     print(f"   - Total tokens: {total_input_tokens + total_output_tokens:,}")
-    print(f"   - Total cost: ${total_cost_usd:.4f}")
-    print(f"   - Cost per question: ${total_cost_usd/len(all_records):.4f}")
     
     # Show sample record
     if all_records:
