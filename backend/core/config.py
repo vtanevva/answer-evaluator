@@ -110,7 +110,7 @@ class GradingConfig:
     llm_arbiter_provider: str = "groq"
     llm_arbiter_model: str = "llama-3.1-8b-instant"
     llm_holistic_mode: str = "never"        # "never", "always", or "fallback"
-    
+
     # Embedding-specific settings
     precompute_embeddings: bool = True
     similarity_thresholds: SimilarityThresholds = field(default_factory=SimilarityThresholds)

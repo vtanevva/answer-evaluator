@@ -7,8 +7,8 @@ cd backend
 pip install -r requirements.txt
 
 # Set up environment variables
-cp env_example.txt .env
-# Edit .env and add your OpenAI API key and Pinecone API key
+cp ../.env.example .env
+# Edit .env and add your API keys (see .env.example for details)
 
 # Run the server
 python main.py
@@ -17,8 +17,11 @@ python main.py
 The backend will start on `http://localhost:8000`
 
 **Required Environment Variables:**
-- `OPENAI_API_KEY`: Your OpenAI API key (only if using OpenAI model)
-- `PINECONE_API_KEY`: Your Pinecone API key for vector storage
+- `PINECONE_API_KEY`: Your Pinecone API key for vector storage (required)
+- `OPENAI_API_KEY`: Your OpenAI API key (optional - only if using `type: "openai"` in embeddings config)
+- `GROQ_API_KEY`: Your Groq API key (optional - only if `llm_arbiter_enabled: true` in grading config)
+
+**Note**: NLI models (DeBERTa) and local embedding models (GTE-Multilingual) are automatically downloaded from HuggingFace on first use.
 
 **Unified Embeddings Interface:**
 The system uses a unified embeddings interface that supports any embedding model with easy switching through configuration.
@@ -41,6 +44,83 @@ embeddings:
 **Quick Reference:**
 - See `backend/MODEL_SWITCHING_GUIDE.md` for common model configurations
 - See `backend/EMBEDDINGS_INTERFACE.md` for detailed architecture documentation
+
+## 🧠 Grading Architecture
+
+### 4-Tier Hybrid System
+
+The system uses a sophisticated **4-tier hybrid architecture** that combines cosine similarity, NLI (Natural Language Inference), and LLM reasoning for accurate and cost-efficient grading:
+
+```
+User Answer → Validation → Embeddings → Cosine Similarity → Tier Decision
+                                                                    ├─ TIER 1 (Fast): ≥92% → AUTO PASS ✅ | <60% → AUTO FAIL ❌
+                                                                    ├─ TIER 2 (LLM): 78-92% → Groq Llama 8B verification
+                                                                    ├─ TIER 3 (NLI): 70-78% → DeBERTa contradiction check
+                                                                    └─ TIER 4 (Critical): High disagreement → LLM arbiter
+                                                                             ↓
+                                                                    Score + Feedback → Response
+```
+
+#### Tier Breakdown
+
+| Tier | Trigger | Method | Cost | Frequency |
+|------|---------|--------|------|-----------|
+| **1 - Fast Track** | Cosine ≥92% or <60% | Cosine only | $0 | ~40-50% |
+| **2 - LLM Zone** | Cosine 78-92% | Groq Llama 8B | $0.00012 | ~20-30% |
+| **3 - NLI Zone** | Cosine 70-78% | DeBERTa NLI | $0 | ~20-30% |
+| **4 - Critical** | Model disagreement | LLM Arbiter | $0.00012 | <5% |
+
+**Average cost per answer**: ~$0.00003-$0.00005 (250x cheaper than pure GPT-4)
+
+### Grading Modes
+
+Configure grading mode in `backend/settings.yaml`:
+
+#### 1. **Hybrid Mode** (Recommended - Default)
+```yaml
+grading:
+  grading_method: "hybrid"
+  tier1_auto_pass: 0.92
+  tier2_llm_min: 0.78
+  tier3_nli_min: 0.70
+  llm_arbiter_enabled: true
+```
+- Uses all 4 tiers
+- Best accuracy (92-95%)
+- Lowest cost
+- Fast for obvious cases
+
+#### 2. **NLI-First Mode**
+```yaml
+grading:
+  grading_method: "nli"
+  nli_entailment_threshold: 0.65
+  llm_arbiter_enabled: true
+```
+- NLI as primary grader
+- No cosine tiers
+- Better at paraphrasing
+- Free (local models)
+
+#### 3. **Pure Embedding Mode**
+```yaml
+grading:
+  grading_method: "embedding"
+  similarity_thresholds:
+    high_similarity: 0.855
+```
+- Legacy mode
+- Cosine similarity only
+- Fastest but less accurate
+
+### Key Features
+
+✅ **Full-Context Evaluation**: Analyzes both individual sentences and complete answer
+✅ **Negation Detection**: Catches "not", "never", explicit contradictions
+✅ **Paraphrase Understanding**: NLI models understand synonyms naturally
+✅ **Cost Optimization**: Fast-track paths avoid expensive operations
+✅ **Confidence Scoring**: Tracks uncertainty for active learning
+
 
 ### Frontend Setup
 
