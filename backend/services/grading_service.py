@@ -13,6 +13,7 @@ from services.embedding_service import EmbeddingService
 from services.text_processing import TextProcessor
 from services.question_service import QuestionService
 from services.embedding_storage import EmbeddingStorage
+from services.answer_cache_service import AnswerCacheService
 from services.smart_antonym_detector import SmartAntonymDetector, AntonymConfidence
 from services.verification import LLMVerificationService, LLMVerificationResult
 from core.config import settings
@@ -50,6 +51,10 @@ class GradingService:
         self._embedding_service = EmbeddingService(openai_client)
         self._text_processor = TextProcessor()
         self._embedding_storage = EmbeddingStorage()
+        self._answer_cache_service = AnswerCacheService(
+            self._embedding_service,
+            self._embedding_storage._index
+        )
         self._ai_antonym_detector = SmartAntonymDetector(self._embedding_service, openai_client)
         self._llm_verification = (
             LLMVerificationService(openai_client) if openai_client else None
@@ -355,11 +360,14 @@ class GradingService:
         Grade user answer against key points using embedding similarity
         
         This is the core grading logic:
-        1. Validate the answer
-        2. Get user answer embeddings (sentence-level)
-        3. Compare with each key point embedding using cosine similarity
-        4. Mark key points as "hit" or "missing" based on similarity threshold
-        5. Calculate score and generate feedback
+        1. Check answer cache for similar previously graded answers
+        2. If cache hit, return cached grade immediately
+        3. Otherwise, validate the answer
+        4. Get user answer embeddings (sentence-level)
+        5. Compare with each key point embedding using cosine similarity
+        6. Mark key points as "hit" or "missing" based on similarity threshold
+        7. Calculate score and generate feedback
+        8. Cache the answer for future use
         
         Args:
             question_id: ID of the question being answered
@@ -368,6 +376,26 @@ class GradingService:
         Returns:
             AnswerResponse with score, hit/missing points, and feedback
         """
+        # ==========================================
+        # FAST PATH: CHECK ANSWER CACHE
+        # ==========================================
+        cached_result = self._answer_cache_service.retrieve_similar_cached_answers(
+            question_id, user_answer
+        )
+        
+        if cached_result is not None:
+            _, cached_record = cached_result
+            cached_grade = AnswerResponse(
+                score=cached_record.get('score', 0),
+                hit_key_points=cached_record.get('hit_key_points', []),
+                missing_key_points=cached_record.get('missing_key_points', []),
+                feedback=cached_record.get('feedback', '')
+            )
+            return cached_grade
+        
+        # ==========================================
+        # NORMAL PATH: COMPUTE GRADE
+        # ==========================================
         # Validate answer first
         validation_result = self.validate_answer(user_answer)
         if validation_result:
@@ -379,7 +407,7 @@ class GradingService:
             raise HTTPException(status_code=404, detail="Question not found")
         
         key_points = question["key_points"]
- 
+
         # If embeddings for this question are missing (cache was empty), compute them on-demand
         if question_id not in self._key_point_embeddings:
             print(f"⚠️ Embeddings missing for question {question_id}, computing on demand...")
@@ -687,6 +715,18 @@ class GradingService:
         score = self._calculate_score(len(hit_key_points), len(key_points))
         feedback = self._generate_feedback(score, len(missing_key_points))
         
+        # ==========================================
+        # CACHE THE GRADED ANSWER
+        # ==========================================
+        self._answer_cache_service.cache_graded_answer(
+            question_id=question_id,
+            student_answer=user_answer,
+            score=score,
+            hit_key_points=hit_key_points,
+            missing_key_points=missing_key_points,
+            feedback=feedback
+        )
+        
         return AnswerResponse(
             score=round(score, 1),
             hit_key_points=hit_key_points,
@@ -865,3 +905,29 @@ class GradingService:
             )
         else:
             return self._feedback_config.low_score
+    
+    def get_answer_cache_stats(self, question_id: Optional[int] = None) -> Optional[Dict[str, Any]]:
+        """
+        Get statistics about cached answers
+        
+        Args:
+            question_id: Optional question ID to filter stats
+            
+        Returns:
+            Dictionary with cache statistics
+        """
+        return self._answer_cache_service.get_cache_stats(question_id)
+    
+    def clear_answer_cache_for_question(self, question_id: int) -> bool:
+        """
+        Clear cached answers for a specific question
+        
+        Useful when question content changes or corrections are needed.
+        
+        Args:
+            question_id: ID of the question to clear
+            
+        Returns:
+            True if cleared successfully
+        """
+        return self._answer_cache_service.clear_cache_for_question(question_id)

@@ -128,8 +128,13 @@ grading:
   cache_nli_results: true                   # Cache NLI results for identical sentences
   
   # Embedding Configuration (only used if grading_method = "embedding")
-  precompute_embeddings: true  # If true, compute fresh embeddings on startup; if false, load from cache
+  precompute_embeddings: false  # If true, compute fresh embeddings on startup; if false, load from cache
   embeddings_file_path: "embeddings_cache.json"  # File to save/load precomputed embeddings
+  
+  # Answer Caching Configuration
+  answer_cache_enabled: true  # Enable answer caching in Pinecone
+  answer_cache_similarity_threshold: 0.99  # Minimum similarity to use cached grade
+  answer_cache_max_results: 5  # Number of similar answers to retrieve
   
   similarity_thresholds:
     high_similarity: 0.855  # Strict threshold for high confidence matches

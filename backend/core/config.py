@@ -109,6 +109,11 @@ class GradingConfig:
     precompute_embeddings: bool = True
     similarity_thresholds: SimilarityThresholds = field(default_factory=SimilarityThresholds)
     
+    # Answer caching configuration
+    answer_cache_enabled: bool = True
+    answer_cache_similarity_threshold: float = 0.99
+    answer_cache_max_results: int = 5
+    
     # Common settings
     feedback_messages: FeedbackMessages = field(default_factory=FeedbackMessages)
     answer_validation: AnswerValidation = field(default_factory=AnswerValidation)
@@ -220,6 +225,11 @@ def _create_grading_config(data: Dict[str, Any]) -> GradingConfig:
         nli_deep_check_threshold = data.get('nli_deep_check_threshold', 0.70)
         
         precompute_embeddings = data.get('precompute_embeddings', True)
+        
+        # Answer caching configuration
+        answer_cache_enabled = data.get('answer_cache_enabled', True)
+        answer_cache_similarity_threshold = data.get('answer_cache_similarity_threshold', 0.99)
+        answer_cache_max_results = data.get('answer_cache_max_results', 5)
 
         
         # Create nested configs with error handling
@@ -256,6 +266,9 @@ def _create_grading_config(data: Dict[str, Any]) -> GradingConfig:
             nli_verify_threshold=nli_verify_threshold,
             nli_deep_check_threshold=nli_deep_check_threshold,
             precompute_embeddings=precompute_embeddings,
+            answer_cache_enabled=answer_cache_enabled,
+            answer_cache_similarity_threshold=answer_cache_similarity_threshold,
+            answer_cache_max_results=answer_cache_max_results,
             similarity_thresholds=similarity_thresholds,
             feedback_messages=feedback_messages,
             answer_validation=answer_validation

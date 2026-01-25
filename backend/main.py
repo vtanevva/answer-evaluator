@@ -2,6 +2,7 @@ import os
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
 from dotenv import load_dotenv
 from openai import OpenAI
 
@@ -76,8 +77,146 @@ def initialize_services():
 # Create FastAPI app WITHOUT lifespan (Windows compatibility)
 app = FastAPI(
     title=settings.server.title,
-    description=settings.server.description
+    description=settings.server.description,
+    version="1.0.0",
+    docs_url="/docs",           # Swagger UI
+    redoc_url="/redoc",         # ReDoc alternative documentation
+    openapi_url="/openapi.json" # OpenAPI schema
 )
+
+
+def custom_openapi():
+    """Generate custom OpenAPI schema with enhanced documentation"""
+    if app.openapi_schema:
+        return app.openapi_schema
+    
+    openapi_schema = get_openapi(
+        title=settings.server.title,
+        version="1.0.0",
+        description="""
+## Answer Evaluator API
+
+A powerful REST API for grading student answers using semantic embeddings and natural language inference.
+
+### Key Features
+
+✅ **Semantic Similarity Grading**: Uses embeddings to understand answer meaning
+✅ **NLI Verification**: Natural Language Inference for contradiction detection
+✅ **Hybrid Evaluation**: Combines multiple AI techniques for high accuracy
+✅ **Answer Caching**: 10-200x faster grading for similar answers
+✅ **Rubric-Based**: Compare answers against customizable key points
+✅ **Multi-Language**: Supports economics, biology, geography, and more
+
+### How It Works
+
+1. **Student submits answer** to a question
+2. **System validates** the answer content
+3. **Embeddings generated** for semantic understanding
+4. **Cache checked** for identical/similar previous answers
+5. **Key points compared** using semantic similarity
+6. **Score calculated** based on coverage
+7. **Result cached** for future optimization
+
+### Grading Pipeline
+
+```
+Submit Answer
+    ↓
+Check Cache (hit → instant result)
+    ↓
+Validate Answer (length, content)
+    ↓
+Generate Embeddings
+    ↓
+Compare with Key Points
+    ↓
+Verify with NLI (if enabled)
+    ↓
+Calculate Score
+    ↓
+Cache Result
+    ↓
+Return Grade
+```
+
+### Configuration
+
+- **Grading Method**: Embedding, NLI, or Hybrid (default)
+- **Models**: GTE-Multilingual local, or OpenAI API
+- **Similarity Threshold**: 0.99 for caching (configurable)
+- **NLI Models**: DeBERTa small (fast) or base (accurate)
+
+### Getting Started
+
+1. **Get a random question**: `GET /question`
+2. **Submit an answer**: `POST /answer`
+3. **Review the grade**: Score, key points, feedback
+4. **Check cache stats**: `GET /cache/stats`
+
+### Example Request
+
+```json
+POST /answer
+{
+  "question_id": 1,
+  "user_answer": "Inflation is a general increase in prices over time"
+}
+```
+
+### Example Response
+
+```json
+{
+  "score": 100.0,
+  "hit_key_points": [
+    "General increase in prices",
+    "Reduction of purchasing power"
+  ],
+  "missing_key_points": [],
+  "feedback": "Correct! You covered all the key points."
+}
+```
+
+        """,
+        routes=app.routes,
+        # tags_metadata=[
+        #     {
+        #         "name": "Health",
+        #         "description": "API health and status endpoints"
+        #     },
+        #     {
+        #         "name": "Questions",
+        #         "description": "Retrieve questions from the question bank"
+        #     },
+        #     {
+        #         "name": "Grading",
+        #         "description": "Grade student answers using semantic analysis"
+        #     },
+        #     {
+        #         "name": "Cache Management",
+        #         "description": "Manage the answer cache for performance optimization"
+        #     }
+        # ],
+        servers=[
+            {
+                "url": "http://localhost:8000",
+                "description": "Local development server"
+            }
+        ]
+    )
+    
+    # Add security info
+    openapi_schema["info"]["x-logo"] = {
+        "url": "https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png",
+        "altText": "FastAPI Logo"
+    }
+    
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+# Set custom OpenAPI schema
+app.openapi = custom_openapi
 
 # Initialize services at startup
 @app.on_event("startup")
@@ -86,6 +225,10 @@ async def startup_event():
     print("\n🚀 Starting Answer Evaluator Backend...")
     initialize_services()
     print("✅ Server ready to accept requests!\n")
+    print("📖 API Documentation available at:")
+    print("   - Swagger UI: http://localhost:8000/docs")
+    print("   - ReDoc: http://localhost:8000/redoc")
+    print("   - OpenAPI Schema: http://localhost:8000/openapi.json\n")
 
 # CORS Middleware
 app.add_middleware(
