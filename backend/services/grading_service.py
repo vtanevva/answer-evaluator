@@ -5,6 +5,8 @@ Answer grading service using embeddings and text analysis
 from typing import List, Dict, Set, Optional, Any, Tuple
 from fastapi import HTTPException
 import json
+import asyncio
+import nest_asyncio
 from datetime import datetime
 from pathlib import Path
 
@@ -103,6 +105,33 @@ class GradingService:
             print(f"   Track 4 (Critical): disagreement > {self._high_disagreement} → LLM arbiter")
             if self._log_uncertain:
                 print(f"   Uncertainty logging: enabled (threshold={self._uncertainty_threshold})")
+    
+    def _call_llm_sync(self, question_text: str, key_point: str, student_answer: str, cosine_similarity: float) -> dict:
+        """
+        Call LLM arbiter synchronously (wrapper for async method)
+        Uses asyncio.get_event_loop() to run in existing event loop
+        """
+        # Allow nested event loops (for FastAPI compatibility)
+        nest_asyncio.apply()
+        
+        # Get or create event loop
+        try:
+            loop = asyncio.get_event_loop()
+        except RuntimeError:
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+        
+        # Run the async LLM call
+        return loop.run_until_complete(
+            self._llm_arbiter.verify_answer(
+                question_text=question_text,
+                key_point=key_point,
+                student_answer=student_answer,
+                cosine_similarity=cosine_similarity,
+                nli_entailment=0.0,
+                nli_contradiction=False
+            )
+        )
     
     def _calculate_uncertainty_score(
         self, 
@@ -448,26 +477,75 @@ class GradingService:
             print(f"\n📝 COMPREHENSIVE ANSWER DETECTED: Discussing multiple perspectives")
             print(f"   → Skipping contradiction checks for individual sentences")
         
-        # GLOBAL CONTRADICTION CHECK: Check if answer contradicts the question itself
-        # This prevents false positives when student negates the main premise
+        # GLOBAL CONTRADICTION CHECK: DISABLED (too aggressive, causes false negatives)
+        # This was causing short but correct answers to fail completely
         global_contradiction_detected = False
-        if getattr(settings.grading, 'grading_method', 'embedding') == "hybrid" and self._nli_service:
-            # Check the main question text against the answer for fundamental contradictions
-            question_text = question["question_text"]
-            global_nli_result = self._nli_service.evaluate_answer_against_keypoint(
-                student_answer=user_answer,
-                key_point=question_text,
-                sentences=sentences
-            )
-            # Only flag global contradiction if NOT a comprehensive answer
-            # (comprehensive answers naturally discuss negatives, which shouldn't be flagged)
-            if not is_comprehensive_answer and global_nli_result["has_contradiction"] and global_nli_result["best_entailment"] < 0.3:
-                global_contradiction_detected = True
-                print(f"\n⚠️ GLOBAL CONTRADICTION: Answer contradicts the question premise")
-                print(f"   Question: '{question_text}'")
-                print(f"   Contradiction score: {global_nli_result['has_contradiction']}")
+        # if getattr(settings.grading, 'grading_method', 'embedding') == "hybrid" and self._nli_service:
+        #     # Check the main question text against the answer for fundamental contradictions
+        #     question_text = question["question_text"]
+        #     global_nli_result = self._nli_service.evaluate_answer_against_keypoint(
+        #         student_answer=user_answer,
+        #         key_point=question_text,
+        #         sentences=sentences
+        #     )
+        #     # Only flag global contradiction if NOT a comprehensive answer
+        #     # (comprehensive answers naturally discuss negatives, which shouldn't be flagged)
+        #     if not is_comprehensive_answer and global_nli_result["has_contradiction"] and global_nli_result["best_entailment"] < 0.3:
+        #         global_contradiction_detected = True
+        #         print(f"\n⚠️ GLOBAL CONTRADICTION: Answer contradicts the question premise")
+        #         print(f"   Question: '{question_text}'")
+        #         print(f"   Contradiction score: {global_nli_result['has_contradiction']}")
         
-        # Evaluate each key point
+        # ==========================================
+        # LLM-FIRST MODE: Skip NLI/embedding when "always"
+        # ==========================================
+        llm_holistic_mode = getattr(settings.grading, 'llm_holistic_mode', 'never')
+        
+        print(f"\n🔍 DEBUG: llm_holistic_mode='{llm_holistic_mode}', llm_arbiter={self._llm_arbiter is not None}")
+        
+        if llm_holistic_mode == "always" and self._llm_arbiter:
+            print(f"\n🤖 LLM-FIRST MODE: Using LLM for all grading (mode=always)")
+            import asyncio
+            try:
+                key_point_texts = [kp["text"] for kp in key_points]
+                llm_result = asyncio.run(self._llm_arbiter.grade_holistically(
+                    question_text=question.get("question_text", ""),
+                    key_points=key_point_texts,
+                    student_answer=user_answer,
+                    sentences=sentences
+                ))
+                
+                if llm_result:
+                    hit_key_points = []
+                    missing_key_points = []
+                    
+                    for kp_text, is_covered in zip(key_point_texts, llm_result["covered"]):
+                        if is_covered:
+                            hit_key_points.append(kp_text)
+                        else:
+                            missing_key_points.append(kp_text)
+                    
+                    score = self._calculate_score(len(hit_key_points), len(key_points))
+                    feedback = self._generate_feedback(score, len(missing_key_points))
+                    
+                    print(f"   ✨ LLM Result: {len(hit_key_points)}/{len(key_points)} key points covered ({score:.1f}%)")
+                    
+                    return AnswerResponse(
+                        score=round(score, 1),
+                        hit_key_points=hit_key_points,
+                        missing_key_points=missing_key_points,
+                        feedback=feedback
+                    )
+                else:
+                    print(f"   ⚠️ LLM returned None, falling back to NLI/embedding")
+                    
+            except Exception as e:
+                import traceback
+                print(f"   ⚠️ LLM-first failed: {e}")
+                print(f"   {traceback.format_exc()}")
+                print(f"   Falling back to NLI/embedding grading")
+        
+        # Evaluate each key point (NLI/embedding fallback)
         hit_key_points = []
         missing_key_points = []
         confidence_scores = []  # Track confidence for smart LLM fallback
@@ -502,88 +580,189 @@ class GradingService:
                 verification_method = "global-contradiction-fail"
                 print(f"  ❌ '{key_point_text[:30]}...': FAILED (global contradiction)")
             
-            elif getattr(settings.grading, 'grading_method', 'embedding') == "hybrid" and self._nli_service:
+            elif getattr(settings.grading, 'grading_method', 'embedding') == "nli" and self._nli_service:
                 # ===========================================
-                # HYBRID 4-TRACK ROUTING WITH SEQUENTIAL REFINEMENT
+                # NLI-FIRST ARCHITECTURE (No Cosine Similarity)
                 # ===========================================
-                # Track 1 (Fast): cosine ≥0.92 → instant pass
-                # Track 2 (Standard): NLI-small, check agreement
-                # Track 3 (Deep): NLI-base if disagreement >15%
-                # Track 4 (Critical): LLM arbiter if disagreement >55%
+                # NLI is the primary grader - better at paraphrasing and contradictions
+                # LLM is called only for uncertain cases (neutral zone)
                 # ===========================================
                 
-                # Use the new hybrid_evaluate method
-                hybrid_result = self._nli_service.hybrid_evaluate(
-                    student_answer=user_answer,
+                # Use NLI with full answer context
+                nli_result = self._nli_service._evaluate_sentences_nli(
+                    sentences=sentences,
                     key_point=key_point_text,
-                    cosine_score=similarity,
-                    sentences=sentences
+                    use_base=True,  # Use base model for better accuracy
+                    full_answer=user_answer
                 )
                 
-                track = hybrid_result["track"]
-                track_name = hybrid_result["track_name"]
-                is_hit = hybrid_result["is_covered"]
-                final_score = hybrid_result["final_score"]
-                disagreement = hybrid_result["disagreement"]
-                needs_llm = hybrid_result["needs_llm"]
+                entailment = nli_result["best_entailment"]
+                full_entailment = nli_result.get("full_answer_entailment", 0)
+                has_contradiction = nli_result["has_contradiction"]
+                entailment_source = nli_result.get("entailment_source", "sentence")
                 
-                # Track 1: FAST - instant decision
-                if track == 1:
-                    verification_method = f"hybrid-{track_name}"
-                    print(f"  ⚡ '{key_point_text[:30]}...': Track 1 ({track_name}) sim={similarity:.3f} → {'PASS' if is_hit else 'FAIL'}")
+                # Get thresholds from settings
+                entail_threshold = getattr(settings.grading, 'nli_entailment_threshold', 0.65)
+                contradict_threshold = getattr(settings.grading, 'nli_contradiction_threshold', 0.70)
+                uncertain_low = getattr(settings.grading, 'nli_uncertain_low', 0.40)
+                uncertain_high = getattr(settings.grading, 'nli_uncertain_high', 0.65)
                 
-                # Track 2: STANDARD - NLI verified
-                elif track == 2:
-                    verification_method = f"hybrid-{track_name}"
-                    print(f"  ✅ '{key_point_text[:30]}...': Track 2 (standard) sim={similarity:.3f}→{final_score:.3f}, disagree={disagreement:.3f}")
+                # Decision logic
+                needs_llm = False
                 
-                # Track 3: DEEP - Multi-model verification
-                elif track == 3:
-                    verification_method = f"hybrid-{track_name}"
-                    print(f"  🔍 '{key_point_text[:30]}...': Track 3 (deep) sim={similarity:.3f}→{final_score:.3f}, disagree={disagreement:.3f}")
+                # CASE 1: CONTRADICTION DETECTED - Fail immediately
+                if has_contradiction:
+                    is_hit = False
+                    verification_method = "nli-contradiction"
+                    print(f"  ❌ '{key_point_text[:30]}...': NLI CONTRADICTION detected → FAIL")
                 
-                # Track 4: CRITICAL - Needs LLM arbiter
-                elif track == 4:
-                    verification_method = f"hybrid-{track_name}"
-                    nli_scores = hybrid_result.get("nli_scores", {})
-                    nli_small = nli_scores.get("small", {})
+                # CASE 2: HIGH ENTAILMENT - Key point clearly covered
+                elif entailment >= entail_threshold:
+                    is_hit = True
+                    verification_method = f"nli-entailed-{entailment_source}"
+                    print(f"  ✅ '{key_point_text[:30]}...': NLI entailment={entailment:.3f} (via {entailment_source}) → PASS")
+                
+                # CASE 3: LOW ENTAILMENT - Key point clearly NOT covered
+                elif entailment < uncertain_low:
+                    is_hit = False
+                    verification_method = "nli-not-entailed"
+                    print(f"  ❌ '{key_point_text[:30]}...': NLI entailment={entailment:.3f} < {uncertain_low} → FAIL")
+                
+                # CASE 4: UNCERTAIN ZONE - Need LLM verification
+                else:
+                    needs_llm = True
+                    # Tentative decision based on above/below midpoint
+                    midpoint = (uncertain_low + uncertain_high) / 2
+                    tentative_hit = entailment >= midpoint
                     
-                    # Check if LLM arbiter should be triggered
-                    if needs_llm and self._llm_arbiter:
-                        # Calculate uncertainty for LLM trigger
-                        uncertainty = self._calculate_uncertainty_score(
-                            similarity=similarity,
-                            nli_entailment=nli_small.get("best_entailment", 0.5),
-                            nli_contradiction=nli_small.get("max_contradiction", 0),
-                            overlap=overlap
-                        )
-                        
-                        if self._llm_arbiter.should_trigger(uncertainty):
-                            print(f"     🤖 Track 4: High disagreement ({disagreement:.2f}) + uncertainty ({uncertainty:.2f}) - triggering LLM arbiter")
+                    print(f"  🔄 '{key_point_text[:30]}...': NLI uncertain zone ({uncertain_low} ≤ {entailment:.3f} < {uncertain_high}) → LLM needed")
+                    
+                    # Try LLM for this key point if available
+                    if self._llm_arbiter:
+                        import asyncio
+                        try:
+                            llm_result = asyncio.run(self._llm_arbiter.verify_answer(
+                                question_text=question.get("question_text", ""),
+                                key_point=key_point_text,
+                                student_answer=user_answer,
+                                cosine_similarity=0.0,  # Not using cosine
+                                nli_entailment=entailment,
+                                nli_contradiction=has_contradiction
+                            ))
                             
-                            import asyncio
-                            try:
-                                llm_result = asyncio.run(self._llm_arbiter.verify_answer(
-                                    question_text=question.get("question_text", ""),
-                                    key_point=key_point_text,
-                                    student_answer=user_answer,
-                                    cosine_similarity=similarity,
-                                    nli_entailment=nli_small.get("best_entailment", 0.5),
-                                    nli_contradiction=nli_small.get("has_contradiction", False)
-                                ))
-                                
-                                # LLM overrides the decision
-                                is_hit = llm_result["is_correct"]
-                                verification_method = "hybrid-llm-arbiter"
-                                print(f"     ✨ LLM decision: {'PASS' if is_hit else 'FAIL'} (confidence: {llm_result['confidence']:.2f})")
-                                print(f"        Reasoning: {llm_result['reasoning']}")
-                            except Exception as e:
-                                print(f"     ⚠️ LLM arbiter failed: {e}, using NLI decision")
-                    
-                    print(f"  ⚠️ '{key_point_text[:30]}...': Track 4 (critical) sim={similarity:.3f}→{final_score:.3f}, disagree={disagreement:.3f}")
+                            is_hit = llm_result["is_correct"]
+                            verification_method = "nli-llm-verified"
+                            print(f"     🤖 LLM decision: {'PASS' if is_hit else 'FAIL'} (confidence: {llm_result['confidence']:.2f})")
+                            print(f"        Reasoning: {llm_result['reasoning']}")
+                        except Exception as e:
+                            print(f"     ⚠️ LLM failed: {e}, using tentative NLI decision")
+                            is_hit = tentative_hit
+                            verification_method = "nli-uncertain-fallback"
+                    else:
+                        is_hit = tentative_hit
+                        verification_method = "nli-uncertain-no-llm"
                 
-                # Log uncertain cases for active learning
-                if hybrid_result.get("confidence", 1.0) < 0.7 or needs_llm:
+                # Store hybrid_result for consistency with rest of code
+                hybrid_result = {
+                    "track": 2 if is_hit else 1,
+                    "track_name": "nli-first",
+                    "is_covered": is_hit,
+                    "final_score": entailment,
+                    "confidence": 1.0 - abs(entailment - 0.5) * 2,  # Confidence based on distance from midpoint
+                    "nli_scores": {"small": nli_result},
+                    "disagreement": 0.0,
+                    "needs_llm": needs_llm
+                }
+            
+            elif getattr(settings.grading, 'grading_method', 'embedding') == "hybrid" and self._nli_service:
+                # ===========================================
+                # OPTIMIZED TIERED COSINE-NLI-LLM ARCHITECTURE
+                # ===========================================
+                # Tier 1: Cosine ≥ 92%  → Auto-PASS (obvious match)
+                # Tier 2: Cosine 75-92% → LLM Arbiter (gray zone reasoning)
+                # Tier 3: Cosine 60-75% → NLI Check (contradiction detection)
+                # Tier 4: Cosine < 60%  → Auto-FAIL (clearly not matching)
+                # ===========================================
+                
+                # Get tier thresholds from settings
+                tier1_threshold = getattr(settings.grading, 'tier1_auto_pass', 0.92)
+                tier2_threshold = getattr(settings.grading, 'tier2_llm_min', 0.75)
+                tier3_threshold = getattr(settings.grading, 'tier3_nli_min', 0.60)
+                
+                hybrid_result = None
+                
+                # TIER 1: AUTO-PASS (cosine ≥ 95%)
+                if similarity >= tier1_threshold:
+                    is_hit = True
+                    verification_method = "tier1-auto-pass"
+                    print(f"  ✅ '{key_point_text[:30]}...': TIER 1 (auto-pass) cosine={similarity:.3f} ≥ {tier1_threshold} → PASS")
+                
+                # TIER 2: LLM ARBITER (cosine 75-92%)
+                elif similarity >= tier2_threshold:
+                    verification_method = "tier2-llm"
+                    print(f"  🤖 '{key_point_text[:30]}...': TIER 2 (LLM) cosine={similarity:.3f} in [{tier2_threshold}, {tier1_threshold})")
+                    
+                    if self._llm_arbiter:
+                        try:
+                            # Call LLM synchronously (avoid asyncio.run in async context)
+                            llm_result = self._call_llm_sync(
+                                question_text=question.get("question_text", ""),
+                                key_point=key_point_text,
+                                student_answer=user_answer,
+                                cosine_similarity=similarity
+                            )
+                            
+                            is_hit = llm_result["is_correct"]
+                            print(f"     ✨ LLM decision: {'PASS' if is_hit else 'FAIL'} (confidence: {llm_result['confidence']:.2f})")
+                            print(f"        Reasoning: {llm_result['reasoning']}")
+                        except Exception as e:
+                            print(f"     ⚠️ LLM failed: {e}, defaulting to PASS (high cosine)")
+                            is_hit = True  # Default to pass since cosine is high
+                    else:
+                        # No LLM available, optimistically pass since cosine is decent
+                        is_hit = True
+                        print(f"     ⚠️ No LLM arbiter, defaulting to PASS")
+                
+                # TIER 3: NLI CHECK (cosine 50-75%)
+                elif similarity >= tier3_threshold:
+                    verification_method = "tier3-nli"
+                    print(f"  🔍 '{key_point_text[:30]}...': TIER 3 (NLI) cosine={similarity:.3f} in [{tier3_threshold}, {tier2_threshold})")
+                    
+                    # Use NLI to verify
+                    nli_result = self._nli_service._evaluate_sentences_nli(
+                        sentences=sentences,
+                        key_point=key_point_text,
+                        use_base=True,
+                        full_answer=user_answer
+                    )
+                    
+                    entailment = nli_result["best_entailment"]
+                    has_contradiction = nli_result["has_contradiction"]
+                    entail_threshold = getattr(settings.grading, 'nli_entailment_threshold', 0.60)
+                    
+                    if has_contradiction:
+                        is_hit = False
+                        print(f"     ❌ NLI: CONTRADICTION detected → FAIL")
+                    elif entailment >= entail_threshold:
+                        is_hit = True
+                        print(f"     ✅ NLI: entailment={entailment:.3f} ≥ {entail_threshold} → PASS")
+                    else:
+                        is_hit = False
+                        print(f"     ❌ NLI: entailment={entailment:.3f} < {entail_threshold} → FAIL")
+                    
+                    hybrid_result = {
+                        "nli_scores": {"small": nli_result},
+                        "final_score": entailment
+                    }
+                
+                # TIER 4: AUTO-FAIL (cosine < 50%)
+                else:
+                    is_hit = False
+                    verification_method = "tier4-auto-fail"
+                    print(f"  ❌ '{key_point_text[:30]}...': TIER 4 (auto-fail) cosine={similarity:.3f} < {tier3_threshold} → FAIL")
+                
+                # Log uncertain cases for active learning (only for Tier 3 with NLI)
+                if hybrid_result and hybrid_result.get("nli_scores"):
                     uncertainty = self._calculate_uncertainty_score(
                         similarity=similarity,
                         nli_entailment=hybrid_result.get("nli_scores", {}).get("small", {}).get("best_entailment", 0),
@@ -639,6 +818,8 @@ class GradingService:
         # Only call LLM when there's genuine uncertainty
         llm_holistic_mode = getattr(settings.grading, 'llm_holistic_mode', 'never')
         
+        print(f"\n🔍 DEBUG: llm_holistic_mode={llm_holistic_mode}, llm_arbiter={self._llm_arbiter is not None}")
+        
         if llm_holistic_mode != "never" and self._llm_arbiter:
             should_use_llm = False
             llm_reason = ""
@@ -686,14 +867,18 @@ class GradingService:
             
             if should_use_llm:
                 print(f"\n🤖 LLM Fallback triggered: {llm_reason}")
+                print(f"   Calling grade_holistically with {len(key_points)} key points...")
                 import asyncio
                 try:
                     key_point_texts = [kp["text"] for kp in key_points]
                     llm_result = asyncio.run(self._llm_arbiter.grade_holistically(
                         question_text=question.get("question_text", ""),
                         key_points=key_point_texts,
-                        student_answer=user_answer
+                        student_answer=user_answer,
+                        sentences=sentences  # NEW: Pass sentences for full-context LLM analysis
                     ))
+                    
+                    print(f"   LLM result received: {llm_result is not None}")
                     
                     if llm_result:
                         # Override with LLM's holistic assessment
@@ -707,9 +892,13 @@ class GradingService:
                                 missing_key_points.append(kp_text)
                         
                         print(f"   ✨ LLM Override: {len(hit_key_points)}/{len(key_points)} key points covered")
+                    else:
+                        print(f"   ⚠️ LLM returned None, using NLI results")
                         
                 except Exception as e:
-                    print(f"   ⚠️ LLM fallback failed: {e}, using embedding/NLI results")
+                    import traceback
+                    print(f"   ⚠️ LLM fallback failed: {e}")
+                    print(f"   Traceback: {traceback.format_exc()}")
         
         # Calculate score and generate feedback
         score = self._calculate_score(len(hit_key_points), len(key_points))

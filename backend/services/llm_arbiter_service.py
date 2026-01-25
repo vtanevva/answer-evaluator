@@ -183,10 +183,14 @@ Respond in JSON format:
         self,
         question_text: str,
         key_points: list,
-        student_answer: str
+        student_answer: str,
+        sentences: list = None
     ) -> Dict[str, any]:
         """
         Use LLM to grade the ENTIRE answer holistically like a teacher would.
+        
+        PRODUCTION-LEVEL: Provides both full answer AND sentence breakdown
+        for maximum context understanding.
         
         This is the most accurate method - the LLM reads the whole answer
         and determines which key points are covered, understanding context,
@@ -196,6 +200,7 @@ Respond in JSON format:
             question_text: The original question
             key_points: List of key points to check
             student_answer: Student's complete answer text
+            sentences: Pre-split sentences for detailed analysis
             
         Returns:
             Dictionary with:
@@ -206,8 +211,15 @@ Respond in JSON format:
         if not self.enabled:
             return None
         
+        # Split into sentences if not provided
+        if sentences is None:
+            sentences = [s.strip() for s in student_answer.split('.') if s.strip()]
+        
         # Format key points for prompt
         key_points_text = "\n".join([f"{i+1}. {kp}" for i, kp in enumerate(key_points)])
+        
+        # Format sentence breakdown
+        sentences_text = "\n".join([f"  [{i+1}] \"{s}\"" for i, s in enumerate(sentences)])
         
         prompt = f"""You are an expert teacher grading a student's short answer. Your job is to determine which key points from the marking scheme are covered in the student's answer.
 
@@ -216,22 +228,32 @@ QUESTION: {question_text}
 MARKING SCHEME - Key Points (each worth equal marks):
 {key_points_text}
 
-STUDENT'S ANSWER:
+STUDENT'S COMPLETE ANSWER:
 "{student_answer}"
 
-GRADING RULES:
-1. A key point is COVERED if the student addresses the concept, even with different wording
-2. Synonyms and paraphrasing count as correct (e.g., "jobs" = "employment" = "work opportunities")
-3. The meaning matters, not the exact words
-4. If the student implies a concept clearly, it counts as covered
-5. Be GENEROUS - if there's reasonable interpretation that covers the point, mark it as covered
+SENTENCE-BY-SENTENCE BREAKDOWN:
+{sentences_text}
 
-For each key point, decide: Is this concept addressed in the student's answer? Yes = true, No = false
+GRADING INSTRUCTIONS:
+1. Read the COMPLETE answer first to understand the overall meaning
+2. Then check each sentence to see which key points are addressed
+3. A key point is COVERED if:
+   - The student addresses the concept directly, OR
+   - The student implies it clearly through context, OR
+   - The student uses synonyms/paraphrasing (e.g., "jobs" = "employment" = "work opportunities")
+4. A key point is NOT COVERED if:
+   - It's completely absent from the answer, OR
+   - The student contradicts it (says the opposite)
+5. Be GENEROUS - if there's a reasonable interpretation that covers the point, mark it as covered
+
+For each key point, respond with:
+- true if covered (found in any sentence or implied by overall meaning)
+- false if not covered
 
 Respond ONLY with valid JSON:
 {{
   "covered": [true, false, true, ...],
-  "reasoning": ["found: X matches this", "missing: no mention of Y", ...]
+  "reasoning": ["sentence [X]: 'quote' addresses this", "missing: no mention of concept Y", ...]
 }}"""
 
         try:

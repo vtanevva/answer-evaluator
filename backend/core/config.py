@@ -105,6 +105,12 @@ class GradingConfig:
     nli_verify_threshold: float = 0.70     # 70-85% similarity = NLI verification
     nli_deep_check_threshold: float = 0.70 # < 70% similarity = NLI deep check
     
+    # LLM Arbiter settings
+    llm_arbiter_enabled: bool = False
+    llm_arbiter_provider: str = "groq"
+    llm_arbiter_model: str = "llama-3.1-8b-instant"
+    llm_holistic_mode: str = "never"        # "never", "always", or "fallback"
+
     # Embedding-specific settings
     precompute_embeddings: bool = True
     similarity_thresholds: SimilarityThresholds = field(default_factory=SimilarityThresholds)
@@ -230,6 +236,11 @@ def _create_grading_config(data: Dict[str, Any]) -> GradingConfig:
         answer_cache_enabled = data.get('answer_cache_enabled', True)
         answer_cache_similarity_threshold = data.get('answer_cache_similarity_threshold', 0.99)
         answer_cache_max_results = data.get('answer_cache_max_results', 5)
+        # LLM Arbiter settings
+        llm_arbiter_enabled = data.get('llm_arbiter_enabled', False)
+        llm_arbiter_provider = data.get('llm_arbiter_provider', 'groq')
+        llm_arbiter_model = data.get('llm_arbiter_model', 'llama-3.1-8b-instant')
+        llm_holistic_mode = data.get('llm_holistic_mode', 'never')
 
         
         # Create nested configs with error handling
@@ -269,6 +280,10 @@ def _create_grading_config(data: Dict[str, Any]) -> GradingConfig:
             answer_cache_enabled=answer_cache_enabled,
             answer_cache_similarity_threshold=answer_cache_similarity_threshold,
             answer_cache_max_results=answer_cache_max_results,
+            llm_arbiter_enabled=llm_arbiter_enabled,
+            llm_arbiter_provider=llm_arbiter_provider,
+            llm_arbiter_model=llm_arbiter_model,
+            llm_holistic_mode=llm_holistic_mode,
             similarity_thresholds=similarity_thresholds,
             feedback_messages=feedback_messages,
             answer_validation=answer_validation

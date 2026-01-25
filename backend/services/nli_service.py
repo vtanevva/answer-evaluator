@@ -332,8 +332,14 @@ class NLIService:
             if not sentences:
                 sentences = [student_answer]
         
-        # Track 2+: Run NLI-small
-        nli_small_result = self._evaluate_sentences_nli(sentences, key_point, use_base=False)
+        # Track 2+: Run NLI-small with FULL CONTEXT
+        # Pass both sentences AND full answer for holistic understanding
+        nli_small_result = self._evaluate_sentences_nli(
+            sentences=sentences, 
+            key_point=key_point, 
+            use_base=False,
+            full_answer=student_answer  # NEW: Enable full-context evaluation
+        )
         
         # Calculate adjusted score (sequential refinement)
         # CRITICAL: Pass both has_contradiction AND has_explicit_negation flags
@@ -389,8 +395,13 @@ class NLIService:
             }
         
         # Track 3: DEEP VERIFY - Moderate disagreement (15-55%)
-        # Load and run base model for verification
-        nli_base_result = self._evaluate_sentences_nli(sentences, key_point, use_base=True)
+        # Load and run base model for verification with FULL CONTEXT
+        nli_base_result = self._evaluate_sentences_nli(
+            sentences=sentences, 
+            key_point=key_point, 
+            use_base=True,
+            full_answer=student_answer  # NEW: Enable full-context evaluation
+        )
         
         # Refine again with base model
         # CRITICAL: Pass both has_contradiction AND has_explicit_negation flags
@@ -472,23 +483,71 @@ class NLIService:
             "details": f"Critical: high disagreement ({disagreement:.3f} ≥ {self.high_disagreement}), LLM recommended"
         }
     
-    def _evaluate_sentences_nli(self, sentences: List[str], key_point: str, use_base: bool = False) -> Dict[str, any]:
+    def _evaluate_sentences_nli(
+        self, 
+        sentences: List[str], 
+        key_point: str, 
+        use_base: bool = False,
+        full_answer: str = None
+    ) -> Dict[str, any]:
         """
-        Evaluate all sentences against a key point using NLI
+        Evaluate student answer against a key point using NLI with FULL CONTEXT
+        
+        PRODUCTION-LEVEL: Uses both full answer and individual sentences for holistic understanding.
+        This catches concepts that span multiple sentences or are implied by overall meaning.
         
         Args:
             sentences: List of sentences from student answer
             key_point: The key point to check
             use_base: Whether to use base model
+            full_answer: Complete student answer text for holistic evaluation
             
         Returns:
-            Aggregated NLI results
+            Aggregated NLI results with both full-answer and sentence-level scores
         """
         best_entailment = 0.0
+        best_sentence_entailment = 0.0
+        full_answer_entailment = 0.0
         max_contradiction = 0.0
         has_contradiction = False
         has_explicit_negation = False
         details = []
+        
+        # =========================================================
+        # STEP 1: HOLISTIC FULL-ANSWER EVALUATION (NEW)
+        # =========================================================
+        # Evaluate the entire answer as a single unit first
+        # This catches meaning distributed across multiple sentences
+        # =========================================================
+        if full_answer and len(full_answer.strip()) > 10:
+            try:
+                full_scores = self.check_entailment(
+                    premise=key_point,
+                    hypothesis=full_answer,
+                    use_base_model=use_base
+                )
+                full_answer_entailment = full_scores["entailment"]
+                
+                # Log full-answer evaluation
+                model_name = "base" if use_base else "small"
+                print(f"         📄 Full-answer NLI ({model_name}): ent={full_answer_entailment:.3f}, con={full_scores['contradiction']:.3f}")
+                
+                details.append({
+                    "type": "full_answer",
+                    "text": full_answer[:100] + "..." if len(full_answer) > 100 else full_answer,
+                    "entailment": full_scores["entailment"],
+                    "contradiction": full_scores["contradiction"],
+                    "neutral": full_scores["neutral"]
+                })
+                
+                # Full answer contradiction check (stricter threshold)
+                if full_scores["contradiction"] > 0.80 and full_scores["entailment"] < 0.15:
+                    has_contradiction = True
+                    print(f"         🚨 Full-answer contradiction detected: con={full_scores['contradiction']:.3f}")
+                
+            except Exception as e:
+                print(f"         ⚠️ Full-answer NLI failed: {e}, falling back to sentence-only")
+                full_answer_entailment = 0.0
         
         # EXPLICIT NEGATION PATTERNS - these override NLI when detected
         # Split into two categories:
@@ -566,10 +625,10 @@ class NLIService:
                             break
             
             # NLI direction: Check if student's SENTENCE entails the KEY POINT
-            # This tests: "If student's claim is true, does that mean the key point is covered?"
+            # This tests: "Does the student's sentence cover/support the key point?"
             scores = self.check_entailment(
-                premise=sentence,       # Student's claim (what they said)
-                hypothesis=key_point,   # Reference (what we need to verify is covered)
+                premise=key_point,      # Reference (what needs to be covered)
+                hypothesis=sentence,    # Student's claim (what they said)
                 use_base_model=use_base
             )
             
@@ -580,10 +639,10 @@ class NLIService:
                 **scores
             })
             
-            # Update best entailment (skip if denying negation, include if confirming)
-            if scores["entailment"] > best_entailment:
+            # Update best SENTENCE entailment (skip if denying negation, include if confirming)
+            if scores["entailment"] > best_sentence_entailment:
                 if not sentence_has_negation or is_confirming_negation:
-                    best_entailment = scores["entailment"]
+                    best_sentence_entailment = scores["entailment"]
             
             if scores["contradiction"] > max_contradiction:
                 max_contradiction = scores["contradiction"]
@@ -601,8 +660,28 @@ class NLIService:
                 has_contradiction = True
                 print(f"         🚨 Contradiction (NLI): ent={scores['entailment']:.3f}, con={scores['contradiction']:.3f}")
         
+        # =========================================================
+        # STEP 3: COMBINE FULL-ANSWER AND SENTENCE-LEVEL SCORES
+        # =========================================================
+        # Take the MAXIMUM of full-answer and best-sentence entailment
+        # This ensures we catch coverage whether it's:
+        # - Stated explicitly in one sentence, OR
+        # - Implied across the whole answer
+        # =========================================================
+        best_entailment = max(full_answer_entailment, best_sentence_entailment)
+        
+        # Determine which method found the best match
+        entailment_source = "full_answer" if full_answer_entailment >= best_sentence_entailment else "sentence"
+        
+        # Log the combination result
+        if full_answer_entailment > 0 or best_sentence_entailment > 0:
+            print(f"         📊 Combined NLI: full={full_answer_entailment:.3f}, best_sent={best_sentence_entailment:.3f} → best={best_entailment:.3f} ({entailment_source})")
+        
         return {
             "best_entailment": best_entailment,
+            "full_answer_entailment": full_answer_entailment,
+            "best_sentence_entailment": best_sentence_entailment,
+            "entailment_source": entailment_source,
             "max_contradiction": max_contradiction,
             "has_contradiction": has_contradiction,
             "has_explicit_negation": has_explicit_negation,

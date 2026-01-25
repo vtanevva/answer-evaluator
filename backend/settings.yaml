@@ -64,58 +64,48 @@ pinecone:
 # Evaluation Configuration
 grading:
   
-  grading_method: "hybrid"  # "hybrid", "nli", or "embedding"
-  
-  # NLI Model Configuration
   # ============================================
-  nli_model_small: "cross-encoder/nli-deberta-v3-small"      # Primary (140MB, 50ms)
-  nli_model_base: "cross-encoder/nli-deberta-v3-base"        # Escalation (430MB, 150ms)
+  # TIERED COSINE-NLI-LLM ARCHITECTURE (OPTIMIZED)
+  # ============================================
+  # Tier 1: Cosine ≥ 92%    → Auto-PASS (obvious match)
+  # Tier 2: Cosine 75-92%   → LLM Arbiter (gray zone reasoning)
+  # Tier 3: Cosine 60-75%   → NLI Check (contradiction detection)
+  # Tier 4: Cosine < 60%    → Auto-FAIL (clearly not matching)
+  # ============================================
+  grading_method: "hybrid"  # Uses cosine + NLI + LLM tiered approach
   
-  nli_entailment_threshold: 0.50            # Threshold for entailment
-  nli_contradiction_threshold: 0.75         # Lowered for better detection
+  # Tiered Thresholds
+  tier1_auto_pass: 0.92           # ≥92% cosine = instant pass (no verification)
+  tier2_llm_min: 0.78             # 78-92% = LLM verification (catches paraphrasing)
+  tier3_nli_min: 0.70             # 70-78% = NLI verification (contradiction check)
+  tier4_auto_fail: 0.70           # <70% = instant fail (reduces false positives on off-topic answers)
+  
+  # NLI Model Configuration (for Tier 3)
+  nli_model_small: "cross-encoder/nli-deberta-v3-base"
+  nli_model_base: "cross-encoder/nli-deberta-v3-base"
+  nli_entailment_threshold: 0.90          # NLI entailment threshold for Tier 3 (strict - reduces false positives)
+  nli_contradiction_threshold: 0.85       # Contradiction detection threshold (raised to reduce false positives)
   
   # Performance optimizations
-  nli_batch_size: 4                         # Process multiple sentences in batch
-  nli_max_length: 256                       # Reduced from 512 for speed
-  nli_use_fp16: true                        # Half precision for 2x speed (if GPU)
+  nli_batch_size: 4
+  nli_max_length: 256
+  nli_use_fp16: true
   
   # Uncertainty Logging (for active learning - no cost)
   log_uncertain_cases: true
-  uncertainty_threshold: 0.7  # Log cases with uncertainty score > 0.7 for review
+  uncertainty_threshold: 0.7
   
-  # LLM Arbiter Configuration - GROQ LLAMA 70B
+  # LLM Arbiter Configuration (for Tier 2)
   # ============================================
-  # Cost: ~$0.20 per 1000 answers (very affordable)
+  # Uses Groq Llama 8B - fast and cheap
+  # Cost: ~$0.01 per 1000 answers in Tier 2
   # ============================================
-
   llm_arbiter_enabled: true
   llm_arbiter_provider: "groq"
-  llm_arbiter_model: "llama-3.1-70b-versatile"  
-  llm_arbiter_timeout: 5                      
-  llm_arbiter_max_tokens: 150
-  
-  # LLM Smart Fallback - DISABLED FOR NOW
-  # ============================================
-  # Set to "fallback" and add GROQ_API_KEY to enable
-  # ============================================
-  llm_holistic_mode: "never"                    # "never", "always", or "fallback"
-  llm_holistic_uncertainty_threshold: 0.20
-  
-  # Trigger conditions (ALL must be met OR any critical flag)
-  llm_trigger_conditions:
-    min_disagreement: 0.55                  # Cosine-NLI difference >55%
-    min_uncertainty: 0.80                   # Combined uncertainty score
-    enable_on_contradiction_conflict: true  # NLI says contradiction but cosine high
-
-  
-  # Fast Track thresholds
-  fast_track_cosine_high: 0.92              # ≥92% similarity = instant pass
-  fast_track_cosine_with_overlap: 0.88      # ≥88% cosine + ≥50% overlap = instant pass
-  fast_track_overlap_threshold: 0.50
-  
-  # Standard Track thresholds  
-  standard_track_min: 0.70                  # Minimum for NLI verification
-  standard_track_max: 0.92                  # Maximum for standard track
+  llm_arbiter_model: "llama-3.1-8b-instant"
+  llm_arbiter_timeout: 15                    # Increased timeout for reliability
+  llm_arbiter_max_tokens: 200
+  llm_holistic_mode: "tiered"             # Uses tiered architecture
   
   # Disagreement escalation thresholds
   agreement_threshold: 0.15                 # <15% difference = models agree
